@@ -5,14 +5,13 @@ Active development; original PRD goals remain unchanged. Not release-ready.
 This experimental `perf/resize-roi` branch adds sampling-aligned resize crops.
 The initial crop candidate failed parity at Arm dispatch boundaries; its corrected
 wheel passed 191 M2 tests, including 40 crop cases. Failure artifacts are retained.
-This candidate still needs Linux, sanitizer, real-corpus and performance validation
-before merging; see [RESIZE_ROI.md](RESIZE_ROI.md). Historical numbers below do not
+The corrected Linux wheel passed 201 tests and all nine full augmented overlap
+runs (5,000 images per run; reference/reference/native at workers 0/2/8), with an
+independent audit of the complete raw evidence. Its 375 selected dependency files
+match the bundled notice inventory. Non-overlap, sanitizer and candidate timing/
+memory validation remain open before merging; see [RESIZE_ROI.md](RESIZE_ROI.md).
+Historical performance numbers below belong to parent implementations and do not
 measure this candidate.
-
-This `perf/resize-roi` worktree contains an unbuilt, untested resize-region
-candidate. The results below belong to its parent implementations, not to this
-new kernel. See [RESIZE_ROI.md](RESIZE_ROI.md) for the proposed invariants,
-prepared boundary tests and remaining validation.
 
 The 12-job platform/Python [wheel CI workflow](WHEEL_CI.md) is prepared and
 locally linted. Hosted execution awaits the repository visibility choice; this

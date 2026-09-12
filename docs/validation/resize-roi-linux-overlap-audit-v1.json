@@ -1,0 +1,75 @@
+{
+  "scope": "complete Linux ROI augmented mask-only output evidence; hashing inside iteration, no speed or memory claim",
+  "complete": true,
+  "overlap": true,
+  "groups": [
+    {
+      "workers": 0,
+      "runs": 3,
+      "images_per_run": 5000,
+      "batches_per_run": 625,
+      "output_sha256": "849d86d5aacd20b8297fa0f147c21a38c879338735527730bd15e0493b8c51a9",
+      "augmented_instances": 225016,
+      "objects_per_image": {
+        "min": 2,
+        "max": 222,
+        "median": 40.0
+      },
+      "mask_dtypes": [
+        "torch.uint8"
+      ]
+    },
+    {
+      "workers": 2,
+      "runs": 3,
+      "images_per_run": 5000,
+      "batches_per_run": 625,
+      "output_sha256": "fcf74c8fd5dbd87e8797bc105037daac6300f1ea35592f83ed57f393adc563c4",
+      "augmented_instances": 222594,
+      "objects_per_image": {
+        "min": 2,
+        "max": 227,
+        "median": 40.0
+      },
+      "mask_dtypes": [
+        "torch.uint8"
+      ]
+    },
+    {
+      "workers": 8,
+      "runs": 3,
+      "images_per_run": 5000,
+      "batches_per_run": 625,
+      "output_sha256": "8faa6145ddd9dadbe5cbc0d8c5b89cca07c6252ca16558f1a17e0e512592553b",
+      "augmented_instances": 220191,
+      "objects_per_image": {
+        "min": 2,
+        "max": 184,
+        "median": 39.0
+      },
+      "mask_dtypes": [
+        "torch.uint8"
+      ]
+    }
+  ],
+  "archive_sha256": "402ed199a3ebd0c559012617aba1b6ec0ce64da41f085343f707484fc694bf95",
+  "archive_files": 32,
+  "auditor_sha256": "86404c8ab80ee3400ed875f1ef3e71ea603977733158e16c4143e0efb66939ae",
+  "report_sha256": "5f340e2e149ee01ced419017dcb5a9fdb5f2bf4e87e11397d3d3547321beef2e",
+  "extension_sha256": "9b86c9dca9e4a694c57e14ba4d31ef8b303a47404f45849e181af5fad2d78325",
+  "source_sha256": {
+    "CMakeLists.txt": "13177f15e47776ae22c251a2eee6079a68788b19b56397c48d2c7e48adbf574e",
+    "bench/coco_loader.py": "a2a6976e665cbda2887ca8ee7c12c7c1dcc5d9a80f10c079fa8eb3baa80dd20b",
+    "pyproject.toml": "bc18d48a06df856d78d0b5495078f69d186e57849528430c243adb0550cc9270",
+    "python/ultrafast_maskops/__init__.py": "0b381bd51042cea607d9742593e8ece643d8e4dedd4fff80522a7bc9b4ac99fa",
+    "python/ultrafast_maskops/ultralytics.py": "0bd934e308d5808ea97e7add5b53d36bf02533a4980f24276971cad21564da5d",
+    "src/bindings.cpp": "c63940b67b291123d6d5d895858cb981afaa17bd1aea94856cd9f40dcebb1813",
+    "src/build_profile.h.in": "76643f1d3cdb44abd7d7647853c1f7ae03e22d76a07027de9c7cb58340260213"
+  },
+  "limitations": [
+    "No corpus rerun by this auditor; source worker code records pre/post corpus and cache fingerprint checks.",
+    "One fixed augmentation seed per worker count; streams may differ between worker counts.",
+    "Only mask preparation replaced; original dataset scanner retained.",
+    "Does not establish performance, sanitizer coverage, other resolutions or cross-platform parity."
+  ]
+}

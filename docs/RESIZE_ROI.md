@@ -33,9 +33,43 @@ server/local copies and the recorded artifact hashes match. See also
 An initial offline dependency install could not resolve the uncached pinned
 PyTorch URL. Its log is retained; installation succeeded with the same frozen
 requirements after allowing downloads. No version was changed to pass tests.
-This wheel has not been manylinux-repaired. Full real-corpus, sanitizer and
-performance checks remain outstanding; neither Linux parity nor the earlier
-GPU results establish ROI speed or memory benefits.
+This wheel has not been manylinux-repaired. The full real-corpus overlap check
+below passed; non-overlap, sanitizer and performance checks remain outstanding.
+Neither Linux parity nor the earlier GPU results establish ROI speed or memory benefits.
+
+## Linux full augmented overlap verification
+
+The corrected installed wheel passed nine fresh-process runs on all 5,000 COCO
+val2017 images: reference, reference replay and native for each of workers 0/2/8.
+Each run produced 625 batches at batch size 8, image size 640 and mask ratio 4.
+Mosaic, mixup, copy-paste and the other fixed stress augmentations were enabled
+with seed 912. Only mask preparation was replaced; the original dataset scanner
+was retained. All batch and whole-stream output hashes match within each worker
+group, including images, masks, semantic masks, boxes, classes and instance order.
+
+| Loader workers | Augmented instances per run | Maximum instances in an image | Mask dtype |
+| --- | ---: | ---: | --- |
+| 0 | 225,016 | 222 | uint8 |
+| 2 | 222,594 | 227 | uint8 |
+| 8 | 220,191 | 184 | uint8 |
+
+Different worker counts produce different random streams; equality is checked
+against the two corresponding reference runs, not across worker counts.
+An independent standard-library audit checked all nine raw files against the
+parent report, all 625 batch records per run, source and compiled-profile hashes,
+the tested extension, package versions, augmentation settings and original cache
+provenance. This audit does not rerun the corpus; the retained worker source
+performs pre/post corpus and cache fingerprint checks during each actual run.
+
+The [32-file evidence archive](../bench/results/resize-roi-linux-overlap-v1.tar.gz)
+contains all nine raw results and logs, the complete parent report, source files,
+original cache provenance and installed-wheel receipt. Its SHA-256 is
+`402ed199a3ebd0c559012617aba1b6ec0ce64da41f085343f707484fc694bf95`.
+See the [audit receipt](validation/resize-roi-linux-overlap-audit-v1.json) and
+[reproduction script](validation/audit-resize-roi-augmented-v1.py). Run the latter
+with the archive path as its single argument. Hashing is inside loader iteration,
+so these runs establish output parity only, not timing or memory improvement.
+Non-overlap verification runs separately and is not covered by this result.
 
 ## Change and candidate invariants
 
