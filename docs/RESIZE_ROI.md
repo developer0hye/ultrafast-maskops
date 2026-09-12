@@ -33,17 +33,18 @@ server/local copies and the recorded artifact hashes match. See also
 An initial offline dependency install could not resolve the uncached pinned
 PyTorch URL. Its log is retained; installation succeeded with the same frozen
 requirements after allowing downloads. No version was changed to pass tests.
-This wheel has not been manylinux-repaired. The full real-corpus overlap check
-below passed; non-overlap, sanitizer and performance checks remain outstanding.
+This wheel has not been manylinux-repaired. The full real-corpus overlap and
+non-overlap checks below passed; sanitizer and performance checks remain outstanding.
 Neither Linux parity nor the earlier GPU results establish ROI speed or memory benefits.
 
-## Linux full augmented overlap verification
+## Linux full augmented overlap and non-overlap verification
 
 The corrected installed wheel passed nine fresh-process runs on all 5,000 COCO
 val2017 images: reference, reference replay and native for each of workers 0/2/8.
 Each run produced 625 batches at batch size 8, image size 640 and mask ratio 4.
 Mosaic, mixup, copy-paste and the other fixed stress augmentations were enabled
-with seed 912. Only mask preparation was replaced; the original dataset scanner
+with seed 912. A separate non-overlap series then passed the same nine-process
+matrix, for 18 completed fresh-process runs in total. Only mask preparation was replaced; the original dataset scanner
 was retained. All batch and whole-stream output hashes match within each worker
 group, including images, masks, semantic masks, boxes, classes and instance order.
 
@@ -53,7 +54,7 @@ group, including images, masks, semantic masks, boxes, classes and instance orde
 | 2 | 222,594 | 227 | uint8 |
 | 8 | 220,191 | 184 | uint8 |
 
-Different worker counts produce different random streams; equality is checked
+The instance counts and dtypes above apply to each mode. Different worker counts produce different random streams; equality is checked
 against the two corresponding reference runs, not across worker counts.
 An independent standard-library audit checked all nine raw files against the
 parent report, all 625 batch records per run, source and compiled-profile hashes,
@@ -69,7 +70,16 @@ See the [audit receipt](validation/resize-roi-linux-overlap-audit-v1.json) and
 [reproduction script](validation/audit-resize-roi-augmented-v1.py). Run the latter
 with the archive path as its single argument. Hashing is inside loader iteration,
 so these runs establish output parity only, not timing or memory improvement.
-Non-overlap verification runs separately and is not covered by this result.
+
+The separately [preserved non-overlap archive](../bench/results/resize-roi-linux-nonoverlap-v1.tar.gz)
+also contains 32 files, including all nine raw results and logs. Its SHA-256 is
+`58edf832e37908b272f1099847fc6ebdb653c47f1c1858a1e9ee96fe9ece273f`.
+The same auditor passed all nine non-overlap runs; see its
+[audit receipt](validation/resize-roi-linux-nonoverlap-audit-v1.json).
+Both series used the same tested installed extension and unchanged source,
+upstream packages and original cache. Each mode is compared against its own
+reference streams; overlap and per-instance masks are not expected to share
+output hashes. The sequential server command finished with exit code zero.
 
 ## Change and candidate invariants
 
@@ -134,8 +144,8 @@ auditor checks, with no failures, errors or skips. This includes 10,000 seeded
 differential cases and deterministic CPU model updates. The NumPy-only installed
 wheel smoke, RECORD/runtime audit and all nine bundled notice files also passed.
 Exact wheel/source hashes and reports are in `validation/resize-roi-passed-v2.json`
-and `resize-roi-tests-v2.*`. Linux validation is recorded above. Sanitizer, real-corpus output and benchmark
-checks remain necessary before merging.
+and `resize-roi-tests-v2.*`. Linux full real-corpus output validation is recorded
+above. Sanitizer and benchmark checks remain necessary before merging.
 
 The first build's 573 selected dependency files, including 61 Carotene files,
 match the existing notice inventory. Their collected notices are present in the

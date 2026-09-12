@@ -5,10 +5,10 @@ Active development; original PRD goals remain unchanged. Not release-ready.
 This experimental `perf/resize-roi` branch adds sampling-aligned resize crops.
 The initial crop candidate failed parity at Arm dispatch boundaries; its corrected
 wheel passed 191 M2 tests, including 40 crop cases. Failure artifacts are retained.
-The corrected Linux wheel passed 201 tests and all nine full augmented overlap
-runs (5,000 images per run; reference/reference/native at workers 0/2/8), with an
+The corrected Linux wheel passed 201 tests and all 18 full augmented overlap and
+non-overlap runs (5,000 images per run; reference/reference/native at workers 0/2/8), with an
 independent audit of the complete raw evidence. Its 375 selected dependency files
-match the bundled notice inventory. Non-overlap, sanitizer and candidate timing/
+match the bundled notice inventory. Sanitizer and candidate timing/
 memory validation remain open before merging; see [RESIZE_ROI.md](RESIZE_ROI.md).
 Historical performance numbers below belong to parent implementations and do not
 measure this candidate.
