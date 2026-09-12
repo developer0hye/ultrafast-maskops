@@ -1,0 +1,10 @@
+{
+  "scope": "21 synthetic artifact/filesystem checks: 12 GPU audit, 9 fixture audit; not a native kernel suite or benchmark",
+  "tests": 21,
+  "failures": 0,
+  "source_sha256": {
+    "bench/audit_gpu_series.py": "74cd051f1df417ac6e229d583c517db125fa2c678419e2f520ed6023f65e54c2",
+    "tests/test_gpu_series_audit.py": "b00a2d3149fadce317ece941e922b7e3e025d71bf2cc8c4aa3cfdc1a9f29d8a6"
+  },
+  "junit_sha256": "a0d9e7efbef95a12f617e62acde267f2180dbf9fb7a197e650dfc63c3c4d1736"
+}

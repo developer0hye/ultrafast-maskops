@@ -1,0 +1,62 @@
+{
+  "complete": true,
+  "scope": "new masks-only installed wheel, full non-overlap target parity, not performance",
+  "report_sha256": "a9c6bb98860075a29cadd51a3d3ec136644911ed703fb7c385f43ae40d11c2c8",
+  "children": [
+    {
+      "path": "w0-0-reference.json",
+      "sha256": "f4f1c3c4e32db7e46272253c84d11cf1cee2af7c9791bce81c0dfcd539bbbc1a",
+      "output_sha256": "23ee25738e51b59c0d2e82e1449425b1d9098ebaf0a6f2a0dbef15e339b8a76d"
+    },
+    {
+      "path": "w0-1-reference.json",
+      "sha256": "f4f1c3c4e32db7e46272253c84d11cf1cee2af7c9791bce81c0dfcd539bbbc1a",
+      "output_sha256": "23ee25738e51b59c0d2e82e1449425b1d9098ebaf0a6f2a0dbef15e339b8a76d"
+    },
+    {
+      "path": "w0-2-native.json",
+      "sha256": "84022efd608ec99c2705cef1515648ec9e894254a4ed9472ed32a649b49a56a7",
+      "output_sha256": "23ee25738e51b59c0d2e82e1449425b1d9098ebaf0a6f2a0dbef15e339b8a76d"
+    },
+    {
+      "path": "w2-0-reference.json",
+      "sha256": "9cf0820a34f4d2698c83cc51aaf0731444baeb49dbff746d3c28c9aa04f2549f",
+      "output_sha256": "41489672356716d864ea9dc091dfe8fb8da2d5d126f068095529f734aeeea94d"
+    },
+    {
+      "path": "w2-1-reference.json",
+      "sha256": "9cf0820a34f4d2698c83cc51aaf0731444baeb49dbff746d3c28c9aa04f2549f",
+      "output_sha256": "41489672356716d864ea9dc091dfe8fb8da2d5d126f068095529f734aeeea94d"
+    },
+    {
+      "path": "w2-2-native.json",
+      "sha256": "8d8499069143307d2d396710100f03e7288166756b8ab265596a6ff44bc54f55",
+      "output_sha256": "41489672356716d864ea9dc091dfe8fb8da2d5d126f068095529f734aeeea94d"
+    },
+    {
+      "path": "w8-0-reference.json",
+      "sha256": "944d5eb481d275602412139b625ee889668d67c53253baad684daa3d754544e0",
+      "output_sha256": "504fbf27b11859d48cb220fe19445a849c9ca4c27f7c9b2f94b22aab5d5ec354"
+    },
+    {
+      "path": "w8-1-reference.json",
+      "sha256": "944d5eb481d275602412139b625ee889668d67c53253baad684daa3d754544e0",
+      "output_sha256": "504fbf27b11859d48cb220fe19445a849c9ca4c27f7c9b2f94b22aab5d5ec354"
+    },
+    {
+      "path": "w8-2-native.json",
+      "sha256": "a0fc58c45e75094f24be271a34c31f979813eca002df3fb66deeedc017e30c26",
+      "output_sha256": "504fbf27b11859d48cb220fe19445a849c9ca4c27f7c9b2f94b22aab5d5ec354"
+    }
+  ],
+  "source_sha256": {
+    "CMakeLists.txt": "13177f15e47776ae22c251a2eee6079a68788b19b56397c48d2c7e48adbf574e",
+    "bench/coco_loader.py": "a2a6976e665cbda2887ca8ee7c12c7c1dcc5d9a80f10c079fa8eb3baa80dd20b",
+    "pyproject.toml": "bc18d48a06df856d78d0b5495078f69d186e57849528430c243adb0550cc9270",
+    "python/ultrafast_maskops/__init__.py": "0b381bd51042cea607d9742593e8ece643d8e4dedd4fff80522a7bc9b4ac99fa",
+    "python/ultrafast_maskops/ultralytics.py": "0bd934e308d5808ea97e7add5b53d36bf02533a4980f24276971cad21564da5d",
+    "src/bindings.cpp": "99e10b49b6ac531eabd9797c4f19d3254ff72767aa5cac1d4afbb961425e9a10",
+    "src/build_profile.h.in": "76643f1d3cdb44abd7d7647853c1f7ae03e22d76a07027de9c7cb58340260213"
+  },
+  "extension_sha256": "a32854303983fee17abce5dc80056f5492501fae1955c99fe9c3e0813cb1e0ac"
+}
