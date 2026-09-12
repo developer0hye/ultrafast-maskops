@@ -33,7 +33,13 @@ def sha(data):
 
 
 def hashes(output):
-    return [{"shape": list(a.shape), "dtype": str(a.dtype), "sha256": sha(a.tobytes())} for a in output]
+    result = []
+    for array in output:
+        require(array.flags.c_contiguous, "output hashing requires C-contiguous arrays")
+        # Hash the owned output directly. A tobytes() copy here would inflate
+        # the measured worker's RSS high-water mark before the timing loop.
+        result.append({"shape": list(array.shape), "dtype": str(array.dtype), "sha256": sha(memoryview(array))})
+    return result
 
 
 def descriptor(root, wheel):

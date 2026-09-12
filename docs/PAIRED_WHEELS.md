@@ -24,6 +24,15 @@ non-overlap calls return the array directly, with hash-list normalization kept
 outside the timer. Rechecked descriptors differ from v1 only in harness hash;
 both wheel identities remain unchanged. No latency samples preceded this fix.
 
+A subsequent source review removed full-output `tobytes()` copies from parity
+hashing. The helper now hashes a direct buffer view and explicitly requires
+C-contiguous outputs. This prevents verification copies from inflating the
+measured worker's RSS high-water mark. Ten focused checks cover byte-for-byte
+digests, empty multidimensional outputs, integer dtypes and rejection of strided
+arrays; these checks are prepared but **not run** while both hosts are occupied.
+The v2 descriptors predate this harness change: refresh them and execute these
+checks before oracle/worker qualification. The installed wheel bytes are unchanged.
+
 ## Frozen matrix and measurement scope
 
 Use the unchanged nine cases in `bench/feasibility.py`: 640×640 images at ratio 4
