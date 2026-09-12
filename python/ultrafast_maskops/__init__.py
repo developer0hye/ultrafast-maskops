@@ -143,6 +143,7 @@ def backend_info():
         "opencv": _native.opencv_version,
         "numpy": np.__version__,
         "native_workers": 1,
+        "build": _native.build_profile(),
         "private_opencv_threads": _native.opencv_threads(),
         "fallback_count": 0,
         "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e",
