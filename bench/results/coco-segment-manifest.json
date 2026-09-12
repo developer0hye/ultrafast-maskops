@@ -1,0 +1,16 @@
+{
+  "kind": "ultrafast-yolo-coco-v1",
+  "task": "segment",
+  "count": 5000,
+  "label_files": 4952,
+  "label_rows": 36335,
+  "fingerprint": {
+    "files": 9952,
+    "bytes": 830426850,
+    "sha256": "8b079ad2d8472ff17b6cca9b0250e831472f12ef500f2b065125f6f39406c208"
+  },
+  "source_manifest_sha256": "c4221a066aa25c5230bfcda66840d400cb4ccb9d54642e354aa7c041b4ee2541",
+  "image_directory": "images/val2017",
+  "legacy_cache": "labels/val2017.cache",
+  "conversion": "unmodified pinned Ultralytics convert_coco, cls91to80=True, lvis=False; crowd and invalid boxes excluded, multipart segments merged by upstream, missing labels preserved"
+}
