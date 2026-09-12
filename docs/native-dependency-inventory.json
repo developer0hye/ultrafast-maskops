@@ -1,0 +1,48 @@
+{
+  "scope": "partial source and linker inventory for release preparation; not a complete redistribution audit or wheel validation",
+  "m2_link_libraries": "LINK_LIBRARIES = _deps/opencv-build/lib/libopencv_core.a  _deps/opencv-build/lib/libopencv_imgproc.a  _deps/opencv-build/lib/libopencv_core.a  _deps/opencv-build/3rdparty/lib/libzlib.a  -framework Accelerate  _deps/opencv-build/3rdparty/lib/libtegra_hal.a  _deps/opencv-build/3rdparty/lib/libkleidicv_hal.a  _deps/opencv-build/3rdparty/lib/libkleidicv_thread.a  _deps/opencv-build/3rdparty/lib/libkleidicv.a",
+  "observed_notice_sources": [
+    {
+      "path": "/Volumes/T7/ultrafast-vision-build/mask-build413/_deps/opencv-src/LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "/Volumes/T7/ultrafast-vision-build/mask-build413/_deps/opencv-src/doc/LICENSE_BSD.txt",
+      "sha256": "a5a7cf90fe5ac9763baad852cf69cf9d9b89bff934a679fdc5c8fcecaeba9a25"
+    },
+    {
+      "path": "/Volumes/T7/ultrafast-vision-build/mask-build413/_deps/opencv-src/3rdparty/zlib/LICENSE",
+      "sha256": "845efc77857d485d91fb3e0b884aaa929368c717ae8186b66fe1ed2495753243"
+    },
+    {
+      "path": "/Volumes/T7/ultrafast-vision-build/mask-build413/_deps/opencv-src/3rdparty/dlpack/LICENSE",
+      "sha256": "3e8f6bc39276a586d60c8c5aaece2ff989262181cf2b3d2a128db58f97a9300c"
+    },
+    {
+      "path": "/Volumes/T7/ultrafast-vision-build/mask-build413/_deps/opencv-src/modules/core/3rdparty/SoftFloat/COPYING.txt",
+      "sha256": "0c5b08365136da52639d777f1ebfc03988b0169d80655c90c59f1b3fa3e526a2"
+    },
+    {
+      "path": "/Volumes/T7/ultrafast-vision-build/mask-build413/_deps/opencv-src/modules/core/src/softfloat.cpp",
+      "sha256": "439d023e20307bcefad2309e486949ddd605a42acf7e4ba6118858812564c9f8"
+    },
+    {
+      "path": "/Volumes/T7/ultrafast-vision-build/mask-build413/_deps/opencv-src/hal/carotene/include/carotene/types.hpp",
+      "sha256": "c522466001a42e3a8b2464266a6991491aaca0501bd0fa743f5ac54257fc6354"
+    },
+    {
+      "path": "/Volumes/T7/ultrafast-vision-build/mask-coco-bounds-build/_deps/opencv-build/3rdparty/kleidicv/kleidicv-0.7.0/LICENSES/Apache-2.0.txt",
+      "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff"
+    },
+    {
+      "path": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pybind11-3.0.1.dist-info/licenses/LICENSE",
+      "sha256": "83965b843b98f670d3a85bd041ed4b372c8ec50d7b4a5995a83ac697ba675dcb"
+    }
+  ],
+  "remaining": [
+    "Audit license headers of compiled OpenCV source files and included headers",
+    "Bundle relevant notices into wheel and source archive",
+    "Verify exact generated artifacts on all supported platforms",
+    "Audit Rust dependency licenses separately"
+  ]
+}
