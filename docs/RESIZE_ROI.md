@@ -89,6 +89,12 @@ allocated and filling still uses that image, so this is **not** a claim of
 polygon-sized raster scratch or lower process RSS. Actual allocation and timing
 measurements must accompany any result.
 
+The [paired wheel protocol](PAIRED_WHEELS.md) now prepares a counterbalanced
+comparison with the tested masks-only baseline across the frozen nine cases and
+three public call paths. Both installed-wheel descriptors passed byte/source and
+shared-profile checks. Actual oracle, timing, RSS and aggregate execution remain
+pending; no benchmark is queued while the host runs the 500k dataset experiment.
+
 After this candidate's correctness and cost are established, a separate step can
 consider cropping the raster scratch itself. That needs a distinct proof of
 integer translation, clipping and fill-edge ordering, plus new memory-budget

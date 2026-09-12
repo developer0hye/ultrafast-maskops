@@ -1,0 +1,28 @@
+{
+  "scope": "read-only installed-wheel metadata checks, no mask calls or timing/allocation experiment",
+  "matched_fields": [
+    "python",
+    "numpy",
+    "opencv",
+    "cv2_build",
+    "wrapper_sha256",
+    "oracle_sha256",
+    "fixture_code_sha256",
+    "harness_sha256",
+    "private_opencv_threads",
+    "ram_bytes",
+    "logical_cpus"
+  ],
+  "matched_build_fields": [
+    "cmake_sha256",
+    "template_sha256",
+    "compiler",
+    "build_type"
+  ],
+  "harness_sha256": "5c0e89d4ac7ad488239d3533a16d2e62127d1f4dd33f85e6bb71f93a8f0c4ba4",
+  "descriptors_sha256": {
+    "baseline": "b4811594e98822fa4b96d835ae5e77b91f139901bc314ade4059b491c897d79e",
+    "candidate": "4cbe438c1f072c36942347157851a9335b1ef11a0b4e5da075f6a6a52af7b996"
+  },
+  "validation": "Ruff 0.16.7 passed; execution/oracle/aggregate checks pending"
+}
