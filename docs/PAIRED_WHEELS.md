@@ -87,3 +87,7 @@ Use actual mounted paths and a new output name. The current RSS/platform helpers
 target macOS and Linux; this script is not Windows benchmark coverage. Linux
 needs independently built and validated baseline/candidate wheels after the
 active GPU series finishes. No process is queued automatically by this document.
+
+The ten no-copy output-hashing checks passed as part of the 201-test Linux
+installed-wheel run (see RESIZE_ROI.md). The M2 run and actual oracle/worker/
+aggregate qualification remain pending; refresh the stale descriptors first.

@@ -1,0 +1,67 @@
+{
+  "scope": "installed Linux ROI wheel; 201 full tests including 10 no-copy benchmark hashing checks; not real-corpus, sanitizer or performance evidence",
+  "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+  "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+  "package": "/home/yonghye/ultrafast-vision-build/mask-resize-roi-linux-clean-v1/lib/python3.12/site-packages/ultrafast_maskops/__init__.py",
+  "native_build": {
+    "bindings_sha256": "c63940b67b291123d6d5d895858cb981afaa17bd1aea94856cd9f40dcebb1813",
+    "cmake_sha256": "13177f15e47776ae22c251a2eee6079a68788b19b56397c48d2c7e48adbf574e",
+    "template_sha256": "76643f1d3cdb44abd7d7647853c1f7ae03e22d76a07027de9c7cb58340260213",
+    "compiler": "GNU 13.3.0",
+    "build_type": "Release"
+  },
+  "extension_sha256": "9b86c9dca9e4a694c57e14ba4d31ef8b303a47404f45849e181af5fad2d78325",
+  "tests": [
+    {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "201",
+      "time": "19.996",
+      "timestamp": "2026-09-13T07:36:03.319480+09:00",
+      "hostname": "yonghye-pc"
+    }
+  ],
+  "source_archive_sha256": "00ecaae165fc319312f4734c282eb20ee9a08fcb3e2d6f1c8adf574162ab0300",
+  "source_files_sha256": {
+    "src/build_profile.h.in": "76643f1d3cdb44abd7d7647853c1f7ae03e22d76a07027de9c7cb58340260213",
+    "src/bindings.cpp": "c63940b67b291123d6d5d895858cb981afaa17bd1aea94856cd9f40dcebb1813",
+    "python/ultrafast_maskops/ultralytics.py": "0bd934e308d5808ea97e7add5b53d36bf02533a4980f24276971cad21564da5d",
+    "python/ultrafast_maskops/__init__.py": "0b381bd51042cea607d9742593e8ece643d8e4dedd4fff80522a7bc9b4ac99fa",
+    "tests/test_resize_roi.py": "f23ea3d6844ffb0bec02eb0b97c9f851185fa5b40aa2fa54a18a7987ae3054f4",
+    "tests/test_integration.py": "1d469df5ea1ba29c63d79976baede4827b6258d2b697b562fd56848bd398d957",
+    "tests/reference.py": "30233b6500d508ec44e38c62e5ab03185509048dd1358f4be06330283188cdd1",
+    "tests/test_gpu_series_audit.py": "b00a2d3149fadce317ece941e922b7e3e025d71bf2cc8c4aa3cfdc1a9f29d8a6",
+    "tests/test_parity.py": "905e65ab51fefa9c7f61c7db418da24a6a1acdf166f11645cfe33f7d4ccb331d",
+    "tests/test_compare_wheels.py": "b0a5d0021e24bc61b944940b927b1af263e5b0aa3a8c135b2e8490c377b73107",
+    "tests/test_training.py": "6e4784d3e905d019fc9462700964c8aa6b0432726f2fff6920bcbef437955293",
+    "bench/compare_wheels.py": "ea4d7fa18643f22698675e5d7c4b6350fca86f0f9b13019bd7dc609a2e7c1a9c",
+    "bench/profile_coco_loader.py": "fc0c1582e8f14a9479c55542f63a468639119a612609fdea2dc5025fd0e3b898",
+    "bench/audit_coco_evidence.py": "1fb54e24910623b0c07bf75a36e476cca014178570ff291eacbd7d2761f8cacf",
+    "bench/repeat_coco_gpu.py": "9c5ae471a62d3daf4a820b7f7b5f3e192e8602092a613a9ae0721ee4699ee4a1",
+    "bench/audit_wheel.py": "f11eac261ecbea76eefb6d2e052dec92d7f3506b2cdef51725d11b1afa07ce63",
+    "bench/train_coco_gpu.py": "c613907c9d2bb2bc1704c95665ee4deada08c501b8556583f421d64742e83add",
+    "bench/masks_only.py": "64831b14251fc184bdd93bf8b63f76230fb61e22890283a819923ae654bb20cc",
+    "bench/feasibility.py": "b7b40378f94ff081f5a65f4407f41c7ebeda34e56465e5b42c103600aab8d8f9",
+    "bench/prepare_coco.py": "7f198645724fe506dc1477fdaefe567963e1b4d5ee3c29ac5a0c4678898ad051",
+    "bench/allocations.py": "afce4ed5bf7f164fc032e341485b7e61b187b52f8b8ff54a852a496cc77bfc3f",
+    "bench/ci_wheel_check.py": "4d04b7d27c75e09a96e92c05d03737d5af7949e2ad0888993651b2559043bb40",
+    "bench/audit_gpu_series.py": "74cd051f1df417ac6e229d583c517db125fa2c678419e2f520ed6023f65e54c2",
+    "bench/collect_native_notices.py": "635fa1dbf7be4a3e4995d4810544f8090fbc308e540bda61e5960b30498247c8",
+    "bench/verify_augmented_coco.py": "608d8a6b48c837810f85efbbff8b6ebcb7a29d04e54cb0ade35263b0c590a3f9",
+    "bench/time_coco_stages.py": "6f17d0782325a4e313484430ce41bcc1ad2a2a00e2e8e7e6fa58ee7aedb5310d",
+    "bench/verify_coco_loader.py": "b17bbcbb736f867c8f066242304bd22e1f76cce95ace63b75f8adaec830e613d",
+    "bench/coco_loader.py": "a2a6976e665cbda2887ca8ee7c12c7c1dcc5d9a80f10c079fa8eb3baa80dd20b"
+  },
+  "artifacts_sha256": {
+    "mask-resize-roi-linux-tests-v1.xml": "c8ca548938531ed6f28dbbba6f40775f047de3ed3429e5acb4f4059cd4d70e3e",
+    "mask-resize-roi-linux-tests-v1.log": "eee3b8f28118f3ce99b28376ad0060d47da003e453aa18d14397bb05120f5959",
+    "mask-resize-roi-linux-freeze-v1.txt": "49d07edf234efd96d6823ee4b56459f797a3a98d0940d2d2c9bc59680bb2a584",
+    "mask-resize-roi-linux-build-v1.log": "dceb37f28f00962777944af0c2126ca1d032c9a7b8fb96abd837f628ab701fdb",
+    ".gitignore": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1",
+    "ultrafast_maskops-0.1.0a1-cp312-cp312-linux_x86_64.whl": "1b08974c11b1bc00e7e3f85f68fb6f8505e9e2edc5ca55b941ca6ef09b789fad",
+    "ultrafast_maskops-0.1.0a1.tar.gz": "d70533b2095a7926d987c3c837090671649ff80e15583c345a79dc52c3d430ff",
+    "wheel-validation.json": "5eaeea26e2c4705160990bb359fc83806cd6ed5340b2b49804d8514f4d6f5bb2"
+  }
+}

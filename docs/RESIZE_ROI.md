@@ -7,6 +7,36 @@ dispatch threshold passed all 191 tests in a fresh M2 wheel installation. No tim
 or memory benefit has been measured for either candidate. The server GPU series
 uses its original installed wheels; earlier results are not candidate evidence.
 
+## Linux installed-wheel validation
+
+The corrected candidate also built as a CPython 3.12 `linux_x86_64` wheel using
+GNU 13.3.0 and private OpenCV 4.13.0. A fresh Python 3.12.14 environment first
+installed only NumPy 2.4.4 and the wheel: standalone output checks, wheel RECORD,
+installed bytes, and all nine bundled notices against both wheel and sdist passed.
+The subsequent pinned Ultralytics/Torch environment passed all **201 tests**,
+with no failures, errors or skips (pytest wall time 20.52 seconds). This includes
+the 191 prior checks and ten new no-copy output-hashing checks. It is separate
+Linux evidence; those ten new hashing checks have not yet run on M2.
+
+The extension reports the exact current binding/CMake/template hashes, including
+binding SHA `c63940b67b291123d6d5d895858cb981afaa17bd1aea94856cd9f40dcebb1813`.
+The wheel SHA is
+`1b08974c11b1bc00e7e3f85f68fb6f8505e9e2edc5ca55b941ca6ef09b789fad`.
+The [preserved archive](../bench/results/resize-roi-linux-v1.tar.gz) contains the
+source archive, wheel/sdist, build and installation logs, environment freeze,
+installed-wheel audit, test logs/XML and source/binary receipt. Its SHA is
+`5e80166deb3a07aa5f64df638061d6f8b1ca0280d4248cd3096b3230453267b3`;
+server/local copies and the recorded artifact hashes match. See also
+[the receipt](validation/resize-roi-linux-passed-v1.json) and
+[test report](validation/resize-roi-linux-tests-v1.xml).
+
+An initial offline dependency install could not resolve the uncached pinned
+PyTorch URL. Its log is retained; installation succeeded with the same frozen
+requirements after allowing downloads. No version was changed to pass tests.
+This wheel has not been manylinux-repaired. Full real-corpus, sanitizer and
+performance checks remain outstanding; neither Linux parity nor the earlier
+GPU results establish ROI speed or memory benefits.
+
 ## Change and candidate invariants
 
 Polygon filling still uses the complete raster scratch image, original integer
@@ -70,7 +100,7 @@ auditor checks, with no failures, errors or skips. This includes 10,000 seeded
 differential cases and deterministic CPU model updates. The NumPy-only installed
 wheel smoke, RECORD/runtime audit and all nine bundled notice files also passed.
 Exact wheel/source hashes and reports are in `validation/resize-roi-passed-v2.json`
-and `resize-roi-tests-v2.*`. Sanitizer, real-corpus output, Linux and benchmark
+and `resize-roi-tests-v2.*`. Linux validation is recorded above. Sanitizer, real-corpus output and benchmark
 checks remain necessary before merging.
 
 The first build's 573 selected dependency files, including 61 Carotene files,
