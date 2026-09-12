@@ -110,6 +110,17 @@ match the earlier masks-only build. This evidence and the compressed compiler
 graph are retained in `validation/resize-roi-dependency-audit-v1.json` and
 `resize-roi-compiled-deps-v1.txt.gz`; this is not a complete redistribution audit.
 
+The corrected Linux build's dependency graph was checked separately after its
+201-test run. All 375 selected OpenCV/pybind11 source and header files match the
+existing notice inventory by byte count and SHA-256, with no missing or changed
+entries. The inventory's provenance hash and bundled notice hashes also match.
+The graph's build extension matches the tested installed extension
+(`9b86c9dc…d78325`). The receipt, compressed graph and read-only audit script are
+retained as `validation/resize-roi-linux-dependency-audit-v1.json`,
+`resize-roi-linux-compiled-deps-v1.txt.gz` and
+`audit-resize-roi-linux-dependencies-v1.py`. Toolchain, system, Python and generated
+headers remain outside this selected-source coverage check.
+
 ## Performance and memory scope
 
 The candidate aims to reduce resize coefficient/row-buffer work and area-scan
