@@ -55,6 +55,12 @@ The adapter checks the full Format and mask-function source hashes and requires
 NumPy 2.4.4 / Python cv2 4.13.0 / private OpenCV 4.13.0. An unknown profile raises
 an actionable error. This narrow initial matrix will expand only after validation.
 
+The current integration profile cannot be installed on Python 3.10 because
+NumPy 2.4.4 requires Python 3.11 or newer. Package metadata allows a Python 3.10
+core build with an older NumPy, but that is not a validated adapter combination.
+Current execution evidence is on CPython 3.12; the proposed wider wheel/profile
+matrix remains open.
+
 ```python
 from ultrafast_maskops.ultralytics import accelerate_dataset
 

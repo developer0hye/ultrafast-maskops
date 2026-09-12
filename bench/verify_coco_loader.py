@@ -12,7 +12,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from coco_loader import COCO_FINGERPRINT, fingerprint, sha, validate_profile
+from coco_loader import COCO_FINGERPRINT, _native, fingerprint, sha, source_hashes, validate_profile
 
 
 def main():
@@ -25,6 +25,8 @@ def main():
     root = args.corpus.resolve()
     report = json.loads(args.benchmark.read_text())
     assert "summary" in report, "wait for the benchmark to finish"
+    assert source_hashes() == report["source_sha256"], "restore the benchmarked sources before rebuilding the cache"
+    assert sha(Path(_native.__file__).read_bytes()) == report["extension_sha256"], "restore the benchmarked extension"
     assert fingerprint(root) == COCO_FINGERPRINT
     config = report["results"][0]
     for r in report["results"]:
@@ -63,6 +65,7 @@ def main():
         subprocess.run(command, check=True, stdout=log, stderr=subprocess.STDOUT)
     value = json.loads(result.read_text())
     assert value["source_sha256"] == report["source_sha256"]
+    assert value["extension_sha256"] == report["extension_sha256"]
     assert all(r["output_sha256"] == value["output_sha256"] for r in report["results"])
     assert cache_path.is_file() and fingerprint(root) == COCO_FINGERPRINT
     output = {
