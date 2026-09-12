@@ -3,28 +3,84 @@
 #include <pybind11/pybind11.h>
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
+#include "maskops_build_profile.h"
 #include <algorithm>
 #include <cstdint>
+#include <cstring>
+#include <type_traits>
+#include <cstddef>
 #include <limits>
 #include <mutex>
 #include <vector>
 namespace py = pybind11;
 template <typename T> using Array = py::array_t<T, py::array::c_style>;
 
+// Inclusive original-coordinate extents. Delay widening/clipping until a raster
+// size is known, so immutable packed geometry can be reused at different sizes.
+struct Extents {
+    int32_t x0=INT_MAX,y0=INT_MAX,x1=INT_MIN,y1=INT_MIN;
+    bool empty() const { return x1<x0; }
+    void add(int32_t x,int32_t y) {
+        x0=std::min(x0,x); x1=std::max(x1,x);
+        y0=std::min(y0,y); y1=std::max(y1,y);
+    }
+    void merge(const Extents &other) {
+        if(!other.empty()) { add(other.x0,other.y0); add(other.x1,other.y1); }
+    }
+    cv::Rect clipped(int h,int w) const {
+        if(empty()) return {};
+        const auto left=std::clamp(int64_t(x0),int64_t(0),int64_t(w));
+        const auto right=std::clamp(int64_t(x1)+1,int64_t(0),int64_t(w));
+        const auto top=std::clamp(int64_t(y0),int64_t(0),int64_t(h));
+        const auto bottom=std::clamp(int64_t(y1)+1,int64_t(0),int64_t(h));
+        return right>left && bottom>top ? cv::Rect(int(left),int(top),int(right-left),int(bottom-top)) : cv::Rect();
+    }
+};
+
 struct Polygons {
     std::vector<cv::Point> points;
     std::vector<int64_t> offsets;
+    std::vector<Extents> extents;
+    Extents combined;
     Polygons(Array<int32_t> xy, Array<int64_t> off) {
         if (xy.ndim() != 2 || xy.shape(1) != 2 || off.ndim() != 1 || off.size() < 1)
             throw py::value_error("expected points[P,2] and offsets[N+1]");
-        offsets.assign(off.data(), off.data() + off.size());
-        if (offsets.front() != 0 || offsets.back() != xy.shape(0))
+        // A C-contiguous NumPy array need not be naturally aligned. Copy bytes
+        // into aligned owned vectors before any typed reads, including offsets.
+        std::vector<int64_t> source_offsets(size_t(off.size()));
+        std::memcpy(source_offsets.data(),static_cast<const py::array&>(off).data(),size_t(off.nbytes()));
+        if (source_offsets.front() != 0 || source_offsets.back() != xy.shape(0))
             throw py::value_error("offsets must span points");
-        for (size_t i=1; i<offsets.size(); ++i)
-            if (offsets[i] < offsets[i-1] || offsets[i]-offsets[i-1] > INT_MAX)
+        for (size_t i=1; i<source_offsets.size(); ++i)
+            if (source_offsets[i] < source_offsets[i-1] || source_offsets[i]-source_offsets[i-1] > INT_MAX)
                 throw py::value_error("invalid contour length or offset order");
-        points.reserve(xy.shape(0));
-        for (py::ssize_t i=0; i<xy.shape(0); ++i) points.emplace_back(xy.data()[2*i], xy.data()[2*i+1]);
+        static_assert(std::is_trivially_copyable_v<cv::Point> && std::is_standard_layout_v<cv::Point>);
+        static_assert(sizeof(cv::Point)==2*sizeof(int32_t) && offsetof(cv::Point,x)==0 && offsetof(cv::Point,y)==sizeof(int32_t));
+        points.reserve(size_t(xy.shape(0)));
+        offsets.resize(source_offsets.size());
+        offsets[0]=0;
+        extents.resize(size());
+        const auto *bytes=static_cast<const unsigned char*>(static_cast<const py::array&>(xy).data());
+        for(size_t i=0;i<size();++i) {
+            auto &box=extents[i];
+            const size_t begin=points.size();
+            for(auto j=source_offsets[i];j<source_offsets[i+1];++j) {
+                cv::Point point;
+                std::memcpy(&point,bytes+size_t(j)*sizeof(point),sizeof(point));
+                // Only remove consecutive identical integer vertices. They add
+                // zero-length LINE_8 edges whose pixel is already covered by
+                // an incident edge. An all-identical contour keeps one point.
+                // Nonzero edges (including collinear edges) stay unchanged.
+                if(points.size()==begin || point!=points.back()) {
+                    points.push_back(point);
+                    box.add(point.x,point.y);
+                }
+            }
+            // Keep a terminal copy of the first vertex. Removing it would
+            // rotate the nonzero edge insertion order in CollectPolyEdges.
+            offsets[i+1]=int64_t(points.size());
+            combined.merge(box);
+        }
     }
     size_t size() const { return offsets.size()-1; }
 };
@@ -54,26 +110,12 @@ struct Rasterizer {
         }
         dirty=cv::Rect();
     }
-    static cv::Rect bounds(const cv::Point *points,size_t count,int h,int w) {
-        if(!count) return {};
-        int64_t x0=points[0].x,x1=x0,y0=points[0].y,y1=y0;
-        for(size_t i=1;i<count;++i) {
-            x0=std::min(x0,int64_t(points[i].x)); x1=std::max(x1,int64_t(points[i].x));
-            y0=std::min(y0,int64_t(points[i].y)); y1=std::max(y1,int64_t(points[i].y));
-        }
-        // LINE_8 integer fill cannot write outside inclusive vertex bounds.
-        // Widen before +1 so INT_MAX coordinates cannot overflow this check.
-        x0=std::clamp(x0,int64_t(0),int64_t(w)); x1=std::clamp(x1+1,int64_t(0),int64_t(w));
-        y0=std::clamp(y0,int64_t(0),int64_t(h)); y1=std::clamp(y1+1,int64_t(0),int64_t(h));
-        if(x1>x0 && y1>y0) return cv::Rect(int(x0),int(y0),int(x1-x0),int(y1-y0));
-        return {};
-    }
     void render(const Polygons &p, size_t i, int h, int w, cv::Mat &dst, int color) {
         prepare(h,w);
         int count = int(p.offsets[i+1]-p.offsets[i]);
         if (count) {
             const cv::Point *ptr = p.points.data()+p.offsets[i];
-            dirty=bounds(ptr,count,h,w);
+            dirty=p.extents[i].clipped(h,w);
             cv::fillPoly(scratch, &ptr, &count, 1, cv::Scalar(color));
         }
         cv::resize(scratch, dst, dst.size(), 0, 0, cv::INTER_LINEAR);
@@ -113,7 +155,7 @@ struct Rasterizer {
                 if(count) {ptrs.push_back(p.points.data()+p.offsets[i]); counts.push_back(count);}
             }
             if(!ptrs.empty()) {
-                dirty=bounds(p.points.data(),p.points.size(),h,w);
+                dirty=p.combined.clipped(h,w);
                 cv::fillPoly(scratch,ptrs.data(),counts.data(),int(ptrs.size()),cv::Scalar(color));
             }
             cv::Mat dst(h/r,w/r,CV_8UC1,out); cv::resize(scratch,dst,dst.size());
@@ -125,7 +167,8 @@ struct Rasterizer {
         const auto a=dimensions(h,w,r), n=p.size();
         if(order.ndim()!=1 || size_t(order.size())!=n || n>INT_MAX)
             throw py::value_error("invalid order length");
-        std::vector<int64_t> indices(order.data(),order.data()+n);
+        std::vector<int64_t> indices(n);
+        if(n) std::memcpy(indices.data(),static_cast<const py::array&>(order).data(),size_t(order.nbytes()));
         std::vector<bool> seen(n,false);
         for(auto i:indices) {
             if(i<0 || size_t(i)>=n || seen[i]) throw py::value_error("order must be a permutation");
@@ -146,8 +189,7 @@ struct Rasterizer {
                 if(retained) pixels=input+indices[rank]*a;
                 else {render(p,indices[rank],h,w,small,1); pixels=small.data;}
                 const size_t source=size_t(indices[rank]);
-                const size_t count=size_t(p.offsets[source+1]-p.offsets[source]);
-                const auto box=bounds(count?p.points.data()+p.offsets[source]:nullptr,count,h,w);
+                const auto box=p.extents[source].clipped(h,w);
                 // Conservative support of LINEAR resize. Two destination pixels
                 // of padding include interpolation neighbors and odd-size rounding.
                 // Pixels outside this region are known zero, so leave output intact.
@@ -179,6 +221,15 @@ PYBIND11_MODULE(_native,m) {
     // thread policy. It must not alter the separately imported Python cv2 state.
     cv::setNumThreads(0); // disable internal parallel regions (one calling worker)
     m.attr("opencv_version")=CV_VERSION;
+    m.def("build_profile",[](){
+        py::dict info;
+        info["bindings_sha256"]=MASKOPS_BINDINGS_SHA256;
+        info["cmake_sha256"]=MASKOPS_CMAKE_SHA256;
+        info["template_sha256"]=MASKOPS_PROFILE_SHA256;
+        info["compiler"]=MASKOPS_COMPILER;
+        info["build_type"]=MASKOPS_BUILD_TYPE;
+        return info;
+    });
     m.def("opencv_threads",[](){return cv::getNumThreads();});
     m.def("opencv_build_info",[](){return cv::getBuildInformation();});
     py::class_<Polygons>(m,"Polygons").def(py::init<Array<int32_t>,Array<int64_t>>()).def("__len__",&Polygons::size);

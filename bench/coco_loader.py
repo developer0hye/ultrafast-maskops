@@ -109,7 +109,7 @@ def peak_rss():
 
 def source_hashes():
     root = Path(__file__).resolve().parents[1]
-    names = ["src/bindings.cpp", "CMakeLists.txt", "pyproject.toml", "bench/coco_loader.py"]
+    names = ["src/bindings.cpp", "src/build_profile.h.in", "CMakeLists.txt", "pyproject.toml", "bench/coco_loader.py"]
     names.extend(str(p.relative_to(root)) for p in (root / "python/ultrafast_maskops").glob("*.py"))
     return {n: sha((root / n).read_bytes()) for n in sorted(names)}
 

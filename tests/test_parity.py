@@ -125,3 +125,106 @@ def test_10000_seeded_differential_cases():
         for a, b in zip(expected, got):
             equal(a, b)
         assert before == [s.tobytes() for s in segments]
+
+
+def test_misaligned_packed_input_is_copied_safely():
+    original = np.array([[1, 1], [27, 1], [27, 23], [1, 23], [4, 4], [18, 5], [13, 18]], np.int32)
+    points = np.ndarray(original.shape, np.int32, buffer=bytearray(original.nbytes + 1), offset=1)
+    offsets = np.ndarray((3,), np.int64, buffer=bytearray(25), offset=1)
+    points[:] = original
+    offsets[:] = [0, 4, 7]
+    assert points.flags.c_contiguous and offsets.flags.c_contiguous
+    assert not points.flags.aligned and not offsets.flags.aligned
+    packed = native.PackedPolygons(points, offsets)
+    # Extents and points must both belong to the immutable snapshot.
+    points[:] = -100
+    offsets[:] = 0
+    actual = native.Rasterizer().overlap((31, 33), packed, 3)
+    expected = reference.polygons2masks_overlap((31, 33), [original[:4], original[4:]], 3)
+    assert actual[0].dtype == expected[0].dtype
+    assert np.array_equal(actual[0], expected[0]) and np.array_equal(actual[1], expected[1])
+    # The private composition entry point also accepts contiguous unaligned
+    # NumPy input, so it must copy order bytes before reading int64 indices.
+    core = native._native.Rasterizer(64 * 1024**2)
+    masks, areas = core.raster(packed._native, 31, 33, 3, 1, True)
+    order = np.ndarray((2,), np.int64, buffer=bytearray(17), offset=1)
+    order[:] = np.argsort(-areas)
+    assert not order.flags.aligned
+    equal(core.compose(packed._native, order, 31, 33, 3, masks, True), expected[0])
+
+
+@pytest.mark.parametrize("mode", ["retained", "bounded"])
+def test_cached_geometry_extents_follow_each_raster_size(mode):
+    segments = [
+        np.array([[-9, -12], [60, -2], [70, 42], [-8, 40]], np.int32),
+        np.array([[1, 1], [32, 1], [32, 24], [1, 24]], np.int32),
+        np.array([[4, 3], [15, 28], [31, 4]], np.int32),
+    ]
+    packed = native.PackedPolygons.from_segments(segments)
+    engine = native.Rasterizer()
+    for h, w, ratio in [(31, 33, 1), (65, 47, 3), (9, 13, 2), (31, 33, 4), (65, 47, 1)]:
+        expected = reference.polygons2masks_overlap((h, w), segments, ratio)
+        actual = engine.overlap((h, w), packed, ratio, mode=mode)
+        assert actual[0].dtype == expected[0].dtype
+        assert np.array_equal(actual[0], expected[0]) and np.array_equal(actual[1], expected[1])
+        # The multi-contour union must use combined extents, even after overlap
+        # left the retained scratch dirty with a differently sized last contour.
+        wanted = reference.polygon2mask((h, w), [segments[0], segments[1]], 1, ratio)
+        pair = native.PackedPolygons.from_segments([segments[0], segments[1]])
+        assert np.array_equal(engine._core.single(pair._native, h, w, ratio, 1), wanted)
+
+
+def test_compiled_profile_matches_kernel_and_build_sources():
+    import hashlib
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[1]
+    profile = native.backend_info()["build"]
+    for key, name in [
+        ("bindings_sha256", "src/bindings.cpp"),
+        ("cmake_sha256", "CMakeLists.txt"),
+        ("template_sha256", "src/build_profile.h.in"),
+    ]:
+        assert profile[key] == hashlib.sha256((root / name).read_bytes()).hexdigest()
+    assert profile["compiler"] and profile["build_type"]
+
+
+@pytest.mark.parametrize("ratio", [1, 3, 4, 7])
+@pytest.mark.parametrize("color", [0, 1, 127, 255])
+def test_repeated_vertices_keep_edges_holes_and_degenerate_pixels(ratio, color):
+    contours = np.array(
+        [
+            [[1, 1], [31, 1], [31, 25], [1, 25], [1, 1]],
+            [[7, 7], [24, 7], [24, 20], [7, 20], [7, 7]],
+            [[12, 12]] * 5,  # A degenerate contour inside the even-odd hole.
+            [[-2147483648, -2147483648]] * 5,
+        ],
+        dtype=np.int32,
+    )
+    repeated = np.repeat(contours, 31, axis=1)
+    before = repeated.tobytes()
+    packed = native.PackedPolygons.from_segments(repeated)
+    engine = native.Rasterizer()
+    shape = (33, 39)
+    equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, repeated, color, ratio))
+    equal(
+        engine._core.single(packed._native, *shape, ratio, color), reference.polygon2mask(shape, repeated, color, ratio)
+    )
+    wanted = reference.polygons2masks_overlap(shape, repeated, ratio)
+    for mode in ["retained", "bounded"]:
+        actual = engine.overlap(shape, packed, ratio, mode=mode)
+        equal(actual[0], wanted[0])
+        equal(actual[1], wanted[1])
+    assert repeated.tobytes() == before
+
+
+@pytest.mark.parametrize("count", [255, 256])
+def test_repeated_points_keep_instance_count_dtype_and_tie_order(count):
+    segments = np.full((count, 43, 2), 9, dtype=np.int32)
+    packed = native.PackedPolygons.from_segments(segments)
+    assert len(packed) == count
+    wanted = reference.polygons2masks_overlap((17, 19), segments, 1)
+    actual = native.Rasterizer().overlap((17, 19), packed, 1)
+    equal(actual[0], wanted[0])
+    equal(actual[1], wanted[1])
+    assert int(actual[0].max()) == count

@@ -19,6 +19,14 @@ FetchContent_Declare(opencv
   URL_HASH SHA256=1d40ca017ea51c533cf9fd5cbde5b5fe7ae248291ddf2af99d4c17cf8e13017d
   EXCLUDE_FROM_ALL)
 FetchContent_MakeAvailable(opencv)
+# Bind the extension to the project sources used to build it. Reconfigure after
+# a kernel edit even when developers invoke only `cmake --build`.
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/bindings.cpp")
+file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/src/bindings.cpp" MASKOPS_BINDINGS_SHA256)
+file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt" MASKOPS_CMAKE_SHA256)
+file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/src/build_profile.h.in" MASKOPS_PROFILE_SHA256)
+configure_file(src/build_profile.h.in maskops_build_profile.h @ONLY)
 pybind11_add_module(_native src/bindings.cpp)
 target_include_directories(_native PRIVATE
   ${opencv_SOURCE_DIR}/modules/core/include ${opencv_SOURCE_DIR}/modules/imgproc/include ${opencv_BINARY_DIR} ${CMAKE_BINARY_DIR})
