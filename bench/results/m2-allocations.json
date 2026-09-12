@@ -1,0 +1,972 @@
+{
+  "memray": "1.20.0",
+  "cases": [
+    {
+      "n": 0,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 1,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 5,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 20,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 100,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 255,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 256,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 500,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 100,
+      "h": 640,
+      "w": 640,
+      "ratio": 1,
+      "vertices": 16
+    }
+  ],
+  "results": [
+    {
+      "case": 4,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 7749792,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-4-reference.bin",
+      "round": 0
+    },
+    {
+      "case": 4,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 3013384,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-4-wrapper.bin",
+      "round": 0
+    },
+    {
+      "case": 4,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 486528,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-4-bounded.bin",
+      "round": 0
+    },
+    {
+      "case": 5,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 19678992,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-5-reference.bin",
+      "round": 0
+    },
+    {
+      "case": 5,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7007800,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-5-wrapper.bin",
+      "round": 0
+    },
+    {
+      "case": 5,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 512944,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-5-bounded.bin",
+      "round": 0
+    },
+    {
+      "case": 6,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 78815136,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-6-reference.bin",
+      "round": 0
+    },
+    {
+      "case": 6,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7110360,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-6-wrapper.bin",
+      "round": 0
+    },
+    {
+      "case": 6,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 589904,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-6-bounded.bin",
+      "round": 0
+    },
+    {
+      "case": 7,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 153809088,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-7-reference.bin",
+      "round": 0
+    },
+    {
+      "case": 7,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 13395832,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-7-wrapper.bin",
+      "round": 0
+    },
+    {
+      "case": 7,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 628976,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-7-bounded.bin",
+      "round": 0
+    },
+    {
+      "case": 8,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 123717792,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-8-reference.bin",
+      "round": 0
+    },
+    {
+      "case": 8,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 41797384,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-8-wrapper.bin",
+      "round": 0
+    },
+    {
+      "case": 8,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 1247232,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/0-8-bounded.bin",
+      "round": 0
+    },
+    {
+      "case": 4,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 3013384,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-4-wrapper.bin",
+      "round": 1
+    },
+    {
+      "case": 4,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 486528,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-4-bounded.bin",
+      "round": 1
+    },
+    {
+      "case": 4,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 7749792,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-4-reference.bin",
+      "round": 1
+    },
+    {
+      "case": 5,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7007800,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-5-wrapper.bin",
+      "round": 1
+    },
+    {
+      "case": 5,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 512944,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-5-bounded.bin",
+      "round": 1
+    },
+    {
+      "case": 5,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 19678992,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-5-reference.bin",
+      "round": 1
+    },
+    {
+      "case": 6,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7110360,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-6-wrapper.bin",
+      "round": 1
+    },
+    {
+      "case": 6,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 589904,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-6-bounded.bin",
+      "round": 1
+    },
+    {
+      "case": 6,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 78815136,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-6-reference.bin",
+      "round": 1
+    },
+    {
+      "case": 7,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 13395832,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-7-wrapper.bin",
+      "round": 1
+    },
+    {
+      "case": 7,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 628976,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-7-bounded.bin",
+      "round": 1
+    },
+    {
+      "case": 7,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 153809088,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-7-reference.bin",
+      "round": 1
+    },
+    {
+      "case": 8,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 41797384,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-8-wrapper.bin",
+      "round": 1
+    },
+    {
+      "case": 8,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 1247232,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-8-bounded.bin",
+      "round": 1
+    },
+    {
+      "case": 8,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 123717792,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/1-8-reference.bin",
+      "round": 1
+    },
+    {
+      "case": 4,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 486528,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-4-bounded.bin",
+      "round": 2
+    },
+    {
+      "case": 4,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 7749792,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-4-reference.bin",
+      "round": 2
+    },
+    {
+      "case": 4,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 3013384,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-4-wrapper.bin",
+      "round": 2
+    },
+    {
+      "case": 5,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 512944,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-5-bounded.bin",
+      "round": 2
+    },
+    {
+      "case": 5,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 19678992,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-5-reference.bin",
+      "round": 2
+    },
+    {
+      "case": 5,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7007800,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-5-wrapper.bin",
+      "round": 2
+    },
+    {
+      "case": 6,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 589904,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-6-bounded.bin",
+      "round": 2
+    },
+    {
+      "case": 6,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 78815136,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-6-reference.bin",
+      "round": 2
+    },
+    {
+      "case": 6,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7110360,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-6-wrapper.bin",
+      "round": 2
+    },
+    {
+      "case": 7,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 628976,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-7-bounded.bin",
+      "round": 2
+    },
+    {
+      "case": 7,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 153809088,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-7-reference.bin",
+      "round": 2
+    },
+    {
+      "case": 7,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 13395832,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-7-wrapper.bin",
+      "round": 2
+    },
+    {
+      "case": 8,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 1247232,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-8-bounded.bin",
+      "round": 2
+    },
+    {
+      "case": 8,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 123717792,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-8-reference.bin",
+      "round": 2
+    },
+    {
+      "case": 8,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 41797384,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/2-8-wrapper.bin",
+      "round": 2
+    },
+    {
+      "case": 4,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 7749792,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-4-reference.bin",
+      "round": 3
+    },
+    {
+      "case": 4,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 3013384,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-4-wrapper.bin",
+      "round": 3
+    },
+    {
+      "case": 4,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 486528,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-4-bounded.bin",
+      "round": 3
+    },
+    {
+      "case": 5,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 19678992,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-5-reference.bin",
+      "round": 3
+    },
+    {
+      "case": 5,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7007800,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-5-wrapper.bin",
+      "round": 3
+    },
+    {
+      "case": 5,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 512944,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-5-bounded.bin",
+      "round": 3
+    },
+    {
+      "case": 6,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 78815136,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-6-reference.bin",
+      "round": 3
+    },
+    {
+      "case": 6,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7110360,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-6-wrapper.bin",
+      "round": 3
+    },
+    {
+      "case": 6,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 589904,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-6-bounded.bin",
+      "round": 3
+    },
+    {
+      "case": 7,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 153809088,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-7-reference.bin",
+      "round": 3
+    },
+    {
+      "case": 7,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 13395832,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-7-wrapper.bin",
+      "round": 3
+    },
+    {
+      "case": 7,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 628976,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-7-bounded.bin",
+      "round": 3
+    },
+    {
+      "case": 8,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 123717792,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-8-reference.bin",
+      "round": 3
+    },
+    {
+      "case": 8,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 41797384,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-8-wrapper.bin",
+      "round": 3
+    },
+    {
+      "case": 8,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 1247232,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/3-8-bounded.bin",
+      "round": 3
+    },
+    {
+      "case": 4,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 3013384,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-4-wrapper.bin",
+      "round": 4
+    },
+    {
+      "case": 4,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 486528,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-4-bounded.bin",
+      "round": 4
+    },
+    {
+      "case": 4,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 7749792,
+      "output_hashes": [
+        "a35f62b794069d208debc6be189ba06c2cf6a562bb71bc0388d077699014155e:uint8:(160, 160)",
+        "fd3af190a76cd90de506bc0fce0b594ffdd463014889d0f76e7ca680a592d17a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-4-reference.bin",
+      "round": 4
+    },
+    {
+      "case": 5,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7007800,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-5-wrapper.bin",
+      "round": 4
+    },
+    {
+      "case": 5,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 512944,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-5-bounded.bin",
+      "round": 4
+    },
+    {
+      "case": 5,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 19678992,
+      "output_hashes": [
+        "df4c15c9c87c2bfaa3a9f0b46bb8504c178501ceaf6e202838eecf2b26298d37:uint8:(160, 160)",
+        "66ad064593040e7a59177c1b95a03e1479857d0862c2d9f720889096114237a8:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-5-reference.bin",
+      "round": 4
+    },
+    {
+      "case": 6,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7110360,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-6-wrapper.bin",
+      "round": 4
+    },
+    {
+      "case": 6,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 589904,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-6-bounded.bin",
+      "round": 4
+    },
+    {
+      "case": 6,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 78815136,
+      "output_hashes": [
+        "36dced02a28e459b11811379eb69663139e4dcead905fd5cd5f52d417697d498:int32:(160, 160)",
+        "eedb62e78e47721c98fb00f7a2da3e38bff304c40912fc57e2827f613713cdb9:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-6-reference.bin",
+      "round": 4
+    },
+    {
+      "case": 7,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 13395832,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-7-wrapper.bin",
+      "round": 4
+    },
+    {
+      "case": 7,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 628976,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-7-bounded.bin",
+      "round": 4
+    },
+    {
+      "case": 7,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 153809088,
+      "output_hashes": [
+        "1afd10a501d15d2cd9a398b60be8fb786eb4d2af6c4bc57c21614805c93914e7:int32:(160, 160)",
+        "818247a8d2a26ef3dd4b8431a64c584cbe92ec6fd33c7374ea04010003f37d3b:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-7-reference.bin",
+      "round": 4
+    },
+    {
+      "case": 8,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 41797384,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-8-wrapper.bin",
+      "round": 4
+    },
+    {
+      "case": 8,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 1247232,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-8-bounded.bin",
+      "round": 4
+    },
+    {
+      "case": 8,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 123717792,
+      "output_hashes": [
+        "6bd7a5a2ea6f5a41e8878fc587826c6d7ec36410c5e790d457853b8dfe37943b:uint8:(640, 640)",
+        "e05192b7209fae3c6429cd7b94e0c056aeef59f6668be8ec3a37b3df79592946:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/Volumes/T7/ultrafast-vision-build/mask-allocations-m2/4-8-reference.bin",
+      "round": 4
+    }
+  ],
+  "scope": "peak tracked Python and native heap allocations during one warmed wrapper call; existing input excluded; output included",
+  "timings": "instrumented runs are excluded from latency results"
+}

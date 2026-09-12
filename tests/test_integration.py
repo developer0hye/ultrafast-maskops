@@ -5,19 +5,20 @@ import numpy as np
 import pytest
 import torch
 from torch.utils.data import DataLoader, Dataset
+from ultrafast_maskops.ultralytics import FastFormat
 from ultralytics.data.augment import Format
 from ultralytics.utils.instance import Instances
-
-from ultrafast_maskops.ultralytics import FastFormat
 
 
 def inputs(n=5):
     rng = np.random.default_rng(143)
-    segments = rng.uniform(.05, .95, (n, 16, 2)).astype(np.float32)
-    boxes = np.tile([.5, .5, .8, .8], (n, 1)).astype(np.float32)
-    return {"img": rng.integers(0, 256, (64, 80, 3), dtype=np.uint8),
-            "cls": np.arange(n, dtype=np.float32).reshape(-1, 1) % 3,
-            "instances": Instances(boxes, segments, bbox_format="xywh", normalized=True)}
+    segments = rng.uniform(0.05, 0.95, (n, 16, 2)).astype(np.float32)
+    boxes = np.tile([0.5, 0.5, 0.8, 0.8], (n, 1)).astype(np.float32)
+    return {
+        "img": rng.integers(0, 256, (64, 80, 3), dtype=np.uint8),
+        "cls": np.arange(n, dtype=np.float32).reshape(-1, 1) % 3,
+        "instances": Instances(boxes, segments, bbox_format="xywh", normalized=True),
+    }
 
 
 def equal_dict(a, b):
@@ -65,6 +66,7 @@ def test_dataloader_spawn(workers):
 
 def test_unknown_profile_rejected(monkeypatch):
     import ultrafast_maskops.ultralytics as integration
+
     monkeypatch.setitem(integration._SOURCE_HASHES, "Format", "unrecognized")
     with pytest.raises(RuntimeError, match="unsupported Ultralytics"):
         FastFormat()
@@ -73,22 +75,29 @@ def test_unknown_profile_rejected(monkeypatch):
 @pytest.mark.parametrize("workers", [0, 2])
 def test_actual_yolo_dataset_first_batches(tmp_path, workers):
     from PIL import Image
+    from ultrafast_maskops.ultralytics import accelerate_dataset
     from ultralytics.cfg import DEFAULT_CFG
     from ultralytics.data.dataset import YOLODataset
-    from ultrafast_maskops.ultralytics import accelerate_dataset
 
-    images, labels = tmp_path/"images", tmp_path/"labels"
+    images, labels = tmp_path / "images", tmp_path / "labels"
     images.mkdir()
     labels.mkdir()
     for i in range(8):
-        Image.fromarray(inputs()["img"]).save(images/f"{i}.png")
-        (labels/f"{i}.txt").write_text("0 .1 .1 .8 .1 .8 .8 .1 .8\n1 .3 .3 .5 .3 .4 .5\n")
-    kwargs = dict(img_path=str(images), imgsz=64, batch_size=2, augment=False,
-                  hyp=copy.deepcopy(DEFAULT_CFG), data={"names": {0: "a", 1: "b"}, "nc": 2}, task="segment")
+        Image.fromarray(inputs()["img"]).save(images / f"{i}.png")
+        (labels / f"{i}.txt").write_text("0 .1 .1 .8 .1 .8 .8 .1 .8\n1 .3 .3 .5 .3 .4 .5\n")
+    kwargs = {
+        "img_path": str(images),
+        "imgsz": 64,
+        "batch_size": 2,
+        "augment": False,
+        "hyp": copy.deepcopy(DEFAULT_CFG),
+        "data": {"names": {0: "a", 1: "b"}, "nc": 2},
+        "task": "segment",
+    }
     original = YOLODataset(**kwargs)
     replacement = YOLODataset(**kwargs)
     assert accelerate_dataset(replacement) == 1
-    loader_kwargs = dict(batch_size=2, num_workers=workers, collate_fn=YOLODataset.collate_fn)
+    loader_kwargs = {"batch_size": 2, "num_workers": workers, "collate_fn": YOLODataset.collate_fn}
     if workers:
         loader_kwargs["multiprocessing_context"] = "spawn"
     for a, b in zip(DataLoader(original, **loader_kwargs), DataLoader(replacement, **loader_kwargs)):

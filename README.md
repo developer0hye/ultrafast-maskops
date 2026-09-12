@@ -9,6 +9,7 @@ The original PRD and all release gates remain in [docs/PRD.md](docs/PRD.md).
 
 ```python
 from ultrafast_maskops import polygons2masks_overlap
+
 masks, order = polygons2masks_overlap((640, 640), segments, downsample_ratio=4)
 classes = classes[order]
 ```
@@ -32,6 +33,10 @@ Internal OpenCV parallel regions are disabled using its private `setNumThreads(0
 Python `cv2` thread settings are preserved. Separate Rasterizer objects can run
 concurrently, and one object serializes calls. No module import patches Ultralytics.
 
+The optimized path clears only the previous polygon's dirty rectangle and composes
+within conservatively padded resized support. It still rasterizes at the original
+resolution and uses OpenCV's original linear resize; it does not approximate geometry.
+
 ## Development
 
 Requires CMake, a C++17 compiler, and Python 3.10+. Building fetches the
@@ -52,6 +57,7 @@ an actionable error. This narrow initial matrix will expand only after validatio
 
 ```python
 from ultrafast_maskops.ultralytics import accelerate_dataset
+
 accelerate_dataset(yolo_segmentation_dataset)
 ```
 

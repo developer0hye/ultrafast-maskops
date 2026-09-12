@@ -1,0 +1,50 @@
+[
+  {
+    "artifact": "validation/mask-checkpoint.xml",
+    "sha256": "91bdace279b05d31fc6c726891010529ad49c62c5539a3e5f9b7004e61a75d6c",
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "113",
+    "time": "45.401",
+    "timestamp": "2026-09-12T23:42:30.262554+09:00",
+    "hostname": "Yonghyeui-MacBookAir.local"
+  },
+  {
+    "artifact": "validation/mask-server-tests.xml",
+    "sha256": "86e3990fc22fe81f6ff5ec14f87ecdded0437696f89041b37645fe2bbde1c19d",
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "113",
+    "time": "8.389",
+    "timestamp": "2026-09-12T23:08:50.170585+09:00",
+    "hostname": "yonghye-pc"
+  },
+  {
+    "artifact": "validation/mask-final-parity.xml",
+    "sha256": "9166889ebd4c2d8aa86fb945090a992a34b20946867bc7cc3138f4f3357a4581",
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "98",
+    "time": "1.827",
+    "timestamp": "2026-09-12T23:16:16.975397+09:00",
+    "hostname": "Yonghyeui-MacBookAir.local"
+  },
+  {
+    "artifact": "validation/mask-sanitized-final.xml",
+    "sha256": "61b23c907fce69f0277c8cbd4dd39c3727d1e66bdf7f20bbf6383edb8ed26c58",
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "98",
+    "time": "3.751",
+    "timestamp": "2026-09-12T23:18:59.287680+09:00",
+    "hostname": "Yonghyeui-MacBookAir.local"
+  }
+]

@@ -1,0 +1,972 @@
+{
+  "memray": "1.20.0",
+  "cases": [
+    {
+      "n": 0,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 1,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 5,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 20,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 100,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 255,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 256,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 500,
+      "h": 640,
+      "w": 640,
+      "ratio": 4,
+      "vertices": 16
+    },
+    {
+      "n": 100,
+      "h": 640,
+      "w": 640,
+      "ratio": 1,
+      "vertices": 16
+    }
+  ],
+  "results": [
+    {
+      "case": 4,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 7749792,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-4-reference.bin",
+      "round": 0
+    },
+    {
+      "case": 4,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 3013328,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-4-wrapper.bin",
+      "round": 0
+    },
+    {
+      "case": 4,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 483824,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-4-bounded.bin",
+      "round": 0
+    },
+    {
+      "case": 5,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 19678992,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-5-reference.bin",
+      "round": 0
+    },
+    {
+      "case": 5,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7007744,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-5-wrapper.bin",
+      "round": 0
+    },
+    {
+      "case": 5,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 510240,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-5-bounded.bin",
+      "round": 0
+    },
+    {
+      "case": 6,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 78815136,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-6-reference.bin",
+      "round": 0
+    },
+    {
+      "case": 6,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7110304,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-6-wrapper.bin",
+      "round": 0
+    },
+    {
+      "case": 6,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 587200,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-6-bounded.bin",
+      "round": 0
+    },
+    {
+      "case": 7,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 153809088,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-7-reference.bin",
+      "round": 0
+    },
+    {
+      "case": 7,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 13395776,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-7-wrapper.bin",
+      "round": 0
+    },
+    {
+      "case": 7,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 626272,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-7-bounded.bin",
+      "round": 0
+    },
+    {
+      "case": 8,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 123717792,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-8-reference.bin",
+      "round": 0
+    },
+    {
+      "case": 8,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 41797328,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-8-wrapper.bin",
+      "round": 0
+    },
+    {
+      "case": 8,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 1247248,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/0-8-bounded.bin",
+      "round": 0
+    },
+    {
+      "case": 4,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 3013328,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-4-wrapper.bin",
+      "round": 1
+    },
+    {
+      "case": 4,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 483824,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-4-bounded.bin",
+      "round": 1
+    },
+    {
+      "case": 4,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 7749792,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-4-reference.bin",
+      "round": 1
+    },
+    {
+      "case": 5,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7007744,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-5-wrapper.bin",
+      "round": 1
+    },
+    {
+      "case": 5,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 510240,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-5-bounded.bin",
+      "round": 1
+    },
+    {
+      "case": 5,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 19678992,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-5-reference.bin",
+      "round": 1
+    },
+    {
+      "case": 6,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7110304,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-6-wrapper.bin",
+      "round": 1
+    },
+    {
+      "case": 6,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 587200,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-6-bounded.bin",
+      "round": 1
+    },
+    {
+      "case": 6,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 78815136,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-6-reference.bin",
+      "round": 1
+    },
+    {
+      "case": 7,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 13395776,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-7-wrapper.bin",
+      "round": 1
+    },
+    {
+      "case": 7,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 626272,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-7-bounded.bin",
+      "round": 1
+    },
+    {
+      "case": 7,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 153809088,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-7-reference.bin",
+      "round": 1
+    },
+    {
+      "case": 8,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 41797328,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-8-wrapper.bin",
+      "round": 1
+    },
+    {
+      "case": 8,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 1247248,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-8-bounded.bin",
+      "round": 1
+    },
+    {
+      "case": 8,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 123717792,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/1-8-reference.bin",
+      "round": 1
+    },
+    {
+      "case": 4,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 483824,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-4-bounded.bin",
+      "round": 2
+    },
+    {
+      "case": 4,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 7749792,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-4-reference.bin",
+      "round": 2
+    },
+    {
+      "case": 4,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 3013328,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-4-wrapper.bin",
+      "round": 2
+    },
+    {
+      "case": 5,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 510240,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-5-bounded.bin",
+      "round": 2
+    },
+    {
+      "case": 5,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 19678992,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-5-reference.bin",
+      "round": 2
+    },
+    {
+      "case": 5,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7007744,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-5-wrapper.bin",
+      "round": 2
+    },
+    {
+      "case": 6,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 587200,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-6-bounded.bin",
+      "round": 2
+    },
+    {
+      "case": 6,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 78815136,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-6-reference.bin",
+      "round": 2
+    },
+    {
+      "case": 6,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7110304,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-6-wrapper.bin",
+      "round": 2
+    },
+    {
+      "case": 7,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 626272,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-7-bounded.bin",
+      "round": 2
+    },
+    {
+      "case": 7,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 153809088,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-7-reference.bin",
+      "round": 2
+    },
+    {
+      "case": 7,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 13395776,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-7-wrapper.bin",
+      "round": 2
+    },
+    {
+      "case": 8,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 1247248,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-8-bounded.bin",
+      "round": 2
+    },
+    {
+      "case": 8,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 123717792,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-8-reference.bin",
+      "round": 2
+    },
+    {
+      "case": 8,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 41797328,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/2-8-wrapper.bin",
+      "round": 2
+    },
+    {
+      "case": 4,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 7749792,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-4-reference.bin",
+      "round": 3
+    },
+    {
+      "case": 4,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 3013328,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-4-wrapper.bin",
+      "round": 3
+    },
+    {
+      "case": 4,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 483824,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-4-bounded.bin",
+      "round": 3
+    },
+    {
+      "case": 5,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 19678992,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-5-reference.bin",
+      "round": 3
+    },
+    {
+      "case": 5,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7007744,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-5-wrapper.bin",
+      "round": 3
+    },
+    {
+      "case": 5,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 510240,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-5-bounded.bin",
+      "round": 3
+    },
+    {
+      "case": 6,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 78815136,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-6-reference.bin",
+      "round": 3
+    },
+    {
+      "case": 6,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7110304,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-6-wrapper.bin",
+      "round": 3
+    },
+    {
+      "case": 6,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 587200,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-6-bounded.bin",
+      "round": 3
+    },
+    {
+      "case": 7,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 153809088,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-7-reference.bin",
+      "round": 3
+    },
+    {
+      "case": 7,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 13395776,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-7-wrapper.bin",
+      "round": 3
+    },
+    {
+      "case": 7,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 626272,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-7-bounded.bin",
+      "round": 3
+    },
+    {
+      "case": 8,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 123717792,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-8-reference.bin",
+      "round": 3
+    },
+    {
+      "case": 8,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 41797328,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-8-wrapper.bin",
+      "round": 3
+    },
+    {
+      "case": 8,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 1247248,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/3-8-bounded.bin",
+      "round": 3
+    },
+    {
+      "case": 4,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 3013328,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-4-wrapper.bin",
+      "round": 4
+    },
+    {
+      "case": 4,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 483824,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-4-bounded.bin",
+      "round": 4
+    },
+    {
+      "case": 4,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 7749792,
+      "output_hashes": [
+        "c93db9a4977825567b4329737c5c2dce730d4fc70328677d7966cba8060b13b4:uint8:(160, 160)",
+        "9253e44f4d98b90a4f95557b14398564d50b9f6370f5338f60b00bfceeb81a44:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-4-reference.bin",
+      "round": 4
+    },
+    {
+      "case": 5,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7007744,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-5-wrapper.bin",
+      "round": 4
+    },
+    {
+      "case": 5,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 510240,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-5-bounded.bin",
+      "round": 4
+    },
+    {
+      "case": 5,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 19678992,
+      "output_hashes": [
+        "890ab62ea1c43b3275566f27cf532824cee725ab714c6a58a3e91d5d1a9ba193:uint8:(160, 160)",
+        "e0a2f3dff7aabfe8bd35f74604114a26bbb4d1bb075688d45e040e47571d6d78:int64:(255,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-5-reference.bin",
+      "round": 4
+    },
+    {
+      "case": 6,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 7110304,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-6-wrapper.bin",
+      "round": 4
+    },
+    {
+      "case": 6,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 587200,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-6-bounded.bin",
+      "round": 4
+    },
+    {
+      "case": 6,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 78815136,
+      "output_hashes": [
+        "2ab3f05299f2e0409eac0e5fb05082be39d4a2ddd86b25d7c034b017bc24f909:int32:(160, 160)",
+        "db9ee75bdb3a7f957850611c41cc5f2976e5903b4fcafb1e327e6cffef0c4ee7:int64:(256,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-6-reference.bin",
+      "round": 4
+    },
+    {
+      "case": 7,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 13395776,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-7-wrapper.bin",
+      "round": 4
+    },
+    {
+      "case": 7,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 626272,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-7-bounded.bin",
+      "round": 4
+    },
+    {
+      "case": 7,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 153809088,
+      "output_hashes": [
+        "ab43654f18cd8c6e5eb9b846a7402b927d92df7a227a7215ff11b7d6f7511df8:int32:(160, 160)",
+        "bf3ef70e77277c9a1d38ef9c9774b3d771707dc6ca8921fb19b8c3135e7bf553:int64:(500,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-7-reference.bin",
+      "round": 4
+    },
+    {
+      "case": 8,
+      "backend": "wrapper",
+      "peak_tracked_allocation_bytes": 41797328,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-8-wrapper.bin",
+      "round": 4
+    },
+    {
+      "case": 8,
+      "backend": "bounded",
+      "peak_tracked_allocation_bytes": 1247248,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-8-bounded.bin",
+      "round": 4
+    },
+    {
+      "case": 8,
+      "backend": "reference",
+      "peak_tracked_allocation_bytes": 123717792,
+      "output_hashes": [
+        "1c5cb5da9bb4ab7693a58b7d76d62f461e2ff385f33ce16700cffe6574c3a66e:uint8:(640, 640)",
+        "25ce1f292b0fefb5b61080037c5a63f206447e945fd02989e3a5ba33513a5f1a:int64:(100,)"
+      ],
+      "parity": true,
+      "trace": "/home/yonghye/ultrafast-vision-build/mask-allocations-server/4-8-reference.bin",
+      "round": 4
+    }
+  ],
+  "scope": "peak tracked Python and native heap allocations during one warmed wrapper call; existing input excluded; output included",
+  "timings": "instrumented runs are excluded from latency results"
+}

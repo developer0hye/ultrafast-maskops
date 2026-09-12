@@ -1,10 +1,9 @@
-from concurrent.futures import ThreadPoolExecutor
 import subprocess
 import sys
+from concurrent.futures import ThreadPoolExecutor
 
 import numpy as np
 import pytest
-
 import reference
 import ultrafast_maskops as native
 
@@ -30,11 +29,12 @@ def test_overlap_boundaries(n, ratio, mode):
 
 @pytest.mark.parametrize("color", [0, 1, 127, 255])
 def test_multiple_contours_one_fill(color):
-    contours = np.array([[[0, 0], [25, 0], [25, 25], [0, 25]],
-                         [[5, 5], [20, 5], [20, 20], [5, 20]]], dtype=np.float64)
+    contours = np.array([[[0, 0], [25, 0], [25, 25], [0, 25]], [[5, 5], [20, 5], [20, 20], [5, 20]]], dtype=np.float64)
     for ratio in (1, 2, 4):
-        equal(reference.polygon2mask((31, 33), contours, color, ratio),
-              native.polygon2mask((31, 33), contours, color, ratio))
+        equal(
+            reference.polygon2mask((31, 33), contours, color, ratio),
+            native.polygon2mask((31, 33), contours, color, ratio),
+        )
 
 
 def test_empty_contracts():
@@ -42,6 +42,10 @@ def test_empty_contracts():
     packed = native.PackedPolygons.from_segments([])
     result = native.Rasterizer().masks((16, 16), packed)
     assert result.shape == (0, 16, 16) and result.dtype == np.uint8
+    empty_contour = native.PackedPolygons(np.empty((0, 2), np.int32), np.array([0, 0], np.int64))
+    for mode in ("retained", "bounded"):
+        mask, order = native.Rasterizer().overlap((16, 16), empty_contour, mode=mode)
+        assert not mask.any() and order.tolist() == [0]
 
 
 def test_snapshot_lifetime_and_concurrency():
@@ -63,6 +67,8 @@ def test_invalid_inputs():
     for value in (np.nan, np.inf, 2**40):
         with pytest.raises(ValueError):
             native.PackedPolygons.from_segments([[[0, 0], [value, 2]]])
+    with pytest.raises(ValueError, match="int32"):
+        native.PackedPolygons.from_segments(np.full((1, 3, 2), 2**31, dtype=np.float32))
     for offsets in ([1, 2], [0, 3], [0, 2, 1, 2]):
         with pytest.raises(ValueError):
             native.PackedPolygons(np.zeros((2, 2), np.int32), np.array(offsets, np.int64))
@@ -76,18 +82,23 @@ def test_invalid_inputs():
 
 def test_private_opencv_threads_and_import_order():
     for code in (
-        "import cv2; cv2.setNumThreads(3); before=cv2.getNumThreads(); import ultrafast_maskops as m; "
-        "assert cv2.getNumThreads()==before; assert m.backend_info()['private_opencv_threads']==1",
-        "import ultrafast_maskops as m; import cv2; cv2.setNumThreads(4); "
-        "assert m.backend_info()['private_opencv_threads']==1",
+        (
+            "import cv2; cv2.setNumThreads(3); before=cv2.getNumThreads(); import ultrafast_maskops as m; "
+            "assert cv2.getNumThreads()==before; assert m.backend_info()['private_opencv_threads']==1"
+        ),
+        (
+            "import ultrafast_maskops as m; import cv2; cv2.setNumThreads(4); "
+            "assert m.backend_info()['private_opencv_threads']==1"
+        ),
     ):
         subprocess.run([sys.executable, "-c", code], check=True)
 
 
 def test_ndarray_packing_and_empty_contours():
     segments = np.arange(60, dtype=np.float64).reshape(5, 6, 2)[:, ::-1]
-    for a, b in zip(reference.polygons2masks_overlap((31, 33), segments, 4),
-                    native.polygons2masks_overlap((31, 33), segments, 4)):
+    for a, b in zip(
+        reference.polygons2masks_overlap((31, 33), segments, 4), native.polygons2masks_overlap((31, 33), segments, 4)
+    ):
         equal(a, b)
     with pytest.raises(ValueError, match="empty contours"):
         native.polygons2masks_overlap((16, 16), [np.empty((0, 2))])
@@ -108,8 +119,7 @@ def test_10000_seeded_differential_cases():
         before = [s.tobytes() for s in segments]
         color = (0, 1, 127, 255)[case % 4]
         packed = native.PackedPolygons.from_segments(segments)
-        equal(reference.polygons2masks(shape, segments, color, ratio),
-              engine.masks(shape, packed, color, ratio))
+        equal(reference.polygons2masks(shape, segments, color, ratio), engine.masks(shape, packed, color, ratio))
         got = engine.overlap(shape, packed, ratio, mode="bounded" if case % 2 else "retained")
         expected = reference.polygons2masks_overlap(shape, segments, ratio)
         for a, b in zip(expected, got):

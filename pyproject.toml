@@ -8,7 +8,7 @@ version = "0.1.0a1"
 description = "Batched OpenCV polygon rasterization with explicit Ultralytics parity"
 requires-python = ">=3.10"
 dependencies = ["numpy>=2.0,<3"]
-license = "AGPL-3.0-or-later"
+license = "AGPL-3.0-only"
 
 [tool.scikit-build]
 wheel.packages = ["python/ultrafast_maskops"]
@@ -16,3 +16,10 @@ cmake.build-type = "Release"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+extend-exclude = ["tests/reference.py", "docs/PRD.md"]
+
+[tool.ruff.lint.per-file-ignores]
+"bench/*.py" = ["E402"]

@@ -1,12 +1,13 @@
 """Explicit Format adapter; never patches installed module globals."""
+
 import hashlib
 import inspect
 import os
 
 import cv2
 import numpy as np
-from ultralytics.data.augment import Format
 from ultralytics.data import utils
+from ultralytics.data.augment import Format
 
 from . import PackedPolygons, Rasterizer, backend_info
 

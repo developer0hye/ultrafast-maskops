@@ -2,6 +2,7 @@
 
 Importing this package never patches Ultralytics. No implicit fallback is used.
 """
+
 import operator
 import threading
 
@@ -16,7 +17,9 @@ def _coordinates(value):
     a = np.asarray(value)
     if a.dtype.kind not in "iuf" or not np.isfinite(a).all():
         raise ValueError("coordinates must be finite real numbers")
-    if a.size and (a.min() < -(2**31) or a.max() > 2**31 - 1):
+    # Python float comparisons avoid NumPy's weak scalar promotion rounding
+    # INT_MAX up to 2**31 when the coordinate array has float32 dtype.
+    if a.size and (float(a.min()) < -(2**31) or float(a.max()) > 2**31 - 1):
         raise ValueError("coordinates must fit int32 before conversion")
     return np.ascontiguousarray(a, dtype=np.int32)
 
@@ -125,12 +128,22 @@ def polygons2masks(imgsz, polygons, color, downsample_ratio=1):
 
 
 def polygons2masks_overlap(imgsz, segments, downsample_ratio=1):
+    if len(segments) == 0:
+        h, w, r = _dimensions(imgsz, downsample_ratio)
+        return np.zeros((h // r, w // r), dtype=np.uint8), np.empty(0, dtype=np.intp)
     if _has_empty_contour(segments):
         raise ValueError("empty contours are unsupported in the compatible wrapper")
     return Rasterizer().overlap(imgsz, PackedPolygons.from_segments(segments), downsample_ratio)
 
 
 def backend_info():
-    return {"version": __version__, "backend": "C++/OpenCV", "opencv": _native.opencv_version,
-            "numpy": np.__version__, "native_workers": 1, "private_opencv_threads": _native.opencv_threads(), "fallback_count": 0,
-            "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e"}
+    return {
+        "version": __version__,
+        "backend": "C++/OpenCV",
+        "opencv": _native.opencv_version,
+        "numpy": np.__version__,
+        "native_workers": 1,
+        "private_opencv_threads": _native.opencv_threads(),
+        "fallback_count": 0,
+        "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e",
+    }

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: AGPL-3.0-only
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
 #include <opencv2/core.hpp>
@@ -31,6 +31,7 @@ struct Polygons {
 
 struct Rasterizer {
     cv::Mat scratch;
+    cv::Rect dirty;
     std::mutex mutex;
     size_t budget;
     explicit Rasterizer(size_t limit): budget(limit) {}
@@ -44,12 +45,35 @@ struct Rasterizer {
             throw py::value_error("scratch_limit_bytes cannot hold one full and one resized mask");
         return reduced;
     }
+    void prepare(int h,int w) {
+        if(scratch.rows!=h || scratch.cols!=w) {
+            scratch.create(h,w,CV_8UC1);
+            scratch.setTo(0);
+        } else if(!dirty.empty()) {
+            scratch(dirty).setTo(0);
+        }
+        dirty=cv::Rect();
+    }
+    static cv::Rect bounds(const cv::Point *points,size_t count,int h,int w) {
+        if(!count) return {};
+        int64_t x0=points[0].x,x1=x0,y0=points[0].y,y1=y0;
+        for(size_t i=1;i<count;++i) {
+            x0=std::min(x0,int64_t(points[i].x)); x1=std::max(x1,int64_t(points[i].x));
+            y0=std::min(y0,int64_t(points[i].y)); y1=std::max(y1,int64_t(points[i].y));
+        }
+        // LINE_8 integer fill cannot write outside inclusive vertex bounds.
+        // Widen before +1 so INT_MAX coordinates cannot overflow this check.
+        x0=std::clamp(x0,int64_t(0),int64_t(w)); x1=std::clamp(x1+1,int64_t(0),int64_t(w));
+        y0=std::clamp(y0,int64_t(0),int64_t(h)); y1=std::clamp(y1+1,int64_t(0),int64_t(h));
+        if(x1>x0 && y1>y0) return cv::Rect(int(x0),int(y0),int(x1-x0),int(y1-y0));
+        return {};
+    }
     void render(const Polygons &p, size_t i, int h, int w, cv::Mat &dst, int color) {
-        scratch.create(h, w, CV_8UC1);
-        scratch.setTo(0);
+        prepare(h,w);
         int count = int(p.offsets[i+1]-p.offsets[i]);
         if (count) {
             const cv::Point *ptr = p.points.data()+p.offsets[i];
+            dirty=bounds(ptr,count,h,w);
             cv::fillPoly(scratch, &ptr, &count, 1, cv::Scalar(color));
         }
         cv::resize(scratch, dst, dst.size(), 0, 0, cv::INTER_LINEAR);
@@ -82,13 +106,16 @@ struct Rasterizer {
         {
             py::gil_scoped_release release;
             std::lock_guard<std::mutex> guard(mutex);
-            scratch.create(h,w,CV_8UC1); scratch.setTo(0);
+            prepare(h,w);
             std::vector<const cv::Point*> ptrs; std::vector<int> counts;
             for(size_t i=0;i<p.size();++i) {
                 int count=int(p.offsets[i+1]-p.offsets[i]);
                 if(count) {ptrs.push_back(p.points.data()+p.offsets[i]); counts.push_back(count);}
             }
-            if(!ptrs.empty()) cv::fillPoly(scratch,ptrs.data(),counts.data(),int(ptrs.size()),cv::Scalar(color));
+            if(!ptrs.empty()) {
+                dirty=bounds(p.points.data(),p.points.size(),h,w);
+                cv::fillPoly(scratch,ptrs.data(),counts.data(),int(ptrs.size()),cv::Scalar(color));
+            }
             cv::Mat dst(h/r,w/r,CV_8UC1,out); cv::resize(scratch,dst,dst.size());
         }
         return result;
@@ -118,7 +145,26 @@ struct Rasterizer {
                 const uint8_t *pixels;
                 if(retained) pixels=input+indices[rank]*a;
                 else {render(p,indices[rank],h,w,small,1); pixels=small.data;}
-                for(size_t j=0;j<a;++j) if(pixels[j]) out[j]=T(rank+1);
+                const size_t source=size_t(indices[rank]);
+                const size_t count=size_t(p.offsets[source+1]-p.offsets[source]);
+                const auto box=bounds(count?p.points.data()+p.offsets[source]:nullptr,count,h,w);
+                // Conservative support of LINEAR resize. Two destination pixels
+                // of padding include interpolation neighbors and odd-size rounding.
+                // Pixels outside this region are known zero, so leave output intact.
+                if(!box.empty()) {
+                    const int sw=w/r, sh=h/r;
+                    const int left=std::max(0,int(int64_t(box.x)*sw/w)-2);
+                    const int top=std::max(0,int(int64_t(box.y)*sh/h)-2);
+                    const int right=int(std::min(int64_t(sw),(int64_t(box.x+box.width)*sw+w-1)/w+2));
+                    const int bottom=int(std::min(int64_t(sh),(int64_t(box.y+box.height)*sh+h-1)/h+2));
+                    for(int y=top;y<bottom;++y) {
+                        const size_t row=size_t(y)*sw;
+                        for(int x=left;x<right;++x) {
+                            const size_t j=row+size_t(x);
+                            out[j]=pixels[j]?T(rank+1):out[j];
+                        }
+                    }
+                }
             }
         }
         return result;
