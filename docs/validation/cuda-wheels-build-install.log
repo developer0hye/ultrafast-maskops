@@ -1,0 +1,844 @@
+Building wheel...
+*** scikit-build-core 0.11.6 using CMake 3.28.3 (wheel)
+*** Configuring CMake...
+loading initial cache file /home/yonghye/ultrafast-vision-build/mask-cuda-wheel-build/CMakeInit.txt
+-- The CXX compiler identification is GNU 13.3.0
+-- The C compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Found Python: /home/yonghye/ultrafast-vision-build/venv312-cuda/bin/python (found version "3.12.14") found components: Interpreter Development.Module 
+-- Performing Test HAS_FLTO_AUTO
+-- Performing Test HAS_FLTO_AUTO - Success
+-- Found pybind11: /home/yonghye/ultrafast-vision-build/venv312-cuda/lib/python3.12/site-packages/pybind11/include (found version "3.0.1")
+CMake Warning (dev) at /usr/share/cmake-3.28/Modules/FetchContent.cmake:1331 (message):
+  The DOWNLOAD_EXTRACT_TIMESTAMP option was not given and policy CMP0135 is
+  not set.  The policy's OLD behavior will be used.  When using a URL
+  download, the timestamps of extracted files should preferably be that of
+  the time of extraction, otherwise code that depends on the extracted
+  contents might not be rebuilt if the URL changes.  The OLD behavior
+  preserves the timestamps from the archive instead, but this is usually not
+  what you want.  Update your project to the NEW behavior or specify the
+  DOWNLOAD_EXTRACT_TIMESTAMP option with a value of true to avoid this
+  robustness issue.
+Call Stack (most recent call first):
+  CMakeLists.txt:17 (FetchContent_Declare)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- ocv_init_download: OpenCV source tree is not fetched as git repository. 3rdparty resources will be downloaded from github.com by default.
+-- Detected processor: x86_64
+-- Found PythonInterp: /home/yonghye/ultrafast-vision-build/venv312-cuda/bin/python (found suitable version "3.12.14", minimum required is "3.2") 
+-- Found PythonLibs: /home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/libpython3.12.so (found suitable exact version "3.12.14") 
+-- Looking for ccache - not found
+-- Performing Test HAVE_CXX_FSIGNED_CHAR
+-- Performing Test HAVE_CXX_FSIGNED_CHAR - Success
+-- Performing Test HAVE_C_FSIGNED_CHAR
+-- Performing Test HAVE_C_FSIGNED_CHAR - Success
+-- Performing Test HAVE_CXX_W
+-- Performing Test HAVE_CXX_W - Success
+-- Performing Test HAVE_C_W
+-- Performing Test HAVE_C_W - Success
+-- Performing Test HAVE_CXX_WALL
+-- Performing Test HAVE_CXX_WALL - Success
+-- Performing Test HAVE_C_WALL
+-- Performing Test HAVE_C_WALL - Success
+-- Performing Test HAVE_CXX_WRETURN_TYPE
+-- Performing Test HAVE_CXX_WRETURN_TYPE - Success
+-- Performing Test HAVE_C_WRETURN_TYPE
+-- Performing Test HAVE_C_WRETURN_TYPE - Success
+-- Performing Test HAVE_CXX_WNON_VIRTUAL_DTOR
+-- Performing Test HAVE_CXX_WNON_VIRTUAL_DTOR - Success
+-- Performing Test HAVE_C_WNON_VIRTUAL_DTOR
+-- Performing Test HAVE_C_WNON_VIRTUAL_DTOR - Failed
+-- Performing Test HAVE_CXX_WADDRESS
+-- Performing Test HAVE_CXX_WADDRESS - Success
+-- Performing Test HAVE_C_WADDRESS
+-- Performing Test HAVE_C_WADDRESS - Success
+-- Performing Test HAVE_CXX_WSEQUENCE_POINT
+-- Performing Test HAVE_CXX_WSEQUENCE_POINT - Success
+-- Performing Test HAVE_C_WSEQUENCE_POINT
+-- Performing Test HAVE_C_WSEQUENCE_POINT - Success
+-- Performing Test HAVE_CXX_WFORMAT
+-- Performing Test HAVE_CXX_WFORMAT - Success
+-- Performing Test HAVE_C_WFORMAT
+-- Performing Test HAVE_C_WFORMAT - Success
+-- Performing Test HAVE_CXX_WFORMAT_SECURITY
+-- Performing Test HAVE_CXX_WFORMAT_SECURITY - Success
+-- Performing Test HAVE_C_WFORMAT_SECURITY
+-- Performing Test HAVE_C_WFORMAT_SECURITY - Success
+-- Performing Test HAVE_CXX_WMISSING_DECLARATIONS
+-- Performing Test HAVE_CXX_WMISSING_DECLARATIONS - Success
+-- Performing Test HAVE_C_WMISSING_DECLARATIONS
+-- Performing Test HAVE_C_WMISSING_DECLARATIONS - Success
+-- Performing Test HAVE_CXX_WMISSING_PROTOTYPES
+-- Performing Test HAVE_CXX_WMISSING_PROTOTYPES - Failed
+-- Performing Test HAVE_C_WMISSING_PROTOTYPES
+-- Performing Test HAVE_C_WMISSING_PROTOTYPES - Success
+-- Performing Test HAVE_CXX_WSTRICT_PROTOTYPES
+-- Performing Test HAVE_CXX_WSTRICT_PROTOTYPES - Failed
+-- Performing Test HAVE_C_WSTRICT_PROTOTYPES
+-- Performing Test HAVE_C_WSTRICT_PROTOTYPES - Success
+-- Performing Test HAVE_CXX_WUNDEF
+-- Performing Test HAVE_CXX_WUNDEF - Success
+-- Performing Test HAVE_C_WUNDEF
+-- Performing Test HAVE_C_WUNDEF - Success
+-- Performing Test HAVE_CXX_WINIT_SELF
+-- Performing Test HAVE_CXX_WINIT_SELF - Success
+-- Performing Test HAVE_C_WINIT_SELF
+-- Performing Test HAVE_C_WINIT_SELF - Success
+-- Performing Test HAVE_CXX_WPOINTER_ARITH
+-- Performing Test HAVE_CXX_WPOINTER_ARITH - Success
+-- Performing Test HAVE_C_WPOINTER_ARITH
+-- Performing Test HAVE_C_WPOINTER_ARITH - Success
+-- Performing Test HAVE_CXX_WSHADOW
+-- Performing Test HAVE_CXX_WSHADOW - Success
+-- Performing Test HAVE_C_WSHADOW
+-- Performing Test HAVE_C_WSHADOW - Success
+-- Performing Test HAVE_CXX_WSIGN_PROMO
+-- Performing Test HAVE_CXX_WSIGN_PROMO - Success
+-- Performing Test HAVE_C_WSIGN_PROMO
+-- Performing Test HAVE_C_WSIGN_PROMO - Failed
+-- Performing Test HAVE_CXX_WUNINITIALIZED
+-- Performing Test HAVE_CXX_WUNINITIALIZED - Success
+-- Performing Test HAVE_C_WUNINITIALIZED
+-- Performing Test HAVE_C_WUNINITIALIZED - Success
+-- Performing Test HAVE_CXX_WSUGGEST_OVERRIDE
+-- Performing Test HAVE_CXX_WSUGGEST_OVERRIDE - Success
+-- Performing Test HAVE_C_WSUGGEST_OVERRIDE
+-- Performing Test HAVE_C_WSUGGEST_OVERRIDE - Failed
+-- Performing Test HAVE_CXX_WNO_DELETE_NON_VIRTUAL_DTOR
+-- Performing Test HAVE_CXX_WNO_DELETE_NON_VIRTUAL_DTOR - Success
+-- Performing Test HAVE_C_WNO_DELETE_NON_VIRTUAL_DTOR
+-- Performing Test HAVE_C_WNO_DELETE_NON_VIRTUAL_DTOR - Failed
+-- Performing Test HAVE_CXX_WNO_UNNAMED_TYPE_TEMPLATE_ARGS
+-- Performing Test HAVE_CXX_WNO_UNNAMED_TYPE_TEMPLATE_ARGS - Failed
+-- Performing Test HAVE_C_WNO_UNNAMED_TYPE_TEMPLATE_ARGS
+-- Performing Test HAVE_C_WNO_UNNAMED_TYPE_TEMPLATE_ARGS - Failed
+-- Performing Test HAVE_CXX_WNO_COMMENT
+-- Performing Test HAVE_CXX_WNO_COMMENT - Success
+-- Performing Test HAVE_C_WNO_COMMENT
+-- Performing Test HAVE_C_WNO_COMMENT - Success
+-- Performing Test HAVE_CXX_WIMPLICIT_FALLTHROUGH_3
+-- Performing Test HAVE_CXX_WIMPLICIT_FALLTHROUGH_3 - Success
+-- Performing Test HAVE_C_WIMPLICIT_FALLTHROUGH_3
+-- Performing Test HAVE_C_WIMPLICIT_FALLTHROUGH_3 - Success
+-- Performing Test HAVE_CXX_WNO_STRICT_OVERFLOW
+-- Performing Test HAVE_CXX_WNO_STRICT_OVERFLOW - Success
+-- Performing Test HAVE_C_WNO_STRICT_OVERFLOW
+-- Performing Test HAVE_C_WNO_STRICT_OVERFLOW - Success
+-- Performing Test HAVE_CXX_FDIAGNOSTICS_SHOW_OPTION
+-- Performing Test HAVE_CXX_FDIAGNOSTICS_SHOW_OPTION - Success
+-- Performing Test HAVE_C_FDIAGNOSTICS_SHOW_OPTION
+-- Performing Test HAVE_C_FDIAGNOSTICS_SHOW_OPTION - Success
+-- Performing Test HAVE_CXX_PTHREAD
+-- Performing Test HAVE_CXX_PTHREAD - Success
+-- Performing Test HAVE_C_PTHREAD
+-- Performing Test HAVE_C_PTHREAD - Success
+-- Performing Test HAVE_CXX_FOMIT_FRAME_POINTER
+-- Performing Test HAVE_CXX_FOMIT_FRAME_POINTER - Success
+-- Performing Test HAVE_C_FOMIT_FRAME_POINTER
+-- Performing Test HAVE_C_FOMIT_FRAME_POINTER - Success
+-- Performing Test HAVE_CXX_FFUNCTION_SECTIONS
+-- Performing Test HAVE_CXX_FFUNCTION_SECTIONS - Success
+-- Performing Test HAVE_C_FFUNCTION_SECTIONS
+-- Performing Test HAVE_C_FFUNCTION_SECTIONS - Success
+-- Performing Test HAVE_CXX_FDATA_SECTIONS
+-- Performing Test HAVE_CXX_FDATA_SECTIONS - Success
+-- Performing Test HAVE_C_FDATA_SECTIONS
+-- Performing Test HAVE_C_FDATA_SECTIONS - Success
+-- Performing Test HAVE_CPU_SSE_SUPPORT (check file: ../ultrafast-vision-build/mask-build413/_deps/opencv-src/cmake/checks/cpu_sse.cpp)
+-- Performing Test HAVE_CPU_SSE_SUPPORT - Success
+-- Performing Test HAVE_CPU_SSE2_SUPPORT (check file: ../ultrafast-vision-build/mask-build413/_deps/opencv-src/cmake/checks/cpu_sse2.cpp)
+-- Performing Test HAVE_CPU_SSE2_SUPPORT - Success
+-- Performing Test HAVE_CPU_SSE3_SUPPORT (check file: ../ultrafast-vision-build/mask-build413/_deps/opencv-src/cmake/checks/cpu_sse3.cpp)
+-- Performing Test HAVE_CPU_SSE3_SUPPORT - Failed
+-- Performing Test HAVE_CXX_MSSE3 (check file: ../ultrafast-vision-build/mask-build413/_deps/opencv-src/cmake/checks/cpu_sse3.cpp)
+-- Performing Test HAVE_CXX_MSSE3 - Success
+-- Performing Test HAVE_CXX_MSSSE3 (check file: ../ultrafast-vision-build/mask-build413/_deps/opencv-src/cmake/checks/cpu_ssse3.cpp)
+-- Performing Test HAVE_CXX_MSSSE3 - Success
+-- Performing Test HAVE_CXX_MSSE4_1 (check file: ../ultrafast-vision-build/mask-build413/_deps/opencv-src/cmake/checks/cpu_sse41.cpp)
+-- Performing Test HAVE_CXX_MSSE4_1 - Success
+-- Performing Test HAVE_CXX_MPOPCNT (check file: ../ultrafast-vision-build/mask-build413/_deps/opencv-src/cmake/checks/cpu_popcnt.cpp)
+-- Performing Test HAVE_CXX_MPOPCNT - Success
+-- Performing Test HAVE_CXX_MSSE4_2 (check file: ../ultrafast-vision-build/mask-build413/_deps/opencv-src/cmake/checks/cpu_sse42.cpp)
+-- Performing Test HAVE_CXX_MSSE4_2 - Success
+-- Performing Test HAVE_CXX_MAVX (check file: ../ultrafast-vision-build/mask-build413/_deps/opencv-src/cmake/checks/cpu_avx.cpp)
+-- Performing Test HAVE_CXX_MAVX - Success
+-- Performing Test HAVE_CXX_MF16C (check file: ../ultrafast-vision-build/mask-build413/_deps/opencv-src/cmake/checks/cpu_fp16.cpp)
+-- Performing Test HAVE_CXX_MF16C - Success
+-- Performing Test HAVE_CXX_MAVX2 (check file: ../ultrafast-vision-build/mask-build413/_deps/opencv-src/cmake/checks/cpu_avx2.cpp)
+-- Performing Test HAVE_CXX_MAVX2 - Success
+-- Performing Test HAVE_CXX_MFMA
+-- Performing Test HAVE_CXX_MFMA - Success
+-- Performing Test HAVE_CXX_MAVX512F (check file: ../ultrafast-vision-build/mask-build413/_deps/opencv-src/cmake/checks/cpu_avx512.cpp)
+-- Performing Test HAVE_CXX_MAVX512F - Success
+-- Performing Test HAVE_CXX_MAVX512F_MAVX512CD (check file: ../ultrafast-vision-build/mask-build413/_deps/opencv-src/cmake/checks/cpu_avx512common.cpp)
+-- Performing Test HAVE_CXX_MAVX512F_MAVX512CD - Success
+-- Performing Test HAVE_CXX_MAVX512F_MAVX512CD_MAVX512VL_MAVX512BW_MAVX512DQ (check file: ../ultrafast-vision-build/mask-build413/_deps/opencv-src/cmake/checks/cpu_avx512skx.cpp)
+-- Performing Test HAVE_CXX_MAVX512F_MAVX512CD_MAVX512VL_MAVX512BW_MAVX512DQ - Success
+-- Performing Test HAVE_CPU_BASELINE_FLAGS
+-- Performing Test HAVE_CPU_BASELINE_FLAGS - Success
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_1
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_1 - Success
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_2
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_2 - Success
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX - Success
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_FP16
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_FP16 - Success
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX2
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX2 - Success
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX512_SKX
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX512_SKX - Success
+-- Performing Test HAVE_CXX_FVISIBILITY_HIDDEN
+-- Performing Test HAVE_CXX_FVISIBILITY_HIDDEN - Success
+-- Performing Test HAVE_C_FVISIBILITY_HIDDEN
+-- Performing Test HAVE_C_FVISIBILITY_HIDDEN - Success
+-- Performing Test HAVE_CXX_FVISIBILITY_INLINES_HIDDEN
+-- Performing Test HAVE_CXX_FVISIBILITY_INLINES_HIDDEN - Success
+-- Performing Test HAVE_C_FVISIBILITY_INLINES_HIDDEN
+-- Performing Test HAVE_C_FVISIBILITY_INLINES_HIDDEN - Failed
+-- Performing Test HAVE_LINK_AS_NEEDED
+-- Performing Test HAVE_LINK_AS_NEEDED - Success
+-- Performing Test HAVE_LINK_NO_UNDEFINED
+-- Performing Test HAVE_LINK_NO_UNDEFINED - Success
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Looking for posix_memalign
+-- Looking for posix_memalign - found
+-- Looking for malloc.h
+-- Looking for malloc.h - found
+-- Looking for memalign
+-- Looking for memalign - found
+-- Looking for getauxval
+-- Looking for getauxval - found
+-- Looking for elf_aux_info
+-- Looking for elf_aux_info - not found
+-- Could NOT find ZLIB (missing: ZLIB_LIBRARY ZLIB_INCLUDE_DIR) (Required is at least version "1.2.3")
+-- Looking for fseeko
+-- Looking for fseeko - found
+-- Looking for unistd.h
+-- Looking for unistd.h - found
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of off64_t
+-- Check size of off64_t - failed
+-- Performing Test HAVE_C_WNO_SHORTEN_64_TO_32
+-- Performing Test HAVE_C_WNO_SHORTEN_64_TO_32 - Failed
+-- Performing Test HAVE_C_WNO_ATTRIBUTES
+-- Performing Test HAVE_C_WNO_ATTRIBUTES - Success
+-- Performing Test HAVE_C_WNO_STRICT_PROTOTYPES
+-- Performing Test HAVE_C_WNO_STRICT_PROTOTYPES - Success
+-- Performing Test HAVE_C_WNO_MISSING_PROTOTYPES
+-- Performing Test HAVE_C_WNO_MISSING_PROTOTYPES - Success
+-- Performing Test HAVE_C_WNO_MISSING_DECLARATIONS
+-- Performing Test HAVE_C_WNO_MISSING_DECLARATIONS - Success
+-- Performing Test HAVE_C_WNO_SHIFT_NEGATIVE_VALUE
+-- Performing Test HAVE_C_WNO_SHIFT_NEGATIVE_VALUE - Success
+-- Performing Test HAVE_C_WNO_UNDEF
+-- Performing Test HAVE_C_WNO_UNDEF - Success
+-- Performing Test HAVE_C_WNO_IMPLICIT_FALLTHROUGH
+-- Performing Test HAVE_C_WNO_IMPLICIT_FALLTHROUGH - Success
+-- Could NOT find AVIF (missing: AVIF_LIBRARY AVIF_INCLUDE_DIR) 
+-- Found JPEG: /usr/lib/x86_64-linux-gnu/libjpeg.so (found version "80") 
+-- Could NOT find TIFF (missing: TIFF_LIBRARY TIFF_INCLUDE_DIR) 
+-- Looking for assert.h
+-- Looking for assert.h - found
+-- Looking for dlfcn.h
+-- Looking for dlfcn.h - found
+-- Looking for fcntl.h
+-- Looking for fcntl.h - found
+-- Looking for inttypes.h
+-- Looking for inttypes.h - found
+-- Looking for io.h
+-- Looking for io.h - not found
+-- Looking for limits.h
+-- Looking for limits.h - found
+-- Looking for memory.h
+-- Looking for memory.h - found
+-- Looking for search.h
+-- Looking for search.h - found
+-- Looking for string.h
+-- Looking for string.h - found
+-- Looking for strings.h
+-- Looking for strings.h - found
+-- Looking for sys/time.h
+-- Looking for sys/time.h - found
+-- Looking for unistd.h
+-- Looking for unistd.h - found
+-- Performing Test C_HAS_inline
+-- Performing Test C_HAS_inline - Success
+-- Check size of signed short
+-- Check size of signed short - done
+-- Check size of unsigned short
+-- Check size of unsigned short - done
+-- Check size of signed int
+-- Check size of signed int - done
+-- Check size of unsigned int
+-- Check size of unsigned int - done
+-- Check size of signed long
+-- Check size of signed long - done
+-- Check size of unsigned long
+-- Check size of unsigned long - done
+-- Check size of signed long long
+-- Check size of signed long long - done
+-- Check size of unsigned long long
+-- Check size of unsigned long long - done
+-- Check size of unsigned char *
+-- Check size of unsigned char * - done
+-- Check size of size_t
+-- Check size of size_t - done
+-- Check size of ptrdiff_t
+-- Check size of ptrdiff_t - done
+-- Check size of INT8
+-- Check size of INT8 - failed
+-- Check size of INT16
+-- Check size of INT16 - failed
+-- Check size of INT32
+-- Check size of INT32 - failed
+-- Looking for floor
+-- Looking for floor - found
+-- Looking for pow
+-- Looking for pow - found
+-- Looking for sqrt
+-- Looking for sqrt - found
+-- Looking for isascii
+-- Looking for isascii - found
+-- Looking for memset
+-- Looking for memset - found
+-- Looking for mmap
+-- Looking for mmap - found
+-- Looking for getopt
+-- Looking for getopt - found
+-- Looking for memmove
+-- Looking for memmove - found
+-- Looking for setmode
+-- Looking for setmode - not found
+-- Looking for strcasecmp
+-- Looking for strcasecmp - found
+-- Looking for strchr
+-- Looking for strchr - found
+-- Looking for strrchr
+-- Looking for strrchr - found
+-- Looking for strstr
+-- Looking for strstr - found
+-- Looking for strtol
+-- Looking for strtol - found
+-- Looking for strtol
+-- Looking for strtol - found
+-- Looking for strtoull
+-- Looking for strtoull - found
+-- Looking for lfind
+-- Looking for lfind - found
+-- Performing Test HAVE_C_WNO_UNUSED_BUT_SET_VARIABLE
+-- Performing Test HAVE_C_WNO_UNUSED_BUT_SET_VARIABLE - Success
+-- Performing Test HAVE_C_WNO_UNUSED
+-- Performing Test HAVE_C_WNO_UNUSED - Success
+-- Performing Test HAVE_C_WNO_SIGN_COMPARE
+-- Performing Test HAVE_C_WNO_SIGN_COMPARE - Success
+-- Performing Test HAVE_C_WNO_CAST_ALIGN
+-- Performing Test HAVE_C_WNO_CAST_ALIGN - Success
+-- Performing Test HAVE_C_WNO_SHADOW
+-- Performing Test HAVE_C_WNO_SHADOW - Success
+-- Performing Test HAVE_C_WNO_MAYBE_UNINITIALIZED
+-- Performing Test HAVE_C_WNO_MAYBE_UNINITIALIZED - Success
+-- Performing Test HAVE_C_WNO_POINTER_TO_INT_CAST
+-- Performing Test HAVE_C_WNO_POINTER_TO_INT_CAST - Success
+-- Performing Test HAVE_C_WNO_INT_TO_POINTER_CAST
+-- Performing Test HAVE_C_WNO_INT_TO_POINTER_CAST - Success
+-- Performing Test HAVE_C_WNO_MISLEADING_INDENTATION
+-- Performing Test HAVE_C_WNO_MISLEADING_INDENTATION - Success
+-- Performing Test HAVE_C_WNO_UNUSED_PARAMETER
+-- Performing Test HAVE_C_WNO_UNUSED_PARAMETER - Success
+-- Performing Test HAVE_C_WNO_ARRAY_PARAMETER
+-- Performing Test HAVE_C_WNO_ARRAY_PARAMETER - Success
+-- Performing Test HAVE_CXX_WNO_MISSING_DECLARATIONS
+-- Performing Test HAVE_CXX_WNO_MISSING_DECLARATIONS - Success
+-- Performing Test HAVE_CXX_WNO_UNUSED_PARAMETER
+-- Performing Test HAVE_CXX_WNO_UNUSED_PARAMETER - Success
+-- Performing Test HAVE_CXX_WNO_MISSING_PROTOTYPES
+-- Performing Test HAVE_CXX_WNO_MISSING_PROTOTYPES - Failed
+-- Performing Test HAVE_CXX_WNO_UNDEF
+-- Performing Test HAVE_CXX_WNO_UNDEF - Success
+-- Performing Test HAVE_C_WNO_UNUSED_VARIABLE
+-- Performing Test HAVE_C_WNO_UNUSED_VARIABLE - Success
+-- Performing Test HAVE_C_WNO_UNUSED_FUNCTION
+-- Performing Test HAVE_C_WNO_UNUSED_FUNCTION - Success
+-- Could NOT find OpenJPEG (minimal suitable version: 2.0, recommended version >= 2.3.1). OpenJPEG will be built from sources
+-- Performing Test HAVE_C_WNO_IMPLICIT_CONST_INT_FLOAT_CONVERSION
+-- Performing Test HAVE_C_WNO_IMPLICIT_CONST_INT_FLOAT_CONVERSION - Failed
+-- Performing Test HAVE_C_WNO_DOCUMENTATION
+-- Performing Test HAVE_C_WNO_DOCUMENTATION - Failed
+-- OpenJPEG: VERSION = 2.5.3, BUILD = opencv-4.13.0-openjp2-2.5.3
+-- Looking for stdlib.h
+-- Looking for stdlib.h - found
+-- Looking for stdio.h
+-- Looking for stdio.h - found
+-- Looking for math.h
+-- Looking for math.h - found
+-- Looking for float.h
+-- Looking for float.h - found
+-- Looking for time.h
+-- Looking for time.h - found
+-- Looking for stdarg.h
+-- Looking for stdarg.h - found
+-- Looking for ctype.h
+-- Looking for ctype.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for inttypes.h
+-- Looking for inttypes.h - found
+-- Looking for sys/stat.h
+-- Looking for sys/stat.h - found
+-- Looking for include file malloc.h
+-- Looking for include file malloc.h - found
+-- Looking for _aligned_malloc
+-- Looking for _aligned_malloc - not found
+-- Looking for posix_memalign
+-- Looking for posix_memalign - found
+-- Looking for memalign
+-- Looking for memalign - found
+-- Performing Test HAVE_C_WNO_CAST_FUNCTION_TYPE
+-- Performing Test HAVE_C_WNO_CAST_FUNCTION_TYPE - Success
+-- OpenJPEG libraries will be built from sources: libopenjp2 (version "2.5.3")
+-- Performing Test HAVE_C_WNO_NULL_POINTER_SUBTRACTION
+-- Performing Test HAVE_C_WNO_NULL_POINTER_SUBTRACTION - Failed
+-- Looking for semaphore.h
+-- Looking for semaphore.h - found
+-- Performing Test HAVE_CXX_WNO_SHADOW
+-- Performing Test HAVE_CXX_WNO_SHADOW - Success
+-- Performing Test HAVE_CXX_WNO_UNUSED
+-- Performing Test HAVE_CXX_WNO_UNUSED - Success
+-- Performing Test HAVE_CXX_WNO_SIGN_COMPARE
+-- Performing Test HAVE_CXX_WNO_SIGN_COMPARE - Success
+-- Performing Test HAVE_CXX_WNO_UNINITIALIZED
+-- Performing Test HAVE_CXX_WNO_UNINITIALIZED - Success
+-- Performing Test HAVE_CXX_WNO_SWITCH
+-- Performing Test HAVE_CXX_WNO_SWITCH - Success
+-- Performing Test HAVE_CXX_WNO_PARENTHESES
+-- Performing Test HAVE_CXX_WNO_PARENTHESES - Success
+-- Performing Test HAVE_CXX_WNO_ARRAY_BOUNDS
+-- Performing Test HAVE_CXX_WNO_ARRAY_BOUNDS - Success
+-- Performing Test HAVE_CXX_WNO_EXTRA
+-- Performing Test HAVE_CXX_WNO_EXTRA - Success
+-- Performing Test HAVE_CXX_WNO_DEPRECATED_DECLARATIONS
+-- Performing Test HAVE_CXX_WNO_DEPRECATED_DECLARATIONS - Success
+-- Performing Test HAVE_CXX_WNO_MISLEADING_INDENTATION
+-- Performing Test HAVE_CXX_WNO_MISLEADING_INDENTATION - Success
+-- Performing Test HAVE_CXX_WNO_DEPRECATED
+-- Performing Test HAVE_CXX_WNO_DEPRECATED - Success
+-- Performing Test HAVE_CXX_WNO_SUGGEST_OVERRIDE
+-- Performing Test HAVE_CXX_WNO_SUGGEST_OVERRIDE - Success
+-- Performing Test HAVE_CXX_WNO_INCONSISTENT_MISSING_OVERRIDE
+-- Performing Test HAVE_CXX_WNO_INCONSISTENT_MISSING_OVERRIDE - Failed
+-- Performing Test HAVE_CXX_WNO_IMPLICIT_FALLTHROUGH
+-- Performing Test HAVE_CXX_WNO_IMPLICIT_FALLTHROUGH - Success
+-- Performing Test HAVE_CXX_WNO_TAUTOLOGICAL_COMPARE
+-- Performing Test HAVE_CXX_WNO_TAUTOLOGICAL_COMPARE - Success
+-- Performing Test HAVE_CXX_WNO_REORDER
+-- Performing Test HAVE_CXX_WNO_REORDER - Success
+-- Performing Test HAVE_CXX_WNO_UNUSED_RESULT
+-- Performing Test HAVE_CXX_WNO_UNUSED_RESULT - Success
+-- Performing Test HAVE_CXX_WNO_IMPLICIT_CONST_INT_FLOAT_CONVERSION
+-- Performing Test HAVE_CXX_WNO_IMPLICIT_CONST_INT_FLOAT_CONVERSION - Failed
+-- Performing Test HAVE_CXX_WNO_NONTRIVIAL_MEMCALL
+-- Performing Test HAVE_CXX_WNO_NONTRIVIAL_MEMCALL - Failed
+-- Performing Test HAVE_CXX_WNO_CLASS_MEMACCESS
+-- Performing Test HAVE_CXX_WNO_CLASS_MEMACCESS - Success
+-- libva: missing va.h header (VA_INCLUDE_DIR)
+-- Could NOT find Atlas (missing: Atlas_CBLAS_INCLUDE_DIR Atlas_CLAPACK_INCLUDE_DIR Atlas_CBLAS_LIBRARY Atlas_BLAS_LIBRARY Atlas_LAPACK_LIBRARY) 
+-- Looking for sgemm_
+-- Looking for sgemm_ - not found
+-- Found Threads: TRUE  
+-- Could NOT find BLAS (missing: BLAS_LIBRARIES) 
+-- Could NOT find LAPACK (missing: LAPACK_LIBRARIES) 
+    Reason given by package: LAPACK could not be found because dependency BLAS could not be found.
+
+-- VTK is not found. Please set -DVTK_DIR in CMake to VTK build directory, or to VTK install subdirectory with VTKConfig.cmake file
+-- ADE: Downloading v0.1.2e.zip from https://github.com/opencv/ade/archive/v0.1.2e.zip
+-- Using whitelist: opencv_core;opencv_imgproc
+-- Module opencv_calib3d disabled by whitelist
+-- Module opencv_dnn disabled by whitelist
+-- Module opencv_features2d disabled by whitelist
+-- Module opencv_flann disabled by whitelist
+-- Module opencv_gapi disabled by whitelist
+-- Module opencv_highgui disabled by whitelist
+-- Module opencv_imgcodecs disabled by whitelist
+-- Module opencv_java_bindings_generator disabled by whitelist
+-- Module opencv_js_bindings_generator disabled by whitelist
+-- Module opencv_ml disabled by whitelist
+-- Module opencv_objc_bindings_generator disabled by whitelist
+-- Module opencv_objdetect disabled by whitelist
+-- Module opencv_photo disabled by whitelist
+-- Module opencv_python_bindings_generator disabled by whitelist
+-- Module opencv_python_tests disabled by whitelist
+-- Module opencv_stitching disabled by whitelist
+-- Module opencv_video disabled by whitelist
+-- Module opencv_videoio disabled by whitelist
+-- Allocator metrics storage type: 'long long'
+-- Excluding from source files list: modules/imgproc/src/imgwarp.lasx.cpp
+-- Excluding from source files list: modules/imgproc/src/resize.lasx.cpp
+-- 
+-- General configuration for OpenCV 4.13.0 =====================================
+--   Version control:               unknown
+-- 
+--   Platform:
+--     Timestamp:                   2026-09-12T17:51:27Z
+--     Host:                        Linux 7.0.0-28-generic x86_64
+--     CMake:                       3.28.3
+--     CMake generator:             Ninja
+--     CMake build tool:            /home/yonghye/ultrafast-vision-build/venv312-cuda/bin/ninja
+--     Configuration:               Release
+--     Algorithm Hint:              ALGO_HINT_ACCURATE
+-- 
+--   CPU/HW features:
+--     Baseline:                    SSE SSE2 SSE3
+--       requested:                 SSE3
+--     Dispatched code generation:  SSE4_1 SSE4_2 AVX FP16 AVX2 AVX512_SKX
+--       SSE4_1 (14 files):         + SSSE3 SSE4_1
+--       SSE4_2 (1 files):          + SSSE3 SSE4_1 POPCNT SSE4_2
+--       AVX (4 files):             + SSSE3 SSE4_1 POPCNT SSE4_2 AVX
+--       FP16 (0 files):            + SSSE3 SSE4_1 POPCNT SSE4_2 AVX FP16
+--       AVX2 (26 files):           + SSSE3 SSE4_1 POPCNT SSE4_2 AVX FP16 AVX2 FMA3
+--       AVX512_SKX (4 files):      + SSSE3 SSE4_1 POPCNT SSE4_2 AVX FP16 AVX2 FMA3 AVX_512F AVX512_COMMON AVX512_SKX
+-- 
+--   C/C++:
+--     Built as dynamic libs?:      NO
+--     C++ standard:                17
+--     C++ Compiler:                /usr/bin/c++  -pthread (ver 13.3.0)
+--     C++ flags (Release):         -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -msse3 -fvisibility=hidden -fvisibility-inlines-hidden -O3 -DNDEBUG  -DNDEBUG
+--     C++ flags (Debug):           -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -msse3 -fvisibility=hidden -fvisibility-inlines-hidden -g  -O0 -DDEBUG -D_DEBUG
+--     C Compiler:                  /usr/bin/cc  -pthread
+--     C flags (Release):           -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -msse3 -fvisibility=hidden -O3 -DNDEBUG  -DNDEBUG
+--     C flags (Debug):             -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -msse3 -fvisibility=hidden -g  -O0 -DDEBUG -D_DEBUG
+--     Linker flags (Release):      -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  
+--     Linker flags (Debug):        -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  
+--     ccache:                      NO
+--     Precompiled headers:         NO
+--     Extra dependencies:          dl m pthread rt
+--     3rdparty dependencies:       zlib
+-- 
+--   OpenCV modules:
+--     To be built:                 core imgproc
+--     Disabled:                    python3 world
+--     Disabled by dependency:      calib3d dnn features2d flann gapi highgui imgcodecs java_bindings_generator js_bindings_generator ml objc_bindings_generator objdetect photo python_bindings_generator python_tests stitching video videoio
+--     Unavailable:                 java python2 ts
+--     Applications:                -
+--     Documentation:               NO
+--     Non-free algorithms:         NO
+-- 
+--   GUI: 
+--     VTK support:                 NO
+-- 
+--   Media I/O: 
+--     ZLib:                        zlib (ver 1.3.1)
+--     JPEG:                        /usr/lib/x86_64-linux-gnu/libjpeg.so (ver 80)
+--     WEBP:                        build (ver decoder: 0x0210, encoder: 0x0210, demux: 0x0107)
+--     AVIF:                        NO
+--     PNG:                         build (ver 1.6.53)
+--     TIFF:                        build (ver 42 - 4.7.1)
+--     JPEG 2000:                   build (ver 2.5.3)
+--     OpenEXR:                     build (ver 2.3.0)
+--     GIF:                         YES
+--     HDR:                         YES
+--     SUNRASTER:                   YES
+--     PXM:                         YES
+--     PFM:                         YES
+-- 
+--   Video I/O:
+--     v4l/v4l2:                    YES (linux/videodev2.h)
+--     Orbbec:                      YES
+-- 
+--   Parallel framework:            none
+-- 
+--   Trace:                         YES (built-in)
+-- 
+--   Other third-party libraries:
+--     VA:                          NO
+--     Lapack:                      NO
+--     Eigen:                       NO
+--     Custom HAL:                  NO
+--     Flatbuffers:                 builtin/3rdparty (25.9.23)
+-- 
+--   Python (for build):            /home/yonghye/ultrafast-vision-build/venv312-cuda/bin/python
+-- 
+--   Install to:                    /tmp/tmpq6c51s0a/wheel/platlib
+-- -----------------------------------------------------------------
+-- 
+-- Configuring done (12.7s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/yonghye/ultrafast-vision-build/mask-cuda-wheel-build
+*** Building project with Ninja...
+[1/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/compress.c.o
+[2/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/gzclose.c.o
+[3/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/adler32.c.o
+[4/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/crc32.c.o
+[5/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/gzlib.c.o
+[6/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/gzread.c.o
+[7/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/gzwrite.c.o
+[8/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/inftrees.c.o
+[9/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/infback.c.o
+[10/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/deflate.c.o
+[11/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/inffast.c.o
+[12/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/uncompr.c.o
+[13/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/zutil.c.o
+[14/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/inflate.c.o
+[15/231] Building C object _deps/opencv-build/3rdparty/zlib/CMakeFiles/zlib.dir/trees.c.o
+[16/231] Linking C static library _deps/opencv-build/3rdparty/lib/libzlib.a
+[17/231] Processing OpenCL kernels (core)
+[18/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/algorithm.cpp.o
+[19/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/alloc.cpp.o
+[20/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/arithm.cpp.o
+[21/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/async.cpp.o
+[22/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/array.cpp.o
+[23/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/batch_distance.cpp.o
+[24/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/bindings_utils.cpp.o
+[25/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/buffer_area.cpp.o
+[26/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/channels.cpp.o
+[27/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/check.cpp.o
+[28/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/conjugate_gradient.cpp.o
+[29/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/arithm.dispatch.cpp.o
+[30/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/command_line_parser.cpp.o
+[31/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/convert_c.cpp.o
+[32/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/convert.dispatch.cpp.o
+[33/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/count_non_zero.dispatch.cpp.o
+[34/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/cuda_gpu_mat.cpp.o
+[35/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/convert_scale.dispatch.cpp.o
+[36/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/copy.cpp.o
+[37/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/cuda_host_mem.cpp.o
+[38/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/cuda_gpu_mat_nd.cpp.o
+[39/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/cuda_info.cpp.o
+[40/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/cuda_stream.cpp.o
+[41/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/directx.cpp.o
+[42/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/downhill_simplex.cpp.o
+[43/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/datastructs.cpp.o
+[44/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/gl_core_3_1.cpp.o
+[45/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/glob.cpp.o
+[46/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/hal_internal.cpp.o
+[47/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/has_non_zero.dispatch.cpp.o
+[48/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/dxt.cpp.o
+[49/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/kmeans.cpp.o
+[50/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/lda.cpp.o
+[51/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/logger.cpp.o
+[52/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/lapack.cpp.o
+[53/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/lpsolver.cpp.o
+[54/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/lut.cpp.o
+[55/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/mathfuncs_core.dispatch.cpp.o
+[56/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/mathfuncs.cpp.o
+[57/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/matrix.cpp.o
+[58/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/matrix_c.cpp.o
+[59/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/matrix_decomp.cpp.o
+[60/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/matrix_iterator.cpp.o
+[61/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/matrix_expressions.cpp.o
+[62/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/matrix_sparse.cpp.o
+[63/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/matmul.dispatch.cpp.o
+[64/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/matrix_transform.cpp.o
+[65/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/merge.dispatch.cpp.o
+[66/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/mean.dispatch.cpp.o
+[67/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/matrix_operations.cpp.o
+[68/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/minmax.cpp.o
+[69/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/ocl.cpp.o
+[70/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/matrix_wrap.cpp.o
+[71/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/opencl/runtime/opencl_clblas.cpp.o
+[72/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/norm.dispatch.cpp.o
+[73/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/opencl/runtime/opencl_clfft.cpp.o
+[74/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/opencl/runtime/opencl_core.cpp.o
+[75/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/opengl.cpp.o
+[76/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/ovx.cpp.o
+[77/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/out.cpp.o
+[78/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/parallel.cpp.o
+[79/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/parallel/parallel_openmp.cpp.o
+[80/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/parallel/parallel_tbb.cpp.o
+[81/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/parallel_impl.cpp.o
+[82/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/pca.cpp.o
+[83/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/persistence_base64_encoding.cpp.o
+[84/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/parallel/parallel.cpp.o
+[85/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/persistence_json.cpp.o
+[86/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/persistence_types.cpp.o
+[87/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/persistence.cpp.o
+[88/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/persistence_xml.cpp.o
+[89/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/persistence_yml.cpp.o
+[90/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/split.dispatch.cpp.o
+[91/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/stat.dispatch.cpp.o
+[92/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/rand.cpp.o
+[93/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/stat_c.cpp.o
+[94/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/stl.cpp.o
+[95/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/softfloat.cpp.o
+[96/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/sum.dispatch.cpp.o
+[97/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/tables.cpp.o
+[98/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/trace.cpp.o
+[99/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/types.cpp.o
+[100/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/system.cpp.o
+[101/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/umatrix.cpp.o
+[102/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/utils/datafile.cpp.o
+[103/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/utils/filesystem.cpp.o
+[104/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/utils/logtagconfigparser.cpp.o
+[105/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/utils/logtagmanager.cpp.o
+[106/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/opencl_kernels_core.cpp.o
+[107/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/va_intel.cpp.o
+[108/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/src/utils/samples.cpp.o
+[109/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/stat.sse4_2.cpp.o
+[110/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/norm.sse4_1.cpp.o
+[111/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/mathfuncs_core.avx.cpp.o
+[112/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/matmul.sse4_1.cpp.o
+[113/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/norm.avx.cpp.o
+[114/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/mathfuncs_core.avx2.cpp.o
+[115/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/stat.avx2.cpp.o
+[116/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/arithm.sse4_1.cpp.o
+[117/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/count_non_zero.avx2.cpp.o
+[118/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/convert.avx2.cpp.o
+[119/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/convert_scale.avx2.cpp.o
+[120/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/has_non_zero.avx2.cpp.o
+[121/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/mean.avx2.cpp.o
+[122/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/merge.avx2.cpp.o
+[123/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/arithm.avx2.cpp.o
+[124/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/split.avx2.cpp.o
+[125/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/sum.avx2.cpp.o
+[126/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/matmul.avx2.cpp.o
+[127/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/norm.avx2.cpp.o
+[128/231] Building CXX object _deps/opencv-build/modules/core/CMakeFiles/opencv_core.dir/matmul.avx512_skx.cpp.o
+[129/231] Linking CXX static library _deps/opencv-build/lib/libopencv_core.a
+[130/231] Processing OpenCL kernels (imgproc)
+[131/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/accum.cpp.o
+[132/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/approx.cpp.o
+[133/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/bilateral_filter.dispatch.cpp.o
+[134/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/blend.cpp.o
+[135/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/accum.dispatch.cpp.o
+[136/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/canny.cpp.o
+[137/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/clahe.cpp.o
+[138/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color.cpp.o
+[139/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color_hsv.dispatch.cpp.o
+[140/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/box_filter.dispatch.cpp.o
+[141/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color_rgb.dispatch.cpp.o
+[142/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color_lab.cpp.o
+[143/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/colormap.cpp.o
+[144/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/contours_approx.cpp.o
+[145/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/contours.cpp.o
+[146/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color_yuv.dispatch.cpp.o
+[147/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/contours_common.cpp.o
+[148/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/contours_link.cpp.o
+[149/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/contours_new.cpp.o
+[150/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/convhull.cpp.o
+[151/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/corner.cpp.o
+[152/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/cornersubpix.cpp.o
+[153/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/deriv.cpp.o
+[154/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/distransform.cpp.o
+[155/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/demosaicing.cpp.o
+[156/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/emd.cpp.o
+[157/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/emd_new.cpp.o
+[158/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/drawing.cpp.o
+[159/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/featureselect.cpp.o
+[160/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/gabor.cpp.o
+[161/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/floodfill.cpp.o
+[162/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/generalized_hough.cpp.o
+[163/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/geometry.cpp.o
+[164/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/grabcut.cpp.o
+[165/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/hershey_fonts.cpp.o
+[166/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/connectedcomponents.cpp.o
+[167/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/filter.dispatch.cpp.o
+[168/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/histogram.cpp.o
+[169/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/hough.cpp.o
+[170/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/intelligent_scissors.cpp.o
+[171/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/intersection.cpp.o
+[172/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/linefit.cpp.o
+[173/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/main.cpp.o
+[174/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/matchcontours.cpp.o
+[175/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/lsd.cpp.o
+[176/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/min_enclosing_triangle.cpp.o
+[177/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/min_enclosing_convex_polygon.cpp.o
+[178/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/median_blur.dispatch.cpp.o
+[179/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/moments.cpp.o
+[180/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/phasecorr_iterative.cpp.o
+[181/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/imgwarp.cpp.o
+[182/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/phasecorr.cpp.o
+[183/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/rotcalipers.cpp.o
+[184/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/samplers.cpp.o
+[185/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/morph.dispatch.cpp.o
+[186/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/pyramids.cpp.o
+[187/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/segmentation.cpp.o
+[188/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/shapedescr.cpp.o
+[189/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/spatialgradient.cpp.o
+[190/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/subdivision2d.cpp.o
+[191/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/stackblur.cpp.o
+[192/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/tables.cpp.o
+[193/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/resize.cpp.o
+[194/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/sumpixels.dispatch.cpp.o
+[195/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/templmatch.cpp.o
+[196/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/utils.cpp.o
+[197/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/opencl_kernels_imgproc.cpp.o
+[198/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/thresh.cpp.o
+[199/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/smooth.dispatch.cpp.o
+[200/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/resize.sse4_1.cpp.o
+[201/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/imgwarp.sse4_1.cpp.o
+[202/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_hsv.sse4_1.cpp.o
+[203/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/accum.sse4_1.cpp.o
+[204/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/box_filter.sse4_1.cpp.o
+[205/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_rgb.sse4_1.cpp.o
+[206/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_yuv.sse4_1.cpp.o
+[207/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/median_blur.sse4_1.cpp.o
+[208/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/filter.sse4_1.cpp.o
+[209/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/corner.avx.cpp.o
+[210/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/morph.sse4_1.cpp.o
+[211/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/imgwarp.avx2.cpp.o
+[212/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/resize.avx2.cpp.o
+[213/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/accum.avx.cpp.o
+[214/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/smooth.sse4_1.cpp.o
+[215/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/bilateral_filter.avx2.cpp.o
+[216/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/accum.avx2.cpp.o
+[217/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_hsv.avx2.cpp.o
+[218/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_rgb.avx2.cpp.o
+[219/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/box_filter.avx2.cpp.o
+[220/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_yuv.avx2.cpp.o
+[221/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/median_blur.avx2.cpp.o
+[222/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/filter.avx2.cpp.o
+[223/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/sumpixels.avx2.cpp.o
+[224/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/morph.avx2.cpp.o
+[225/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/sumpixels.avx512_skx.cpp.o
+[226/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/median_blur.avx512_skx.cpp.o
+[227/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/box_filter.avx512_skx.cpp.o
+[228/231] Building CXX object _deps/opencv-build/modules/imgproc/CMakeFiles/opencv_imgproc.dir/smooth.avx2.cpp.o
+[229/231] Linking CXX static library _deps/opencv-build/lib/libopencv_imgproc.a
+[230/231] Building CXX object CMakeFiles/_native.dir/src/bindings.cpp.o
+[231/231] Linking CXX shared module _native.cpython-312-x86_64-linux-gnu.so
+*** Installing project into wheel...
+-- Install configuration: "Release"
+-- Installing: /tmp/tmpq6c51s0a/wheel/platlib/ultrafast_maskops/_native.cpython-312-x86_64-linux-gnu.so
+-- Installing: /tmp/tmpq6c51s0a/wheel/platlib/ultrafast_maskops/licenses/OpenCV-LICENSE
+*** Making wheel...
+*** Created ultrafast_maskops-0.1.0a1-cp312-cp312-linux_x86_64.whl
+Successfully built /home/yonghye/ultrafast-vision-build/cuda-wheels-byte-access-v1/mask/ultrafast_maskops-0.1.0a1-cp312-cp312-linux_x86_64.whl
+Building wheel...
+Running `maturin pep517 build-wheel -i /home/yonghye/ultrafast-vision-build/venv312-cuda/bin/python --compatibility off`
+📦 Including license file `LICENSE`
+📦 Including license file `NOTICE`
+🍹 Building a mixed python/rust project
+🐍 Found CPython 3.12 at /home/yonghye/ultrafast-vision-build/venv312-cuda/bin/python
+🔗 Found pyo3 bindings
+   Compiling pyo3-build-config v0.25.1
+   Compiling pyo3-ffi v0.25.1
+   Compiling pyo3-macros-backend v0.25.1
+   Compiling pyo3 v0.25.1
+   Compiling numpy v0.25.0
+   Compiling pyo3-macros v0.25.1
+   Compiling ultrafast-yolo-dataset v0.1.0-alpha.1 (/home/yonghye/ultrafast-yolo-dataset)
+    Finished `release` profile [optimized] target(s) in 10.74s
+📦 Built wheel for CPython 3.12 to /home/yonghye/ultrafast-vision-build/rust-target/wheels/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-linux_x86_64.whl
+/home/yonghye/ultrafast-vision-build/rust-target/wheels/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-linux_x86_64.whl
+Successfully built /home/yonghye/ultrafast-vision-build/cuda-wheels-byte-access-v1/dataset/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-linux_x86_64.whl
+Using Python 3.12.14 environment at: /home/yonghye/ultrafast-vision-build/venv312-cuda
+Resolved 2 packages in 1ms
+Prepared 2 packages in 8ms
+Installed 2 packages in 0.69ms
+ + ultrafast-maskops==0.1.0a1 (from file:///home/yonghye/ultrafast-vision-build/cuda-wheels-byte-access-v1/mask/ultrafast_maskops-0.1.0a1-cp312-cp312-linux_x86_64.whl)
+ + ultrafast-yolo-dataset==0.1.0a1 (from file:///home/yonghye/ultrafast-vision-build/cuda-wheels-byte-access-v1/dataset/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-linux_x86_64.whl)
