@@ -2,6 +2,12 @@
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 
+The 12-job platform/Python [wheel CI workflow](WHEEL_CI.md) is prepared and
+locally linted. Hosted execution awaits the repository visibility choice; this
+is not Windows or broader Python compatibility evidence. The main branch now
+explicitly aligns OpenCV's MSVC CRT with the extension; existing benchmark
+binaries predate that build-configuration change.
+
 - C++ three-function core, packed API, retained/bounded overlap and explicit Format adapter implemented.
 - Current corrected source: 139 tests passed on each host, including 10,000 seeded differential cases, actual framework/worker integration, and four deterministic CPU YOLO11n-seg loss/gradient/update checks.
 - Dirty scratch clearing, cached contour extents, conservative composition bounds and consecutive duplicate integer vertex removal are implemented without changing the OpenCV fill/resize sequence. Untyped byte snapshots correct the sanitizer failure on unaligned NumPy input.

@@ -8,6 +8,9 @@ find_package(pybind11 CONFIG REQUIRED)
 include(FetchContent)
 set(BUILD_LIST "core,imgproc" CACHE STRING "" FORCE)
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+# Keep the private OpenCV archives on the same dynamic MSVC runtime as the
+# Python extension. OpenCV otherwise defaults static libraries to /MT locally.
+set(BUILD_WITH_STATIC_CRT OFF CACHE BOOL "" FORCE)
 foreach(opt BUILD_TESTS BUILD_PERF_TESTS BUILD_EXAMPLES BUILD_opencv_apps BUILD_JAVA
     BUILD_opencv_python2 BUILD_opencv_python3 WITH_IPP WITH_ITT WITH_OPENCL WITH_TBB
     WITH_OPENMP WITH_FFMPEG WITH_GSTREAMER WITH_GTK WITH_QT WITH_PROTOBUF WITH_PTHREADS_PF)

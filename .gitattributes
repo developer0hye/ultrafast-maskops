@@ -1,0 +1,4 @@
+* text=auto eol=lf
+licenses/** -text
+bench/results/** -text
+docs/validation/** -text
