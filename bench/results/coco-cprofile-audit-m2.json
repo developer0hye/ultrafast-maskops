@@ -1,0 +1,49 @@
+{
+  "scope": "profile call-stack audit; native component times are invalid, while separately unprofiled loader timings and full output parity remain valid",
+  "profiles": [
+    {
+      "artifact": "bench/results/coco-profile-reference-m2.json",
+      "sha256": "0a958dcd34d99828b5ae2dc3638183f8a52feaa630e8888a2f0aba9eb48af45b",
+      "counts": {
+        "__next__": {
+          "expected": 626,
+          "actual": 626,
+          "valid": true
+        },
+        "__getitem__": {
+          "expected": 5000,
+          "actual": 5000,
+          "valid": true
+        },
+        "get_image_and_label": {
+          "expected": 5000,
+          "actual": 5000,
+          "valid": true
+        }
+      },
+      "valid_for_component_timing": true
+    },
+    {
+      "artifact": "bench/results/coco-profile-native-m2.json",
+      "sha256": "dd4e90ef36d4c87762560587bb0f2d4cf9db9ed47731be98d75926d5de6b8ffe",
+      "counts": {
+        "__next__": {
+          "expected": 626,
+          "actual": 1,
+          "valid": false
+        },
+        "__getitem__": {
+          "expected": 5000,
+          "actual": 673,
+          "valid": false
+        },
+        "get_image_and_label": {
+          "expected": 5000,
+          "actual": 5000,
+          "valid": true
+        }
+      },
+      "valid_for_component_timing": false
+    }
+  ]
+}

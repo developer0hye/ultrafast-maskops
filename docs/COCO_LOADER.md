@@ -95,5 +95,32 @@ value divided by candidate value; for images/s, a smaller ratio favors native.
 
 The full real-data results belong in [BENCHMARKS.md](BENCHMARKS.md). CPU loader
 results do not prove GPU utilization, training throughput or accuracy. Augmented
-batches, full GPU epochs, higher resolutions and real-geometry component profiles
-remain separate validation tasks.
+batches, full GPU epochs and higher resolutions remain separate validation tasks.
+
+## Direct stage diagnostics
+
+After the full benchmark finishes, while its exact sources and extension are
+still installed, run each backend sequentially:
+
+```sh
+python bench/time_coco_stages.py --corpus /path/to/fixture/segment \
+  --benchmark /path/to/loader-report.json --backend reference \
+  --out /path/to/new-reference-stages.json
+python bench/time_coco_stages.py --corpus /path/to/fixture/segment \
+  --benchmark /path/to/loader-report.json --backend native \
+  --out /path/to/new-native-stages.json
+```
+
+This wraps individual methods with `perf_counter_ns`, asserts exact call counts,
+then restores them before an untimed complete output check. Raw durations are
+saved alongside the report. It is one instrumented diagnostic epoch, not an
+additional sample for the repeated benchmark; nested inclusive times cannot be
+summed. We rejected native-side cProfile component times after its call counts
+failed to cover the full epoch. See the retained audit reports and results.
+
+`python bench/audit_coco_evidence.py` rechecks the retained baseline's 60 samples,
+source snapshots, medians/bootstrap intervals, fresh-reference output bindings
+and raw stage durations without importing the native extension or requiring the
+fixture. This is an artifact consistency check, not a replacement for rerunning
+the experiment. Git history at `7c508a6` supplies baseline source bytes after
+later implementation changes.

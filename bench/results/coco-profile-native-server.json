@@ -1,0 +1,2406 @@
+{
+  "scope": "single instrumented workers=0 epoch for bottleneck diagnosis; profiler adds overhead, not a performance comparison",
+  "extension_sha256": "1f80d771b426f2d004bba97345df2873204a580f5c814daf6efd3c31c88a2574",
+  "backend": "native",
+  "images": 5000,
+  "instrumented_epoch_s": 24.973898437805474,
+  "source_sha256": {
+    "CMakeLists.txt": "e65b02bb88a6697e55fc4a350a464f7c74d7bde141eb4297520f321f5428a657",
+    "bench/coco_loader.py": "b3522de1c98c7a9d81dc6bc6cd3eb19f48e477cb2378dbca09eb7130815b7b82",
+    "pyproject.toml": "5cb08dd0abf278c2418ac0bc0d859ac38396e294ea3f272d80f0c7014b642172",
+    "python/ultrafast_maskops/__init__.py": "da09b89644f97d065f1bc591096d0fdb9baff26ff4d206aefcedb1db83d35b1b",
+    "python/ultrafast_maskops/ultralytics.py": "0bd934e308d5808ea97e7add5b53d36bf02533a4980f24276971cad21564da5d",
+    "src/bindings.cpp": "048a1b827d52db4b0efb53e4a276c972922c3faa6431c6923cb654978f99914f"
+  },
+  "profile_script_sha256": "fc0c1582e8f14a9479c55542f63a468639119a612609fdea2dc5025fd0e3b898",
+  "benchmark_sha256": "bce00b6886d18bf8b81c622a5c17ca9e65a1b43edfabb56b6b2131810dbf46ee",
+  "output_sha256": "81118723b01b4f3ca696dea1f7c3dd275b203a3e0dded57ac1c1667e22165481",
+  "parity": true,
+  "stats": [
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 44,
+      "function": "__call__",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.020934054,
+      "inclusive_s": 22.245362374000003
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/base.py",
+      "line": 415,
+      "function": "get_image_and_label",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.020977454000000003,
+      "inclusive_s": 14.779742277
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/base.py",
+      "line": 228,
+      "function": "load_image",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.025954382,
+      "inclusive_s": 11.178684716000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/patches.py",
+      "line": 22,
+      "function": "imread",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.016866008000000002,
+      "inclusive_s": 10.595421409
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<imdecode>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 10.327953910000002,
+      "inclusive_s": 10.327953910000002
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 2369,
+      "function": "apply_instances",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.856358383,
+      "inclusive_s": 7.527919758
+    },
+    {
+      "file": "/home/yonghye/ultrafast-maskops/python/ultrafast_maskops/ultralytics.py",
+      "line": 61,
+      "function": "_format_segments",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.034346481000000005,
+      "inclusive_s": 5.138761002000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/dataset.py",
+      "line": 376,
+      "function": "update_labels_info",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.049060028000000006,
+      "inclusive_s": 3.162184513
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/ops.py",
+      "line": 467,
+      "function": "resample_segments",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.5923674440000001,
+      "inclusive_s": 2.9916567680000004
+    },
+    {
+      "file": "/home/yonghye/ultrafast-maskops/python/ultrafast_maskops/__init__.py",
+      "line": 88,
+      "function": "overlap",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 2.8755147450000003,
+      "inclusive_s": 2.890091398
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.ascontiguousarray>",
+      "primitive_calls": 19856,
+      "calls": 19856,
+      "exclusive_s": 2.145369327,
+      "inclusive_s": 2.145369327
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 2354,
+      "function": "apply_image",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.005172557,
+      "inclusive_s": 2.05428224
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 2437,
+      "function": "_format_img",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.020312964000000003,
+      "inclusive_s": 2.048163083
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/dataset.py",
+      "line": 408,
+      "function": "collate_fn",
+      "primitive_calls": 625,
+      "calls": 625,
+      "exclusive_s": 0.05126576,
+      "inclusive_s": 1.9685492660000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.stack>",
+      "primitive_calls": 1250,
+      "calls": 1250,
+      "exclusive_s": 1.8590846760000002,
+      "inclusive_s": 1.8590846760000002
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 1693,
+      "function": "__call__",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.013885436000000001,
+      "inclusive_s": 1.40434926
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 1778,
+      "function": "apply_image",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.023225206,
+      "inclusive_s": 0.9366682350000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py",
+      "line": 5389,
+      "function": "insert",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.6435842700000001,
+      "inclusive_s": 0.935646657
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<copyMakeBorder>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.9134430290000001,
+      "inclusive_s": 0.9134430290000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/function_base.py",
+      "line": 27,
+      "function": "linspace",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.429477168,
+      "inclusive_s": 0.6268568320000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py",
+      "line": 1538,
+      "function": "interp",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.08578421500000001,
+      "inclusive_s": 0.548357152
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<resize>",
+      "primitive_calls": 903,
+      "calls": 903,
+      "exclusive_s": 0.49234083300000003,
+      "inclusive_s": 0.49234083300000003
+    },
+    {
+      "file": "/home/yonghye/ultrafast-maskops/python/ultrafast_maskops/__init__.py",
+      "line": 37,
+      "function": "from_segments",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.032016064000000004,
+      "inclusive_s": 0.42524358500000004
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/copy.py",
+      "line": 118,
+      "function": "deepcopy",
+      "primitive_calls": 5000,
+      "calls": 131335,
+      "exclusive_s": 0.15381703300000002,
+      "inclusive_s": 0.416163663
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 1836,
+      "function": "apply_instances",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.010843921000000001,
+      "inclusive_s": 0.41534106600000004
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy._core._multiarray_umath.interp>",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.40515580500000004,
+      "inclusive_s": 0.40515580500000004
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 1857,
+      "function": "_update_labels",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.018990789,
+      "inclusive_s": 0.40277401
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/copy.py",
+      "line": 217,
+      "function": "_deepcopy_dict",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.031579983,
+      "inclusive_s": 0.390850587
+    },
+    {
+      "file": "/home/yonghye/ultrafast-maskops/python/ultrafast_maskops/__init__.py",
+      "line": 16,
+      "function": "_coordinates",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.052294306000000006,
+      "inclusive_s": 0.28974036000000003
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.fromfile>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.23950169400000001,
+      "inclusive_s": 0.245405434
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1421,
+      "function": "searchsorted",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.033633186,
+      "inclusive_s": 0.17032202100000002
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 48,
+      "function": "_wrapfunc",
+      "primitive_calls": 41287,
+      "calls": 41287,
+      "exclusive_s": 0.034748708,
+      "inclusive_s": 0.159454117
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 240,
+      "function": "convert_bbox",
+      "primitive_calls": 10000,
+      "calls": 10000,
+      "exclusive_s": 0.005163628,
+      "inclusive_s": 0.156585
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.arange>",
+      "primitive_calls": 113957,
+      "calls": 113957,
+      "exclusive_s": 0.15464772000000002,
+      "inclusive_s": 0.15464772000000002
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/copy.py",
+      "line": 191,
+      "function": "_deepcopy_list",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.016191056000000002,
+      "inclusive_s": 0.15332399200000002
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 78,
+      "function": "convert",
+      "primitive_calls": 10000,
+      "calls": 10000,
+      "exclusive_s": 0.013562393,
+      "inclusive_s": 0.151421372
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 270,
+      "function": "denormalize",
+      "primitive_calls": 10000,
+      "calls": 10000,
+      "exclusive_s": 0.065150461,
+      "inclusive_s": 0.11677682
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 170,
+      "function": "ones",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.08507376700000001,
+      "inclusive_s": 0.113901336
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 2333,
+      "function": "get_params",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.020604516,
+      "inclusive_s": 0.101009414
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'searchsorted' of 'numpy.ndarray' objects>",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.09906276800000001,
+      "inclusive_s": 0.09906276800000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 104,
+      "function": "mul",
+      "primitive_calls": 10000,
+      "calls": 10000,
+      "exclusive_s": 0.072516353,
+      "inclusive_s": 0.088352974
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 304,
+      "function": "add_padding",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.049378501000000005,
+      "inclusive_s": 0.086404638
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 253,
+      "function": "scale",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.049226099,
+      "inclusive_s": 0.085952714
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/ops.py",
+      "line": 255,
+      "function": "xywh2xyxy",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.068123694,
+      "inclusive_s": 0.085316849
+    },
+    {
+      "file": "/home/yonghye/ultrafast-maskops/python/ultrafast_maskops/__init__.py",
+      "line": 30,
+      "function": "__init__",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.08186766300000001,
+      "inclusive_s": 0.08478712000000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 319,
+      "function": "__getitem__",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.065691171,
+      "inclusive_s": 0.08009930300000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'argsort' of 'numpy.ndarray' objects>",
+      "primitive_calls": 41287,
+      "calls": 41287,
+      "exclusive_s": 0.07772728100000001,
+      "inclusive_s": 0.07772728100000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/shape_base.py",
+      "line": 378,
+      "function": "stack",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.067272925,
+      "inclusive_s": 0.07393585200000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'long' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.07092336,
+      "inclusive_s": 0.07092336
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.id>",
+      "primitive_calls": 207670,
+      "calls": 207670,
+      "exclusive_s": 0.06775963900000001,
+      "inclusive_s": 0.06775963900000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+      "primitive_calls": 14856,
+      "calls": 14856,
+      "exclusive_s": 0.06568856000000001,
+      "inclusive_s": 0.06568856000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reshape' of 'numpy.ndarray' objects>",
+      "primitive_calls": 82574,
+      "calls": 82574,
+      "exclusive_s": 0.064004701,
+      "inclusive_s": 0.064004701
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/pathlib.py",
+      "line": 852,
+      "function": "exists",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.008540259,
+      "inclusive_s": 0.060390088
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.from_numpy>",
+      "primitive_calls": 24808,
+      "calls": 24808,
+      "exclusive_s": 0.057626058,
+      "inclusive_s": 0.057626058
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.len>",
+      "primitive_calls": 356071,
+      "calls": 365981,
+      "exclusive_s": 0.053063392,
+      "inclusive_s": 0.056604084000000006
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/copy.py",
+      "line": 231,
+      "function": "_keep_alive",
+      "primitive_calls": 56335,
+      "calls": 56335,
+      "exclusive_s": 0.027383463,
+      "inclusive_s": 0.053684283000000006
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/ops.py",
+      "line": 235,
+      "function": "xyxy2xywh",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.04096114,
+      "inclusive_s": 0.052542130000000006
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.cat>",
+      "primitive_calls": 2500,
+      "calls": 2500,
+      "exclusive_s": 0.050278267,
+      "inclusive_s": 0.050278267
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.empty>",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.048745532,
+      "inclusive_s": 0.048745532
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/pathlib.py",
+      "line": 835,
+      "function": "stat",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.0043514800000000005,
+      "inclusive_s": 0.047995339000000005
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.isinstance>",
+      "primitive_calls": 135187,
+      "calls": 135187,
+      "exclusive_s": 0.033473841000000004,
+      "inclusive_s": 0.044605187000000004
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method posix.stat>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.038711963,
+      "inclusive_s": 0.043643859
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/lib/_type_check_impl.py",
+      "line": 270,
+      "function": "iscomplexobj",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.030390662000000002,
+      "inclusive_s": 0.040046918
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'get' of 'dict' objects>",
+      "primitive_calls": 297679,
+      "calls": 297679,
+      "exclusive_s": 0.040041705000000004,
+      "inclusive_s": 0.040041705000000004
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/autograd/profiler.py",
+      "line": 806,
+      "function": "__exit__",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.007547988,
+      "inclusive_s": 0.039250646
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method '__deepcopy__' of 'numpy.ndarray' objects>",
+      "primitive_calls": 46335,
+      "calls": 46335,
+      "exclusive_s": 0.038793928000000005,
+      "inclusive_s": 0.038793928000000005
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 120,
+      "function": "add",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.031534673,
+      "inclusive_s": 0.037026137
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 1729,
+      "function": "get_params",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.022585574,
+      "inclusive_s": 0.036184584
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'all' of 'numpy.ndarray' objects>",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.005232845000000001,
+      "inclusive_s": 0.035128234
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/copy.py",
+      "line": 200,
+      "function": "_deepcopy_tuple",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.016136684000000002,
+      "inclusive_s": 0.031917645
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.array>",
+      "primitive_calls": 46335,
+      "calls": 46335,
+      "exclusive_s": 0.031571799000000005,
+      "inclusive_s": 0.031571799000000005
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/_ops.py",
+      "line": 1031,
+      "function": "__call__",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.001299126,
+      "inclusive_s": 0.031296741
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/_methods.py",
+      "line": 64,
+      "function": "_all",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.0029799780000000003,
+      "inclusive_s": 0.029895389
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1100,
+      "function": "argsort",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.006424982,
+      "inclusive_s": 0.029190264
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'wrap' of 'numpy._core._multiarray_umath._array_converter' objects>",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.029188319,
+      "inclusive_s": 0.029188319
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'min' of 'numpy.ndarray' objects>",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.0036691310000000004,
+      "inclusive_s": 0.028885800000000003
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/ops.py",
+      "line": 721,
+      "function": "empty_like",
+      "primitive_calls": 10000,
+      "calls": 10000,
+      "exclusive_s": 0.022106062000000003,
+      "inclusive_s": 0.028774145
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/_methods.py",
+      "line": 43,
+      "function": "_amin",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.002355189,
+      "inclusive_s": 0.025216669
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.max>",
+      "primitive_calls": 9952,
+      "calls": 9952,
+      "exclusive_s": 0.012537521000000001,
+      "inclusive_s": 0.024410506000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'as_arrays' of 'numpy._core._multiarray_umath._array_converter' objects>",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.023857067000000003,
+      "inclusive_s": 0.023857067000000003
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 218,
+      "function": "__init__",
+      "primitive_calls": 9952,
+      "calls": 9952,
+      "exclusive_s": 0.012378928,
+      "inclusive_s": 0.022651684000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.zeros>",
+      "primitive_calls": 5192,
+      "calls": 5192,
+      "exclusive_s": 0.022199485,
+      "inclusive_s": 0.022199485
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'max' of 'numpy.ndarray' objects>",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.0032061480000000002,
+      "inclusive_s": 0.020847396
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/_ops.py",
+      "line": 1081,
+      "function": "_must_dispatch_in_python",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.001443641,
+      "inclusive_s": 0.020559264
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'astype' of 'numpy.ndarray' objects>",
+      "primitive_calls": 41287,
+      "calls": 41287,
+      "exclusive_s": 0.019447398,
+      "inclusive_s": 0.019447398
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 153,
+      "function": "__call__",
+      "primitive_calls": 2,
+      "calls": 1298,
+      "exclusive_s": 0.006654427,
+      "inclusive_s": 0.019189306
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/_pytree.py",
+      "line": 1784,
+      "function": "tree_any",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.0013585560000000001,
+      "inclusive_s": 0.019115623
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.getattr>",
+      "primitive_calls": 95127,
+      "calls": 95127,
+      "exclusive_s": 0.01879093,
+      "inclusive_s": 0.01879093
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.any>",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.0009099510000000001,
+      "inclusive_s": 0.017757067
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/_methods.py",
+      "line": 39,
+      "function": "_amax",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.0017295790000000002,
+      "inclusive_s": 0.017641248
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 1975,
+      "function": "isscalar",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.011449468,
+      "inclusive_s": 0.017319451
+    },
+    {
+      "file": "<frozen abc>",
+      "line": 117,
+      "function": "__instancecheck__",
+      "primitive_calls": 20003,
+      "calls": 20003,
+      "exclusive_s": 0.005799842,
+      "inclusive_s": 0.017035086
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'result_type' of 'numpy._core._multiarray_umath._array_converter' objects>",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.016559318,
+      "inclusive_s": 0.016559318
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.issubclass>",
+      "primitive_calls": 123387,
+      "calls": 123387,
+      "exclusive_s": 0.016044652,
+      "inclusive_s": 0.016044652
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/_pytree.py",
+      "line": 1462,
+      "function": "tree_iter",
+      "primitive_calls": 1252,
+      "calls": 4382,
+      "exclusive_s": 0.005064952,
+      "inclusive_s": 0.015444161000000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/autograd/profiler.py",
+      "line": 800,
+      "function": "__enter__",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.0020451090000000002,
+      "inclusive_s": 0.015127645
+    },
+    {
+      "file": "/home/yonghye/ultrafast-maskops/python/ultrafast_maskops/__init__.py",
+      "line": 56,
+      "function": "_dimensions",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.010132249000000001,
+      "inclusive_s": 0.013978218
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/_ops.py",
+      "line": 1197,
+      "function": "__call__",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.00049496,
+      "inclusive_s": 0.013082536
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch._ops.profiler._record_function_enter_new>",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.012587576000000001,
+      "inclusive_s": 0.012587576000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'pop' of 'dict' objects>",
+      "primitive_calls": 50002,
+      "calls": 50002,
+      "exclusive_s": 0.012522283,
+      "inclusive_s": 0.012522283
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.asarray>",
+      "primitive_calls": 87526,
+      "calls": 87526,
+      "exclusive_s": 0.012067161000000002,
+      "inclusive_s": 0.012067161000000002
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/dataset.py",
+      "line": 399,
+      "function": "<genexpr>",
+      "primitive_calls": 41287,
+      "calls": 41287,
+      "exclusive_s": 0.008290022000000001,
+      "inclusive_s": 0.011872985
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _abc._abc_instancecheck>",
+      "primitive_calls": 20003,
+      "calls": 20003,
+      "exclusive_s": 0.011210183,
+      "inclusive_s": 0.011235244
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'append' of 'list' objects>",
+      "primitive_calls": 87739,
+      "calls": 87739,
+      "exclusive_s": 0.011218054,
+      "inclusive_s": 0.011218054
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 64,
+      "function": "__init__",
+      "primitive_calls": 9952,
+      "calls": 9952,
+      "exclusive_s": 0.010272756000000001,
+      "inclusive_s": 0.010272756000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.min>",
+      "primitive_calls": 21768,
+      "calls": 21768,
+      "exclusive_s": 0.009856836,
+      "inclusive_s": 0.009856836
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch._ops.profiler.>",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.009438351000000001,
+      "inclusive_s": 0.009438351000000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 3482,
+      "function": "ndim",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.008602034,
+      "inclusive_s": 0.008602034
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/multiarray.py",
+      "line": 197,
+      "function": "concatenate",
+      "primitive_calls": 77622,
+      "calls": 77622,
+      "exclusive_s": 0.008079925,
+      "inclusive_s": 0.008079925
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/shape_base.py",
+      "line": 368,
+      "function": "_stack_dispatcher",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.0029470950000000003,
+      "inclusive_s": 0.007806713000000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py",
+      "line": 1534,
+      "function": "_interp_dispatcher",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.007560586,
+      "inclusive_s": 0.007560586
+    },
+    {
+      "file": "/home/yonghye/ultrafast-maskops/python/ultrafast_maskops/__init__.py",
+      "line": 52,
+      "function": "__len__",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.001272321,
+      "inclusive_s": 0.007322674
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/lib/_type_check_impl.py",
+      "line": 171,
+      "function": "_is_type_dispatcher",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.00731471,
+      "inclusive_s": 0.00731471
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/base.py",
+      "line": 411,
+      "function": "__getitem__",
+      "primitive_calls": 1,
+      "calls": 673,
+      "exclusive_s": 0.001066256,
+      "inclusive_s": 0.007121840000000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/_pytree.py",
+      "line": 1048,
+      "function": "_get_node_type",
+      "primitive_calls": 4382,
+      "calls": 4382,
+      "exclusive_s": 0.002129929,
+      "inclusive_s": 0.00684663
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 461,
+      "function": "__len__",
+      "primitive_calls": 9952,
+      "calls": 9952,
+      "exclusive_s": 0.004179639000000001,
+      "inclusive_s": 0.0065700970000000004
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.round>",
+      "primitive_calls": 30000,
+      "calls": 30000,
+      "exclusive_s": 0.006549499,
+      "inclusive_s": 0.006549499
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/random.py",
+      "line": 494,
+      "function": "uniform",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.005004992000000001,
+      "inclusive_s": 0.006353862
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.sorted>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.006108407000000001,
+      "inclusive_s": 0.006108407000000001
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/copy.py",
+      "line": 172,
+      "function": "_deepcopy_atomic",
+      "primitive_calls": 70000,
+      "calls": 70000,
+      "exclusive_s": 0.005978890000000001,
+      "inclusive_s": 0.005978890000000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/_pytree.py",
+      "line": 1060,
+      "function": "tree_is_leaf",
+      "primitive_calls": 2504,
+      "calls": 2504,
+      "exclusive_s": 0.0013811680000000001,
+      "inclusive_s": 0.005939606
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'float' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.005538202000000001,
+      "inclusive_s": 0.005538202000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _operator.index>",
+      "primitive_calls": 41288,
+      "calls": 41288,
+      "exclusive_s": 0.005527687000000001,
+      "inclusive_s": 0.005527687000000001
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/pathlib.py",
+      "line": 447,
+      "function": "__fspath__",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.0039455900000000006,
+      "inclusive_s": 0.004931896000000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/shape_base.py",
+      "line": 206,
+      "function": "_arrays_for_stack_dispatcher",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.003071256,
+      "inclusive_s": 0.0048596180000000004
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'transpose' of 'numpy.ndarray' objects>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.004841874,
+      "inclusive_s": 0.004841874
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/function_base.py",
+      "line": 22,
+      "function": "_linspace_dispatcher",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.004781932,
+      "inclusive_s": 0.004781932
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/_pytree.py",
+      "line": 694,
+      "function": "is_namedtuple_class",
+      "primitive_calls": 4382,
+      "calls": 4382,
+      "exclusive_s": 0.0027211970000000003,
+      "inclusive_s": 0.004716701
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/multiarray.py",
+      "line": 1085,
+      "function": "copyto",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.004602889000000001,
+      "inclusive_s": 0.004602889000000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1417,
+      "function": "_searchsorted_dispatcher",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.004455719,
+      "inclusive_s": 0.004455719
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/autograd/profiler.py",
+      "line": 787,
+      "function": "__init__",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.002566987,
+      "inclusive_s": 0.004377021
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 3478,
+      "function": "_ndim_dispatcher",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.004368806,
+      "inclusive_s": 0.004368806
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method posix.getpid>",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.004173537000000001,
+      "inclusive_s": 0.004173537000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'squeeze' of 'numpy.ndarray' objects>",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.0040408250000000005,
+      "inclusive_s": 0.0040408250000000005
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py",
+      "line": 5385,
+      "function": "_insert_dispatcher",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.003954662,
+      "inclusive_s": 0.003954662
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/pathlib.py",
+      "line": 52,
+      "function": "_ignore_error",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.002384246,
+      "inclusive_s": 0.0038544900000000003
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.asanyarray>",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.0035757890000000002,
+      "inclusive_s": 0.0035757890000000002
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 730,
+      "function": "_next_index",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.00033572500000000004,
+      "inclusive_s": 0.00309785
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'endswith' of 'str' objects>",
+      "primitive_calls": 5004,
+      "calls": 5004,
+      "exclusive_s": 0.002988684,
+      "inclusive_s": 0.002988684
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 511,
+      "function": "bboxes",
+      "primitive_calls": 19856,
+      "calls": 19856,
+      "exclusive_s": 0.002920413,
+      "inclusive_s": 0.002920413
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.next>",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.00046998200000000003,
+      "inclusive_s": 0.0027621250000000003
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'numel' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.002620215,
+      "inclusive_s": 0.002620215
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/data/sampler.py",
+      "line": 333,
+      "function": "__iter__",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.0022868890000000003,
+      "inclusive_s": 0.002292143
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'lower' of 'str' objects>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.002208184,
+      "inclusive_s": 0.002208184
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.hasattr>",
+      "primitive_calls": 5579,
+      "calls": 5579,
+      "exclusive_s": 0.002190192,
+      "inclusive_s": 0.002190192
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'items' of 'dict' objects>",
+      "primitive_calls": 10002,
+      "calls": 10002,
+      "exclusive_s": 0.002064895,
+      "inclusive_s": 0.002064895
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.lib.array_utils.normalize_axis_index>",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.0017692460000000001,
+      "inclusive_s": 0.0017692460000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method '__exit__' of '_thread.lock' objects>",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.0017408290000000002,
+      "inclusive_s": 0.0017408290000000002
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 392,
+      "function": "inner",
+      "primitive_calls": 626,
+      "calls": 627,
+      "exclusive_s": 0.0016239000000000002,
+      "inclusive_s": 0.001737676
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/_pytree.py",
+      "line": 801,
+      "function": "_dict_flatten",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.0012257750000000001,
+      "inclusive_s": 0.0016326420000000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/_ops.py",
+      "line": 1083,
+      "function": "<lambda>",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.0009298230000000001,
+      "inclusive_s": 0.001402955
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/multiarray.py",
+      "line": 115,
+      "function": "empty_like",
+      "primitive_calls": 10000,
+      "calls": 10000,
+      "exclusive_s": 0.0013565270000000002,
+      "inclusive_s": 0.0013565270000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'random' of '_random.Random' objects>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.00134887,
+      "inclusive_s": 0.00134887
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 1813,
+      "function": "apply_semantic",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.001282259,
+      "inclusive_s": 0.001282259
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/pathlib.py",
+      "line": 437,
+      "function": "__str__",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.0009863060000000002,
+      "inclusive_s": 0.0009863060000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'values' of 'dict' objects>",
+      "primitive_calls": 5626,
+      "calls": 5626,
+      "exclusive_s": 0.000919331,
+      "inclusive_s": 0.000919331
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1096,
+      "function": "_argsort_dispatcher",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.0007807630000000001,
+      "inclusive_s": 0.0007807630000000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 98,
+      "function": "apply_semantic",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.000649157,
+      "inclusive_s": 0.000649157
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method math.ceil>",
+      "primitive_calls": 1806,
+      "calls": 1806,
+      "exclusive_s": 0.0006208790000000001,
+      "inclusive_s": 0.0006208790000000001
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/_pytree.py",
+      "line": 771,
+      "function": "_tuple_flatten",
+      "primitive_calls": 1252,
+      "calls": 1252,
+      "exclusive_s": 0.000518769,
+      "inclusive_s": 0.000518769
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 110,
+      "function": "apply_depth",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.000481832,
+      "inclusive_s": 0.000481832
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 487,
+      "function": "__iter__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.608e-06,
+      "inclusive_s": 0.0003524
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 428,
+      "function": "_get_iterator",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 2.453e-06,
+      "inclusive_s": 0.000350792
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 774,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 7.3240000000000005e-06,
+      "inclusive_s": 0.000348339
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 643,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 2.0381e-05,
+      "inclusive_s": 0.00033320800000000004
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'keys' of 'dict' objects>",
+      "primitive_calls": 1251,
+      "calls": 1251,
+      "exclusive_s": 0.00031360400000000004,
+      "inclusive_s": 0.00031360400000000004
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/numpy/lib/_version.py",
+      "line": 53,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.1463e-05,
+      "inclusive_s": 0.00028143900000000003
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/__init__.py",
+      "line": 280,
+      "function": "_compile",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 1.4606e-05,
+      "inclusive_s": 0.000259589
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'random_' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 0.00025315,
+      "inclusive_s": 0.00025315
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method '__exit__' of 'torch._C.DisableTorchFunctionSubclass' objects>",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.00023935900000000002,
+      "inclusive_s": 0.00023935900000000002
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/__init__.py",
+      "line": 164,
+      "function": "match",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 4.109e-06,
+      "inclusive_s": 0.00021579500000000002
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_compiler.py",
+      "line": 745,
+      "function": "compile",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 1.0348e-05,
+      "inclusive_s": 0.000214853
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/_jit_internal.py",
+      "line": 98,
+      "function": "is_scripting",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.000166558,
+      "inclusive_s": 0.000166558
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 515,
+      "function": "__getitem__",
+      "primitive_calls": 1,
+      "calls": 2,
+      "exclusive_s": 2.252e-06,
+      "inclusive_s": 0.000116608
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 747,
+      "function": "Optional",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 4.882e-06,
+      "inclusive_s": 0.000115815
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 969,
+      "function": "parse",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 9.555e-06,
+      "inclusive_s": 0.00010388500000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.zeros>",
+      "primitive_calls": 48,
+      "calls": 48,
+      "exclusive_s": 9.691800000000001e-05,
+      "inclusive_s": 9.691800000000001e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_compiler.py",
+      "line": 578,
+      "function": "_code",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 1.7693e-05,
+      "inclusive_s": 9.6161e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 452,
+      "function": "_parse_sub",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 2.0110000000000002e-05,
+      "inclusive_s": 8.8795e-05
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/jit/__init__.py",
+      "line": 129,
+      "function": "annotate",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 7.2358e-05,
+      "inclusive_s": 7.2358e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 512,
+      "function": "_parse",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 3.1391000000000005e-05,
+      "inclusive_s": 6.6857e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 694,
+      "function": "Union",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 8.363000000000001e-06,
+      "inclusive_s": 6.1914e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/__init__.py",
+      "line": 174,
+      "function": "search",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.6110000000000001e-06,
+      "inclusive_s": 5.2720000000000003e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 175,
+      "function": "_type_check",
+      "primitive_calls": 3,
+      "calls": 3,
+      "exclusive_s": 9.373e-06,
+      "inclusive_s": 5.0104e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_compiler.py",
+      "line": 37,
+      "function": "_compile",
+      "primitive_calls": 2,
+      "calls": 5,
+      "exclusive_s": 2.4944e-05,
+      "inclusive_s": 4.9958000000000005e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 1269,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 6.861e-06,
+      "inclusive_s": 3.6450000000000005e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 166,
+      "function": "_type_convert",
+      "primitive_calls": 3,
+      "calls": 3,
+      "exclusive_s": 3.304e-06,
+      "inclusive_s": 3.3981000000000006e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 892,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 3.2010000000000004e-06,
+      "inclusive_s": 3.0287000000000003e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_compiler.py",
+      "line": 516,
+      "function": "_compile_info",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 1.2536000000000002e-05,
+      "inclusive_s": 2.8263e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.empty>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 2.6876e-05,
+      "inclusive_s": 2.6876e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.compile>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 2.6492000000000003e-05,
+      "inclusive_s": 2.6492000000000003e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/enum.py",
+      "line": 1561,
+      "function": "__and__",
+      "primitive_calls": 4,
+      "calls": 4,
+      "exclusive_s": 1.1124e-05,
+      "inclusive_s": 2.6423e-05
+    },
+    {
+      "file": "<frozen abc>",
+      "line": 121,
+      "function": "__subclasscheck__",
+      "primitive_calls": 2,
+      "calls": 8,
+      "exclusive_s": 2.4570000000000004e-06,
+      "inclusive_s": 2.5061000000000003e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _abc._abc_subclasscheck>",
+      "primitive_calls": 2,
+      "calls": 8,
+      "exclusive_s": 1.9181e-05,
+      "inclusive_s": 2.3768e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'item' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 2.1485000000000002e-05,
+      "inclusive_s": 2.1485000000000002e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'disable' of '_lsprof.Profiler' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.7537e-05,
+      "inclusive_s": 1.7537e-05
+    },
+    {
+      "file": "/home/yonghye/ultrafast-maskops/python/ultrafast_maskops/__init__.py",
+      "line": 74,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.592e-05,
+      "inclusive_s": 1.6729000000000002e-05
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/typing_extensions.py",
+      "line": 3366,
+      "function": "_collect_parameters",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 5.0970000000000005e-06,
+      "inclusive_s": 1.5171000000000001e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 168,
+      "function": "__getitem__",
+      "primitive_calls": 30,
+      "calls": 30,
+      "exclusive_s": 9.2e-06,
+      "inclusive_s": 1.2878000000000001e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 1215,
+      "function": "__setattr__",
+      "primitive_calls": 6,
+      "calls": 6,
+      "exclusive_s": 6.119e-06,
+      "inclusive_s": 1.1464e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 1174,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 2.232e-06,
+      "inclusive_s": 1.0644e-05
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 178,
+      "function": "getwidth",
+      "primitive_calls": 2,
+      "calls": 5,
+      "exclusive_s": 7.373e-06,
+      "inclusive_s": 9.847e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_compiler.py",
+      "line": 243,
+      "function": "_optimize_charset",
+      "primitive_calls": 3,
+      "calls": 3,
+      "exclusive_s": 7.118e-06,
+      "inclusive_s": 9.377e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 730,
+      "function": "<genexpr>",
+      "primitive_calls": 3,
+      "calls": 3,
+      "exclusive_s": 1.384e-06,
+      "inclusive_s": 8.666e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/enum.py",
+      "line": 1543,
+      "function": "_get_value",
+      "primitive_calls": 12,
+      "calls": 12,
+      "exclusive_s": 5.667e-06,
+      "inclusive_s": 8.377000000000001e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 261,
+      "function": "get",
+      "primitive_calls": 12,
+      "calls": 12,
+      "exclusive_s": 3.824e-06,
+      "inclusive_s": 8.010000000000001e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 372,
+      "function": "_escape",
+      "primitive_calls": 5,
+      "calls": 5,
+      "exclusive_s": 5.389e-06,
+      "inclusive_s": 7.816000000000001e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 345,
+      "function": "_remove_dups_flatten",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 4.142e-06,
+      "inclusive_s": 7.648e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/enum.py",
+      "line": 720,
+      "function": "__call__",
+      "primitive_calls": 4,
+      "calls": 4,
+      "exclusive_s": 5.026000000000001e-06,
+      "inclusive_s": 6.922000000000001e-06
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 105,
+      "function": "_get_distributed_settings",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 2.143e-06,
+      "inclusive_s": 6.784000000000001e-06
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/typing_extensions.py",
+      "line": 3281,
+      "function": "_has_generic_or_protocol_as_origin",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 4.327e-06,
+      "inclusive_s": 6.3660000000000005e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.iter>",
+      "primitive_calls": 2,
+      "calls": 3,
+      "exclusive_s": 2.111e-06,
+      "inclusive_s": 6.0040000000000005e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 962,
+      "function": "__eq__",
+      "primitive_calls": 17,
+      "calls": 17,
+      "exclusive_s": 3.0880000000000003e-06,
+      "inclusive_s": 5.7680000000000005e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 1161,
+      "function": "_is_dunder",
+      "primitive_calls": 6,
+      "calls": 6,
+      "exclusive_s": 3.157e-06,
+      "inclusive_s": 5.3450000000000005e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 240,
+      "function": "__next",
+      "primitive_calls": 14,
+      "calls": 14,
+      "exclusive_s": 5.308000000000001e-06,
+      "inclusive_s": 5.308000000000001e-06
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 82,
+      "function": "create_fetcher",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 3.7030000000000004e-06,
+      "inclusive_s": 5.162000000000001e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_compiler.py",
+      "line": 403,
+      "function": "_simple",
+      "primitive_calls": 3,
+      "calls": 3,
+      "exclusive_s": 1.6960000000000002e-06,
+      "inclusive_s": 4.736e-06
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/data/sampler.py",
+      "line": 109,
+      "function": "__iter__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.6820000000000002e-06,
+      "inclusive_s": 4.163000000000001e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_compiler.py",
+      "line": 216,
+      "function": "_compile_charset",
+      "primitive_calls": 3,
+      "calls": 3,
+      "exclusive_s": 3.0380000000000004e-06,
+      "inclusive_s": 3.9080000000000005e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 176,
+      "function": "append",
+      "primitive_calls": 9,
+      "calls": 9,
+      "exclusive_s": 2.4160000000000002e-06,
+      "inclusive_s": 3.7700000000000003e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 231,
+      "function": "__init__",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 2.346e-06,
+      "inclusive_s": 3.632e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 164,
+      "function": "__len__",
+      "primitive_calls": 11,
+      "calls": 11,
+      "exclusive_s": 2.446e-06,
+      "inclusive_s": 3.5740000000000004e-06
+    },
+    {
+      "file": "<frozen os>",
+      "line": 1116,
+      "function": "__subclasshook__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.641e-06,
+      "inclusive_s": 3.423e-06
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py",
+      "line": 1310,
+      "function": "is_initialized",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.74e-06,
+      "inclusive_s": 2.826e-06
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/typing_extensions.py",
+      "line": 3303,
+      "function": "_is_unpacked_typevartuple",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.216e-06,
+      "inclusive_s": 2.6980000000000003e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 317,
+      "function": "_deduplicate",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.2390000000000001e-06,
+      "inclusive_s": 2.6530000000000003e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_compiler.py",
+      "line": 441,
+      "function": "_get_literal_prefix",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 2.086e-06,
+      "inclusive_s": 2.611e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 293,
+      "function": "tell",
+      "primitive_calls": 5,
+      "calls": 5,
+      "exclusive_s": 1.599e-06,
+      "inclusive_s": 2.21e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'match' of 're.Pattern' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 2.035e-06,
+      "inclusive_s": 2.035e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 971,
+      "function": "__hash__",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 1.5720000000000002e-06,
+      "inclusive_s": 1.952e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/enum.py",
+      "line": 1128,
+      "function": "__new__",
+      "primitive_calls": 4,
+      "calls": 4,
+      "exclusive_s": 1.8960000000000001e-06,
+      "inclusive_s": 1.8960000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'startswith' of 'str' objects>",
+      "primitive_calls": 7,
+      "calls": 7,
+      "exclusive_s": 1.867e-06,
+      "inclusive_s": 1.867e-06
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/distributed/__init__.py",
+      "line": 15,
+      "function": "is_available",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.275e-06,
+      "inclusive_s": 1.8150000000000002e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_compiler.py",
+      "line": 575,
+      "function": "isstring",
+      "primitive_calls": 4,
+      "calls": 4,
+      "exclusive_s": 1.345e-06,
+      "inclusive_s": 1.7830000000000001e-06
+    },
+    {
+      "file": "<frozen _collections_abc>",
+      "line": 104,
+      "function": "_check_methods",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.782e-06,
+      "inclusive_s": 1.782e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _sre.compile>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 1.6290000000000002e-06,
+      "inclusive_s": 1.6290000000000002e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method sys._getframe>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.5800000000000001e-06,
+      "inclusive_s": 1.5800000000000001e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_compiler.py",
+      "line": 472,
+      "function": "_get_charset_prefix",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 1.243e-06,
+      "inclusive_s": 1.556e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 2344,
+      "function": "get_origin",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 9.740000000000001e-07,
+      "inclusive_s": 1.4820000000000002e-06
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/data/_utils/fetch.py",
+      "line": 11,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.4590000000000001e-06,
+      "inclusive_s": 1.4590000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method fromkeys>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 9.99e-07,
+      "inclusive_s": 1.4140000000000001e-06
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/ultralytics/data/base.py",
+      "line": 435,
+      "function": "__len__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.1180000000000001e-06,
+      "inclusive_s": 1.312e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 83,
+      "function": "groups",
+      "primitive_calls": 4,
+      "calls": 4,
+      "exclusive_s": 8.63e-07,
+      "inclusive_s": 1.286e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 953,
+      "function": "fix_flags",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 1.089e-06,
+      "inclusive_s": 1.2620000000000002e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 256,
+      "function": "match",
+      "primitive_calls": 8,
+      "calls": 8,
+      "exclusive_s": 1.249e-06,
+      "inclusive_s": 1.249e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'search' of 're.Pattern' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.171e-06,
+      "inclusive_s": 1.171e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'find' of 'bytearray' objects>",
+      "primitive_calls": 3,
+      "calls": 3,
+      "exclusive_s": 1.1320000000000001e-06,
+      "inclusive_s": 1.1320000000000001e-06
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py",
+      "line": 735,
+      "function": "WORLD",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 9.310000000000001e-07,
+      "inclusive_s": 1.086e-06
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_compiler.py",
+      "line": 433,
+      "function": "_get_iscased",
+      "primitive_calls": 4,
+      "calls": 4,
+      "exclusive_s": 8.380000000000001e-07,
+      "inclusive_s": 8.380000000000001e-07
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 113,
+      "function": "__init__",
+      "primitive_calls": 5,
+      "calls": 5,
+      "exclusive_s": 8.22e-07,
+      "inclusive_s": 8.22e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.ord>",
+      "primitive_calls": 5,
+      "calls": 5,
+      "exclusive_s": 7.49e-07,
+      "inclusive_s": 7.49e-07
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 506,
+      "function": "_index_sampler",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 4.4300000000000004e-07,
+      "inclusive_s": 6.77e-07
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 77,
+      "function": "__init__",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 6.410000000000001e-07,
+      "inclusive_s": 6.410000000000001e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'split' of 'str' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 6.4e-07,
+      "inclusive_s": 6.4e-07
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 1273,
+      "function": "<genexpr>",
+      "primitive_calls": 3,
+      "calls": 3,
+      "exclusive_s": 6.040000000000001e-07,
+      "inclusive_s": 6.040000000000001e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _thread.allocate_lock>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 5.970000000000001e-07,
+      "inclusive_s": 5.970000000000001e-07
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 502,
+      "function": "_auto_collation",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 5.110000000000001e-07,
+      "inclusive_s": 5.110000000000001e-07
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/re/_parser.py",
+      "line": 172,
+      "function": "__setitem__",
+      "primitive_calls": 3,
+      "calls": 3,
+      "exclusive_s": 4.59e-07,
+      "inclusive_s": 4.59e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.hash>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 3.8e-07,
+      "inclusive_s": 3.8e-07
+    },
+    {
+      "file": "/home/yonghye/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/typing.py",
+      "line": 494,
+      "function": "__repr__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 3.6900000000000004e-07,
+      "inclusive_s": 3.6900000000000004e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'group' of 're.Match' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 3.6000000000000005e-07,
+      "inclusive_s": 3.6000000000000005e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'end' of 're.Match' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 3.6000000000000005e-07,
+      "inclusive_s": 3.6000000000000005e-07
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py",
+      "line": 610,
+      "function": "default_pg",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.55e-07,
+      "inclusive_s": 1.55e-07
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 736,
+      "function": "__next__",
+      "primitive_calls": 0,
+      "calls": 1,
+      "exclusive_s": 8.933e-06,
+      "inclusive_s": 0.0
+    },
+    {
+      "file": "/home/yonghye/ultrafast-vision-build/venv312/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 799,
+      "function": "_next_data",
+      "primitive_calls": 0,
+      "calls": 1,
+      "exclusive_s": 1.193e-06,
+      "inclusive_s": 0.0
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# Implementation status — 2026-09-12
+# Implementation status — 2026-09-13
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 
@@ -11,4 +11,7 @@ Active development; original PRD goals remain unchanged. Not release-ready.
 - Project-code ASan/UBSan: 98 tests passed on macOS, leak detection disabled, private OpenCV uninstrumented.
 - Raw measurements and scope limitations are in [BENCHMARKS.md](BENCHMARKS.md). Invalid inherited Linux ru_maxrss data is explicitly excluded; corrected VmHWM reruns are retained.
 - Full COCO CPU DataLoader harness added with frozen input/upstream hashes, workers 0/2/8, separate full output verification, externally sampled process-family RSS, and fresh-reference cache rebuilding. A 64-image smoke passed complete batch parity at workers 0/2; this is not a representative speedup result. Full two-host repeated measurements and diagnostic profiling are in progress; see [COCO_LOADER.md](COCO_LOADER.md).
-- Remaining release gates: real COCO/resolution/vertex coverage, CPU DataLoader throughput, full GPU epochs, Windows and supported Python matrix, full dependency license inventory, wheels/CI, exact release-candidate validation. These synthetic results do not establish the full representative-workload gate.
+- Full COCO non-augmented CPU DataLoader: 60 fresh measured processes across two hosts and workers 0/2/8; all full outputs match, including an independent original-scanner cache rebuild on each host. The 10% full-loader performance gate remains unmet; family RSS is approximately unchanged. See [COCO_LOADER.md](COCO_LOADER.md) and the complete results in [BENCHMARKS.md](BENCHMARKS.md).
+- Direct stage probes passed exact call-count and full-output checks. Native-side cProfile call accounting was invalid and is explicitly excluded from component timing conclusions; the rejected evidence is retained.
+- A separate worktree is evaluating cached polygon bounds and consecutive duplicate integer vertex removal. It is not part of this measured baseline.
+- Remaining release gates: representative workload performance, augmented/non-overlap and higher-resolution coverage, full GPU epochs, Windows and supported Python matrix, full dependency license inventory, wheels/CI, exact release-candidate validation.

@@ -1,0 +1,94 @@
+{
+  "scope": "single workers=0 epoch with direct perf_counter_ns probes; nested times are inclusive and must not be added; instrumentation adds overhead, not a repeated performance comparison",
+  "extension_sha256": "744d630943af702758b6b0ff9c26a46b86a1a382853076386fc163f1283be37c",
+  "backend": "native",
+  "images": 5000,
+  "instrumented_epoch_s": 14.929673166945577,
+  "source_sha256": {
+    "CMakeLists.txt": "e65b02bb88a6697e55fc4a350a464f7c74d7bde141eb4297520f321f5428a657",
+    "bench/coco_loader.py": "b3522de1c98c7a9d81dc6bc6cd3eb19f48e477cb2378dbca09eb7130815b7b82",
+    "pyproject.toml": "bc18d48a06df856d78d0b5495078f69d186e57849528430c243adb0550cc9270",
+    "python/ultrafast_maskops/__init__.py": "da09b89644f97d065f1bc591096d0fdb9baff26ff4d206aefcedb1db83d35b1b",
+    "python/ultrafast_maskops/ultralytics.py": "0bd934e308d5808ea97e7add5b53d36bf02533a4980f24276971cad21564da5d",
+    "src/bindings.cpp": "488a21d7ee7cc90b212600591d2b55f6c1377bd306096753f57c823543f247ba"
+  },
+  "profile_script_sha256": "6f17d0782325a4e313484430ce41bcc1ad2a2a00e2e8e7e6fa58ee7aedb5310d",
+  "benchmark_sha256": "47b418821289f7920c9805011e05809e3b91e0af41d07efd3d4b03310824d027",
+  "output_sha256": "4dd43c61ce5d129361f321593e22cf8e5d2ed3ee793fbd2e41d42b75ae28df97",
+  "parity": true,
+  "stats": {
+    "BaseDataset.load_image": {
+      "calls": 5000,
+      "inclusive_s": 9.100056557,
+      "median_ns": 1766313.0,
+      "p95_ns": 2704505.95
+    },
+    "YOLODataset.update_labels_info": {
+      "calls": 5000,
+      "inclusive_s": 1.086088485,
+      "median_ns": 141874.5,
+      "p95_ns": 618033.0000000002
+    },
+    "Format._format_img": {
+      "calls": 5000,
+      "inclusive_s": 2.041483516,
+      "median_ns": 403333.5,
+      "p95_ns": 438916.05
+    },
+    "Format.apply_instances": {
+      "calls": 5000,
+      "inclusive_s": 1.94533408,
+      "median_ns": 308646.0,
+      "p95_ns": 882904.1500000001
+    },
+    "Format._format_segments": {
+      "calls": 0,
+      "inclusive_s": 0.0,
+      "median_ns": null,
+      "p95_ns": null
+    },
+    "FastFormat._format_segments": {
+      "calls": 4952,
+      "inclusive_s": 1.551678788,
+      "median_ns": 232020.5,
+      "p95_ns": 805881.5499999997
+    },
+    "PackedPolygons.from_segments": {
+      "calls": 4952,
+      "inclusive_s": 0.19683711,
+      "median_ns": 29250.0,
+      "p95_ns": 99185.45
+    },
+    "Rasterizer.overlap": {
+      "calls": 4952,
+      "inclusive_s": 1.314099415,
+      "median_ns": 194229.5,
+      "p95_ns": 691268.45
+    },
+    "Rasterizer.masks": {
+      "calls": 0,
+      "inclusive_s": 0.0,
+      "median_ns": null,
+      "p95_ns": null
+    },
+    "YOLODataset.collate_fn": {
+      "calls": 625,
+      "inclusive_s": 0.207786761,
+      "median_ns": 321667.0,
+      "p95_ns": 389008.19999999995
+    }
+  },
+  "expected_call_counts": {
+    "BaseDataset.load_image": 5000,
+    "YOLODataset.update_labels_info": 5000,
+    "Format._format_img": 5000,
+    "Format.apply_instances": 5000,
+    "YOLODataset.collate_fn": 625,
+    "Format._format_segments": 0,
+    "FastFormat._format_segments": 4952,
+    "PackedPolygons.from_segments": 4952,
+    "Rasterizer.overlap": 4952,
+    "Rasterizer.masks": 0
+  },
+  "raw_samples_sha256": "927278c1241b580a96eb0521563ce39ffccd2145112199ea404802f49ad0af79"
+}

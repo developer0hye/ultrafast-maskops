@@ -1,0 +1,1911 @@
+{
+  "scope": "single instrumented workers=0 epoch for bottleneck diagnosis; profiler adds overhead, not a performance comparison",
+  "extension_sha256": "744d630943af702758b6b0ff9c26a46b86a1a382853076386fc163f1283be37c",
+  "backend": "reference",
+  "images": 5000,
+  "instrumented_epoch_s": 16.057182917022146,
+  "source_sha256": {
+    "CMakeLists.txt": "e65b02bb88a6697e55fc4a350a464f7c74d7bde141eb4297520f321f5428a657",
+    "bench/coco_loader.py": "b3522de1c98c7a9d81dc6bc6cd3eb19f48e477cb2378dbca09eb7130815b7b82",
+    "pyproject.toml": "bc18d48a06df856d78d0b5495078f69d186e57849528430c243adb0550cc9270",
+    "python/ultrafast_maskops/__init__.py": "da09b89644f97d065f1bc591096d0fdb9baff26ff4d206aefcedb1db83d35b1b",
+    "python/ultrafast_maskops/ultralytics.py": "0bd934e308d5808ea97e7add5b53d36bf02533a4980f24276971cad21564da5d",
+    "src/bindings.cpp": "488a21d7ee7cc90b212600591d2b55f6c1377bd306096753f57c823543f247ba"
+  },
+  "profile_script_sha256": "fc0c1582e8f14a9479c55542f63a468639119a612609fdea2dc5025fd0e3b898",
+  "benchmark_sha256": "47b418821289f7920c9805011e05809e3b91e0af41d07efd3d4b03310824d027",
+  "output_sha256": "4dd43c61ce5d129361f321593e22cf8e5d2ed3ee793fbd2e41d42b75ae28df97",
+  "parity": true,
+  "stats": [
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 736,
+      "function": "__next__",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.002317277,
+      "inclusive_s": 16.055047443
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 799,
+      "function": "_next_data",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.008137592,
+      "inclusive_s": 16.031024039000002
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/_utils/fetch.py",
+      "line": 49,
+      "function": "fetch",
+      "primitive_calls": 625,
+      "calls": 625,
+      "exclusive_s": 0.00231051,
+      "inclusive_s": 16.021763104
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/base.py",
+      "line": 411,
+      "function": "__getitem__",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.003151076,
+      "inclusive_s": 15.810235294000002
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/base.py",
+      "line": 415,
+      "function": "get_image_and_label",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.009050379,
+      "inclusive_s": 10.779159531000001
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/base.py",
+      "line": 228,
+      "function": "load_image",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.010393576,
+      "inclusive_s": 8.957793626
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/patches.py",
+      "line": 22,
+      "function": "imread",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.007330263,
+      "inclusive_s": 8.530929563
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<imdecode>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 8.298349971,
+      "inclusive_s": 8.298349971
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 153,
+      "function": "__call__",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.007455045,
+      "inclusive_s": 5.0279246870000005
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 44,
+      "function": "__call__",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.010949578000000001,
+      "inclusive_s": 4.603563412000001
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 2369,
+      "function": "apply_instances",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.33755189300000005,
+      "inclusive_s": 2.5090938240000003
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 2467,
+      "function": "_format_segments",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.011054431,
+      "inclusive_s": 2.110972192
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/utils.py",
+      "line": 477,
+      "function": "polygons2masks_overlap",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.18407573200000002,
+      "inclusive_s": 2.0675714970000003
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 2354,
+      "function": "apply_image",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.002538719,
+      "inclusive_s": 2.030229363
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 2437,
+      "function": "_format_img",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.009243149,
+      "inclusive_s": 2.026922876
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.ascontiguousarray>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 2.008283036,
+      "inclusive_s": 2.008283036
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/dataset.py",
+      "line": 376,
+      "function": "update_labels_info",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.022560333000000002,
+      "inclusive_s": 1.5549440650000002
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/ops.py",
+      "line": 467,
+      "function": "resample_segments",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.25710730400000004,
+      "inclusive_s": 1.4648700590000001
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/utils.py",
+      "line": 435,
+      "function": "polygon2mask",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.040745433000000005,
+      "inclusive_s": 1.447576734
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<resize>",
+      "primitive_calls": 37238,
+      "calls": 37238,
+      "exclusive_s": 0.8298878670000001,
+      "inclusive_s": 0.8298878670000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<fillPoly>",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.7835953590000001,
+      "inclusive_s": 0.7835953590000001
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py",
+      "line": 1538,
+      "function": "interp",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.049597713,
+      "inclusive_s": 0.42633796500000004
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 1693,
+      "function": "__call__",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.007484134000000001,
+      "inclusive_s": 0.41690623000000004
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py",
+      "line": 5389,
+      "function": "insert",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.25565491100000004,
+      "inclusive_s": 0.37478320400000004
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy._core._multiarray_umath.interp>",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.345234131,
+      "inclusive_s": 0.345234131
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/function_base.py",
+      "line": 27,
+      "function": "linspace",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.18123122400000002,
+      "inclusive_s": 0.26172721800000004
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 1836,
+      "function": "apply_instances",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.005666162000000001,
+      "inclusive_s": 0.258691809
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/copy.py",
+      "line": 118,
+      "function": "deepcopy",
+      "primitive_calls": 5000,
+      "calls": 131335,
+      "exclusive_s": 0.099997375,
+      "inclusive_s": 0.256624615
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 1857,
+      "function": "_update_labels",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.007867822,
+      "inclusive_s": 0.25216272100000003
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'sum' of 'numpy.ndarray' objects>",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.011381110000000002,
+      "inclusive_s": 0.24368814300000002
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/copy.py",
+      "line": 217,
+      "function": "_deepcopy_dict",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.017185413,
+      "inclusive_s": 0.243669984
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/_methods.py",
+      "line": 47,
+      "function": "_sum",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.007817328,
+      "inclusive_s": 0.23230703300000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.224489705,
+      "inclusive_s": 0.224489705
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.fromfile>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.220287325,
+      "inclusive_s": 0.222965994
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/dataset.py",
+      "line": 408,
+      "function": "collate_fn",
+      "primitive_calls": 625,
+      "calls": 625,
+      "exclusive_s": 0.018445803,
+      "inclusive_s": 0.20908066700000003
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.stack>",
+      "primitive_calls": 1250,
+      "calls": 1250,
+      "exclusive_s": 0.17462191200000002,
+      "inclusive_s": 0.17462191200000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reshape' of 'numpy.ndarray' objects>",
+      "primitive_calls": 145340,
+      "calls": 145340,
+      "exclusive_s": 0.130258441,
+      "inclusive_s": 0.130258441
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 1778,
+      "function": "apply_image",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.006990924000000001,
+      "inclusive_s": 0.129759012
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.zeros>",
+      "primitive_calls": 41335,
+      "calls": 41335,
+      "exclusive_s": 0.12852372,
+      "inclusive_s": 0.12852372
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<copyMakeBorder>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.12276808800000001,
+      "inclusive_s": 0.12276808800000001
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/copy.py",
+      "line": 191,
+      "function": "_deepcopy_list",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.010283297,
+      "inclusive_s": 0.099139894
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1421,
+      "function": "searchsorted",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.012395402000000002,
+      "inclusive_s": 0.086988204
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 48,
+      "function": "_wrapfunc",
+      "primitive_calls": 41287,
+      "calls": 41287,
+      "exclusive_s": 0.015324835,
+      "inclusive_s": 0.081577655
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 270,
+      "function": "denormalize",
+      "primitive_calls": 10000,
+      "calls": 10000,
+      "exclusive_s": 0.054249721,
+      "inclusive_s": 0.080263256
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 240,
+      "function": "convert_bbox",
+      "primitive_calls": 10000,
+      "calls": 10000,
+      "exclusive_s": 0.002965006,
+      "inclusive_s": 0.06901083400000001
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 78,
+      "function": "convert",
+      "primitive_calls": 10000,
+      "calls": 10000,
+      "exclusive_s": 0.006995057000000001,
+      "inclusive_s": 0.066045828
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 253,
+      "function": "scale",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.042033157,
+      "inclusive_s": 0.063872363
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 304,
+      "function": "add_padding",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.041618639000000006,
+      "inclusive_s": 0.063591034
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.asarray>",
+      "primitive_calls": 113957,
+      "calls": 113957,
+      "exclusive_s": 0.059582158,
+      "inclusive_s": 0.059582158
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'searchsorted' of 'numpy.ndarray' objects>",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.057234091,
+      "inclusive_s": 0.057234091
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.arange>",
+      "primitive_calls": 109005,
+      "calls": 109005,
+      "exclusive_s": 0.056529065,
+      "inclusive_s": 0.056529065
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 2333,
+      "function": "get_params",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.010121845,
+      "inclusive_s": 0.052559325000000004
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 104,
+      "function": "mul",
+      "primitive_calls": 10000,
+      "calls": 10000,
+      "exclusive_s": 0.039506855,
+      "inclusive_s": 0.047852741000000004
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 170,
+      "function": "ones",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.036297904,
+      "inclusive_s": 0.047795336
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.array>",
+      "primitive_calls": 51287,
+      "calls": 51287,
+      "exclusive_s": 0.041562801,
+      "inclusive_s": 0.041562801
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/shape_base.py",
+      "line": 378,
+      "function": "stack",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.037145614,
+      "inclusive_s": 0.041311649000000006
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.id>",
+      "primitive_calls": 207670,
+      "calls": 207670,
+      "exclusive_s": 0.041239961000000006,
+      "inclusive_s": 0.041239961000000006
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'astype' of 'numpy.ndarray' objects>",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.038733371,
+      "inclusive_s": 0.038733371
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'long' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.034339423,
+      "inclusive_s": 0.034339423
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/copy.py",
+      "line": 231,
+      "function": "_keep_alive",
+      "primitive_calls": 56335,
+      "calls": 56335,
+      "exclusive_s": 0.016625236,
+      "inclusive_s": 0.033388556
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 319,
+      "function": "__getitem__",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.025821063000000002,
+      "inclusive_s": 0.032346264
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/ops.py",
+      "line": 255,
+      "function": "xywh2xyxy",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.025231123,
+      "inclusive_s": 0.03196877
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.len>",
+      "primitive_calls": 351068,
+      "calls": 356021,
+      "exclusive_s": 0.027027444,
+      "inclusive_s": 0.028675421000000003
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'get' of 'dict' objects>",
+      "primitive_calls": 297672,
+      "calls": 297672,
+      "exclusive_s": 0.028035187000000003,
+      "inclusive_s": 0.028035187000000003
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/pathlib.py",
+      "line": 852,
+      "function": "exists",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.0038377690000000004,
+      "inclusive_s": 0.027145336000000003
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/ops.py",
+      "line": 235,
+      "function": "xyxy2xywh",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.02192658,
+      "inclusive_s": 0.027082001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'argsort' of 'numpy.ndarray' objects>",
+      "primitive_calls": 41287,
+      "calls": 41287,
+      "exclusive_s": 0.023799847000000002,
+      "inclusive_s": 0.023799847000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.isinstance>",
+      "primitive_calls": 130173,
+      "calls": 130173,
+      "exclusive_s": 0.017498052,
+      "inclusive_s": 0.02269065
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 120,
+      "function": "add",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.018542651,
+      "inclusive_s": 0.021972395000000002
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/pathlib.py",
+      "line": 835,
+      "function": "stat",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.0017135960000000002,
+      "inclusive_s": 0.021311338000000003
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/lib/_type_check_impl.py",
+      "line": 270,
+      "function": "iscomplexobj",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.014256136,
+      "inclusive_s": 0.020133827
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 1729,
+      "function": "get_params",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.012361758,
+      "inclusive_s": 0.019834766
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method posix.stat>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.017055878,
+      "inclusive_s": 0.019597742
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/copy.py",
+      "line": 200,
+      "function": "_deepcopy_tuple",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.008255106,
+      "inclusive_s": 0.019193278
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.empty>",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.018259004000000002,
+      "inclusive_s": 0.018259004000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method '__deepcopy__' of 'numpy.ndarray' objects>",
+      "primitive_calls": 46335,
+      "calls": 46335,
+      "exclusive_s": 0.018172739,
+      "inclusive_s": 0.018172739
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/autograd/profiler.py",
+      "line": 806,
+      "function": "__exit__",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.00226822,
+      "inclusive_s": 0.016309356
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'append' of 'list' objects>",
+      "primitive_calls": 160342,
+      "calls": 160342,
+      "exclusive_s": 0.015703905,
+      "inclusive_s": 0.015703905
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.max>",
+      "primitive_calls": 9952,
+      "calls": 9952,
+      "exclusive_s": 0.0065766060000000005,
+      "inclusive_s": 0.014528686
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.from_numpy>",
+      "primitive_calls": 24808,
+      "calls": 24808,
+      "exclusive_s": 0.014205266000000001,
+      "inclusive_s": 0.014205266000000001
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/_ops.py",
+      "line": 1031,
+      "function": "__call__",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.00044342400000000004,
+      "inclusive_s": 0.013862634
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'wrap' of 'numpy._core._multiarray_umath._array_converter' objects>",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.011975603000000001,
+      "inclusive_s": 0.011975603000000001
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/ops.py",
+      "line": 721,
+      "function": "empty_like",
+      "primitive_calls": 10000,
+      "calls": 10000,
+      "exclusive_s": 0.009043015,
+      "inclusive_s": 0.011893068000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.cat>",
+      "primitive_calls": 2500,
+      "calls": 2500,
+      "exclusive_s": 0.01140175,
+      "inclusive_s": 0.01140175
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/_ops.py",
+      "line": 1081,
+      "function": "_must_dispatch_in_python",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.000525515,
+      "inclusive_s": 0.010885372
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.getattr>",
+      "primitive_calls": 95127,
+      "calls": 95127,
+      "exclusive_s": 0.010490413,
+      "inclusive_s": 0.010490413
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/_pytree.py",
+      "line": 1784,
+      "function": "tree_any",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.000504712,
+      "inclusive_s": 0.010359857
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 218,
+      "function": "__init__",
+      "primitive_calls": 9952,
+      "calls": 9952,
+      "exclusive_s": 0.006157437,
+      "inclusive_s": 0.010191201
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.issubclass>",
+      "primitive_calls": 123387,
+      "calls": 123387,
+      "exclusive_s": 0.010153538,
+      "inclusive_s": 0.010153538
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'as_arrays' of 'numpy._core._multiarray_umath._array_converter' objects>",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.009968674,
+      "inclusive_s": 0.009968674
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.any>",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.00049427,
+      "inclusive_s": 0.009855145000000001
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 1975,
+      "function": "isscalar",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.006315686,
+      "inclusive_s": 0.009796998000000001
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1100,
+      "function": "argsort",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.002533146,
+      "inclusive_s": 0.009517999000000001
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/_pytree.py",
+      "line": 1462,
+      "function": "tree_iter",
+      "primitive_calls": 1252,
+      "calls": 4382,
+      "exclusive_s": 0.002646587,
+      "inclusive_s": 0.00869723
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/dataset.py",
+      "line": 399,
+      "function": "<genexpr>",
+      "primitive_calls": 41287,
+      "calls": 41287,
+      "exclusive_s": 0.005651306,
+      "inclusive_s": 0.00795208
+    },
+    {
+      "file": "<frozen abc>",
+      "line": 117,
+      "function": "__instancecheck__",
+      "primitive_calls": 20003,
+      "calls": 20003,
+      "exclusive_s": 0.0036351250000000003,
+      "inclusive_s": 0.007871267000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'pop' of 'dict' objects>",
+      "primitive_calls": 50000,
+      "calls": 50000,
+      "exclusive_s": 0.007184619000000001,
+      "inclusive_s": 0.007184619000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'result_type' of 'numpy._core._multiarray_umath._array_converter' objects>",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.006636885,
+      "inclusive_s": 0.006636885
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/multiarray.py",
+      "line": 197,
+      "function": "concatenate",
+      "primitive_calls": 77622,
+      "calls": 77622,
+      "exclusive_s": 0.005552806,
+      "inclusive_s": 0.005552806
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.zeros>",
+      "primitive_calls": 5192,
+      "calls": 5192,
+      "exclusive_s": 0.005322454,
+      "inclusive_s": 0.005322454
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py",
+      "line": 1534,
+      "function": "_interp_dispatcher",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.0050543870000000005,
+      "inclusive_s": 0.0050543870000000005
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/lib/_type_check_impl.py",
+      "line": 171,
+      "function": "_is_type_dispatcher",
+      "primitive_calls": 72670,
+      "calls": 72670,
+      "exclusive_s": 0.004942857,
+      "inclusive_s": 0.004942857
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 461,
+      "function": "__len__",
+      "primitive_calls": 9952,
+      "calls": 9952,
+      "exclusive_s": 0.002889322,
+      "inclusive_s": 0.004490199
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/_pytree.py",
+      "line": 1048,
+      "function": "_get_node_type",
+      "primitive_calls": 4382,
+      "calls": 4382,
+      "exclusive_s": 0.001282043,
+      "inclusive_s": 0.004379925000000001
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/copy.py",
+      "line": 172,
+      "function": "_deepcopy_atomic",
+      "primitive_calls": 70000,
+      "calls": 70000,
+      "exclusive_s": 0.004319488000000001,
+      "inclusive_s": 0.004319488000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _abc._abc_instancecheck>",
+      "primitive_calls": 20003,
+      "calls": 20003,
+      "exclusive_s": 0.0042188500000000006,
+      "inclusive_s": 0.004236142
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 64,
+      "function": "__init__",
+      "primitive_calls": 9952,
+      "calls": 9952,
+      "exclusive_s": 0.0040337640000000004,
+      "inclusive_s": 0.0040337640000000004
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/autograd/profiler.py",
+      "line": 800,
+      "function": "__enter__",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.0005866560000000001,
+      "inclusive_s": 0.00401966
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/shape_base.py",
+      "line": 368,
+      "function": "_stack_dispatcher",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.001369867,
+      "inclusive_s": 0.004012468
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.round>",
+      "primitive_calls": 30000,
+      "calls": 30000,
+      "exclusive_s": 0.003944766000000001,
+      "inclusive_s": 0.003944766000000001
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 3482,
+      "function": "ndim",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.003920646,
+      "inclusive_s": 0.003920646
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/_pytree.py",
+      "line": 1060,
+      "function": "tree_is_leaf",
+      "primitive_calls": 2504,
+      "calls": 2504,
+      "exclusive_s": 0.0007577310000000001,
+      "inclusive_s": 0.0034765910000000002
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/_ops.py",
+      "line": 1197,
+      "function": "__call__",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.000188084,
+      "inclusive_s": 0.0034330040000000004
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.sorted>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.003414032,
+      "inclusive_s": 0.003414032
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.min>",
+      "primitive_calls": 16806,
+      "calls": 16806,
+      "exclusive_s": 0.003410499,
+      "inclusive_s": 0.003410499
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch._ops.profiler._record_function_enter_new>",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.00324492,
+      "inclusive_s": 0.00324492
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/random.py",
+      "line": 494,
+      "function": "uniform",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.002335698,
+      "inclusive_s": 0.003134258
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/_pytree.py",
+      "line": 694,
+      "function": "is_namedtuple_class",
+      "primitive_calls": 4382,
+      "calls": 4382,
+      "exclusive_s": 0.0018728100000000001,
+      "inclusive_s": 0.003097882
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/multiarray.py",
+      "line": 1085,
+      "function": "copyto",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.0030257060000000004,
+      "inclusive_s": 0.0030257060000000004
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1417,
+      "function": "_searchsorted_dispatcher",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.0030245700000000003,
+      "inclusive_s": 0.0030245700000000003
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _operator.index>",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.0030151690000000003,
+      "inclusive_s": 0.0030151690000000003
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/function_base.py",
+      "line": 22,
+      "function": "_linspace_dispatcher",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.0029168790000000003,
+      "inclusive_s": 0.0029168790000000003
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py",
+      "line": 5385,
+      "function": "_insert_dispatcher",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.002729291,
+      "inclusive_s": 0.002729291
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/shape_base.py",
+      "line": 206,
+      "function": "_arrays_for_stack_dispatcher",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.001763276,
+      "inclusive_s": 0.002642601
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 3478,
+      "function": "_ndim_dispatcher",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.0026393740000000003,
+      "inclusive_s": 0.0026393740000000003
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.asanyarray>",
+      "primitive_calls": 36335,
+      "calls": 36335,
+      "exclusive_s": 0.0025476500000000003,
+      "inclusive_s": 0.0025476500000000003
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/pathlib.py",
+      "line": 447,
+      "function": "__fspath__",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.001947156,
+      "inclusive_s": 0.002541864
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch._ops.profiler.>",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.002533838,
+      "inclusive_s": 0.002533838
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'float' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.0020989430000000002,
+      "inclusive_s": 0.0020989430000000002
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/pathlib.py",
+      "line": 52,
+      "function": "_ignore_error",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.0012807410000000002,
+      "inclusive_s": 0.001996229
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'transpose' of 'numpy.ndarray' objects>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.0017926950000000002,
+      "inclusive_s": 0.0017926950000000002
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/utils/instance.py",
+      "line": 511,
+      "function": "bboxes",
+      "primitive_calls": 19856,
+      "calls": 19856,
+      "exclusive_s": 0.0016587580000000002,
+      "inclusive_s": 0.0016587580000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'squeeze' of 'numpy.ndarray' objects>",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.0014626300000000001,
+      "inclusive_s": 0.0014626300000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'items' of 'dict' objects>",
+      "primitive_calls": 10000,
+      "calls": 10000,
+      "exclusive_s": 0.001394531,
+      "inclusive_s": 0.001394531
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/autograd/profiler.py",
+      "line": 787,
+      "function": "__init__",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.0007092200000000001,
+      "inclusive_s": 0.001377111
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'endswith' of 'str' objects>",
+      "primitive_calls": 5004,
+      "calls": 5004,
+      "exclusive_s": 0.001241305,
+      "inclusive_s": 0.001241305
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 730,
+      "function": "_next_index",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.00015628700000000002,
+      "inclusive_s": 0.0011233430000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'lower' of 'str' objects>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.001042739,
+      "inclusive_s": 0.001042739
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.hasattr>",
+      "primitive_calls": 5579,
+      "calls": 5579,
+      "exclusive_s": 0.00101675,
+      "inclusive_s": 0.00101675
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'numel' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.001010691,
+      "inclusive_s": 0.001010691
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.next>",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.000190008,
+      "inclusive_s": 0.0009670560000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'random' of '_random.Random' objects>",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.00079856,
+      "inclusive_s": 0.00079856
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/multiarray.py",
+      "line": 115,
+      "function": "empty_like",
+      "primitive_calls": 10000,
+      "calls": 10000,
+      "exclusive_s": 0.000788134,
+      "inclusive_s": 0.000788134
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/sampler.py",
+      "line": 333,
+      "function": "__iter__",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.000774548,
+      "inclusive_s": 0.000777048
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.lib.array_utils.normalize_axis_index>",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.000751999,
+      "inclusive_s": 0.000751999
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/_ops.py",
+      "line": 1083,
+      "function": "<lambda>",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.00044635800000000005,
+      "inclusive_s": 0.000663645
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/_pytree.py",
+      "line": 801,
+      "function": "_dict_flatten",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.00046657800000000004,
+      "inclusive_s": 0.000647891
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 392,
+      "function": "inner",
+      "primitive_calls": 626,
+      "calls": 627,
+      "exclusive_s": 0.000515453,
+      "inclusive_s": 0.0006169120000000001
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/pathlib.py",
+      "line": 437,
+      "function": "__str__",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.000594708,
+      "inclusive_s": 0.000594708
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 1813,
+      "function": "apply_semantic",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.000589949,
+      "inclusive_s": 0.000589949
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'values' of 'dict' objects>",
+      "primitive_calls": 5626,
+      "calls": 5626,
+      "exclusive_s": 0.000557841,
+      "inclusive_s": 0.000557841
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1096,
+      "function": "_argsort_dispatcher",
+      "primitive_calls": 4952,
+      "calls": 4952,
+      "exclusive_s": 0.000410035,
+      "inclusive_s": 0.000410035
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 98,
+      "function": "apply_semantic",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.00037580100000000004,
+      "inclusive_s": 0.00037580100000000004
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/augment.py",
+      "line": 110,
+      "function": "apply_depth",
+      "primitive_calls": 5000,
+      "calls": 5000,
+      "exclusive_s": 0.000355521,
+      "inclusive_s": 0.000355521
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method math.ceil>",
+      "primitive_calls": 1806,
+      "calls": 1806,
+      "exclusive_s": 0.00029489500000000004,
+      "inclusive_s": 0.00029489500000000004
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/_pytree.py",
+      "line": 771,
+      "function": "_tuple_flatten",
+      "primitive_calls": 1252,
+      "calls": 1252,
+      "exclusive_s": 0.00026509600000000004,
+      "inclusive_s": 0.00026509600000000004
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 487,
+      "function": "__iter__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 9.58e-07,
+      "inclusive_s": 0.000189
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 428,
+      "function": "_get_iterator",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.667e-06,
+      "inclusive_s": 0.000188042
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 774,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 5.417e-06,
+      "inclusive_s": 0.00018637500000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'keys' of 'dict' objects>",
+      "primitive_calls": 1251,
+      "calls": 1251,
+      "exclusive_s": 0.00017801200000000002,
+      "inclusive_s": 0.00017801200000000002
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 643,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.4793e-05,
+      "inclusive_s": 0.000176209
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method '__exit__' of 'torch._C.DisableTorchFunctionSubclass' objects>",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 0.000113658,
+      "inclusive_s": 0.000113658
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'random_' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 0.00011004100000000001,
+      "inclusive_s": 0.00011004100000000001
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 515,
+      "function": "__getitem__",
+      "primitive_calls": 1,
+      "calls": 2,
+      "exclusive_s": 2.0000000000000003e-06,
+      "inclusive_s": 0.00010383400000000001
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 747,
+      "function": "Optional",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 4.334e-06,
+      "inclusive_s": 0.00010312500000000001
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/_jit_internal.py",
+      "line": 98,
+      "function": "is_scripting",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 6.4844e-05,
+      "inclusive_s": 6.4844e-05
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 175,
+      "function": "_type_check",
+      "primitive_calls": 3,
+      "calls": 3,
+      "exclusive_s": 7.918000000000001e-06,
+      "inclusive_s": 5.2958000000000004e-05
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/jit/__init__.py",
+      "line": 129,
+      "function": "annotate",
+      "primitive_calls": 626,
+      "calls": 626,
+      "exclusive_s": 5.0979e-05,
+      "inclusive_s": 5.0979e-05
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 694,
+      "function": "Union",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 6.375000000000001e-06,
+      "inclusive_s": 4.5792000000000005e-05
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 166,
+      "function": "_type_convert",
+      "primitive_calls": 3,
+      "calls": 3,
+      "exclusive_s": 2.419e-06,
+      "inclusive_s": 4.0084000000000005e-05
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 892,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 2.4170000000000003e-06,
+      "inclusive_s": 3.7333e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.compile>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 3.4458e-05,
+      "inclusive_s": 3.4458e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.empty>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 3.0709e-05,
+      "inclusive_s": 3.0709e-05
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 1269,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 5.416e-06,
+      "inclusive_s": 2.6666000000000002e-05
+    },
+    {
+      "file": "<frozen abc>",
+      "line": 121,
+      "function": "__subclasscheck__",
+      "primitive_calls": 2,
+      "calls": 8,
+      "exclusive_s": 1.46e-06,
+      "inclusive_s": 1.7292e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _abc._abc_subclasscheck>",
+      "primitive_calls": 2,
+      "calls": 8,
+      "exclusive_s": 1.2624000000000001e-05,
+      "inclusive_s": 1.65e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'disable' of '_lsprof.Profiler' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.3416000000000002e-05,
+      "inclusive_s": 1.3416000000000002e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'item' of 'torch._C.TensorBase' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.2083000000000001e-05,
+      "inclusive_s": 1.2083000000000001e-05
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/typing_extensions.py",
+      "line": 3366,
+      "function": "_collect_parameters",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 3.4150000000000003e-06,
+      "inclusive_s": 1.1208e-05
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 1215,
+      "function": "__setattr__",
+      "primitive_calls": 6,
+      "calls": 6,
+      "exclusive_s": 4.164e-06,
+      "inclusive_s": 8.082e-06
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 1174,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.418e-06,
+      "inclusive_s": 7.5e-06
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 345,
+      "function": "_remove_dups_flatten",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 3.626e-06,
+      "inclusive_s": 6.0840000000000005e-06
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 730,
+      "function": "<genexpr>",
+      "primitive_calls": 3,
+      "calls": 3,
+      "exclusive_s": 8.760000000000001e-07,
+      "inclusive_s": 6.0840000000000005e-06
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 105,
+      "function": "_get_distributed_settings",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.791e-06,
+      "inclusive_s": 5.458e-06
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/typing_extensions.py",
+      "line": 3281,
+      "function": "_has_generic_or_protocol_as_origin",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 3.458e-06,
+      "inclusive_s": 5.167000000000001e-06
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 962,
+      "function": "__eq__",
+      "primitive_calls": 17,
+      "calls": 17,
+      "exclusive_s": 1.955e-06,
+      "inclusive_s": 4.248000000000001e-06
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 1161,
+      "function": "_is_dunder",
+      "primitive_calls": 6,
+      "calls": 6,
+      "exclusive_s": 2.25e-06,
+      "inclusive_s": 3.9180000000000004e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.iter>",
+      "primitive_calls": 2,
+      "calls": 3,
+      "exclusive_s": 1.4590000000000001e-06,
+      "inclusive_s": 3.208e-06
+    },
+    {
+      "file": "<frozen os>",
+      "line": 1116,
+      "function": "__subclasshook__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.3750000000000002e-06,
+      "inclusive_s": 3.208e-06
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 82,
+      "function": "create_fetcher",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 2.4160000000000002e-06,
+      "inclusive_s": 2.9580000000000003e-06
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py",
+      "line": 1310,
+      "function": "is_initialized",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.3750000000000002e-06,
+      "inclusive_s": 2.167e-06
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 317,
+      "function": "_deduplicate",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 9.170000000000001e-07,
+      "inclusive_s": 2.0000000000000003e-06
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/typing_extensions.py",
+      "line": 3303,
+      "function": "_is_unpacked_typevartuple",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 9.59e-07,
+      "inclusive_s": 1.917e-06
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/sampler.py",
+      "line": 109,
+      "function": "__iter__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 7.900000000000001e-07,
+      "inclusive_s": 1.916e-06
+    },
+    {
+      "file": "<frozen _collections_abc>",
+      "line": 104,
+      "function": "_check_methods",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.833e-06,
+      "inclusive_s": 1.833e-06
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/distributed/__init__.py",
+      "line": 15,
+      "function": "is_available",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 9.58e-07,
+      "inclusive_s": 1.5e-06
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 971,
+      "function": "__hash__",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 9.58e-07,
+      "inclusive_s": 1.416e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'startswith' of 'str' objects>",
+      "primitive_calls": 7,
+      "calls": 7,
+      "exclusive_s": 1.334e-06,
+      "inclusive_s": 1.334e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method sys._getframe>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 1.209e-06,
+      "inclusive_s": 1.209e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method fromkeys>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 7.5e-07,
+      "inclusive_s": 1.083e-06
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 2344,
+      "function": "get_origin",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 6.660000000000001e-07,
+      "inclusive_s": 9.58e-07
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py",
+      "line": 735,
+      "function": "WORLD",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 4.59e-07,
+      "inclusive_s": 7.92e-07
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/_utils/fetch.py",
+      "line": 11,
+      "function": "__init__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 5.420000000000001e-07,
+      "inclusive_s": 5.420000000000001e-07
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/ultralytics/data/base.py",
+      "line": 435,
+      "function": "__len__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 4.59e-07,
+      "inclusive_s": 5.420000000000001e-07
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 494,
+      "function": "__repr__",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 5.000000000000001e-07,
+      "inclusive_s": 5.000000000000001e-07
+    },
+    {
+      "file": "/Users/yhkwon/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/typing.py",
+      "line": 1273,
+      "function": "<genexpr>",
+      "primitive_calls": 3,
+      "calls": 3,
+      "exclusive_s": 4.5800000000000005e-07,
+      "inclusive_s": 4.5800000000000005e-07
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.hash>",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 4.5800000000000005e-07,
+      "inclusive_s": 4.5800000000000005e-07
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 506,
+      "function": "_index_sampler",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 2.5000000000000004e-07,
+      "inclusive_s": 3.75e-07
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py",
+      "line": 610,
+      "function": "default_pg",
+      "primitive_calls": 1,
+      "calls": 1,
+      "exclusive_s": 3.3300000000000003e-07,
+      "inclusive_s": 3.3300000000000003e-07
+    },
+    {
+      "file": "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py",
+      "line": 502,
+      "function": "_auto_collation",
+      "primitive_calls": 2,
+      "calls": 2,
+      "exclusive_s": 2.5000000000000004e-07,
+      "inclusive_s": 2.5000000000000004e-07
+    }
+  ]
+}

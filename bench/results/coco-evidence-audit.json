@@ -1,0 +1,15 @@
+{
+  "scope": "retained baseline evidence consistency audit",
+  "verified": {
+    "m2": {
+      "measured_runs": 30,
+      "benchmark_sha256": "47b418821289f7920c9805011e05809e3b91e0af41d07efd3d4b03310824d027",
+      "output_sha256": "4dd43c61ce5d129361f321593e22cf8e5d2ed3ee793fbd2e41d42b75ae28df97"
+    },
+    "server": {
+      "measured_runs": 30,
+      "benchmark_sha256": "bce00b6886d18bf8b81c622a5c17ca9e65a1b43edfabb56b6b2131810dbf46ee",
+      "output_sha256": "81118723b01b4f3ca696dea1f7c3dd275b203a3e0dded57ac1c1667e22165481"
+    }
+  }
+}

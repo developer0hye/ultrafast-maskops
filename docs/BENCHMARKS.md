@@ -29,8 +29,71 @@ Memray 1.20.0, native tracing and Python allocator tracing, five fresh processes
 
 The table uses M2 medians; the independent Linux run agrees within 0.003 MiB for these cases. This is working heap allocation, not whole-process RSS: the 100-instance ratio-4 process RSS falls much less than 30%. Raw results are `m2-allocations.json` and `server-allocations.json`; trace paths name retained local/server artifacts and are not public downloads.
 
+## Full COCO DataLoader baseline — 2026-09-13
+
+All 5,000 val2017 images, 36,335 instances, ordinary YOLODataset on both sides;
+only the final Format is replaced. Batch 8, 640×640, overlap masks at ratio 4,
+no augmentation or image RAM cache. Five alternating fresh processes per backend
+and worker count on each host. The first epoch includes worker startup and queue
+fill. [Protocol and reproduction](COCO_LOADER.md) define the exact scope.
+
+| Host | Workers | Epoch reference → native (s) | Reference/native 95% paired bootstrap interval | Sampled family RSS reference → native (MiB) |
+|---|---:|---:|---:|---:|
+| Apple M2 | 0 | 15.335 → 14.862 | 1.026–1.042 | 315.5 → 315.1 |
+| Apple M2 | 2 | 9.914 → 9.809 | 0.985–1.044 | 1142.0 → 1139.4 |
+| Apple M2 | 8 | 10.526 → 10.175 | 0.978–1.059 | 3583.9 → 3583.6 |
+| i5-10400 server | 0 | 21.555 → 23.477 | 0.904–1.003 | 365.0 → 364.9 |
+| i5-10400 server | 2 | 15.477 → 15.515 | 0.987–1.042 | 1099.8 → 1091.6 |
+| i5-10400 server | 8 | 14.916 → 14.916 | 0.993–1.006 | 3275.2 → 3280.0 |
+
+Values are medians; a time ratio above 1 favors native. With only five pairs on
+shared hosts, small differences remain uncertain. The server workers=0 median is
+8.9% slower and is retained. These results do **not** meet a 10% full-loader
+improvement gate or demonstrate a substantial process-memory reduction. Summed
+family RSS double-counts shared pages and is sampled, not unique memory or peak
+working allocation. Eight-worker first delivery alone takes about 6.8–6.9 s on
+M2 and 9.7 s on the server. The remainder is not a separately warmed epoch.
+
+Every one of the 60 samples verifies all 5,000 outputs in a separate untimed
+pass, including masks, semantic targets, classes, ordering and metadata. Each
+host also rebuilt the label cache with the original upstream scanner after
+timing; all 30 outputs match that fresh reference. Raw samples and fingerprints
+are in `coco-loader-{m2,server}.json` and `coco-fresh-{m2,server}.json` under
+`bench/results`. The server snapshot differs from the local baseline only in
+the C++ SPDX comment and packaging/license/lint metadata; the two differing
+files are preserved under `coco-baseline-server-source`. This is not a claim
+that the two hosts used byte-identical source trees or binaries.
+
+### Why component gains do not transfer directly
+
+Separate single-pass diagnostics use direct wall-clock probes with validated
+call counts: 5,000 image loads, 4,952 mask calls and 625 collations per backend.
+Both diagnostics verify complete outputs after restoring the original methods.
+
+| Host | Image loading reference → native (s) | Mask formatting reference → native (s) | Native packing / rasterizer overlap (s) |
+|---|---:|---:|---:|
+| Apple M2 | 9.115 → 9.100 | 1.995 → 1.552 | 0.197 / 1.314 |
+| i5-10400 server | 10.599 → 10.607 | 3.650 → 2.869 | 0.374 / 2.387 |
+
+These are instrumented diagnostic totals, not repeated performance estimates;
+nested inclusive times must not be added. Image loading and other unchanged
+preprocessing account for much of the epoch. The native mask stage is faster
+in these diagnostic runs, but that cannot override the repeated full-loader
+results above. Stage JSONs and every individual duration are retained as
+`coco-stages-{reference,native}-{m2,server}{,-samples}.json`.
+
+An earlier cProfile attempt lost native-side outer call accounting: only 673 of
+5,000 `__getitem__` calls and 1 of 626 `__next__` calls were recorded on both
+hosts. Those native component times are invalid. The original profile reports
+and explicit `coco-cprofile-audit-*.json` rejection records are retained. Direct
+probes do not enable cProfile and assert every expected call count. The repeated
+full-loader timing runs also do not enable cProfile.
+
 ## Validation and remaining evidence
 
 113 tests passed on macOS and Linux, including 10,000 seeded differential cases and actual YOLODataset collated outputs with workers 0 and 2. Subsequent float32 int32-boundary/empty-packed regressions passed all 98 core tests on both hosts. ASan/UBSan passed the 98 core tests on macOS with leak detection disabled; only project native code was instrumented, not the private OpenCV archive.
 
-These nine synthetic cases do not establish the real-corpus PRD performance gate. Required next evidence includes real COCO polygons, high-vertex and resolution distributions, CPU DataLoader throughput, full GPU epochs, workers 8, Windows/wheel validation, and release-candidate exact-source reruns.
+The synthetic and full COCO results do not establish the representative-workload
+PRD performance gate. Further work includes optimizing resampled real geometry,
+augmented and non-overlap workloads, higher resolutions, full GPU epochs,
+Windows/wheel validation, and release-candidate exact-source reruns.
