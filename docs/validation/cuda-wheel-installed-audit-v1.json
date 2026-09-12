@@ -1,0 +1,72 @@
+{
+  "scope": "local CPython 3.12 Linux x86_64 wheel contents and installed source/native bytes; not repaired manylinux or complete license/platform audit; generated pyc files may be overwritten by Python",
+  "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+  "prefix": "/home/yonghye/ultrafast-vision-build/venv312-cuda",
+  "wheels": [
+    {
+      "wheel": "/home/yonghye/ultrafast-vision-build/cuda-wheels-byte-access-v1/dataset/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-linux_x86_64.whl",
+      "sha256": "adb5a791faaeb271b7c806c1816cb12ebc3f76a684a1ccc0da7f2ea1da2b0dd3",
+      "bytes": 612735,
+      "files": {
+        "ultrafast_yolo_dataset/__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+        "ultrafast_yolo_dataset/__pycache__/__init__.cpython-312.pyc": "027f5ab58d8f94de6c19763e28849234d91f745c55115d25f582b3aa1f94dc39",
+        "ultrafast_yolo_dataset/__pycache__/_cache.cpython-312.pyc": "efc4d2ff80d692c5648064706dde08c46961663f620d01f9ea9b96b510caa9f1",
+        "ultrafast_yolo_dataset/__pycache__/_reference.cpython-312.pyc": "8a4c1276a191badf0ff5a037373822217b825208e9f6d04b9511a764e66656e9",
+        "ultrafast_yolo_dataset/__pycache__/_scan.cpython-312.pyc": "35aa62e3d062a36a8806e397910634546c7918787f2feefe1fa61375fe07e247",
+        "ultrafast_yolo_dataset/__pycache__/_snapshots.cpython-312.pyc": "3717b111171f528dbebcdc0a86213827f695c0a3b00c774cfc5a367a53eed900",
+        "ultrafast_yolo_dataset/__pycache__/ultralytics.cpython-312.pyc": "3ddb816c6fa0d10e9adcad611b5cdf3e9df14ea929c8ebc467dc6d70e005d28a",
+        "ultrafast_yolo_dataset/_cache.py": "2411fc000ebeeabc5b73d14f4380d0130486d2bcf8e030b2244575ae7254a140",
+        "ultrafast_yolo_dataset/_native.cpython-312-x86_64-linux-gnu.so": "274dc3ae164435e9fa5f588aec3d184a4faffc50a38d6bf8b50273c86f78f7b1",
+        "ultrafast_yolo_dataset/_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684",
+        "ultrafast_yolo_dataset/_scan.py": "92ed533fa8ae1f332bc92e26cd157f98494ab3ff77d7e6113201543e22710083",
+        "ultrafast_yolo_dataset/_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+        "ultrafast_yolo_dataset/_ultralytics_profile.json": "ffd8bcff24bb15b771d67626300cc9917b9b0a3f8c0fc456bdcd24337211cfa3",
+        "ultrafast_yolo_dataset/ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb",
+        "ultrafast_yolo_dataset-0.1.0a1.dist-info/METADATA": "3ffa37ea1a2417159878f622792bdc3b72fab6a75d6bfbfa6a954ded61d74935",
+        "ultrafast_yolo_dataset-0.1.0a1.dist-info/WHEEL": "bac9d1585ba89ae0062864f3aa5af50c92a0458236556be1eb9596c4d9c40ea7",
+        "ultrafast_yolo_dataset-0.1.0a1.dist-info/licenses/LICENSE": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+        "ultrafast_yolo_dataset-0.1.0a1.dist-info/licenses/NOTICE": "e761930fd3e5897bf6978661a96d26df71709cda6d8258dff09af37c4d2f6c7c",
+        "ultrafast_yolo_dataset-0.1.0a1.dist-info/sboms/ultrafast-yolo-dataset.cyclonedx.json": "740385b7b735d322862274c82c2e4375a1182f846a7d608eec3855a8855a31b6",
+        "ultrafast_yolo_dataset-0.1.0a1.dist-info/RECORD": "74350bad251e06d20b8c44f989bbe97177b93be919678515b8e5d571dbd99e41"
+      },
+      "installed_source_and_native_match_wheel": true,
+      "unwanted_generated_files": [
+        "ultrafast_yolo_dataset/__pycache__/__init__.cpython-312.pyc",
+        "ultrafast_yolo_dataset/__pycache__/_cache.cpython-312.pyc",
+        "ultrafast_yolo_dataset/__pycache__/_reference.cpython-312.pyc",
+        "ultrafast_yolo_dataset/__pycache__/_scan.cpython-312.pyc",
+        "ultrafast_yolo_dataset/__pycache__/_snapshots.cpython-312.pyc",
+        "ultrafast_yolo_dataset/__pycache__/ultralytics.cpython-312.pyc"
+      ],
+      "packaging_clean": false,
+      "notice_files": [
+        "ultrafast_yolo_dataset-0.1.0a1.dist-info/licenses/LICENSE",
+        "ultrafast_yolo_dataset-0.1.0a1.dist-info/licenses/NOTICE"
+      ]
+    },
+    {
+      "wheel": "/home/yonghye/ultrafast-vision-build/cuda-wheels-byte-access-v1/mask/ultrafast_maskops-0.1.0a1-cp312-cp312-linux_x86_64.whl",
+      "sha256": "c10cc8a7db5815571951bad59a4faee96a7e30a0f742e0baf80fb30ccd1f95db",
+      "bytes": 1230260,
+      "files": {
+        "ultrafast_maskops/__init__.py": "1d7f585c198118a408282bb2cae12f81b74ce9e7b97f2f2fa50f13a3ec7f55d5",
+        "ultrafast_maskops/_native.cpython-312-x86_64-linux-gnu.so": "7a339342343ffff4d9ae7393cbf84c3c53e5d17b984bffe76cfb990b04439222",
+        "ultrafast_maskops/licenses/OpenCV-LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "ultrafast_maskops/ultralytics.py": "0bd934e308d5808ea97e7add5b53d36bf02533a4980f24276971cad21564da5d",
+        "ultrafast_maskops-0.1.0a1.dist-info/METADATA": "c8a875a30a943aae404f3ca14523c3af48a23ed4b8ebf96613af3471dd0e1df2",
+        "ultrafast_maskops-0.1.0a1.dist-info/WHEEL": "73abb46135000ae56fc9d248c8886a13d83136503134c8a8f95e7fe29a006347",
+        "ultrafast_maskops-0.1.0a1.dist-info/licenses/LICENSE": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+        "ultrafast_maskops-0.1.0a1.dist-info/licenses/NOTICE": "e761930fd3e5897bf6978661a96d26df71709cda6d8258dff09af37c4d2f6c7c",
+        "ultrafast_maskops-0.1.0a1.dist-info/RECORD": "458df95eb55ce55a4bf41b18ee13cbaa664ed244415654bb0b28a29dd04dc650"
+      },
+      "installed_source_and_native_match_wheel": true,
+      "unwanted_generated_files": [],
+      "packaging_clean": true,
+      "notice_files": [
+        "ultrafast_maskops/licenses/OpenCV-LICENSE",
+        "ultrafast_maskops-0.1.0a1.dist-info/licenses/LICENSE",
+        "ultrafast_maskops-0.1.0a1.dist-info/licenses/NOTICE"
+      ]
+    }
+  ]
+}

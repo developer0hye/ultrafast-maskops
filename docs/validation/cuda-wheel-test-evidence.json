@@ -1,0 +1,34 @@
+{
+  "scope": "sequential CUDA-environment installed-wheel full test runs; CPU tests remain CPU tests; archive/source identity is separately audited",
+  "wheel_audit_sha256": "8d6f49937efa2dfdbf41a60f1139cfdbb01698ccbb1a4b8c26c7d998eb521a8f",
+  "runs": [
+    {
+      "repository": "ultrafast-maskops-coco-bounds",
+      "junit_sha256": "de9feda488d7ccd286d91a4cb4d68891b111696a82ded1200f808011ecf13629",
+      "tests": 139,
+      "junit": "/Users/yhkwon/Documents/ultrafast-maskops-coco-bounds/docs/validation/cuda-mask-wheel-tests.xml",
+      "test_sources": {
+        "tests/reference.py": "30233b6500d508ec44e38c62e5ab03185509048dd1358f4be06330283188cdd1",
+        "tests/test_integration.py": "1d469df5ea1ba29c63d79976baede4827b6258d2b697b562fd56848bd398d957",
+        "tests/test_parity.py": "905e65ab51fefa9c7f61c7db418da24a6a1acdf166f11645cfe33f7d4ccb331d",
+        "tests/test_training.py": "6e4784d3e905d019fc9462700964c8aa6b0432726f2fff6920bcbef437955293"
+      }
+    },
+    {
+      "repository": "ultrafast-yolo-dataset",
+      "junit_sha256": "8d571fe6be39dcff0775d698ee619c32c0a4b2dc793256f6069eb69ada3366c1",
+      "tests": 157,
+      "junit": "/Users/yhkwon/Documents/ultrafast-yolo-dataset/docs/validation/cuda-dataset-wheel-tests.xml",
+      "test_sources": {
+        "tests/reference.py": "0f0e58a63ec22bcb416100b96c15b03b639e94ecc8c133187c802c9ab6404924",
+        "tests/test_cache.py": "ada22fb7e7cf376e030a29673342030aa4563b3357cdc8f52be76416848b17f6",
+        "tests/test_integration.py": "e9079c31cdd4b41d499b383588a447eaf09a082db798dd68bc7a71a5ef43be26",
+        "tests/test_materialize.py": "c0a0d73496e634753aefd8ef2486766a2b62a13c22f0fbc26446c8952c1ebb67",
+        "tests/test_parser.py": "58a8cab379b513839279fa09fe36b3cafba937b4498f1d720715621523863aad",
+        "tests/test_scan.py": "d896c0056c0ed4c3d993a2f9c8abb2bd56218a1a97ad6678d62c49871cdae784",
+        "tests/test_snapshot_hashes.py": "0ed678a93a3ee5299ede63bda881504c30bf9cd8cde8bc1f57ef989423f01f71"
+      }
+    }
+  ],
+  "server_test_sources_match_recorded_local_hashes": true
+}
