@@ -108,6 +108,20 @@ downloaded copy have the same SHA-256; see the
 `validation/cuda-series-checkpoint-17-{audit,manifest}.json`. The older checkpoint
 and rejected early auditor result remain preserved.
 
+The subsequent immutable 27-trial checkpoint passed the same independent audit,
+covering all three backends at workers 0/2/8 for the first three repetitions:
+54 full epochs and nine complete backend groups. Every group has identical
+loss vectors for every batch and identical final model hashes across reference,
+mask-only and combined replacements. Runtime/command/source identity, complete
+epochs, raw/compact records and memory accounting also passed. The preserved
+[27-trial archive](../bench/results/cuda-series-checkpoint-27-trials.tar.gz) and
+`validation/cuda-series-checkpoint-27-{audit,manifest}.json` retain exact bytes.
+This is training-equivalence evidence for the frozen original Linux wheels;
+it does not validate the later masks-only or resize-ROI candidates. Eighteen
+trials remain in the planned comparison. No interim timing summary is emitted,
+and matching losses/models do not establish model accuracy or replace direct
+target parity tests.
+
 Twelve synthetic corruption/false-completion cases in
 `tests/test_gpu_series_audit.py` passed on M2, including the complete-series
 bootstrap branch with known constant ratios and the CPU-capped worker case.
