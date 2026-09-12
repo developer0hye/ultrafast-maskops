@@ -1,0 +1,9 @@
+{
+  "src/bindings.cpp": "9bbd8108165c60cca168129f0c9825e1a5af495d237663d2bb4d2ea08606000d",
+  "python/ultrafast_maskops/__init__.py": "7fb97e3ea209c7aab5c8666ab74320d20b547f39584adaf56eddaac8320289aa",
+  "python/ultrafast_maskops/ultralytics.py": "4dfb0da840d92a8f328d9493ed3a79724066e34845d9a9ed5362f419887cc54f",
+  "tests/reference.py": "30233b6500d508ec44e38c62e5ab03185509048dd1358f4be06330283188cdd1",
+  "tests/test_parity.py": "b6f408c2c68864e1e51bfb922e358e43421a403c902fb806b6a1819f46d93597",
+  "tests/test_integration.py": "08372958826389976ecd06918cc1677f7babba73c877521a19fd4dba64c2eb25",
+  "bench/feasibility.py": "7c5dc1180897cd6564a5780c7cc7154415681cd8bf2ee351f398439a2445f47b"
+}

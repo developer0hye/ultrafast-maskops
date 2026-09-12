@@ -1,0 +1,32 @@
+cmake_minimum_required(VERSION 3.20)
+project(ultrafast_maskops LANGUAGES CXX C)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
+find_package(pybind11 CONFIG REQUIRED)
+include(FetchContent)
+set(BUILD_LIST "core,imgproc" CACHE STRING "" FORCE)
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+foreach(opt BUILD_TESTS BUILD_PERF_TESTS BUILD_EXAMPLES BUILD_opencv_apps BUILD_JAVA
+    BUILD_opencv_python2 BUILD_opencv_python3 WITH_IPP WITH_ITT WITH_OPENCL WITH_TBB
+    WITH_OPENMP WITH_FFMPEG WITH_GSTREAMER WITH_GTK WITH_QT WITH_PROTOBUF WITH_PTHREADS_PF)
+  set(${opt} OFF CACHE BOOL "" FORCE)
+endforeach()
+set(OPENCV_INSTALL_APPS_LIST "" CACHE STRING "" FORCE)
+FetchContent_Declare(opencv
+  URL https://github.com/opencv/opencv/archive/refs/tags/4.13.0.tar.gz
+  URL_HASH SHA256=1d40ca017ea51c533cf9fd5cbde5b5fe7ae248291ddf2af99d4c17cf8e13017d
+  EXCLUDE_FROM_ALL)
+FetchContent_MakeAvailable(opencv)
+pybind11_add_module(_native src/bindings.cpp)
+target_include_directories(_native PRIVATE
+  ${opencv_SOURCE_DIR}/modules/core/include ${opencv_SOURCE_DIR}/modules/imgproc/include ${opencv_BINARY_DIR} ${CMAKE_BINARY_DIR})
+target_link_libraries(_native PRIVATE opencv_core opencv_imgproc)
+set_target_properties(_native PROPERTIES CXX_VISIBILITY_PRESET hidden VISIBILITY_INLINES_HIDDEN ON)
+if(UNIX AND NOT APPLE)
+  target_link_options(_native PRIVATE "-Wl,--exclude-libs,ALL")
+elseif(APPLE)
+  target_link_options(_native PRIVATE "LINKER:-exported_symbol,_PyInit__native")
+endif()
+install(TARGETS _native LIBRARY DESTINATION ultrafast_maskops)
+install(FILES ${opencv_SOURCE_DIR}/LICENSE DESTINATION ultrafast_maskops/licenses RENAME OpenCV-LICENSE)
