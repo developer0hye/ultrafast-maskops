@@ -74,6 +74,9 @@ are recorded in `cuda-wheel-selection.json`, checked against the
 The new environment recognized the RTX 3070 (sm_86) and passed a finite GPU
 matrix-operation forward/backward smoke. Requirements, installed versions and
 that limited smoke report are retained under `docs/validation`. It does not
-establish library integration or training throughput. Full GPU epochs, model
-finite-loss checks and independently repeated throughput/memory measurements
-remain open.
+establish library integration or training throughput by itself. Subsequent
+reference and combined-wheel pilots each completed a full 5,000-image GPU epoch
+with identical final model hashes and all batch losses; see
+[CUDA_WHEEL_VALIDATION.md](CUDA_WHEEL_VALIDATION.md). Independently repeated
+throughput/memory measurements are now running under the separate
+[GPU protocol](GPU_BENCHMARK_PROTOCOL.md), with both pilots excluded.

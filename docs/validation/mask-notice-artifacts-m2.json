@@ -1,0 +1,23 @@
+{
+  "scope": "M2 wheel and source archive notice-byte preservation; not complete redistribution review",
+  "wheel_sha256": "bb581897b12b17db8a2ce3854e43af9ffe5e6894608fa8e525774d820cc8785c",
+  "sdist_sha256": "c77059968dba0e59ca6e5f2ef5f774c37eb11e63546b4d786c682ee8095f2d34",
+  "notice_files": {
+    "COMPILED-SOURCE-NOTICES.txt": "eb1934668049032c2a7b27bf5bfea95c228cb1ef5c65bba63cc7c025d483acd2",
+    "DLPack-LICENSE.txt": "3e8f6bc39276a586d60c8c5aaece2ff989262181cf2b3d2a128db58f97a9300c",
+    "KleidiCV-Apache-2.0.txt": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+    "OpenCV-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "OpenCV-Legacy-BSD.txt": "a5a7cf90fe5ac9763baad852cf69cf9d9b89bff934a679fdc5c8fcecaeba9a25",
+    "SoftFloat-COPYING.txt": "0c5b08365136da52639d777f1ebfc03988b0169d80655c90c59f1b3fa3e526a2",
+    "manifest.json": "86575b902f6f1d603bfb53f2655049e66a2faffe5332ac5a3d9974236e5d2286",
+    "pybind11-LICENSE.txt": "83965b843b98f670d3a85bd041ed4b372c8ec50d7b4a5995a83ac697ba675dcb",
+    "zlib-LICENSE.txt": "845efc77857d485d91fb3e0b884aaa929368c717ae8186b66fe1ed2495753243"
+  },
+  "wheel_and_sdist_notice_bytes_match_source": true,
+  "rebuilt_graph_sha256": "a0b28d5421684f593ab04c7055a4d82faf74ddd746ad4d6230f235f47cd4c4b8",
+  "rebuilt_selected_sources_covered": 573,
+  "core_tests": 120,
+  "junit_sha256": "cf47fa5cc1464300ba7693db8073eacc819aef1b8b6f7630383fb09e7ee90a7d",
+  "cmake_sha256": "710bc768827dedfbcdd6552dc5160b8e28b550346b7da033ef9a61116907a331",
+  "bindings_sha256": "1aef71f436c6e949b1a3b028c7f35b8f2c7a90c3b3203ba20cbd91d954e01164"
+}

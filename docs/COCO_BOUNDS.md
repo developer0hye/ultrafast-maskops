@@ -84,6 +84,14 @@ FastFormat augmentation pilot: 64 primary outputs at workers 0 and 2, with
 independent reference replay and native processes. The native cache was cold in
 the first case and warm in the second. Its original verifier source is retained
 as `coco-augmented-pilot-script.py.txt`. This is not full-corpus evidence for the
-corrected kernel. Full augmented outputs for the corrected kernel, non-overlap
-coverage, exact-source performance reruns, full GPU epochs and portable wheels
-remain open. This candidate is not release-ready.
+corrected kernel.
+
+The corrected build subsequently completed the full overlap augmentation check:
+all nine fresh processes at workers 0/2/8 produced 5,000 outputs each, with exact
+reference/replay/native agreement within every worker count. Complete evidence
+is `bench/results/coco-byte-access-augmented-both-m2.json`, including verifier,
+runtime, source and input hashes. It measures correctness, not throughput.
+Full non-overlap verification is now running. Exact-source performance reruns,
+the repeated GPU comparison and portable wheels remain open. GPU pilots are
+documented separately in [CUDA_WHEEL_VALIDATION.md](CUDA_WHEEL_VALIDATION.md).
+This candidate is not release-ready.

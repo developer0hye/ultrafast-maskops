@@ -43,3 +43,6 @@ elseif(APPLE)
 endif()
 install(TARGETS _native LIBRARY DESTINATION ultrafast_maskops)
 install(FILES ${opencv_SOURCE_DIR}/LICENSE DESTINATION ultrafast_maskops/licenses RENAME OpenCV-LICENSE)
+# Preserve the collected notices alongside the private native libraries. Source
+# and wheel archives also retain their manifest and collection provenance.
+install(DIRECTORY licenses/ DESTINATION ultrafast_maskops/licenses)

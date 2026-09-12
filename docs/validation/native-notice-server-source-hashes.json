@@ -1,0 +1,1502 @@
+{
+  "opencv-4.13.0/3rdparty/zlib/compress.c": {
+    "sha256": "86f802c16a965e7a28737e3730b4e576c5ba40981753967e3e30916f4dc1b4b1",
+    "bytes": 2613
+  },
+  "opencv-4.13.0/3rdparty/zlib/zlib.h": {
+    "sha256": "8a5579af72ea4f427ff00a4150f0ccb3fc5c1e4379f726e101133b1ab9fc600c",
+    "bytes": 96829
+  },
+  "opencv-4.13.0/3rdparty/zlib/gzclose.c": {
+    "sha256": "35ea6e991a63095f797d8c4cc25817fac7a7155c2ba7dcdbbf648f7871c7ea40",
+    "bytes": 668
+  },
+  "opencv-4.13.0/3rdparty/zlib/gzguts.h": {
+    "sha256": "716fa648aca1bb06c219d7b97ad4846d8479206143bc39557bfd8283f5783e04",
+    "bytes": 6676
+  },
+  "opencv-4.13.0/3rdparty/zlib/adler32.c": {
+    "sha256": "9cd1443a24ff2a3053961695bd432035c58347386a420d3388232376ebabe211",
+    "bytes": 4964
+  },
+  "opencv-4.13.0/3rdparty/zlib/zutil.h": {
+    "sha256": "dddb2dc7a1dc339ecf2c8e089b366f08bb731c0839c7110240d17ce731bb4fea",
+    "bytes": 6677
+  },
+  "opencv-4.13.0/3rdparty/zlib/crc32.c": {
+    "sha256": "8fd16f0a7714d51c89c2eb37eb98ec15e8a4dc57ba343e7b7398b19144039fda",
+    "bytes": 31605
+  },
+  "opencv-4.13.0/3rdparty/zlib/crc32.h": {
+    "sha256": "9a2223575183ac2ee8a247f20bf3ac066e8bd0140369556bdbdffc777435749e",
+    "bytes": 591749
+  },
+  "opencv-4.13.0/3rdparty/zlib/gzlib.c": {
+    "sha256": "042c2be8ec67ad525a2812e508de7381c6766dde903acf5ae6ac4fa6b541946d",
+    "bytes": 16270
+  },
+  "opencv-4.13.0/3rdparty/zlib/gzread.c": {
+    "sha256": "72e481aca07b0b85a9783237b85dc67ff3a4c1d19878d0cec69f58d38634867b",
+    "bytes": 19918
+  },
+  "opencv-4.13.0/3rdparty/zlib/gzwrite.c": {
+    "sha256": "469b1e58932ea11bdda2a153f6655f7b3c13254240fae157181b49ed1bc93b47",
+    "bytes": 19237
+  },
+  "opencv-4.13.0/3rdparty/zlib/inftrees.c": {
+    "sha256": "5d4f335221d2dc76f17abd2577d92c2d7baf68fa6d7f23373b360830493d1563",
+    "bytes": 13024
+  },
+  "opencv-4.13.0/3rdparty/zlib/inftrees.h": {
+    "sha256": "0a0fcaf2ae2fae57426bdc06637270e9bba974f35202cadbdba479d946e6409d",
+    "bytes": 2920
+  },
+  "opencv-4.13.0/3rdparty/zlib/infback.c": {
+    "sha256": "62df9a6dd3eef126f1d81d0ad7a534504610dec44482b0a472b61c93cbab6554",
+    "bytes": 22669
+  },
+  "opencv-4.13.0/3rdparty/zlib/inflate.h": {
+    "sha256": "e8d4a51b07694bf48cb91979c19974cf6a5ab0b8a09d26ec0d14df349230673e",
+    "bytes": 6683
+  },
+  "opencv-4.13.0/3rdparty/zlib/inffast.h": {
+    "sha256": "05cc5dc9ff1da7b8b52a4bd8bda0d8a5c236a2f39efe84b941516ea13857e6c5",
+    "bytes": 422
+  },
+  "opencv-4.13.0/3rdparty/zlib/inffixed.h": {
+    "sha256": "237ba710f090e432b62ebf963bee8b302867e9691406b2d3f8ee89ee7bfef9b0",
+    "bytes": 6332
+  },
+  "opencv-4.13.0/3rdparty/zlib/deflate.c": {
+    "sha256": "3b956337350f94c34987750f785587ef33d9c89ceaebb7c2afb189c956360cbe",
+    "bytes": 81731
+  },
+  "opencv-4.13.0/3rdparty/zlib/deflate.h": {
+    "sha256": "48baf016326d8d5e3e32ac8153cc7e22f854b8e6834830b167b998a7fb1e7989",
+    "bytes": 14041
+  },
+  "opencv-4.13.0/3rdparty/zlib/uncompr.c": {
+    "sha256": "04dca5e31b3b8a17d1806426f66f0c539f4184d657e149d40be07070c6227b52",
+    "bytes": 2911
+  },
+  "opencv-4.13.0/3rdparty/zlib/inffast.c": {
+    "sha256": "e6ef64ce5dc0a4cd5c7ad08ceeb2b2a698b8447f6bd156057caeb2edab68c0cb",
+    "bytes": 12924
+  },
+  "opencv-4.13.0/3rdparty/zlib/zutil.c": {
+    "sha256": "8ced40d8c88588811edd2bdb35b7439983d5e1f8e9e32b8a3b244731f3c317b7",
+    "bytes": 7179
+  },
+  "opencv-4.13.0/3rdparty/zlib/inflate.c": {
+    "sha256": "b9bf41e7820b96aa8c3bd110ddde292c9d3276e0f90b15bd8c91c68cf162a7a8",
+    "bytes": 55600
+  },
+  "opencv-4.13.0/3rdparty/zlib/trees.c": {
+    "sha256": "f63c68c16c05fcd196050529d1a0e7657960e4136b9987d90a6ac3e58a964b0f",
+    "bytes": 40937
+  },
+  "opencv-4.13.0/3rdparty/zlib/trees.h": {
+    "sha256": "bb0a9d3ca88ee00c81adb7c636e73b97085f6ef1b52d6d58edbe2b6dc3adeb4d",
+    "bytes": 8472
+  },
+  "opencv-4.13.0/modules/core/src/alloc.cpp": {
+    "sha256": "9f812a69b38c886aea8583a8d67332749aa8af8c2b157fb54ffe306936e01a66",
+    "bytes": 7590
+  },
+  "opencv-4.13.0/modules/core/src/precomp.hpp": {
+    "sha256": "c36a34c0251af3e39f7b5e069b74e93db489a2fcf9633088af63cd12ae804e94",
+    "bytes": 12936
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utility.hpp": {
+    "sha256": "e5b9e25e349f121c3d3f2347c48afef5d18a8c7c4124acee833c0e04b9c270b0",
+    "bytes": 42149
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core.hpp": {
+    "sha256": "62edcacfea97ab6a6e9e65ce3aaae022618d26f7962f9afd8776d32fa042d75f",
+    "bytes": 158640
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/cvdef.h": {
+    "sha256": "68abe35f45279759db0287898a538b3a6fbb71edb68693750cfed278c3a4a681",
+    "bytes": 36483
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/version.hpp": {
+    "sha256": "939e2d8dffcbfb4f6851d7b0c115e74b015f40fd8ffa6218c5abc9d0d4fc83bf",
+    "bytes": 887
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/hal/interface.h": {
+    "sha256": "bd11814cfd2c331eaa93b42d80a0911a4916f6afa99907f332fe8f641098eb43",
+    "bytes": 4787
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/cv_cpu_dispatch.h": {
+    "sha256": "f499c63f0c14479a8f681b5b9c52e9f770d5dbf803c2378ce9791cc90c4f08fa",
+    "bytes": 9003
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/cv_cpu_helper.h": {
+    "sha256": "1ed879be3ce94c83fd03169e5ae32b24c3c2dc5d41504a23701ff7ff370cf20d",
+    "bytes": 34413
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/base.hpp": {
+    "sha256": "fabf426229e7acb4e3eca682d8dbcb11146da8e7691a62a7dd40b32c55b6ebf6",
+    "bytes": 29797
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/cvstd.hpp": {
+    "sha256": "96a1ddefb0539061389be0704b554e5ab30f20132944485f4c70644ceeb4a0d2",
+    "bytes": 6079
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/cvstd_wrapper.hpp": {
+    "sha256": "babed4fc9c3d804502aa053c5add427600600f080984985812d8cce716b35ffa",
+    "bytes": 5725
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/neon_utils.hpp": {
+    "sha256": "ac4f537960e50684671ca6a4b95c1eb6db5ba05e8d9f42f66b930ac8702ae7f9",
+    "bytes": 4397
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/vsx_utils.hpp": {
+    "sha256": "51c85ce8d989e2b30784a2e512582899ba9ae31f7ec0d6817415620b9b602fe4",
+    "bytes": 52447
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/check.hpp": {
+    "sha256": "fb7cf749c4695f02cb311b198efa9823eac1f1e98831b776fe8ab5f976bea4d1",
+    "bytes": 7722
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/traits.hpp": {
+    "sha256": "6c45b2ee5137464ab4080063e38b68a6c5ac8b415e04aee8cb5c634b5dcc9861",
+    "bytes": 12293
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/matx.hpp": {
+    "sha256": "086ceebe87ed54c98155bfff778f02305697dc7cd9d10449f2f21a482023872b",
+    "bytes": 20508
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/saturate.hpp": {
+    "sha256": "bf418a3f44d575b17c18af968dbe3e2c8bd0663c22f8dcb53c4b0f77b5db14ba",
+    "bytes": 11902
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/fast_math.hpp": {
+    "sha256": "151bf6365b54bec9836afc3a8bcdba8b600bc5b769d24e7f0147420897a9acf7",
+    "bytes": 14563
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/matx.inl.hpp": {
+    "sha256": "010153afc595d6e58ba24949c85af8a6a2fc038d52ec054a35ae9eed8a97980d",
+    "bytes": 33331
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/types.hpp": {
+    "sha256": "ed45810298941aefeb838d1d8d080bf2f2925b053bd92ef83a913f5251774d4f",
+    "bytes": 74445
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/mat.hpp": {
+    "sha256": "157c25e4590c3903c0a24be331a24931edfbfa9bebd7545cd1907c5141837677",
+    "bytes": 168315
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/bufferpool.hpp": {
+    "sha256": "65dd904d4f15850ec23ad7531a8f431fd023c98c429adc59e00ae346c8976667",
+    "bytes": 852
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/mat.inl.hpp": {
+    "sha256": "6670cb2d634103de1070233b4ca4ccbd486a1dc4ca9e1ce3226e0a81e6934b50",
+    "bytes": 89978
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/persistence.hpp": {
+    "sha256": "992e7d7575fd671302b2beb9600a99e380485797aa6448bdbaa81d8c66b524b8",
+    "bytes": 46471
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/operations.hpp": {
+    "sha256": "426e7a2a9206c603af60a2cda4e3a36a60bdc53d268df577cf1d32ae1156f843",
+    "bytes": 22421
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/cvstd.inl.hpp": {
+    "sha256": "33223f6f38d88607f3da7f02683ff91aa07279240d34084e1a0fe7b19ab5ca28",
+    "bytes": 5872
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/optim.hpp": {
+    "sha256": "acfc26fa3409d2c7dc897fc816a6eab67554414a514a1a062de68a68cb351e80",
+    "bytes": 16150
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/ovx.hpp": {
+    "sha256": "e4b13bc11c14d59f640ac59963bd02670ca352d533160d539b6e790052051530",
+    "bytes": 731
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/core_c.h": {
+    "sha256": "7c5d2883897df0d8f86a322078c32132cf890a34f45fcdb9460f1bde84e97466",
+    "bytes": 128763
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/types_c.h": {
+    "sha256": "0bab108b55e64c5f7b6a1faa3d8eb655591321efd7b30dc0a663201531f48900",
+    "bytes": 70894
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/cuda.hpp": {
+    "sha256": "b725d6848786e49dc878c0b362f7b2b4b3c45ec2463ac03112e5041560a40748",
+    "bytes": 51833
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/cuda_types.hpp": {
+    "sha256": "01753a8d438bacf14ac4439192542d5fc4bca88afb3918717afd7e1a36efacea",
+    "bytes": 6045
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/cuda.inl.hpp": {
+    "sha256": "caff4880ae6c88f63db928666202f1468c8b16e02843acc24e31bfb0c50091b8",
+    "bytes": 16371
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/opengl.hpp": {
+    "sha256": "44b70716a071add4946046690bb3232908d1e5b56a9ae236f50497b2d420c790",
+    "bytes": 24152
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/ocl.hpp": {
+    "sha256": "28eb3a7a8d1cc542dd5b76360a732d918dca89048c015b140f6067310229222b",
+    "bytes": 32985
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/va_intel.hpp": {
+    "sha256": "3da1e78ac9e178d0ff6b2ef03e3cf912582139c1531142a338ba284b3906181b",
+    "bytes": 2849
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/private.hpp": {
+    "sha256": "75858b04ff26bd82dd18ef97ad8ed2e4e227958171117fbf9970949de2ba262b",
+    "bytes": 33584
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/trace.hpp": {
+    "sha256": "0f0d8b3b0c68c871d026a95c549110e4438f8b349c42864ac7f49a9b5fe72066",
+    "bytes": 9324
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/private.cuda.hpp": {
+    "sha256": "be3cd085a2139cb32c083585b5dfe2a98117eb4a7bf9fe654d0b94a39fd7267c",
+    "bytes": 8490
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/private/cuda_stubs.hpp": {
+    "sha256": "11512dc02f8f70244eadcda921d8030f7b189b6caccba5f761fe212ae2e047cd",
+    "bytes": 848
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/hal/hal.hpp": {
+    "sha256": "0f8eadf8fd6899858ab46db329ba94770160ecf9cd8ac897dece8c6884c8d521",
+    "bytes": 20380
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/hal/intrin.hpp": {
+    "sha256": "eeb3be550b8d7f6492c762bcefeb2e8fe5c9c0628ccb09f2ded7f1b2f34d6aa3",
+    "bytes": 41730
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/hal/intrin_forward.hpp": {
+    "sha256": "ad93e16fdad234aab37ccc96bd37768f213c6ee2fedb3c6309e1057307f621f2",
+    "bytes": 6355
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/hal/intrin_sse_em.hpp": {
+    "sha256": "9a8369d287ff500756fae5577f528c360f011e04e5a4a44f5af1d697b1d1442a",
+    "bytes": 5424
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/hal/intrin_sse.hpp": {
+    "sha256": "9ea43239afc6dd6915c37715074d8d6351a055b3890aa71fb644864dcb9ececd",
+    "bytes": 136772
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/hal/intrin_math.hpp": {
+    "sha256": "8d6ed7f222d15da0d73080fe407d7e3f9809b3fc5c93222cbe320f9a9f794e5c",
+    "bytes": 31380
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/hal/simd_utils.impl.hpp": {
+    "sha256": "a7416b4d5fc41cd2df66f4fdb36a0a85374d79de3dc5d8fb38ce40be049ff772",
+    "bytes": 9530
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/sse_utils.hpp": {
+    "sha256": "2d9f170fdecb359c434387e6379fe5f16f9ffc77ef8dc4ba111ca517c3359023",
+    "bytes": 42185
+  },
+  "opencv-4.13.0/modules/core/src/hal_replacement.hpp": {
+    "sha256": "bc85d4ed17603a21629ca3046c6a5db397a30807d34e60e4c2abf702a8d253ba",
+    "bytes": 64821
+  },
+  "opencv-4.13.0/modules/core/src/hal_internal.hpp": {
+    "sha256": "42fd642d839406386ef2964a39378013665cf785d1a034fab97a71fc29537ae9",
+    "bytes": 5095
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/logger.defines.hpp": {
+    "sha256": "03bc3fd53608846ee3ad1b1feeeb97ac68e9758f4ceb5827ecca87c58204304c",
+    "bytes": 1738
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/logger.hpp": {
+    "sha256": "d99ae8e0d5d387315e3f98ea6cd04a71d55dee07494380b15b81eb4a6864707b",
+    "bytes": 10631
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/logtag.hpp": {
+    "sha256": "1ab5f6f986e02af6aec74d7881ce0676dd82b215c4a5b33087f7e8010a1808b5",
+    "bytes": 559
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/configuration.private.hpp": {
+    "sha256": "ee1ad185d4500def5c9b2de6c202128d2b39bbfc30235d311817776e4203f375",
+    "bytes": 897
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/allocator_stats.impl.hpp": {
+    "sha256": "62b1f1d878926e7ce8fa323a75a5e8cdb184fd0c6261890963fd82dc9c26c874",
+    "bytes": 3182
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/allocator_stats.hpp": {
+    "sha256": "260d7dff55a04646ae7f78bfe7af249fe2bbe368add0c934cad108703dbb56c1",
+    "bytes": 821
+  },
+  "opencv-4.13.0/modules/core/src/algorithm.cpp": {
+    "sha256": "ad3ae48f7d4b6dd61b0bcbd230f0f8bbf92eb4d240bde2a543fd687c827ac4cd",
+    "bytes": 3111
+  },
+  "opencv-4.13.0/modules/core/src/arithm.cpp": {
+    "sha256": "c150ad7b8f826980f464160a58f9081aecd520a8b610f891f878f07d78e81da3",
+    "bytes": 86672
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/ocl_genbase.hpp": {
+    "sha256": "9744e968d9bdfea84cdee4aeae0c141e300cc90ce44329accdd535952c3c48dd",
+    "bytes": 2508
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/opencl/ocl_defs.hpp": {
+    "sha256": "9bdcabf71097dc339f80702269616dc5755f718843759941e79dfc25284c8e89",
+    "bytes": 3734
+  },
+  "opencv-4.13.0/modules/core/src/async.cpp": {
+    "sha256": "cebe9c7b93c9530af13365670beaf738f19425e673b3ab4856ee3d0eb23f7374",
+    "bytes": 12257
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/async.hpp": {
+    "sha256": "4ebd7dec356441c35e53447f548cb4c1074d93109a92716ab570d40469992313",
+    "bytes": 2773
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/detail/async_promise.hpp": {
+    "sha256": "84920f5944b2561b0f6da3784a5fd281aba39e8544651a7ac8a889e3509982f4",
+    "bytes": 1678
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/detail/exception_ptr.hpp": {
+    "sha256": "30ae6e20abd03cf3621bfb392e7778aff8a90635bd4679e9f2e706c8c99b0986",
+    "bytes": 745
+  },
+  "opencv-4.13.0/modules/core/src/array.cpp": {
+    "sha256": "40dbaab4e22f260c761dcfcd4b574f640dee23ae4efe3f039424fd5477520d18",
+    "bytes": 88817
+  },
+  "opencv-4.13.0/modules/core/src/batch_distance.cpp": {
+    "sha256": "0ab18fadec5e83a7bedc69c674f46ca8db889619198afffe56872d47a41d491d",
+    "bytes": 12778
+  },
+  "opencv-4.13.0/modules/core/src/stat.hpp": {
+    "sha256": "adc780166ee7d0292b3e1e74e9a91a8abb2b03fb9c16199b70e4dcbf1249ee14",
+    "bytes": 1256
+  },
+  "opencv-4.13.0/modules/core/src/bindings_utils.cpp": {
+    "sha256": "a22a6a7fa8b7e770d79d4275b2d98d39574b874d9c134f4416dac289f6fa034c",
+    "bytes": 9181
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/bindings_utils.hpp": {
+    "sha256": "7438b1e6e13b0cdf73e4792fa1f7b5c2de6f0db621552c7b9dd13c538549f264",
+    "bytes": 8070
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/filesystem.hpp": {
+    "sha256": "584606928e15cdfa0846f97a4f1922860b6f193e0bc3e9f15bd58796edb10b86",
+    "bytes": 3193
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/filesystem.private.hpp": {
+    "sha256": "29bfdd3e01a425d96c7b4df685026e08b789b29de141d98df1c11a8ebca4118e",
+    "bytes": 2099
+  },
+  "opencv-4.13.0/modules/core/src/buffer_area.cpp": {
+    "sha256": "741f021ba72a976e366c08ec6afd65399108ff11b774cafd21f3f5608f6b7d5e",
+    "bytes": 4453
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/buffer_area.private.hpp": {
+    "sha256": "3f51e899790c855c331013f5c056a5fc1647b62e48952e311f800dd97d230ce5",
+    "bytes": 4424
+  },
+  "opencv-4.13.0/modules/core/src/channels.cpp": {
+    "sha256": "590bd92866b64c18466ce1339499c35005a50c60b55123896671c2011be4ab96",
+    "bytes": 15108
+  },
+  "opencv-4.13.0/modules/core/src/convert.hpp": {
+    "sha256": "4b8bea45ddcd22a818e57a3d22e043b700ac3e5df3c38efa17a5be4bbd71d78e",
+    "bytes": 12707
+  },
+  "opencv-4.13.0/modules/core/src/check.cpp": {
+    "sha256": "315de7e5340b8fd90c6a00ea8cf906ae1a701c9a9c12c0fa8b3b61089ee8dfe3",
+    "bytes": 7337
+  },
+  "opencv-4.13.0/modules/core/src/conjugate_gradient.cpp": {
+    "sha256": "1055dfecb2a7eb856be1c98eeffd4e7f48a24aaa4f2602092378eeba21a660ea",
+    "bytes": 7933
+  },
+  "opencv-4.13.0/modules/core/src/arithm.dispatch.cpp": {
+    "sha256": "166c7ba5d214189c3b4cdb4778b4a06f9dbf1bdbf788e69b639f467c9e39b66f",
+    "bytes": 370
+  },
+  "opencv-4.13.0/modules/core/src/arithm_ipp.hpp": {
+    "sha256": "0e07e9673af2b879da45073ccf867eb751dfba760c7a2d25f01248ed643d328b",
+    "bytes": 17607
+  },
+  "opencv-4.13.0/modules/core/src/arithm.simd.hpp": {
+    "sha256": "96ad1d0b124b232af54db21a5eedf8482344280a3fda3b2818756ba029758e31",
+    "bytes": 62520
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/private/cv_cpu_include_simd_declarations.hpp": {
+    "sha256": "6435acac5f6c8d582313a1c25d6ec7f3d9b76e0d882e3d9dc1d6d6308c96369b",
+    "bytes": 946
+  },
+  "opencv-4.13.0/modules/core/src/command_line_parser.cpp": {
+    "sha256": "0a3b28d4a3f5c3fde85a5b0161fd17dcf66cac28afb4892b982b8087ee84b153",
+    "bytes": 14507
+  },
+  "opencv-4.13.0/modules/core/src/convert_c.cpp": {
+    "sha256": "8d5513652f68aa13e67f562f337932dd45db1ae3171c1daa57a8ee8df60cc10f",
+    "bytes": 4057
+  },
+  "opencv-4.13.0/modules/core/src/convert.dispatch.cpp": {
+    "sha256": "70fc41cf560ec98f53c4c8d52a57539c89f16193ed4de4ffbfbcf5a178375a22",
+    "bytes": 13117
+  },
+  "opencv-4.13.0/modules/core/src/convert.simd.hpp": {
+    "sha256": "42e8f82a637e8239c60d272443299638e0f255a883f247cbb36803849a3b4267",
+    "bytes": 11123
+  },
+  "opencv-4.13.0/modules/core/src/count_non_zero.dispatch.cpp": {
+    "sha256": "f62f75b9ab4a01a67f2147e68a3dfc451a1590f89d966085ea067fecf67235a3",
+    "bytes": 6521
+  },
+  "opencv-4.13.0/modules/core/src/count_non_zero.simd.hpp": {
+    "sha256": "1f904cc079f549aa0ff947e8cbd0ffbdd0ac9e3f26543401952e8cb494d2b82b",
+    "bytes": 7311
+  },
+  "opencv-4.13.0/modules/core/src/cuda_gpu_mat.cpp": {
+    "sha256": "884390941c4cd2950f803d390186c1100008c6b09bdaa40a23b507c96f1457ac",
+    "bytes": 13734
+  },
+  "opencv-4.13.0/modules/core/src/copy.cpp": {
+    "sha256": "7a1539621d94e8fe623bbfad561730d9df88c94040a4911b6bacb4aaf6009781",
+    "bytes": 44136
+  },
+  "opencv-4.13.0/modules/core/src/convert_scale.dispatch.cpp": {
+    "sha256": "3c227ff423fc7c96c7e69c8aef86fed47f5c66d1abd3c915abcda727484c66c6",
+    "bytes": 4169
+  },
+  "opencv-4.13.0/modules/core/src/convert_scale.simd.hpp": {
+    "sha256": "49b62b18c0e85a682fa76951cdc8b99506a8e390585cc4dad09795f1c2607a3a",
+    "bytes": 14896
+  },
+  "opencv-4.13.0/modules/core/src/cuda_host_mem.cpp": {
+    "sha256": "16ef5eb820d89af7875430d9a5af28a5d5afa3941a280cd7d2c87c9aceafaa07",
+    "bytes": 9341
+  },
+  "opencv-4.13.0/modules/core/src/cuda_gpu_mat_nd.cpp": {
+    "sha256": "f48bb5727a1beae79b433cdca9a8bcda0c52cfc9666a6950f7ed80b5d04e3330",
+    "bytes": 4038
+  },
+  "opencv-4.13.0/modules/core/src/cuda_stream.cpp": {
+    "sha256": "9a29a77c83b525c94d23a1bda270e2d87d3313713ce9602243c3e8ad4127c6b5",
+    "bytes": 19552
+  },
+  "opencv-4.13.0/modules/core/src/cuda_info.cpp": {
+    "sha256": "213567f59e0c2aab0f3cc619a5434942c033e7cec8f7221910abd060a19cd812",
+    "bytes": 35101
+  },
+  "opencv-4.13.0/modules/core/src/directx.cpp": {
+    "sha256": "0492956ff0c5b8e0b8daf49ea935f4f7e05972872a26e23a20ad894c2558d0c8",
+    "bytes": 64892
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/directx.hpp": {
+    "sha256": "ef2b12df417633e49c8a7341e9f82d70eff7ff84fd944fa098947254ee491ea8",
+    "bytes": 7248
+  },
+  "opencv-4.13.0/modules/core/src/downhill_simplex.cpp": {
+    "sha256": "03a31f41efe31736e99e24a2650fbbb68fee404c17495b53818b736934393aa8",
+    "bytes": 16074
+  },
+  "opencv-4.13.0/modules/core/src/gl_core_3_1.cpp": {
+    "sha256": "21d60f5c312f01ca5ebaf735e4a25688600586d396645d1e9b82bcffdee0adee",
+    "bytes": 127080
+  },
+  "opencv-4.13.0/modules/core/src/gl_core_3_1.hpp": {
+    "sha256": "bd8005ec92064fd361609ebc3031ab81ae7eb473191c305828761b64f882b6ef",
+    "bytes": 76849
+  },
+  "opencv-4.13.0/modules/core/src/datastructs.cpp": {
+    "sha256": "f03b2bfeec731a8610643580aea83f66359a2fff05c0e1f67fdf508cca7a055b",
+    "bytes": 101772
+  },
+  "opencv-4.13.0/modules/core/src/glob.cpp": {
+    "sha256": "83ea9917a432dc449e1d8fd020591beaa05e89a7799168a35cdd23943c7c8ebf",
+    "bytes": 10926
+  },
+  "opencv-4.13.0/modules/core/src/hal_internal.cpp": {
+    "sha256": "099c40d5050d85f92b1bb6c0bff29ccbe92ef3653b404eb5a135c7a9889d1cb1",
+    "bytes": 26511
+  },
+  "opencv-4.13.0/modules/core/src/has_non_zero.dispatch.cpp": {
+    "sha256": "62b07537aa4364c95d4faead85b1a2148b211e2a98b4c3236211b16b60aee542",
+    "bytes": 3498
+  },
+  "opencv-4.13.0/modules/core/src/has_non_zero.simd.hpp": {
+    "sha256": "a7eab5b2362a79985bd16057ec82b984970c6df6b52982470ee12c66ecfa1cfa",
+    "bytes": 10024
+  },
+  "opencv-4.13.0/modules/core/src/dxt.cpp": {
+    "sha256": "04ab6fa5c5e4d8eaf91bf01b4bbcfab1631d77b1d6947314a2042c73917e2baf",
+    "bytes": 156954
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/opencl/runtime/opencl_clfft.hpp": {
+    "sha256": "3a68d279e239fa325d3abf0113061727251c04a4d629b2f85ce46426ef582e99",
+    "bytes": 2360
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/opencl/runtime/opencl_core.hpp": {
+    "sha256": "b9e8a9b925a815d26bd1ce94741581f3568027d3b93993f0372a0cc84c650115",
+    "bytes": 3429
+  },
+  "opencv-4.13.0/modules/core/src/kmeans.cpp": {
+    "sha256": "40d2495725b6d517cc286fbd6806099bedc5428134774f8e7a75e4dd5f2784c8",
+    "bytes": 16149
+  },
+  "opencv-4.13.0/modules/core/src/logger.cpp": {
+    "sha256": "f9e516e635691c46125f71e30aa0771f52e834bd698ea793fa6f301862a7d720",
+    "bytes": 9062
+  },
+  "opencv-4.13.0/modules/core/src/utils/logtagmanager.hpp": {
+    "sha256": "c1266d01296a33fa7df06d1b7ab93a197598b1c371763fd6974d52e36f805551",
+    "bytes": 9783
+  },
+  "opencv-4.13.0/modules/core/src/utils/logtagconfig.hpp": {
+    "sha256": "283d1ff1e11d35d2867d8df3de4953782520333a97f96807aeaa326f89d34c53",
+    "bytes": 1237
+  },
+  "opencv-4.13.0/modules/core/src/utils/logtagconfigparser.hpp": {
+    "sha256": "df4319febb1d07eec032905624c7ee8db03a1b440d9751d097feae6d37249b21",
+    "bytes": 1665
+  },
+  "opencv-4.13.0/modules/core/src/lda.cpp": {
+    "sha256": "cfe646d9f8d6ad6104da18243873ad7335e47c7c63e490539e40b3374b6be355",
+    "bytes": 42647
+  },
+  "opencv-4.13.0/modules/core/src/lapack.cpp": {
+    "sha256": "8cb4d60622f91793482a4c6384db0514f12574c6582629c8457062fd343e18ac",
+    "bytes": 53729
+  },
+  "opencv-4.13.0/modules/core/src/lpsolver.cpp": {
+    "sha256": "15175c85305de33709ababd8f39cc474d9bb6ec556125cdca356e762d3651ecc",
+    "bytes": 12546
+  },
+  "opencv-4.13.0/modules/core/src/lut.cpp": {
+    "sha256": "9c322cd5feb3b8782a02fc1ed251edb5938fcbe8c4a95abbd32c93b49a4fe310",
+    "bytes": 6617
+  },
+  "opencv-4.13.0/modules/core/src/mathfuncs_core.dispatch.cpp": {
+    "sha256": "9042b07ce4daa0723d309cd680466c1ed2cbf4c3b63736e48409c8c0673d9e38",
+    "bytes": 6923
+  },
+  "opencv-4.13.0/modules/core/src/mathfuncs_core.simd.hpp": {
+    "sha256": "6b6d76e180bef9ed4d79ff3ed5e9d467655ed0af41c60a38806750b36922992b",
+    "bytes": 32229
+  },
+  "opencv-4.13.0/modules/core/src/mathfuncs.hpp": {
+    "sha256": "6da850b1875d2dc63e36eda54574f2594e642debc141bd2c13f37f2edade3e24",
+    "bytes": 484
+  },
+  "opencv-4.13.0/modules/core/src/mathfuncs.cpp": {
+    "sha256": "f0b23ccedb496568972d33e276012706741a14057759ff297803fab717df32c9",
+    "bytes": 87357
+  },
+  "opencv-4.13.0/modules/core/src/matrix.cpp": {
+    "sha256": "5d245ec4f3899a8999f44a28dcee96681f47f98c9d28c18ebd0dd81132c19938",
+    "bytes": 37161
+  },
+  "opencv-4.13.0/modules/core/src/bufferpool.impl.hpp": {
+    "sha256": "355a8039436d7dac02e853b9ae2c115de7416e99d1924d6adacfc6ecdc559e14",
+    "bytes": 939
+  },
+  "opencv-4.13.0/modules/core/src/matrix_c.cpp": {
+    "sha256": "0cbc4dcfef65fb53f0876b33e3de432d76cbd5ad9f3ccf1f64d6949abb369744",
+    "bytes": 11295
+  },
+  "opencv-4.13.0/modules/core/src/matrix_decomp.cpp": {
+    "sha256": "887deb3905e1f4fbcab426be4346b4ada863051579f19e3011721704dd2ac596",
+    "bytes": 8830
+  },
+  "opencv-4.13.0/modules/core/src/matrix_iterator.cpp": {
+    "sha256": "6544133080561e965df66a83efcb6196c433896faeadb6e04caeb8c9aa5db619",
+    "bytes": 8519
+  },
+  "opencv-4.13.0/modules/core/src/matrix_expressions.cpp": {
+    "sha256": "764c79b50c1fd7b5293387dc74d2e6257e89f12cdab0430e01fd7aa8da29412e",
+    "bytes": 43917
+  },
+  "opencv-4.13.0/modules/core/src/matrix_sparse.cpp": {
+    "sha256": "ab96f974c17427ab172e7a67d3cc338e5184820f912af11e6951f73bdf9d751c",
+    "bytes": 24835
+  },
+  "opencv-4.13.0/modules/core/src/matmul.dispatch.cpp": {
+    "sha256": "d81a5be94766699cf0f442558106b42b4056759759d91ac3005a9d67682410b2",
+    "bytes": 46410
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/opencl/runtime/opencl_clblas.hpp": {
+    "sha256": "3b76c057001979ee78c6208f13c8b684c4f0e4d5a7b4a7d597495b80e65b95ed",
+    "bytes": 2366
+  },
+  "opencv-4.13.0/modules/core/src/intel_gpu_gemm.inl.hpp": {
+    "sha256": "904654286f66cdf6dcd096e0b71c9f407e98f10c99087e96249d583de4b211a3",
+    "bytes": 5183
+  },
+  "opencv-4.13.0/modules/core/src/matmul.simd.hpp": {
+    "sha256": "197b2edc01773be82be27e043cc6b89a8ca45d580ec24d583c358c89af1b6a13",
+    "bytes": 95374
+  },
+  "opencv-4.13.0/modules/core/src/matrix_transform.cpp": {
+    "sha256": "ac21aca6f550bd62af6e9c0e8e4d50e7d2f67866255cedc4d9957b542663fc2d",
+    "bytes": 34907
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/detail/dispatch_helper.impl.hpp": {
+    "sha256": "a6c812132580f4eaca6f35f2f19b32d40b24ef9ab0b75b51291c551c6b4224d9",
+    "bytes": 1400
+  },
+  "opencv-4.13.0/modules/core/src/merge.dispatch.cpp": {
+    "sha256": "d0a71dd9d7abece162773376e968e13261d8627e5f81dcb64129a77879aaf853",
+    "bytes": 7965
+  },
+  "opencv-4.13.0/modules/core/src/merge.simd.hpp": {
+    "sha256": "4ad55e6f3bd62c7495f8a1fc1e71032f4aec7913673d4488f1a8b353a4fec465",
+    "bytes": 6529
+  },
+  "opencv-4.13.0/modules/core/src/mean.dispatch.cpp": {
+    "sha256": "8e52e41c7bf7f1942a5c366683d2742040f6d82db770f253b7d61cb18205133a",
+    "bytes": 12156
+  },
+  "opencv-4.13.0/modules/core/src/mean.simd.hpp": {
+    "sha256": "88b71b43ed34f0dc601890a435be0ebec91a313448ec130b338208bdf7b425b3",
+    "bytes": 10964
+  },
+  "opencv-4.13.0/modules/core/src/matrix_operations.cpp": {
+    "sha256": "42818b3e135e7de9fd76f72603f578ff6c47634d1bb6ef74e889f31dcdeb1d65",
+    "bytes": 43132
+  },
+  "opencv-4.13.0/modules/core/src/minmax.cpp": {
+    "sha256": "d811fc22d40068e69b8203547c68e3bc2cea46f48b7dd7c4bd4d78bcc44e027f",
+    "bytes": 52816
+  },
+  "opencv-4.13.0/modules/core/src/ocl.cpp": {
+    "sha256": "e55ad3d08fe8786495760fa1bf0d9d6f3ecf19cb5018583003d0237b0879814b",
+    "bytes": 252504
+  },
+  "opencv-4.13.0/modules/core/src/ocl_disabled.impl.hpp": {
+    "sha256": "04d316a9cae2f950c37474029000734edc219733345ec94a34fc027838aa105c",
+    "bytes": 19008
+  },
+  "opencv-4.13.0/modules/core/src/matrix_wrap.cpp": {
+    "sha256": "4a5d7e0d333cdb130424e080e7cdd64aa9c1c333e7e085abef896d98220f6645",
+    "bytes": 58146
+  },
+  "opencv-4.13.0/modules/core/src/opencl/runtime/opencl_clblas.cpp": {
+    "sha256": "67a247c29882feca50898b6b704dc1b3b4265bed07b4d91e39d571c57a750b52",
+    "bytes": 4310
+  },
+  "opencv-4.13.0/modules/core/src/norm.dispatch.cpp": {
+    "sha256": "a43dee5135fcad900106395037da68be33df3d547913649e179c0a7ee0300bf8",
+    "bytes": 30278
+  },
+  "opencv-4.13.0/modules/core/src/norm.simd.hpp": {
+    "sha256": "20b51b3dab88b2d1a0f6699161981c382aaee75b6d89e26341db4306b95af65c",
+    "bytes": 51715
+  },
+  "opencv-4.13.0/modules/core/src/opencl/runtime/opencl_clfft.cpp": {
+    "sha256": "731561c559626abd66cfd6f3a46c5e9aa749031c0efc93e3ad4347f5425868bf",
+    "bytes": 4296
+  },
+  "opencv-4.13.0/modules/core/src/opencl/runtime/opencl_core.cpp": {
+    "sha256": "9cab531dfebcd1022221e47bf670b50857a2b6b98712f60cccae79455c1ff851",
+    "bytes": 15278
+  },
+  "opencv-4.13.0/modules/core/src/opengl.cpp": {
+    "sha256": "4c92c205dbd6c98efa348bd02e7e9572f5cac392ddc6293906b4ed321f94f017",
+    "bytes": 55995
+  },
+  "opencv-4.13.0/modules/core/src/ovx.cpp": {
+    "sha256": "1a2175ed2fd00d08408f07217dbf6b1cdca6d647d52b6a88e98c8bd8e1d0742c",
+    "bytes": 2390
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/tls.hpp": {
+    "sha256": "3b3261c3900c2d1ab82496b6722979996cb899f3110492d7177651790b6f9aef",
+    "bytes": 6682
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/openvx/ovx_defs.hpp": {
+    "sha256": "5e07f2a4496414acb38ddaa97bdc89a60258428c8f6f80d2f3a892365c1b9668",
+    "bytes": 1360
+  },
+  "opencv-4.13.0/modules/core/src/out.cpp": {
+    "sha256": "f8b489ebc781fa0e674330f0ed5db04e82039b9fcdf74f0ad99650f54f3938cc",
+    "bytes": 14537
+  },
+  "opencv-4.13.0/modules/core/src/parallel.cpp": {
+    "sha256": "5c597d88a7e807441eed9dfb2ec3c839627d704496388937d99156ab9a22a652",
+    "bytes": 30790
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/trace.private.hpp": {
+    "sha256": "ab486cf3394ba0415e89e55d37f2e678b57b86152bb418d90ff034a0c16e6b31",
+    "bytes": 10046
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/parallel/parallel_backend.hpp": {
+    "sha256": "79c71d6191b0931cb1db9931ca4ecaa156cfec83bc6e4e71b8407722ed3d7194",
+    "bytes": 3321
+  },
+  "opencv-4.13.0/modules/core/src/parallel/parallel.hpp": {
+    "sha256": "73a550f1f9381cfacb8d320b9f88c9ca2688bf0f0d4d8cbdc2f8ed34436da859",
+    "bytes": 780
+  },
+  "opencv-4.13.0/modules/core/src/parallel_impl.hpp": {
+    "sha256": "f995899f76417bc9dc5be79b15ad52ea3798ed1ccbff5635ab890ea48c2b223a",
+    "bytes": 555
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/fp_control_utils.hpp": {
+    "sha256": "2565900dff6e97772c2cb1434b8d136df85446e4596a708d73ae14f3cae9a8d8",
+    "bytes": 2215
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/fp_control.private.hpp": {
+    "sha256": "db54564f8feda1a7ec93f6865225973a18d4a0b050f1fc17055096340ed9987f",
+    "bytes": 888
+  },
+  "opencv-4.13.0/modules/core/src/parallel/parallel_openmp.cpp": {
+    "sha256": "b27a9c7df52179b2ebbab72cb0fbab95310119f451e2fe460b17ee230861836e",
+    "bytes": 1881
+  },
+  "opencv-4.13.0/modules/core/src/parallel/parallel_tbb.cpp": {
+    "sha256": "3fbc6651ab5348d7a25643c0bf22183ee0fa995d9cad4834b4fa52ef7415b9fd",
+    "bytes": 1917
+  },
+  "opencv-4.13.0/modules/core/src/parallel/factory_parallel.hpp": {
+    "sha256": "444aced546625daa97f7ea2f53c48e10cbe793f0b6ac0483c2f6e24d0ed72a72",
+    "bytes": 1280
+  },
+  "opencv-4.13.0/modules/core/src/parallel_impl.cpp": {
+    "sha256": "0fdb6928cd1d74f357c35bd53a48c39901da9a4308d27b75c50bf3c5ff05fe58",
+    "bytes": 27672
+  },
+  "opencv-4.13.0/modules/core/src/pca.cpp": {
+    "sha256": "28d7f41a2d8df65333a89aa5fea38f0b16ad67418512cb6103f34235a0dc24c4",
+    "bytes": 12804
+  },
+  "opencv-4.13.0/modules/core/src/persistence_base64_encoding.cpp": {
+    "sha256": "c4eb32d79c94aba6c83e77c6dc55ff4f4b2b270f23a69abbbc698c7c035bb0e3",
+    "bytes": 10839
+  },
+  "opencv-4.13.0/modules/core/src/persistence_impl.hpp": {
+    "sha256": "17f02095ddd9f1ef2608a83dc32cb214b067b62feeb1e5c58df2178442018ad5",
+    "bytes": 6857
+  },
+  "opencv-4.13.0/modules/core/src/persistence.hpp": {
+    "sha256": "b85282a3dd3e102accd955cbfff094f30f1183aabc711568775357ad0894118f",
+    "bytes": 6627
+  },
+  "opencv-4.13.0/modules/core/src/persistence_base64_encoding.hpp": {
+    "sha256": "ac3cf16163f51bb494ed6198724d49284f20714dfde057beea7d9a571aa79aab",
+    "bytes": 2943
+  },
+  "opencv-4.13.0/modules/core/src/parallel/parallel.cpp": {
+    "sha256": "7b26e59768cf59348593b8470ea37aefd5f70a92c943f1339993d0a43bf50fe5",
+    "bytes": 6554
+  },
+  "opencv-4.13.0/modules/core/src/parallel/registry_parallel.hpp": {
+    "sha256": "354593233a7555a3281ab036004cb53a8288499c5bfdc82041f41a462be53e64",
+    "bytes": 822
+  },
+  "opencv-4.13.0/modules/core/src/parallel/registry_parallel.impl.hpp": {
+    "sha256": "1786d3ed9bc5e3e18ab84ed40c000d8145a2ad3ca259eb211451cd7f28bc8bee",
+    "bytes": 6390
+  },
+  "opencv-4.13.0/modules/core/src/parallel/plugin_parallel_api.hpp": {
+    "sha256": "f65e25914af6d1ae00d89f7e6169f2a817e082675a8c737131b1b8d518206313",
+    "bytes": 2706
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/llapi/llapi.h": {
+    "sha256": "6e88f44979ceabf8e93ce3a0ed7dc89d72ebe09728bb8c3f78ea6ac2e823afdf",
+    "bytes": 3080
+  },
+  "opencv-4.13.0/modules/core/src/parallel/plugin_parallel_wrapper.impl.hpp": {
+    "sha256": "e37687c30b1fbe126077ca5c190de960f7f10bdd5eaea576d173f62593e2ef8f",
+    "bytes": 11022
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/plugin_loader.private.hpp": {
+    "sha256": "10caa1e0036a036b5b9dbeab03a8f51e69ffba4d6c7112fd49ab2d4de2c1fe1e",
+    "bytes": 4451
+  },
+  "opencv-4.13.0/modules/core/src/persistence_json.cpp": {
+    "sha256": "34084c29a9d9e1e276facb6612c67c07d58c41463ba58c1d7c33893ee7a7eff1",
+    "bytes": 25338
+  },
+  "opencv-4.13.0/modules/core/src/persistence_types.cpp": {
+    "sha256": "9052bbe9553f6e45e8054d22807b1de04a6db21b8106c598b9e88dac93cd2d8c",
+    "bytes": 8143
+  },
+  "opencv-4.13.0/modules/core/src/persistence.cpp": {
+    "sha256": "fa594278a5b583955fee33bb32f1842f425d9adc823fc8e438464690c677bf55",
+    "bytes": 86251
+  },
+  "opencv-4.13.0/modules/core/src/persistence_xml.cpp": {
+    "sha256": "433be9956020d2888b90f83cd76a7708eb16a00886b7c7d940f3af8ab10a7849",
+    "bytes": 29039
+  },
+  "opencv-4.13.0/modules/core/src/persistence_yml.cpp": {
+    "sha256": "354b915a077f3e4d486d96bfb1475a90c9fdc6c510a6f90f2fc3cd481ef7703c",
+    "bytes": 27677
+  },
+  "opencv-4.13.0/modules/core/src/stat.dispatch.cpp": {
+    "sha256": "38983c1e288a3aec6b71f5704e89fdc54c0643caee1c8314d23ad304217feb4b",
+    "bytes": 734
+  },
+  "opencv-4.13.0/modules/core/src/stat.simd.hpp": {
+    "sha256": "58709cc0c970eaadc6c02ca75be22c3eeeaa28b3f6e2401affbc07058311e796",
+    "bytes": 3311
+  },
+  "opencv-4.13.0/modules/core/src/split.dispatch.cpp": {
+    "sha256": "0ef576d1c439671aeb379b8a6e6187b31725dc18ccb9378158565af630ccf655",
+    "bytes": 7091
+  },
+  "opencv-4.13.0/modules/core/src/split.simd.hpp": {
+    "sha256": "570f782814d6a95d56b6238cc34fdd9b1bc75581d1624271473bdc37952ff5d1",
+    "bytes": 5967
+  },
+  "opencv-4.13.0/modules/core/src/rand.cpp": {
+    "sha256": "f0618dbebd651152824f205834a6625524037314dcc7642e7c20db9b77586fd2",
+    "bytes": 29872
+  },
+  "opencv-4.13.0/modules/core/src/stl.cpp": {
+    "sha256": "bb6429cbf421a1205289061bac387641679300c76fd3ce5b7d297189280069f7",
+    "bytes": 2243
+  },
+  "opencv-4.13.0/modules/core/src/stat_c.cpp": {
+    "sha256": "c3da8ba45d992566979d2d5726e2812404a3ed7e47066421ba57ab7ae9382fd3",
+    "bytes": 3237
+  },
+  "opencv-4.13.0/modules/core/src/softfloat.cpp": {
+    "sha256": "439d023e20307bcefad2309e486949ddd605a42acf7e4ba6118858812564c9f8",
+    "bytes": 168014
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/softfloat.hpp": {
+    "sha256": "43c01ea3c1b3f99352437dddaca1b9b862e9d9b734c7a901f63abad5b28e3412",
+    "bytes": 21195
+  },
+  "opencv-4.13.0/modules/core/src/sum.dispatch.cpp": {
+    "sha256": "22dbcb5a1e7dbabd35555e5a019a760ff55f45b55bd9aceb838075174ca35021",
+    "bytes": 6723
+  },
+  "opencv-4.13.0/modules/core/src/sum.simd.hpp": {
+    "sha256": "ebe5cc0487fd144ad3547350c0fa9f0a41f129d7bbb83e5422dcf1a799195d7d",
+    "bytes": 13593
+  },
+  "opencv-4.13.0/modules/core/src/tables.cpp": {
+    "sha256": "f7cbc6cc09d973ca70d7eaf38d6369b9f9b364383db7edf1027b559cce3dd4c7",
+    "bytes": 13505
+  },
+  "opencv-4.13.0/modules/core/src/types.cpp": {
+    "sha256": "9d49b99da4de14e20c53d3dceb730627fceadb6c107bf9428505972d07c21d72",
+    "bytes": 7888
+  },
+  "opencv-4.13.0/modules/core/src/trace.cpp": {
+    "sha256": "e883e1e3c04ded809f524a2ea7c166d8d72870aade5f907e0439baceccdecd4b",
+    "bytes": 34874
+  },
+  "opencv-4.13.0/modules/core/src/system.cpp": {
+    "sha256": "c760e10adc1e36bbb9eeee84b68407cdfae1bf7bf2254789270ad9fbfd86b568",
+    "bytes": 89983
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/utils/instrumentation.hpp": {
+    "sha256": "dcb6a1ae866d143f400f844a4761b52f64429342a7511d1f6402b87105511e9d",
+    "bytes": 3829
+  },
+  "opencv-4.13.0/modules/core/src/umatrix.cpp": {
+    "sha256": "937c6322e6b95bd931bc3ae8c472d9fd00ac35d559f377294139ed914449cebf",
+    "bytes": 37611
+  },
+  "opencv-4.13.0/modules/core/src/umatrix.hpp": {
+    "sha256": "7d2ebb9fee4d906a0c0440879e100062dd06bdcf61112058ad3de1c925577b90",
+    "bytes": 520
+  },
+  "opencv-4.13.0/modules/core/src/utils/datafile.cpp": {
+    "sha256": "2acb6c829dd9aab2e5b80d9cfe488253282a25d124a202106e905e0574107fba",
+    "bytes": 15994
+  },
+  "opencv-4.13.0/modules/core/src/utils/filesystem.cpp": {
+    "sha256": "876064f150d4b8b9ac0b1b1f1ff0ee8903271da7f568322e66fe2d69202be3dd",
+    "bytes": 17233
+  },
+  "opencv-4.13.0/modules/core/src/utils/plugin_loader.impl.hpp": {
+    "sha256": "50665a0d798e6b0dac4421cf3bcd2eaf5fb33166efc0b4fd738c22e9354a4213",
+    "bytes": 1812
+  },
+  "opencv-4.13.0/modules/core/src/utils/logtagconfigparser.cpp": {
+    "sha256": "0690d42023ceba55e1703088ac9fdab7c8f09d4ea64242b78fd1fe01e2471a38",
+    "bytes": 8480
+  },
+  "opencv-4.13.0/modules/core/src/utils/logtagmanager.cpp": {
+    "sha256": "65a0b9f1bc58ac063f090ccd32e450b7f1d8c96f9391c82918c09318612b1f56",
+    "bytes": 14753
+  },
+  "opencv-4.13.0/modules/core/src/va_intel.cpp": {
+    "sha256": "4d3f219ae18d44743c20e438107daec81a6c2c224763faabde9b344487961f15",
+    "bytes": 31777
+  },
+  "opencv-4.13.0/modules/core/src/utils/samples.cpp": {
+    "sha256": "918fdb6d4b2c5a6600b3ed61d5e6af920f3412a0e3d90af8e014e9c8befa9b79",
+    "bytes": 2625
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/hal/intrin_avx.hpp": {
+    "sha256": "a94f0297f74c4081a341d27eace3e000f6720d2419df890ffbeeccf2174d37aa",
+    "bytes": 136500
+  },
+  "opencv-4.13.0/modules/core/include/opencv2/core/hal/intrin_avx512.hpp": {
+    "sha256": "b7fd72f1e96a00370e1096a1d61f75f6bf0355d9f2b1fff2bca64affac7aa23e",
+    "bytes": 163084
+  },
+  "opencv-4.13.0/modules/imgproc/src/accum.cpp": {
+    "sha256": "9785e30e1df8e386146f8632b8caea49da0e4d69b2000422004f13268e275781",
+    "bytes": 27738
+  },
+  "opencv-4.13.0/modules/imgproc/src/precomp.hpp": {
+    "sha256": "a3a312542ee46764d1f7030d7c11dc36ad273f58f1987265fbfd014a76729cf0",
+    "bytes": 4498
+  },
+  "opencv-4.13.0/modules/imgproc/include/opencv2/imgproc.hpp": {
+    "sha256": "246c0d95a6bea416087ee5ce3294444756fb4c77351a1d4f3b48fb11bee953fe",
+    "bytes": 268783
+  },
+  "opencv-4.13.0/modules/imgproc/include/opencv2/imgproc/segmentation.hpp": {
+    "sha256": "1f27474710e792c7ff1f1a63bac86876f53ceb0f648d32eb30b99e67d3dd5fdf",
+    "bytes": 6020
+  },
+  "opencv-4.13.0/modules/imgproc/include/opencv2/imgproc/imgproc_c.h": {
+    "sha256": "c0b4bd7f7769c966dbfada1d3ae65f8ce214fce1038339245a174ac40140ca77",
+    "bytes": 51155
+  },
+  "opencv-4.13.0/modules/imgproc/include/opencv2/imgproc/types_c.h": {
+    "sha256": "c844682f2f7d8dcbce7acdac069b41203dd8a4309946b3d23dbe22663d74a012",
+    "bytes": 18400
+  },
+  "opencv-4.13.0/modules/imgproc/include/opencv2/imgproc/hal/hal.hpp": {
+    "sha256": "efecd002537f5d66489e05401dadca222785c8bd4c69d7d70e1e131fd69a0097",
+    "bytes": 13288
+  },
+  "opencv-4.13.0/modules/imgproc/src/hal_replacement.hpp": {
+    "sha256": "31b6410e1ab9cae1e3785ecfba6339210b0d92ed91f9e6bb410877861dd9f08a",
+    "bytes": 74935
+  },
+  "opencv-4.13.0/modules/imgproc/include/opencv2/imgproc/hal/interface.h": {
+    "sha256": "27dd95facd92c6ca8e6fe4b981c51dbdb22b9dafba133cf2be0f5a03f5d8152e",
+    "bytes": 1236
+  },
+  "opencv-4.13.0/modules/imgproc/src/_geom.h": {
+    "sha256": "c2395b5373a491abffdab61ca9c79161405e13c28023ffe6fa6f241e9297086b",
+    "bytes": 2333
+  },
+  "opencv-4.13.0/modules/imgproc/src/filterengine.hpp": {
+    "sha256": "ffc9c6bb2983072e7006b302745d7f773266ad6c00a91f6d2ac181e2601351be",
+    "bytes": 16343
+  },
+  "opencv-4.13.0/modules/imgproc/src/accum.simd.hpp": {
+    "sha256": "d4aa5eb859aabd8c7a80fb2b498e41736f93c9402f8b471061787a8be6ff0572",
+    "bytes": 143271
+  },
+  "opencv-4.13.0/modules/imgproc/src/approx.cpp": {
+    "sha256": "d2b9fa2419c9eb6f880676e862d5b5fb38cd250b2db26da3638efc64181d4bcb",
+    "bytes": 31995
+  },
+  "opencv-4.13.0/modules/imgproc/src/bilateral_filter.dispatch.cpp": {
+    "sha256": "e398164395de07e3476079869f91b3334548f378a2931f7b7edf6f79cd0dfd4c",
+    "bytes": 16499
+  },
+  "opencv-4.13.0/modules/imgproc/src/bilateral_filter.simd.hpp": {
+    "sha256": "dd6dd1ca428c441391d623e4b5313076c37ca19146acc1c03e8b50fc12c882ac",
+    "bytes": 41204
+  },
+  "opencv-4.13.0/modules/imgproc/src/blend.cpp": {
+    "sha256": "3c7e95ec8ba8e9f7f16055a220ea51820a08b8e7cfcb27bc5d70c71c4187588f",
+    "bytes": 19275
+  },
+  "opencv-4.13.0/modules/imgproc/src/accum.dispatch.cpp": {
+    "sha256": "0aebd23dc34639b222cdcead27df36998dcc0180f7a57bf9c89399f9c9d8b49c",
+    "bytes": 681
+  },
+  "opencv-4.13.0/modules/imgproc/src/canny.cpp": {
+    "sha256": "babe62d12fea3f8bd33e056b701afc37a2822335717d4136215f2a754da4fdc2",
+    "bytes": 33627
+  },
+  "opencv-4.13.0/modules/imgproc/src/clahe.cpp": {
+    "sha256": "380ef3b5bd53a04cd0738e0e5d3506ef5e3a4c614a5ca778f1e6490ef73fb436",
+    "bytes": 16300
+  },
+  "opencv-4.13.0/modules/imgproc/src/color.cpp": {
+    "sha256": "184528bbfa641fc3a432465687a18e8b82e2eaff81ef45212fc6d67e344f51a4",
+    "bytes": 17400
+  },
+  "opencv-4.13.0/modules/imgproc/src/color.hpp": {
+    "sha256": "55d88511e32a51384ef490588687fa97f5e5247770c99a4b683e3ee96984930f",
+    "bytes": 23446
+  },
+  "opencv-4.13.0/modules/imgproc/src/color.simd_helpers.hpp": {
+    "sha256": "1888f75db0b5e64a9e0483b950fb3d232cfc5572f70a7b981c4ccf573a4af940",
+    "bytes": 4976
+  },
+  "opencv-4.13.0/modules/imgproc/src/color_hsv.dispatch.cpp": {
+    "sha256": "74db571d0a277ba4fe71aa67e96e6ebe958f8f055893c88b0b63a4e9cd15c220",
+    "bytes": 12768
+  },
+  "opencv-4.13.0/modules/imgproc/src/color_hsv.simd.hpp": {
+    "sha256": "36beb5d738943047a165e340f4373f33d7aa4be23e8f66873ad2447185103fac",
+    "bytes": 45998
+  },
+  "opencv-4.13.0/modules/imgproc/src/box_filter.dispatch.cpp": {
+    "sha256": "f8eeadaacf3a950789f3ac46ffdc675dfc1f92aceb1e079a1b602533b3872149",
+    "bytes": 19774
+  },
+  "opencv-4.13.0/modules/imgproc/src/box_filter.simd.hpp": {
+    "sha256": "df99fc55a5d690a51241bede11b2a25c6ed6d613088eaa4d7b85be02861d14b0",
+    "bytes": 61484
+  },
+  "opencv-4.13.0/modules/imgproc/src/color_rgb.dispatch.cpp": {
+    "sha256": "4376188ade20a5dc0dcdd3e061e8a9fa72d8ef122d0fb8b72f9fe9a9d3d1e003",
+    "bytes": 20790
+  },
+  "opencv-4.13.0/modules/imgproc/src/color_rgb.simd.hpp": {
+    "sha256": "f6b1abd60b7ce0c7828ad50418c9ac691f8cf0d3e9c6ddf2de3b0c81b89b4047",
+    "bytes": 35617
+  },
+  "opencv-4.13.0/modules/imgproc/src/color_lab.cpp": {
+    "sha256": "ab867ecd482d3f26a2fb2111b1224903e40a809b00f17f30276b6e00d934b8b6",
+    "bytes": 178304
+  },
+  "opencv-4.13.0/modules/imgproc/src/colormap.cpp": {
+    "sha256": "77593e61717b8ef51035c5a3e280e1e54dc415052d5361b9aa23dbbdeb5c0928",
+    "bytes": 181474
+  },
+  "opencv-4.13.0/modules/imgproc/src/contours_approx.cpp": {
+    "sha256": "f06f2a9d1b264d9ea9ab1505dd36d7ca3572c98b9937efaca96b39a8b7971aef",
+    "bytes": 9800
+  },
+  "opencv-4.13.0/modules/imgproc/src/contours_common.hpp": {
+    "sha256": "4863a1686b476ef1aac04bf0b8c580ccd15c17594f2b68f3c93aa2f63884bac3",
+    "bytes": 8811
+  },
+  "opencv-4.13.0/modules/imgproc/src/contours_blockstorage.hpp": {
+    "sha256": "7961f2b668d46af0208d0ddcda60cfe1e141ac2efd47cb289f4760bbaf882058",
+    "bytes": 5146
+  },
+  "opencv-4.13.0/modules/imgproc/src/contours.cpp": {
+    "sha256": "532dd2693e770acdd3a3e612d22f5b9157c46ae998759848aa791d3005031c1f",
+    "bytes": 60352
+  },
+  "opencv-4.13.0/modules/imgproc/include/opencv2/imgproc/detail/legacy.hpp": {
+    "sha256": "625ce2e2c4abca32c44815e8ea6ea0d19c7d6f7db2cd142bd7e19b3770d953c4",
+    "bytes": 1402
+  },
+  "opencv-4.13.0/modules/imgproc/src/color_yuv.dispatch.cpp": {
+    "sha256": "02fe343e35cb3ca5fa21347c54bfe26e2ac9b72c7943df977c291c399bfa5611",
+    "bytes": 21249
+  },
+  "opencv-4.13.0/modules/imgproc/src/color_yuv.simd.hpp": {
+    "sha256": "1feaa856dbbc9954713aa94dd73e11fb071a62552ca3cd20fbe0579a886d6a21",
+    "bytes": 80706
+  },
+  "opencv-4.13.0/modules/imgproc/src/contours_common.cpp": {
+    "sha256": "93621df3dcff1464a6f8137a934d79d67a57a515e4d8f6afd4bbdd209a06fc9a",
+    "bytes": 2360
+  },
+  "opencv-4.13.0/modules/imgproc/src/contours_link.cpp": {
+    "sha256": "72218fb57f5c5b98b2d41763fa6b698f2899d7690bc2cba130f4f561cd930b41",
+    "bytes": 12459
+  },
+  "opencv-4.13.0/modules/imgproc/src/contours_new.cpp": {
+    "sha256": "52627e190b93d15e7d0e9ca312e7e3350901e302fe5769a914260b9024919284",
+    "bytes": 21109
+  },
+  "opencv-4.13.0/modules/imgproc/src/convhull.cpp": {
+    "sha256": "f3f0e9d1acc68ec2b420bb8f463079aad4708046e2a1c42ae86306e501bd3308",
+    "bytes": 26359
+  },
+  "opencv-4.13.0/modules/imgproc/src/corner.cpp": {
+    "sha256": "90d7ff9ae0ba813b6afb807f7498b79e3158996eb64fdce06fc0275902fdf6dd",
+    "bytes": 27310
+  },
+  "opencv-4.13.0/modules/imgproc/src/corner.hpp": {
+    "sha256": "ad87c7cb7014a1a2c63c71d0fcc651dc71fe2b406e23ff1282bb445ee223295c",
+    "bytes": 2630
+  },
+  "opencv-4.13.0/modules/imgproc/src/cornersubpix.cpp": {
+    "sha256": "32d2db501c212b7c69c1b598d4f6cd599f0b758bf36a4a057b8e41206aef51e2",
+    "bytes": 6615
+  },
+  "opencv-4.13.0/modules/imgproc/src/deriv.cpp": {
+    "sha256": "bd40c56d2baba76732435697526a3c15f335082b6da1b02f104ddbb89feaaef8",
+    "bytes": 30099
+  },
+  "opencv-4.13.0/modules/imgproc/src/filter.hpp": {
+    "sha256": "c704f5f7d42bd5ff744799d9d0d8f505d8d44168819add2e1f73d4f5d9242d9b",
+    "bytes": 2891
+  },
+  "opencv-4.13.0/modules/imgproc/src/distransform.cpp": {
+    "sha256": "2c98f099dac2bcaadac46ac51cc8cb5ba80dc26ab290301faf74b9ac9b333549",
+    "bytes": 28646
+  },
+  "opencv-4.13.0/modules/imgproc/src/demosaicing.cpp": {
+    "sha256": "0301cab02d711ef8e38f1a2345e6b3f91852c4549d90576a561d9aa7a30343ec",
+    "bytes": 76597
+  },
+  "opencv-4.13.0/modules/imgproc/src/emd.cpp": {
+    "sha256": "6538d4c81f70de012877338ce554a684a40b3c85c5cd0441489b8e197a4832bd",
+    "bytes": 36147
+  },
+  "opencv-4.13.0/modules/imgproc/src/emd_new.cpp": {
+    "sha256": "d8ddce6faa78ba34feec7429af6e1a3c42c7b936c08105470e6ca456cbc2c0e8",
+    "bytes": 27821
+  },
+  "opencv-4.13.0/modules/imgproc/src/drawing.cpp": {
+    "sha256": "feb12ebea7b08419289a46d043afeee665b77217d1faed89d86ad30d2d8af0e0",
+    "bytes": 99706
+  },
+  "opencv-4.13.0/modules/imgproc/src/featureselect.cpp": {
+    "sha256": "fe8e96feb7c903c2c15ca050e78d0eacf2ac514f77d740e5e121fc3619c369aa",
+    "bytes": 20278
+  },
+  "opencv-4.13.0/modules/imgproc/src/gabor.cpp": {
+    "sha256": "f2230202ca6f0b3541c07a7b7001b39230d4bf3d062397a489213f351647a6cf",
+    "bytes": 3738
+  },
+  "opencv-4.13.0/modules/imgproc/src/floodfill.cpp": {
+    "sha256": "2def932148e7e8ed28d5da2ad88043e19fe2217a4ca9d3cfde62214d9138fd75",
+    "bytes": 21394
+  },
+  "opencv-4.13.0/modules/imgproc/src/generalized_hough.cpp": {
+    "sha256": "d8638ec92f7485ba9cd34e8d839e895253bea953d5795ea165f7502e818623a9",
+    "bytes": 32020
+  },
+  "opencv-4.13.0/modules/imgproc/src/geometry.cpp": {
+    "sha256": "05ec6cfba5ad82ac809118f7c9b657eee3bb2467f87046c6ed2f5606a2a59996",
+    "bytes": 27613
+  },
+  "opencv-4.13.0/modules/imgproc/src/grabcut.cpp": {
+    "sha256": "85ce74ea1fa6c9239613c81ef148e9535e0575b6eab5a9053534be9e8f11a164",
+    "bytes": 20400
+  },
+  "opencv-4.13.0/modules/imgproc/include/opencv2/imgproc/detail/gcgraph.hpp": {
+    "sha256": "e9e67386e93dd84a428af70e31313a0240a4df982f6c184d50180d9d6c2ea2f9",
+    "bytes": 11738
+  },
+  "opencv-4.13.0/modules/imgproc/src/hershey_fonts.cpp": {
+    "sha256": "5fa0d65264f72e5b166d07973aabd49f27cc54d0074062a8efc312bf9ab95432",
+    "bytes": 100288
+  },
+  "opencv-4.13.0/modules/imgproc/src/connectedcomponents.cpp": {
+    "sha256": "1c8b202461b4e0e0028bd6d78687ab43bb4524bda8ca6ab13b3426a3cf7c0c80",
+    "bytes": 334314
+  },
+  "opencv-4.13.0/modules/imgproc/src/ccl_bolelli_forest_singleline.inc.hpp": {
+    "sha256": "1d1e3f24e76db6a13053905ebf0ba69a2092ca3ec973efb321eafd532cd0506b",
+    "bytes": 2394
+  },
+  "opencv-4.13.0/modules/imgproc/src/ccl_bolelli_forest_firstline.inc.hpp": {
+    "sha256": "8889b88b5da5d3c61e52547d5155133ccd69db9ab001db7c3431743a9c9698e2",
+    "bytes": 5431
+  },
+  "opencv-4.13.0/modules/imgproc/src/ccl_bolelli_forest.inc.hpp": {
+    "sha256": "47a634ab78d77f3b85d39ffd2009e14dcca32f9964f9b168d3a1052b6275c871",
+    "bytes": 50812
+  },
+  "opencv-4.13.0/modules/imgproc/src/ccl_bolelli_forest_lastline.inc.hpp": {
+    "sha256": "8ac14df51b33bb264362253a901171042e178113eee0f1f2798cc581b815f163",
+    "bytes": 20977
+  },
+  "opencv-4.13.0/modules/imgproc/src/filter.dispatch.cpp": {
+    "sha256": "35db6fdc7f8e9e887a583109c33d17b4e05af29fd1858d552ecfedfa5d6a57d3",
+    "bytes": 66283
+  },
+  "opencv-4.13.0/modules/imgproc/src/filter.simd.hpp": {
+    "sha256": "a47ba2cf0d60b8496202d09ba5e56b74337acab7a25f8be4577db43d1aad5e01",
+    "bytes": 149296
+  },
+  "opencv-4.13.0/modules/imgproc/src/histogram.cpp": {
+    "sha256": "558d93aeede8956b89f74d56e4575e4e663cc010e7751f43b5fece362ec9a0a7",
+    "bytes": 118984
+  },
+  "opencv-4.13.0/modules/imgproc/src/hough.cpp": {
+    "sha256": "18e8f3621e059e67ea2816e8bb74a340e1d7c3bb898b7f5f11269e8cdcd16c6e",
+    "bytes": 90640
+  },
+  "opencv-4.13.0/modules/imgproc/src/intelligent_scissors.cpp": {
+    "sha256": "0fc17eb68ce3a558c3e062848a2b60b23c389b518607a6d687408709b8128003",
+    "bytes": 26116
+  },
+  "opencv-4.13.0/modules/imgproc/src/intersection.cpp": {
+    "sha256": "d76da4f89e83709ce3c61c413b8ff9d425dc4a2f272518a3da9a6ef918b1d947",
+    "bytes": 11452
+  },
+  "opencv-4.13.0/modules/imgproc/src/linefit.cpp": {
+    "sha256": "e7d88be5052d68a41c4f51f71c07eaef7370ae2d87707133196a1edc9f25f950",
+    "bytes": 17497
+  },
+  "opencv-4.13.0/modules/imgproc/src/main.cpp": {
+    "sha256": "a5534f921dcf88b4898d9c42577e53f5b130407c1a4a14ca7c1480697fd912bd",
+    "bytes": 2317
+  },
+  "opencv-4.13.0/modules/imgproc/src/matchcontours.cpp": {
+    "sha256": "fe809c857828399730d00d2cfdb3ef38b8cc64b7f74b9ffcb9e8470fbcb32cec",
+    "bytes": 5677
+  },
+  "opencv-4.13.0/modules/imgproc/src/lsd.cpp": {
+    "sha256": "54e8d04a4da08d787c1beaba4cff6f3711a982746847f084fae3004d6184732d",
+    "bytes": 41395
+  },
+  "opencv-4.13.0/modules/imgproc/src/min_enclosing_triangle.cpp": {
+    "sha256": "53a4117560c1f67c3cf86576d34fcfa2389e36123cfe7461b434648ba0f1fe10",
+    "bytes": 66146
+  },
+  "opencv-4.13.0/modules/imgproc/src/min_enclosing_convex_polygon.cpp": {
+    "sha256": "d9be1d250fade8f0b56f633fc1dfcd42e69f583e0a9f9822db7186655dff821e",
+    "bytes": 34248
+  },
+  "opencv-4.13.0/modules/imgproc/src/median_blur.dispatch.cpp": {
+    "sha256": "4d1b444de3f985c20f8ff16160f3ceb027c2f5e738bfd0a9a9cad3373ac11e51",
+    "bytes": 8915
+  },
+  "opencv-4.13.0/modules/imgproc/src/median_blur.simd.hpp": {
+    "sha256": "92945babdfd756a28019ea93c3d3f89efd3b243329a8edf5096aa337b879407c",
+    "bytes": 34270
+  },
+  "opencv-4.13.0/modules/imgproc/src/moments.cpp": {
+    "sha256": "9a71eb8df3fe0ae4376b53213896482a59ad6ea617cf6913f72bb6f1a54af38b",
+    "bytes": 25751
+  },
+  "opencv-4.13.0/modules/imgproc/src/imgwarp.cpp": {
+    "sha256": "44b6d72e0c218617363ebb04307ae7470e279bd834dfc188bc17fd8ca2fd57a1",
+    "bytes": 137178
+  },
+  "opencv-4.13.0/modules/imgproc/src/imgwarp.hpp": {
+    "sha256": "e0233176a708383a3b34dbf7f8b599dddc538a9f4befa50d5b661c7fe9ddef0f",
+    "bytes": 3842
+  },
+  "opencv-4.13.0/modules/imgproc/src/phasecorr_iterative.cpp": {
+    "sha256": "3bd7d43b88996e17441ab5fee7e39a621d6328456a36ddfbd38fae24983cc793",
+    "bytes": 6698
+  },
+  "opencv-4.13.0/modules/imgproc/src/phasecorr.cpp": {
+    "sha256": "b3394c89d97b25e36e6490e9f03db15ac6820963c945e6052a1d99e616c18460",
+    "bytes": 23317
+  },
+  "opencv-4.13.0/modules/imgproc/src/rotcalipers.cpp": {
+    "sha256": "ab6fad83bdd949255ace7edba772a3e0c9c3b39266de1f69f4aa6db331d2cb9e",
+    "bytes": 13679
+  },
+  "opencv-4.13.0/modules/imgproc/src/samplers.cpp": {
+    "sha256": "aaae361d7a4d9f7131cb4a63c179bb7ad80bc9adddaa0a4ab347dab156bd2ab7",
+    "bytes": 16528
+  },
+  "opencv-4.13.0/modules/imgproc/src/morph.dispatch.cpp": {
+    "sha256": "07ade54a1ba3aac40933dfd352ed8efddf77d837d3acb603f21e444cee98559d",
+    "bytes": 54595
+  },
+  "opencv-4.13.0/modules/imgproc/src/morph.simd.hpp": {
+    "sha256": "705cebdf6bc833f48d0f25f8b1ad670b40ee65ca7f8be83a70a136301c6effd0",
+    "bytes": 31699
+  },
+  "opencv-4.13.0/modules/imgproc/src/pyramids.cpp": {
+    "sha256": "822bf1fcbe82bb7f088d2f4d3f8249833ac3658bfb18026016aa4caacfcf02e9",
+    "bytes": 70712
+  },
+  "opencv-4.13.0/modules/imgproc/src/segmentation.cpp": {
+    "sha256": "0742ea6ce71b9e94a72aa1ef0989d1b88c58907083bc5b8b85f349e06ed9848b",
+    "bytes": 19783
+  },
+  "opencv-4.13.0/modules/imgproc/src/shapedescr.cpp": {
+    "sha256": "527408f7235d1d91585260b26879b416ce41bd6401c6d1f5efb0f496430f536c",
+    "bytes": 44076
+  },
+  "opencv-4.13.0/modules/imgproc/src/spatialgradient.cpp": {
+    "sha256": "01705678a9e7ac2b61055cf412ad4d23040418ebe876d6871dbd16bbfaeae8ad",
+    "bytes": 12449
+  },
+  "opencv-4.13.0/modules/imgproc/src/subdivision2d.cpp": {
+    "sha256": "7863b0dec9896d99d9a4b75ab6deb330632fd5a17fe12691761eea5a3b7f3a40",
+    "bytes": 23860
+  },
+  "opencv-4.13.0/modules/imgproc/src/stackblur.cpp": {
+    "sha256": "efbd81bb39b2de85d56db8545d74aa42ec36ae6cb76acee1f4c169466e03fc7a",
+    "bytes": 47612
+  },
+  "opencv-4.13.0/modules/imgproc/src/resize.cpp": {
+    "sha256": "89db2e4de92e1d03890f3e7fe517f895a36514f355da097b2c8e4c55fc1847e4",
+    "bytes": 171787
+  },
+  "opencv-4.13.0/modules/imgproc/src/resize.hpp": {
+    "sha256": "2f9415052c7090c3a2c7f724d05c5a9701ff4366edc259b91aeb05d527b6a7de",
+    "bytes": 3161
+  },
+  "opencv-4.13.0/modules/imgproc/src/fixedpoint.inl.hpp": {
+    "sha256": "daf6e02b7a4fba0e81393f32d62cffee43362fb0a40efac2c835005090d944fa",
+    "bytes": 24455
+  },
+  "opencv-4.13.0/modules/imgproc/src/tables.cpp": {
+    "sha256": "e7a7fdcb753dace41baef4ac31aff9195dbf23b7c4180e8f0f2f6f7a9e89e56a",
+    "bytes": 14672
+  },
+  "opencv-4.13.0/modules/imgproc/src/sumpixels.dispatch.cpp": {
+    "sha256": "5ae101949c8771c3e1a771736aaab81f2e6328060acf2ae7a071a840c7f76813",
+    "bytes": 17715
+  },
+  "opencv-4.13.0/modules/imgproc/src/sumpixels.simd.hpp": {
+    "sha256": "0f6596797f5a50c04a71e8a53b3e281bff40f4fdf29ddd38213285d1cbe00554",
+    "bytes": 65932
+  },
+  "opencv-4.13.0/modules/imgproc/src/templmatch.cpp": {
+    "sha256": "3ee1cd3fb781c30ad85c9c1e35a73b73881b1907cf293aa2ebb083c669bd0857",
+    "bytes": 44303
+  },
+  "opencv-4.13.0/modules/imgproc/src/utils.cpp": {
+    "sha256": "8602ff5b7b73061cae694713acf9f598ef8c9ad68bcf1151a35a367636f6181c",
+    "bytes": 3815
+  },
+  "opencv-4.13.0/modules/imgproc/src/smooth.dispatch.cpp": {
+    "sha256": "8565ece97a0986fa8567de45aae4cb8f8e85a5011472634c9726da2bc022f06c",
+    "bytes": 30829
+  },
+  "opencv-4.13.0/modules/imgproc/src/smooth.simd.hpp": {
+    "sha256": "d42f46a162fe3aa4783b18bded4fe882d1c2720b98e6462dc3a048c057b0f14d",
+    "bytes": 127088
+  },
+  "opencv-4.13.0/modules/imgproc/src/thresh.cpp": {
+    "sha256": "d397c55c0d570fe67e4656a9833d013ff3ef56dc1943c7a222600cf616400824",
+    "bytes": 67887
+  },
+  "opencv-4.13.0/modules/imgproc/src/resize.sse4_1.cpp": {
+    "sha256": "74beb9d90da1feed04bb3e8ee6ecc8d223e5f3099427d9c2a3f5e072100a9e60",
+    "bytes": 8998
+  },
+  "opencv-4.13.0/modules/imgproc/src/imgwarp.sse4_1.cpp": {
+    "sha256": "7494b15f62b525a2310197eaf63ad9db20dce52d68e74c6cf75a37cd1b0d335a",
+    "bytes": 24374
+  },
+  "opencv-4.13.0/modules/imgproc/src/corner.avx.cpp": {
+    "sha256": "0eff9a057662665e6acf0ed4acc05f97b524713fb4cbabd4c589f0939dab10ce",
+    "bytes": 8494
+  },
+  "opencv-4.13.0/modules/imgproc/src/imgwarp.avx2.cpp": {
+    "sha256": "ba7e60317b7467d9ef09ae7752eb9d5d17320f5764afa7b0652aaa293780f3d7",
+    "bytes": 4372
+  },
+  "opencv-4.13.0/modules/imgproc/src/resize.avx2.cpp": {
+    "sha256": "6dabfd742efd71723510eb740945b5d987a6ad97735a11bd1ae1fa4f8f6a6d58",
+    "bytes": 10545
+  },
+  "opencv-4.13.0/modules/imgproc/src/sumpixels.avx512_skx.hpp": {
+    "sha256": "77b15cf1385cbf1226b3eb16515b027560d58407103e3daa23279fca46c75186",
+    "bytes": 21839
+  },
+  "pybind11-3.0.1/include/pybind11/numpy.h": {
+    "sha256": "f890749a209828190b31c7e6d809c73181916ad38c24edc9fd426be6c7c9d811",
+    "bytes": 91577
+  },
+  "pybind11-3.0.1/include/pybind11/pybind11.h": {
+    "sha256": "5eb3f2ee224bfd2287e38f63ea219f3691525f69e4d7dbb6710de7c2c426c0fa",
+    "bytes": 160679
+  },
+  "pybind11-3.0.1/include/pybind11/detail/class.h": {
+    "sha256": "5585547173094e0ca71a7d8a475352f3b6ed37366cf48d93c501103fd7365473",
+    "bytes": 31236
+  },
+  "pybind11-3.0.1/include/pybind11/attr.h": {
+    "sha256": "bde6db9da5a5f5e9942217f69318c1755ae943b75cad287b4df12ccb23d277d4",
+    "bytes": 26223
+  },
+  "pybind11-3.0.1/include/pybind11/detail/common.h": {
+    "sha256": "38c8407857a3864a1a2e6141c837dd1f9d64ecc4dc4d387a2b1133ad8df5a60c",
+    "bytes": 59916
+  },
+  "pybind11-3.0.1/include/pybind11/conduit/wrap_include_python_h.h": {
+    "sha256": "b86c91eda51e381e8411919f6f5f5367cb3270fede6d9db0e7131a2013226d33",
+    "bytes": 2069
+  },
+  "pybind11-3.0.1/include/pybind11/detail/pybind11_namespace_macros.h": {
+    "sha256": "1d402e09a8517ad43671a769914b8be2b36902ecf10161c1802082546f05ede4",
+    "bytes": 3501
+  },
+  "pybind11-3.0.1/include/pybind11/cast.h": {
+    "sha256": "7d33db068e6cf32fb1384a05f18f7546f683312284c33ffee5546f3f8376c6c9",
+    "bytes": 93239
+  },
+  "pybind11-3.0.1/include/pybind11/detail/descr.h": {
+    "sha256": "777d3c459f772f414b13b30a4867d7dc9993ac263cc3f3af521106844be21a74",
+    "bytes": 8061
+  },
+  "pybind11-3.0.1/include/pybind11/detail/native_enum_data.h": {
+    "sha256": "3b3e2b411fc92d4c389a6837a0c4630a85fd8864f4042f91706e20a7d0f792c4",
+    "bytes": 7633
+  },
+  "pybind11-3.0.1/include/pybind11/pytypes.h": {
+    "sha256": "c991e587c606292f0c43c1bab73601a59d13c50a2210e73d8b2eb7f49d4aeda1",
+    "bytes": 102198
+  },
+  "pybind11-3.0.1/include/pybind11/buffer_info.h": {
+    "sha256": "fc57108aca9da6985f59729e08636fdc6ab98afcb5cfea85dddd4da1eb5e6a89",
+    "bytes": 7778
+  },
+  "pybind11-3.0.1/include/pybind11/detail/internals.h": {
+    "sha256": "60ae9151664175bd028484229e8ee69125e903f0f026cca502aea8f3a047329a",
+    "bytes": 32201
+  },
+  "pybind11-3.0.1/include/pybind11/conduit/pybind11_platform_abi_id.h": {
+    "sha256": "554656e07ee2cbdbd553380b749d7df76c25e0d9cdeac30259db599f563177f6",
+    "bytes": 3991
+  },
+  "pybind11-3.0.1/include/pybind11/gil_simple.h": {
+    "sha256": "02e3bd982d5d7af7634e75ce7b46891ac9c9b920b79dead69c6d7b1d54105fd9",
+    "bytes": 1185
+  },
+  "pybind11-3.0.1/include/pybind11/trampoline_self_life_support.h": {
+    "sha256": "f935fdc394f12355d7dc01b6e7994c2dd882c91f9d664337db5c05b1e7729f1f",
+    "bytes": 2673
+  },
+  "pybind11-3.0.1/include/pybind11/detail/using_smart_holder.h": {
+    "sha256": "b03da16159791f8bbc5089aa9a2e524fda1fb434143e427ac91dea47795e4244",
+    "bytes": 540
+  },
+  "pybind11-3.0.1/include/pybind11/detail/struct_smart_holder.h": {
+    "sha256": "e4a8e9df2c5c298b2b4c9eefcaf9ffe042b9f419121f7f28ce9151bf53c5f301",
+    "bytes": 15072
+  },
+  "pybind11-3.0.1/include/pybind11/detail/value_and_holder.h": {
+    "sha256": "3451fad2d34993a2ea4b55a045a82223c8ab928879013aa857410357641978a1",
+    "bytes": 3677
+  },
+  "pybind11-3.0.1/include/pybind11/detail/type_caster_base.h": {
+    "sha256": "23d13917c155ef3bdca2f24cd7d4f6f2b207768a8c9615363ed4a1231103c207",
+    "bytes": 66193
+  },
+  "pybind11-3.0.1/include/pybind11/gil.h": {
+    "sha256": "6d06e94ae40d69f8a2ffd58ff4a53aef9c1a485a7fb9554f1f9e20317cc6a1bd",
+    "bytes": 6743
+  },
+  "pybind11-3.0.1/include/pybind11/detail/cpp_conduit.h": {
+    "sha256": "27384c5c580b6142a56165fe85cc9f55057a46b45020e690e539cd8120cf04c4",
+    "bytes": 2553
+  },
+  "pybind11-3.0.1/include/pybind11/detail/dynamic_raw_ptr_cast_if_possible.h": {
+    "sha256": "d6a59a3651fafa3f67e55a0417bd3308eacdcfa26914b16eea0a9d62d3452f7e",
+    "bytes": 1176
+  },
+  "pybind11-3.0.1/include/pybind11/detail/typeid.h": {
+    "sha256": "8f0e69afd9bbdaf903b25a13f2fc65f708f5ed52467047570f2ce2065b7cf49b",
+    "bytes": 1625
+  },
+  "pybind11-3.0.1/include/pybind11/options.h": {
+    "sha256": "a97be69e3fbef5f652a79e8d61e7e70775b9575ee9a47958d52ae0a370cd069c",
+    "bytes": 2734
+  },
+  "pybind11-3.0.1/include/pybind11/detail/exception_translation.h": {
+    "sha256": "32c88bbf1a9017a0acf3a11692603d754d0549ced257b54e18f71398d747ab07",
+    "bytes": 2593
+  },
+  "pybind11-3.0.1/include/pybind11/detail/function_record_pyobject.h": {
+    "sha256": "3fa08a5a0da48f820773467208162937eca18fa21389b6a425c4b81af6082692",
+    "bytes": 7738
+  },
+  "pybind11-3.0.1/include/pybind11/detail/init.h": {
+    "sha256": "d746ecf81d682fdab2e3d1d3c1d11aa2dbfd9cefe948b30785e4141d9c19f81f",
+    "bytes": 23073
+  },
+  "pybind11-3.0.1/include/pybind11/gil_safe_call_once.h": {
+    "sha256": "937b4923c159e87022870e78e6798ccb9450d67e0d39ee9d30ad6fa62a2d935a",
+    "bytes": 4054
+  },
+  "pybind11-3.0.1/include/pybind11/typing.h": {
+    "sha256": "f20313c2636f5dafbcfc1350d0f691d4ade666b589969157895b255510bf628e",
+    "bytes": 8891
+  },
+  "pybind11-3.0.1/include/pybind11/complex.h": {
+    "sha256": "01a0d9fab1262b8b456ae7be2bd3f9cb74f1c6769017a27067fe8b03391d2d02",
+    "bytes": 2096
+  }
+}
