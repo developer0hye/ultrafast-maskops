@@ -19,6 +19,10 @@ thread count and CPU/RAM counts. The complete private OpenCV build information
 is preserved for review; the prior selected build-option comparison is in the
 resize-ROI dependency receipt. Compiler/build-file matching does not certify
 every external toolchain configuration. See `validation/paired-wheel-*.json`.
+The latest descriptor receipt is `paired-wheel-preparation-v2.json`: timed
+non-overlap calls return the array directly, with hash-list normalization kept
+outside the timer. Rechecked descriptors differ from v1 only in harness hash;
+both wheel identities remain unchanged. No latency samples preceded this fix.
 
 ## Frozen matrix and measurement scope
 

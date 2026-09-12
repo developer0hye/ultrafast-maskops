@@ -110,12 +110,15 @@ def worker(args):
     if args.operation == "overlap":
         call = lambda: native.polygons2masks_overlap(shape, segments, ratio)
     elif args.operation == "masks":
-        call = lambda: [native.polygons2masks(shape, segments, 1, ratio)]
+        call = lambda: native.polygons2masks(shape, segments, 1, ratio)
     else:
         call = lambda: native.Rasterizer().overlap(
             shape, native.PackedPolygons.from_segments(segments), ratio, mode="bounded"
         )
-    require(hashes(call()) == expected[args.operation], "pre-measurement output mismatch")
+    require(
+        hashes([call()] if args.operation == "masks" else call()) == expected[args.operation],
+        "pre-measurement output mismatch",
+    )
     for _ in range(10):
         call()
     memory_before = psutil.Process().memory_info().rss
@@ -132,7 +135,10 @@ def worker(args):
         if sys.platform.startswith("linux")
         else usage.ru_maxrss
     )
-    require(hashes(call()) == expected[args.operation], "post-measurement output mismatch")
+    require(
+        hashes([call()] if args.operation == "masks" else call()) == expected[args.operation],
+        "post-measurement output mismatch",
+    )
     require(all(v > 0 for v in samples), "invalid clock samples")
     return {
         "descriptor": info,

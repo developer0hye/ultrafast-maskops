@@ -1,0 +1,11 @@
+{
+  "scope": "metadata recheck after moving non-overlap result-list normalization outside the timer; no raster or timing calls executed",
+  "harness_sha256": "d792e564355cba9be98ea889367c2926ef11768df75b8290a71a69947e6e63b7",
+  "unchanged_from_v1": "all descriptor fields except harness SHA256",
+  "descriptors_sha256": {
+    "paired-wheel-describe-baseline-v2.json": "d250b84f30491fbf684a8428078291578811b851268828e39e03a72eeea9df92",
+    "paired-wheel-describe-candidate-v2.json": "726a6d3dea1d0b096b6821c39c1eadbb3cc79c056d57293847d813cb03f6e14b"
+  },
+  "ruff": "0.16.7 passed",
+  "execution_status": "oracle, measurement and aggregate paths still pending"
+}
