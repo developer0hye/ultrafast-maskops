@@ -1,0 +1,10 @@
+{
+  "scope": "one preparation trial per backend; no independent reference replay or repeated speedup evidence",
+  "initial_weights_identical": true,
+  "final_weights_identical": true,
+  "all_batch_losses_identical": true,
+  "reference_epoch_s": 159.06501485174522,
+  "combined_epoch_s": 156.7664747601375,
+  "reference_report_sha256": "6805f3fef606043a46f40c65a3b2bc4af4866118ab07514253f8aed1deee1bfa",
+  "combined_report_sha256": "bb4e01f25d6bc2b58f1a0729c43d847fb09cfff4eb2a2ad201f4e36f671ba79d"
+}

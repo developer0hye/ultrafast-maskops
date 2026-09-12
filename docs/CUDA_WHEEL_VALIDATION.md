@@ -52,6 +52,14 @@ allocated and 2,898,264,064 bytes reserved. The first run downloaded an Arial
 font during final validation; that log is retained. This preparation run must
 not be mixed into a subsequent repeated comparison or used to claim a speedup.
 
+The matching reference pilot also completed all 5,000 images / 1,250 batches,
+with a 159.07 s epoch. Its initial and final model hashes and every batch loss
+vector are exactly equal to the combined pilot. The reference report and
+`cuda-training-pilot-v1-comparison.json` are retained under `bench/results`.
+This is one preparation run per backend without a separate reference replay;
+the small timing difference does not establish a speedup. The subsequent
+[repeated protocol](GPU_BENCHMARK_PROTOCOL.md) excludes both preparation runs.
+
 The trial records resolved settings, upstream training source hashes, installed
 wheel runtime hashes, all batch loss components, initial/final model hashes,
 CUDA allocator peaks and sampled process-family RSS. Epoch timers synchronize
