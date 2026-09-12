@@ -16,8 +16,12 @@ at ratio 4, seed 912, default pinned training augmentation, and two complete
 epochs. Mosaic remains enabled through both epochs (`close_mosaic=0`). The
 single parent process starts fresh reference, mask-only and combined replacement
 children sequentially. CPU Torch and OpenCV each use one calling thread; workers
-0, 2 and 8 are separate configurations. Upstream validation uses twice the
-requested worker count; reports record both actual counts.
+0, 2 and 8 are separate configurations. Upstream validation requests twice the
+training worker count, subject to the loader's CPU/device and batch-count caps.
+On this 12-logical-CPU, single-GPU host, the actual training/validation counts are
+0/0, 2/4 and 8/12. Reports record both actual counts. The pinned `data/build.py`
+source hash was independently matched to the recorded upstream hash before
+correcting an audit assumption that had expected 16 validation workers.
 
 ```sh
 python bench/repeat_coco_gpu.py \
@@ -58,3 +62,51 @@ performance gate passed. Confirm full target parity separately and audit the raw
 reports before publishing a speedup or memory claim. Same-fixture train/val and
 random initialization make these throughput experiments, not accuracy studies.
 Non-overlap is a separate complete series; it must not be inferred from overlap.
+
+## Independent artifact audit
+
+`bench/audit_gpu_series.py` uses only the Python standard library. It checks the
+parent/trial script hashes, every raw report hash, compact/raw agreement, recorded
+commands, counterbalanced execution order, source/runtime/fixture identity,
+resolved training settings, actual workers, active replacements and cache state.
+Each epoch must have 5,000 images, 1,250 complete finite loss vectors and valid
+CUDA allocator peaks. Within every complete worker/repetition group, all three
+backends must have exactly matching loss traces and final model hashes. The
+sampled RSS maximum is recomputed from the full trace; sample gaps are reported.
+
+The auditor refuses incomplete series by default. `--allow-partial` permits a
+clearly labeled interim artifact check and never produces a timing summary.
+For a complete series it independently recomputes all paired epoch summaries
+and checks the recorded values. Relocated reports can be supplied with
+`--runs-dir`; the original recorded commands and paths remain unchanged.
+
+```sh
+python bench/audit_gpu_series.py \
+  --series /path/to/completed-gpu-series.json \
+  --runs-dir /path/to/copied-raw-reports \
+  --out /path/to/new-audit.json
+```
+
+An immutable eight-trial checkpoint passed the interim audit. Its two complete
+groups (repetition 0, workers 0 and 2) have equality for both full epochs and
+final models across all three backends. Workers 8 had two completed backends at
+the snapshot and is not a complete group. The initial auditor's worker-cap
+rejection and its source are retained with the corrected audit and raw reports;
+no training report was changed to make the check pass. This is not a final
+series result or a speedup claim. The
+[checkpoint archive](../bench/results/cuda-series-checkpoint-8-trials.tar.gz)
+and `validation/cuda-series-checkpoint-8-{audit,manifest}.json` retain this evidence.
+
+Twelve synthetic corruption/false-completion cases are prepared in
+`tests/test_gpu_series_audit.py` and included in the wheel workflow. They have
+not yet run: both benchmark hosts are reserved for ongoing experiments. The
+complete-series/bootstrap branch has therefore not yet passed these new tests
+or a complete real-series audit. Interim success must not be promoted to that
+broader claim.
+
+The RSS trace spans trainer initialization, training and validation work. It is
+not a per-epoch training-RSS peak and does not observe between-sample spikes.
+CUDA peaks cover the allocator during each epoch, not all device allocations or
+the entire job. These scopes stay separate in comparisons. Full-target parity,
+performance gates, real-host contention and generalizability still require
+their own evidence after an artifact audit passes.

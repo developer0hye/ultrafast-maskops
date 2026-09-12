@@ -1,0 +1,20 @@
+{
+  "scope": "immutable interim snapshot, not a completed benchmark series",
+  "archive": "cuda-series-checkpoint-8-trials.tar.gz",
+  "archive_sha256": "7ac114f443c9fe92605b5c1bce7ca30877e6ad5236db2f7ae5cf7402e928d4ad",
+  "files_sha256": {
+    "audit-v2.json": "461a9ce9bc90f6111a41c66afdb6cd99dac85498ce839b1153889bbdaee0d8d9",
+    "audit.json": "87f71300d49b5eb1b6632c57f8ef8359b8bef3431d4b971bbd017de5b500b7a5",
+    "auditor-v1-worker-cap.py": "6a44cb1391bbb0bcff81aa32fddf2838ceac65ad92cd122e70ef1cfac82b2ebb",
+    "r0-w0-both.json": "5b617ccfbcfe223ba5ba2c062e1768633b7a2386d8ba854fe4827fbad8e5d80b",
+    "r0-w0-mask.json": "10594fe7054ca66f5e204998507425467bec9c8e081f17128312a2f20b756d16",
+    "r0-w0-reference.json": "381a288bfdf6249af710341a6bf15d67abd73d9112338ed350c3517a35a794e2",
+    "r0-w2-both.json": "b334aa2bc8c55762887451913b7bd339d9882a11eaf5fc477b4b8f367a33ae78",
+    "r0-w2-mask.json": "daebb7358977f8c4908375e0b08b1bb782ab43c4e240bc3b5c3ab4eebe8f87a4",
+    "r0-w2-reference.json": "f056da463c3b3f6e8efeaccdcfb10353a988eee2ebdb33d648bed2d1f5932fc4",
+    "r0-w8-both.json": "fccc0e6fcd2c96563e6b449c138263df1d3efe2fd9c7f4462cee8f605fea5510",
+    "r0-w8-reference.json": "ffa3cecb9b0a22dc05847870744de57edd8aac80fddb516385580985f9541cf0",
+    "series.json": "f55aefd77e141994bf30016f471bac10594b918163dc897388dd46384b75bd67"
+  },
+  "initial_audit_rejection": "auditor expected 16 validation workers; pinned upstream loader caps them at 12; raw training reports unchanged"
+}

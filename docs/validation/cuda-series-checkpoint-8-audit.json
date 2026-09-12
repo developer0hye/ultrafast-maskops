@@ -1,0 +1,238 @@
+{
+  "audit_passed": true,
+  "series_complete": false,
+  "series_recorded_error": null,
+  "series_sha256": "f55aefd77e141994bf30016f471bac10594b918163dc897388dd46384b75bd67",
+  "auditor_sha256": "74cd051f1df417ac6e229d583c517db125fa2c678419e2f520ed6023f65e54c2",
+  "validated_trials": 8,
+  "planned_trials": 45,
+  "configuration": {
+    "corpus": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+    "fresh_check": "/home/yonghye/ultrafast-vision-build/mask-coco-bounds-fresh-server.json",
+    "out": "/home/yonghye/ultrafast-vision-build/cuda-training-series-v1.json",
+    "workers": [
+      0,
+      2,
+      8
+    ],
+    "repeats": 5,
+    "epochs": 2,
+    "batch": 4,
+    "imgsz": 640,
+    "overlap": "yes"
+  },
+  "trial_checks": [
+    {
+      "repeat": 0,
+      "workers": 0,
+      "backend": "reference",
+      "raw_sha256": "381a288bfdf6249af710341a6bf15d67abd73d9112338ed350c3517a35a794e2",
+      "epoch_loss_trace_sha256": [
+        "d85af1cf84d250ff2c98b85a1f7093a8174aa146df4682f11d1c2b739693e04f",
+        "253af3e3950b9a910081d91dde1e520a1d4fab2322da4eeaa63887a4146eddb5"
+      ],
+      "final_state_sha256": "eb3d642f758c3cdc0a80463d5f4f669d63081614ab9640a107056ac7f7fc0d1b",
+      "sampled_whole_job_family_rss_bytes": 3778805760,
+      "rss_sample_count": 2166,
+      "rss_largest_sampling_gap_s": 0.38561010360717773,
+      "rss_wall_clock_went_backwards": false
+    },
+    {
+      "repeat": 0,
+      "workers": 0,
+      "backend": "mask",
+      "raw_sha256": "10594fe7054ca66f5e204998507425467bec9c8e081f17128312a2f20b756d16",
+      "epoch_loss_trace_sha256": [
+        "d85af1cf84d250ff2c98b85a1f7093a8174aa146df4682f11d1c2b739693e04f",
+        "253af3e3950b9a910081d91dde1e520a1d4fab2322da4eeaa63887a4146eddb5"
+      ],
+      "final_state_sha256": "eb3d642f758c3cdc0a80463d5f4f669d63081614ab9640a107056ac7f7fc0d1b",
+      "sampled_whole_job_family_rss_bytes": 3673214976,
+      "rss_sample_count": 2132,
+      "rss_largest_sampling_gap_s": 0.43025827407836914,
+      "rss_wall_clock_went_backwards": false
+    },
+    {
+      "repeat": 0,
+      "workers": 0,
+      "backend": "both",
+      "raw_sha256": "5b617ccfbcfe223ba5ba2c062e1768633b7a2386d8ba854fe4827fbad8e5d80b",
+      "epoch_loss_trace_sha256": [
+        "d85af1cf84d250ff2c98b85a1f7093a8174aa146df4682f11d1c2b739693e04f",
+        "253af3e3950b9a910081d91dde1e520a1d4fab2322da4eeaa63887a4146eddb5"
+      ],
+      "final_state_sha256": "eb3d642f758c3cdc0a80463d5f4f669d63081614ab9640a107056ac7f7fc0d1b",
+      "sampled_whole_job_family_rss_bytes": 3713818624,
+      "rss_sample_count": 2154,
+      "rss_largest_sampling_gap_s": 0.39794397354125977,
+      "rss_wall_clock_went_backwards": false
+    },
+    {
+      "repeat": 0,
+      "workers": 2,
+      "backend": "mask",
+      "raw_sha256": "daebb7358977f8c4908375e0b08b1bb782ab43c4e240bc3b5c3ab4eebe8f87a4",
+      "epoch_loss_trace_sha256": [
+        "3eb8fbe39ffbc1f821406e805057bf14767946f4a61b2fa073fa1b633b7d10cc",
+        "6488872e2ea78ded45df2cdf684e9ec9905311c1bfac990f92599c426f58d370"
+      ],
+      "final_state_sha256": "2550a71ba7f1dfd262f87dac00600fc53eb61d46f72899c9bcea1d023b6ba242",
+      "sampled_whole_job_family_rss_bytes": 7845515264,
+      "rss_sample_count": 1336,
+      "rss_largest_sampling_gap_s": 0.4641702175140381,
+      "rss_wall_clock_went_backwards": false
+    },
+    {
+      "repeat": 0,
+      "workers": 2,
+      "backend": "both",
+      "raw_sha256": "b334aa2bc8c55762887451913b7bd339d9882a11eaf5fc477b4b8f367a33ae78",
+      "epoch_loss_trace_sha256": [
+        "3eb8fbe39ffbc1f821406e805057bf14767946f4a61b2fa073fa1b633b7d10cc",
+        "6488872e2ea78ded45df2cdf684e9ec9905311c1bfac990f92599c426f58d370"
+      ],
+      "final_state_sha256": "2550a71ba7f1dfd262f87dac00600fc53eb61d46f72899c9bcea1d023b6ba242",
+      "sampled_whole_job_family_rss_bytes": 7959830528,
+      "rss_sample_count": 1367,
+      "rss_largest_sampling_gap_s": 0.4015045166015625,
+      "rss_wall_clock_went_backwards": false
+    },
+    {
+      "repeat": 0,
+      "workers": 2,
+      "backend": "reference",
+      "raw_sha256": "f056da463c3b3f6e8efeaccdcfb10353a988eee2ebdb33d648bed2d1f5932fc4",
+      "epoch_loss_trace_sha256": [
+        "3eb8fbe39ffbc1f821406e805057bf14767946f4a61b2fa073fa1b633b7d10cc",
+        "6488872e2ea78ded45df2cdf684e9ec9905311c1bfac990f92599c426f58d370"
+      ],
+      "final_state_sha256": "2550a71ba7f1dfd262f87dac00600fc53eb61d46f72899c9bcea1d023b6ba242",
+      "sampled_whole_job_family_rss_bytes": 7788777472,
+      "rss_sample_count": 1342,
+      "rss_largest_sampling_gap_s": 0.4062798023223877,
+      "rss_wall_clock_went_backwards": false
+    },
+    {
+      "repeat": 0,
+      "workers": 8,
+      "backend": "both",
+      "raw_sha256": "fccc0e6fcd2c96563e6b449c138263df1d3efe2fd9c7f4462cee8f605fea5510",
+      "epoch_loss_trace_sha256": [
+        "5e504e5d0b1f8f4f0feb400afab0c589b74ab2ef44723f7c4705500f05497c50",
+        "5cf0700c43e331e8fb4469f5beb40ae09e9af93e754a4bf59c5cdd2c2d169386"
+      ],
+      "final_state_sha256": "87a62391340b09e539daf659335ec88d83faf28f2ab3f0b18a4576952dd5c129",
+      "sampled_whole_job_family_rss_bytes": 18061021184,
+      "rss_sample_count": 1376,
+      "rss_largest_sampling_gap_s": 0.4317798614501953,
+      "rss_wall_clock_went_backwards": false
+    },
+    {
+      "repeat": 0,
+      "workers": 8,
+      "backend": "reference",
+      "raw_sha256": "ffa3cecb9b0a22dc05847870744de57edd8aac80fddb516385580985f9541cf0",
+      "epoch_loss_trace_sha256": [
+        "5e504e5d0b1f8f4f0feb400afab0c589b74ab2ef44723f7c4705500f05497c50",
+        "5cf0700c43e331e8fb4469f5beb40ae09e9af93e754a4bf59c5cdd2c2d169386"
+      ],
+      "final_state_sha256": "87a62391340b09e539daf659335ec88d83faf28f2ab3f0b18a4576952dd5c129",
+      "sampled_whole_job_family_rss_bytes": 17846657024,
+      "rss_sample_count": 1365,
+      "rss_largest_sampling_gap_s": 0.40801000595092773,
+      "rss_wall_clock_went_backwards": false
+    }
+  ],
+  "complete_backend_groups": [
+    {
+      "repeat": 0,
+      "workers": 0,
+      "epochs": 2,
+      "all_losses_and_final_model_equal": true
+    },
+    {
+      "repeat": 0,
+      "workers": 2,
+      "epochs": 2,
+      "all_losses_and_final_model_equal": true
+    }
+  ],
+  "pending_backend_groups": [
+    {
+      "repeat": 0,
+      "workers": 8,
+      "present_backends": [
+        "reference",
+        "both"
+      ]
+    },
+    {
+      "repeat": 1,
+      "workers": 0,
+      "present_backends": []
+    },
+    {
+      "repeat": 1,
+      "workers": 2,
+      "present_backends": []
+    },
+    {
+      "repeat": 1,
+      "workers": 8,
+      "present_backends": []
+    },
+    {
+      "repeat": 2,
+      "workers": 0,
+      "present_backends": []
+    },
+    {
+      "repeat": 2,
+      "workers": 2,
+      "present_backends": []
+    },
+    {
+      "repeat": 2,
+      "workers": 8,
+      "present_backends": []
+    },
+    {
+      "repeat": 3,
+      "workers": 0,
+      "present_backends": []
+    },
+    {
+      "repeat": 3,
+      "workers": 2,
+      "present_backends": []
+    },
+    {
+      "repeat": 3,
+      "workers": 8,
+      "present_backends": []
+    },
+    {
+      "repeat": 4,
+      "workers": 0,
+      "present_backends": []
+    },
+    {
+      "repeat": 4,
+      "workers": 2,
+      "present_backends": []
+    },
+    {
+      "repeat": 4,
+      "workers": 8,
+      "present_backends": []
+    }
+  ],
+  "independently_recomputed_epoch_summary": null,
+  "scope": "raw/compact/command identity, complete epochs, exact loss traces and final models within worker/repetition groups, sampled RSS and CUDA allocator accounting; timing summaries only when complete",
+  "limits": [
+    "Sampled whole-job summed RSS includes initialization and validation, double-counts shared pages and misses between-sample spikes.",
+    "CUDA allocator peaks are per epoch, not total device or whole-job GPU memory.",
+    "Equal losses and final model hashes do not replace direct target parity or establish accuracy.",
+    "Five paired repetitions on a shared host do not establish a general speedup."
+  ]
+}
