@@ -1,5 +1,10 @@
 # Repeated GPU training protocol
 
+The frozen original-wheel RTX 3070 series completed all 45 jobs / 90 epochs and
+passed the final raw/statistics audit. See [GPU_RESULTS.md](GPU_RESULTS.md) for
+the complete results and preserved artifacts. Those results predate the later
+masks-only and resize-ROI kernels; they do not measure this candidate.
+
 Preparation runs are separate from the comparison series. The completed combined
 pilot proves that the installed wheels can complete real YOLO11n-seg training;
 it is not included in the repeated timing summary. The matching reference pilot
@@ -103,8 +108,8 @@ bootstrap branch with known constant ratios and the CPU-capped worker case.
 They also reject altered loss/model records after recomputing archive hashes,
 truncated traces, false completion, reordered trials, altered RSS and forged
 statistics. The combined 21-test JUnit report (including nine dataset-fixture
-checks) and source hashes are in `validation/benchmark-audits-m2.*`. A complete
-real-series audit is still pending; synthetic success is not that broader claim.
+checks) and source hashes are in `validation/benchmark-audits-m2.*`. The separate
+complete real-series audit subsequently passed; see GPU_RESULTS.md for its evidence.
 
 The RSS trace spans trainer initialization, training and validation work. It is
 not a per-epoch training-RSS peak and does not observe between-sample spikes.

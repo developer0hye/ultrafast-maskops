@@ -1,0 +1,90 @@
+Starting repeat=0 workers=0 backend=reference
+Completed 1/45 trials
+Starting repeat=0 workers=0 backend=mask
+Completed 2/45 trials
+Starting repeat=0 workers=0 backend=both
+Completed 3/45 trials
+Starting repeat=0 workers=2 backend=mask
+Completed 4/45 trials
+Starting repeat=0 workers=2 backend=both
+Completed 5/45 trials
+Starting repeat=0 workers=2 backend=reference
+Completed 6/45 trials
+Starting repeat=0 workers=8 backend=both
+Completed 7/45 trials
+Starting repeat=0 workers=8 backend=reference
+Completed 8/45 trials
+Starting repeat=0 workers=8 backend=mask
+Completed 9/45 trials
+Starting repeat=1 workers=0 backend=reference
+Completed 10/45 trials
+Starting repeat=1 workers=0 backend=both
+Completed 11/45 trials
+Starting repeat=1 workers=0 backend=mask
+Completed 12/45 trials
+Starting repeat=1 workers=2 backend=mask
+Completed 13/45 trials
+Starting repeat=1 workers=2 backend=reference
+Completed 14/45 trials
+Starting repeat=1 workers=2 backend=both
+Completed 15/45 trials
+Starting repeat=1 workers=8 backend=both
+Completed 16/45 trials
+Starting repeat=1 workers=8 backend=mask
+Completed 17/45 trials
+Starting repeat=1 workers=8 backend=reference
+Completed 18/45 trials
+Starting repeat=2 workers=0 backend=both
+Completed 19/45 trials
+Starting repeat=2 workers=0 backend=reference
+Completed 20/45 trials
+Starting repeat=2 workers=0 backend=mask
+Completed 21/45 trials
+Starting repeat=2 workers=2 backend=reference
+Completed 22/45 trials
+Starting repeat=2 workers=2 backend=mask
+Completed 23/45 trials
+Starting repeat=2 workers=2 backend=both
+Completed 24/45 trials
+Starting repeat=2 workers=8 backend=mask
+Completed 25/45 trials
+Starting repeat=2 workers=8 backend=both
+Completed 26/45 trials
+Starting repeat=2 workers=8 backend=reference
+Completed 27/45 trials
+Starting repeat=3 workers=0 backend=both
+Completed 28/45 trials
+Starting repeat=3 workers=0 backend=mask
+Completed 29/45 trials
+Starting repeat=3 workers=0 backend=reference
+Completed 30/45 trials
+Starting repeat=3 workers=2 backend=reference
+Completed 31/45 trials
+Starting repeat=3 workers=2 backend=both
+Completed 32/45 trials
+Starting repeat=3 workers=2 backend=mask
+Completed 33/45 trials
+Starting repeat=3 workers=8 backend=mask
+Completed 34/45 trials
+Starting repeat=3 workers=8 backend=reference
+Completed 35/45 trials
+Starting repeat=3 workers=8 backend=both
+Completed 36/45 trials
+Starting repeat=4 workers=0 backend=mask
+Completed 37/45 trials
+Starting repeat=4 workers=0 backend=both
+Completed 38/45 trials
+Starting repeat=4 workers=0 backend=reference
+Completed 39/45 trials
+Starting repeat=4 workers=2 backend=both
+Completed 40/45 trials
+Starting repeat=4 workers=2 backend=reference
+Completed 41/45 trials
+Starting repeat=4 workers=2 backend=mask
+Completed 42/45 trials
+Starting repeat=4 workers=8 backend=reference
+Completed 43/45 trials
+Starting repeat=4 workers=8 backend=mask
+Completed 44/45 trials
+Starting repeat=4 workers=8 backend=both
+Completed 45/45 trials

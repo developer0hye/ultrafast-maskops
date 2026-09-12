@@ -2,6 +2,10 @@
 
 These are feasibility measurements, not a release or training-throughput claim. The original PRD gates remain open. Reference: Ultralytics `795a556942a12fe0124cf767888194a1d0b83e2e`, NumPy 2.4.4 and OpenCV 4.13.0. Source and extension hashes, hardware, load, raw samples and confidence intervals are in each JSON. Small subsequent bounds-check, license and formatting edits mean these are source snapshots, not exact release-candidate measurements.
 
+The separate [completed RTX 3070 training series](GPU_RESULTS.md) reports all
+45 jobs / 90 epochs on the later alignment-corrected snapshot: modest epoch-time
+gains and no consistent process-family RSS reduction.
+
 ## Mask wrapper latency and process memory
 
 Nine fixed synthetic cases at 640×640: 0/1/5/20/100/255/256/500 instances at ratio 4, plus 100 instances at ratio 1; 16 vertices each. Five independent processes per backend/case, ten warmups, thirty timed calls. Wrapper packing and ordering are included; reference parity checks are outside timing. OS cache is uncontrolled. Both libraries use one native worker.

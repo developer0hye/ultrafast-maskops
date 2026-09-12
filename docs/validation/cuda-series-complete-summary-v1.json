@@ -1,0 +1,765 @@
+{
+  "series_sha256": "a083d100bb534c3b9fe698ca549700cb11c7c98f11d2337729b94ddcb2ee110a",
+  "audit_sha256": "efad1932e553686db241de368bff0fce9ef489a29642b5cfc81511b03f19f9a3",
+  "summary_script_sha256": "2d8129ee8aedef945fe79c1a99ba87face16852b7ca14cd415ad3004d1d658e6",
+  "configuration": {
+    "corpus": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+    "fresh_check": "/home/yonghye/ultrafast-vision-build/mask-coco-bounds-fresh-server.json",
+    "out": "/home/yonghye/ultrafast-vision-build/cuda-training-series-v1.json",
+    "workers": [
+      0,
+      2,
+      8
+    ],
+    "repeats": 5,
+    "epochs": 2,
+    "batch": 4,
+    "imgsz": 640,
+    "overlap": "yes"
+  },
+  "epoch_timing": {
+    "workers=0/mask/epoch=0": {
+      "pairs": 5,
+      "reference_median_s": 159.83800601307303,
+      "candidate_median_s": 156.49123669462278,
+      "reference_over_candidate_median_ratio": 1.0213863050042933,
+      "paired_bootstrap_95_percent_interval": [
+        1.0119794806813678,
+        1.02611295216822
+      ]
+    },
+    "workers=0/mask/epoch=1": {
+      "pairs": 5,
+      "reference_median_s": 154.90770482691005,
+      "candidate_median_s": 152.72276317700744,
+      "reference_over_candidate_median_ratio": 1.0143065879928472,
+      "paired_bootstrap_95_percent_interval": [
+        1.009150794543757,
+        1.019624389053579
+      ]
+    },
+    "workers=0/both/epoch=0": {
+      "pairs": 5,
+      "reference_median_s": 159.83800601307303,
+      "candidate_median_s": 156.81880095601082,
+      "reference_over_candidate_median_ratio": 1.019252825800582,
+      "paired_bootstrap_95_percent_interval": [
+        1.0077184072811445,
+        1.0335965272242926
+      ]
+    },
+    "workers=0/both/epoch=1": {
+      "pairs": 5,
+      "reference_median_s": 154.90770482691005,
+      "candidate_median_s": 152.28563422104344,
+      "reference_over_candidate_median_ratio": 1.0172181087157615,
+      "paired_bootstrap_95_percent_interval": [
+        1.0144458892227237,
+        1.0291877769609166
+      ]
+    },
+    "workers=2/mask/epoch=0": {
+      "pairs": 5,
+      "reference_median_s": 91.04186194296926,
+      "candidate_median_s": 90.78725256631151,
+      "reference_over_candidate_median_ratio": 1.0028044617439191,
+      "paired_bootstrap_95_percent_interval": [
+        1.0016415816234379,
+        1.0100515037964424
+      ]
+    },
+    "workers=2/mask/epoch=1": {
+      "pairs": 5,
+      "reference_median_s": 87.08060570200905,
+      "candidate_median_s": 86.62185060000047,
+      "reference_over_candidate_median_ratio": 1.0052960667410236,
+      "paired_bootstrap_95_percent_interval": [
+        0.9951442033879102,
+        1.0165793156312684
+      ]
+    },
+    "workers=2/both/epoch=0": {
+      "pairs": 5,
+      "reference_median_s": 91.04186194296926,
+      "candidate_median_s": 90.8599889241159,
+      "reference_over_candidate_median_ratio": 1.0020016843608166,
+      "paired_bootstrap_95_percent_interval": [
+        0.9966467211031571,
+        1.0155727193023374
+      ]
+    },
+    "workers=2/both/epoch=1": {
+      "pairs": 5,
+      "reference_median_s": 87.08060570200905,
+      "candidate_median_s": 86.91657017590478,
+      "reference_over_candidate_median_ratio": 1.0018872756457404,
+      "paired_bootstrap_95_percent_interval": [
+        0.9885501397161767,
+        1.0172302426373498
+      ]
+    },
+    "workers=8/mask/epoch=0": {
+      "pairs": 5,
+      "reference_median_s": 92.63776698708534,
+      "candidate_median_s": 92.07575862202793,
+      "reference_over_candidate_median_ratio": 1.0061037603541716,
+      "paired_bootstrap_95_percent_interval": [
+        0.9905277657423777,
+        1.0113850992326725
+      ]
+    },
+    "workers=8/mask/epoch=1": {
+      "pairs": 5,
+      "reference_median_s": 88.52366282837465,
+      "candidate_median_s": 87.39340725680813,
+      "reference_over_candidate_median_ratio": 1.0129329615018354,
+      "paired_bootstrap_95_percent_interval": [
+        0.9917826567375975,
+        1.021775299829904
+      ]
+    },
+    "workers=8/both/epoch=0": {
+      "pairs": 5,
+      "reference_median_s": 92.63776698708534,
+      "candidate_median_s": 91.96142046526074,
+      "reference_over_candidate_median_ratio": 1.0073546767590449,
+      "paired_bootstrap_95_percent_interval": [
+        1.0029699257947409,
+        1.0111621631060133
+      ]
+    },
+    "workers=8/both/epoch=1": {
+      "pairs": 5,
+      "reference_median_s": 88.52366282837465,
+      "candidate_median_s": 88.0392607441172,
+      "reference_over_candidate_median_ratio": 1.0055021143994536,
+      "paired_bootstrap_95_percent_interval": [
+        0.9970533954516764,
+        1.0154454250112241
+      ]
+    }
+  },
+  "memory": {
+    "workers=0/reference": {
+      "whole_job_sampled_summed_family_rss_bytes": {
+        "values": [
+          3778805760,
+          3742306304,
+          3638792192,
+          3677249536,
+          3771158528
+        ],
+        "median": 3742306304,
+        "min": 3638792192,
+        "max": 3778805760
+      },
+      "epochs": {
+        "0": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1612824064,
+              1612824064,
+              1612824064,
+              1612824064,
+              1612824064
+            ],
+            "median": 1612824064,
+            "min": 1612824064,
+            "max": 1612824064
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2638217216,
+              2638217216,
+              2638217216,
+              2638217216,
+              2638217216
+            ],
+            "median": 2638217216,
+            "min": 2638217216,
+            "max": 2638217216
+          }
+        },
+        "1": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1592334336,
+              1592334336,
+              1592334336,
+              1592334336,
+              1592334336
+            ],
+            "median": 1592334336,
+            "min": 1592334336,
+            "max": 1592334336
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2638217216,
+              2638217216,
+              2638217216,
+              2638217216,
+              2638217216
+            ],
+            "median": 2638217216,
+            "min": 2638217216,
+            "max": 2638217216
+          }
+        }
+      }
+    },
+    "workers=0/mask": {
+      "whole_job_sampled_summed_family_rss_bytes": {
+        "values": [
+          3673214976,
+          3671916544,
+          3673894912,
+          3659403264,
+          3684368384
+        ],
+        "median": 3673214976,
+        "min": 3659403264,
+        "max": 3684368384
+      },
+      "epochs": {
+        "0": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1612824064,
+              1612824064,
+              1612824064,
+              1612824064,
+              1612824064
+            ],
+            "median": 1612824064,
+            "min": 1612824064,
+            "max": 1612824064
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2638217216,
+              2638217216,
+              2638217216,
+              2638217216,
+              2638217216
+            ],
+            "median": 2638217216,
+            "min": 2638217216,
+            "max": 2638217216
+          }
+        },
+        "1": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1592334336,
+              1592334336,
+              1592334336,
+              1592334336,
+              1592334336
+            ],
+            "median": 1592334336,
+            "min": 1592334336,
+            "max": 1592334336
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2638217216,
+              2638217216,
+              2638217216,
+              2638217216,
+              2638217216
+            ],
+            "median": 2638217216,
+            "min": 2638217216,
+            "max": 2638217216
+          }
+        }
+      }
+    },
+    "workers=0/both": {
+      "whole_job_sampled_summed_family_rss_bytes": {
+        "values": [
+          3713818624,
+          3800977408,
+          3680002048,
+          3725651968,
+          3777449984
+        ],
+        "median": 3725651968,
+        "min": 3680002048,
+        "max": 3800977408
+      },
+      "epochs": {
+        "0": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1612824064,
+              1612824064,
+              1612824064,
+              1612824064,
+              1612824064
+            ],
+            "median": 1612824064,
+            "min": 1612824064,
+            "max": 1612824064
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2638217216,
+              2638217216,
+              2638217216,
+              2638217216,
+              2638217216
+            ],
+            "median": 2638217216,
+            "min": 2638217216,
+            "max": 2638217216
+          }
+        },
+        "1": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1592334336,
+              1592334336,
+              1592334336,
+              1592334336,
+              1592334336
+            ],
+            "median": 1592334336,
+            "min": 1592334336,
+            "max": 1592334336
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2638217216,
+              2638217216,
+              2638217216,
+              2638217216,
+              2638217216
+            ],
+            "median": 2638217216,
+            "min": 2638217216,
+            "max": 2638217216
+          }
+        }
+      }
+    },
+    "workers=2/reference": {
+      "whole_job_sampled_summed_family_rss_bytes": {
+        "values": [
+          7788777472,
+          7780724736,
+          7883038720,
+          7786381312,
+          7813783552
+        ],
+        "median": 7788777472,
+        "min": 7780724736,
+        "max": 7883038720
+      },
+      "epochs": {
+        "0": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1621094912,
+              1621094912,
+              1621094912,
+              1621094912,
+              1621094912
+            ],
+            "median": 1621094912,
+            "min": 1621094912,
+            "max": 1621094912
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2264924160,
+              2264924160,
+              2264924160,
+              2264924160,
+              2264924160
+            ],
+            "median": 2264924160,
+            "min": 2264924160,
+            "max": 2264924160
+          }
+        },
+        "1": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1589769216,
+              1589769216,
+              1589769216,
+              1589769216,
+              1589769216
+            ],
+            "median": 1589769216,
+            "min": 1589769216,
+            "max": 1589769216
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2264924160,
+              2264924160,
+              2264924160,
+              2264924160,
+              2264924160
+            ],
+            "median": 2264924160,
+            "min": 2264924160,
+            "max": 2264924160
+          }
+        }
+      }
+    },
+    "workers=2/mask": {
+      "whole_job_sampled_summed_family_rss_bytes": {
+        "values": [
+          7845515264,
+          7917039616,
+          7993352192,
+          7857078272,
+          7900323840
+        ],
+        "median": 7900323840,
+        "min": 7845515264,
+        "max": 7993352192
+      },
+      "epochs": {
+        "0": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1621094912,
+              1621094912,
+              1621094912,
+              1621094912,
+              1621094912
+            ],
+            "median": 1621094912,
+            "min": 1621094912,
+            "max": 1621094912
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2264924160,
+              2264924160,
+              2264924160,
+              2264924160,
+              2264924160
+            ],
+            "median": 2264924160,
+            "min": 2264924160,
+            "max": 2264924160
+          }
+        },
+        "1": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1589769216,
+              1589769216,
+              1589769216,
+              1589769216,
+              1589769216
+            ],
+            "median": 1589769216,
+            "min": 1589769216,
+            "max": 1589769216
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2264924160,
+              2264924160,
+              2264924160,
+              2264924160,
+              2264924160
+            ],
+            "median": 2264924160,
+            "min": 2264924160,
+            "max": 2264924160
+          }
+        }
+      }
+    },
+    "workers=2/both": {
+      "whole_job_sampled_summed_family_rss_bytes": {
+        "values": [
+          7959830528,
+          7881039872,
+          7858749440,
+          8019779584,
+          7957250048
+        ],
+        "median": 7957250048,
+        "min": 7858749440,
+        "max": 8019779584
+      },
+      "epochs": {
+        "0": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1621094912,
+              1621094912,
+              1621094912,
+              1621094912,
+              1621094912
+            ],
+            "median": 1621094912,
+            "min": 1621094912,
+            "max": 1621094912
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2264924160,
+              2264924160,
+              2264924160,
+              2264924160,
+              2264924160
+            ],
+            "median": 2264924160,
+            "min": 2264924160,
+            "max": 2264924160
+          }
+        },
+        "1": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1589769216,
+              1589769216,
+              1589769216,
+              1589769216,
+              1589769216
+            ],
+            "median": 1589769216,
+            "min": 1589769216,
+            "max": 1589769216
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2264924160,
+              2264924160,
+              2264924160,
+              2264924160,
+              2264924160
+            ],
+            "median": 2264924160,
+            "min": 2264924160,
+            "max": 2264924160
+          }
+        }
+      }
+    },
+    "workers=8/reference": {
+      "whole_job_sampled_summed_family_rss_bytes": {
+        "values": [
+          17846657024,
+          17900105728,
+          17826349056,
+          17772814336,
+          17947353088
+        ],
+        "median": 17846657024,
+        "min": 17772814336,
+        "max": 17947353088
+      },
+      "epochs": {
+        "0": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1639741952,
+              1639741952,
+              1639741952,
+              1639741952,
+              1639741952
+            ],
+            "median": 1639741952,
+            "min": 1639741952,
+            "max": 1639741952
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2885681152,
+              2885681152,
+              2885681152,
+              2885681152,
+              2885681152
+            ],
+            "median": 2885681152,
+            "min": 2885681152,
+            "max": 2885681152
+          }
+        },
+        "1": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1645307904,
+              1645307904,
+              1645307904,
+              1645307904,
+              1645307904
+            ],
+            "median": 1645307904,
+            "min": 1645307904,
+            "max": 1645307904
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2885681152,
+              2885681152,
+              2885681152,
+              2885681152,
+              2885681152
+            ],
+            "median": 2885681152,
+            "min": 2885681152,
+            "max": 2885681152
+          }
+        }
+      }
+    },
+    "workers=8/mask": {
+      "whole_job_sampled_summed_family_rss_bytes": {
+        "values": [
+          18166038528,
+          18302660608,
+          17833242624,
+          17879949312,
+          18152153088
+        ],
+        "median": 18152153088,
+        "min": 17833242624,
+        "max": 18302660608
+      },
+      "epochs": {
+        "0": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1639741952,
+              1639741952,
+              1639741952,
+              1639741952,
+              1639741952
+            ],
+            "median": 1639741952,
+            "min": 1639741952,
+            "max": 1639741952
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2885681152,
+              2885681152,
+              2885681152,
+              2885681152,
+              2885681152
+            ],
+            "median": 2885681152,
+            "min": 2885681152,
+            "max": 2885681152
+          }
+        },
+        "1": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1645307904,
+              1645307904,
+              1645307904,
+              1645307904,
+              1645307904
+            ],
+            "median": 1645307904,
+            "min": 1645307904,
+            "max": 1645307904
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2885681152,
+              2885681152,
+              2885681152,
+              2885681152,
+              2885681152
+            ],
+            "median": 2885681152,
+            "min": 2885681152,
+            "max": 2885681152
+          }
+        }
+      }
+    },
+    "workers=8/both": {
+      "whole_job_sampled_summed_family_rss_bytes": {
+        "values": [
+          18061021184,
+          18141061120,
+          18006941696,
+          18090881024,
+          18354577408
+        ],
+        "median": 18090881024,
+        "min": 18006941696,
+        "max": 18354577408
+      },
+      "epochs": {
+        "0": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1639741952,
+              1639741952,
+              1639741952,
+              1639741952,
+              1639741952
+            ],
+            "median": 1639741952,
+            "min": 1639741952,
+            "max": 1639741952
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2885681152,
+              2885681152,
+              2885681152,
+              2885681152,
+              2885681152
+            ],
+            "median": 2885681152,
+            "min": 2885681152,
+            "max": 2885681152
+          }
+        },
+        "1": {
+          "cuda_peak_allocated_bytes": {
+            "values": [
+              1645307904,
+              1645307904,
+              1645307904,
+              1645307904,
+              1645307904
+            ],
+            "median": 1645307904,
+            "min": 1645307904,
+            "max": 1645307904
+          },
+          "cuda_peak_reserved_bytes": {
+            "values": [
+              2885681152,
+              2885681152,
+              2885681152,
+              2885681152,
+              2885681152
+            ],
+            "median": 2885681152,
+            "min": 2885681152,
+            "max": 2885681152
+          }
+        }
+      }
+    }
+  },
+  "largest_rss_sampling_gap_s": 0.6668827533721924,
+  "scope": [
+    "Five paired repetitions; first and second epoch remain separate.",
+    "Epoch timing excludes initialization, validation and checkpoint saving.",
+    "RSS is sampled summed family RSS over the whole job, not per-epoch working allocation; shared pages are counted repeatedly and between-sample spikes are missed.",
+    "CUDA allocator peaks are per epoch, not total device usage.",
+    "Memory distributions retain all five values and observed ranges, without claiming statistical confidence from the range.",
+    "Shared-host overlap training on the frozen original Linux wheels; not an accuracy study or evidence for later masks-only/resize-ROI candidates."
+  ]
+}
