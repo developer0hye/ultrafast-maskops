@@ -122,6 +122,17 @@ trials remain in the planned comparison. No interim timing summary is emitted,
 and matching losses/models do not establish model accuracy or replace direct
 target parity tests.
 
+The immutable 36-trial checkpoint also passed: 72 full epochs and twelve
+complete backend groups, covering workers 0/2/8 for the first four repetitions.
+All batch loss vectors and final model hashes match within every group across
+reference, mask-only and combined replacements. The server archive and local
+copy match byte for byte, and all 39 snapshotted source/report hashes were
+verified before the independent audit. See the
+[36-trial archive](../bench/results/cuda-series-checkpoint-36-trials.tar.gz) and
+`validation/cuda-series-checkpoint-36-{audit,manifest}.json`. Nine planned trials
+remain at this checkpoint; no timing aggregate is emitted. The same frozen-wheel
+scope and limitations described above apply.
+
 Twelve synthetic corruption/false-completion cases in
 `tests/test_gpu_series_audit.py` passed on M2, including the complete-series
 bootstrap branch with known constant ratios and the CPU-capped worker case.
