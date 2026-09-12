@@ -1,0 +1,33 @@
+{
+  "scope": "immutable 17/45 interim snapshot; 34 full epochs validated, five complete backend groups; no performance summary",
+  "archive_sha256": "b7259ad9b4536644688df0cfa68976969f6cfa11d666759e9e0fb1152243a9c5",
+  "archive_bytes": 1951470,
+  "audit_sha256": "12a67e4cb37293d75b3470469b9f5960f3a2de6014bb088a7a61bcd0a9fd32e3",
+  "auditor_sha256": "74cd051f1df417ac6e229d583c517db125fa2c678419e2f520ed6023f65e54c2",
+  "snapshot": {
+    "completed_trials": 17,
+    "series_complete": false,
+    "files_sha256": {
+      "runs/r0-w0-reference.json": "381a288bfdf6249af710341a6bf15d67abd73d9112338ed350c3517a35a794e2",
+      "runs/r0-w0-mask.json": "10594fe7054ca66f5e204998507425467bec9c8e081f17128312a2f20b756d16",
+      "runs/r0-w0-both.json": "5b617ccfbcfe223ba5ba2c062e1768633b7a2386d8ba854fe4827fbad8e5d80b",
+      "runs/r0-w2-mask.json": "daebb7358977f8c4908375e0b08b1bb782ab43c4e240bc3b5c3ab4eebe8f87a4",
+      "runs/r0-w2-both.json": "b334aa2bc8c55762887451913b7bd339d9882a11eaf5fc477b4b8f367a33ae78",
+      "runs/r0-w2-reference.json": "f056da463c3b3f6e8efeaccdcfb10353a988eee2ebdb33d648bed2d1f5932fc4",
+      "runs/r0-w8-both.json": "fccc0e6fcd2c96563e6b449c138263df1d3efe2fd9c7f4462cee8f605fea5510",
+      "runs/r0-w8-reference.json": "ffa3cecb9b0a22dc05847870744de57edd8aac80fddb516385580985f9541cf0",
+      "runs/r0-w8-mask.json": "32cc28d4ca87c227ac13b9e3ea5f5f4f52447c6e370ea7da26c881049f4e5a32",
+      "runs/r1-w0-reference.json": "c0fbb7b5d5224a6704dcf4df277b9590d18d6f1e8e06c4bc970f6cbefb960c5c",
+      "runs/r1-w0-both.json": "a3899d21282dc6d3697fbd4988957ccdc3ce4a0e89924ff89ef57341f1960863",
+      "runs/r1-w0-mask.json": "edad54f7d8b88ecfae52449b640c91305c1ff7e43f478ef0f8dc3d0c27a13ae3",
+      "runs/r1-w2-mask.json": "6a72f6ca890cd07f428e1e3d15e3a0c015a67fdf5a9a8204d40f0add31d19e9b",
+      "runs/r1-w2-reference.json": "94dc555ed29929689b8675d9e92e854931efcc8a5671b4691b87e886811ff3c2",
+      "runs/r1-w2-both.json": "d2b07caea79f17746b0570c8473e49ebc2800c996c5ac0422c9e3a32c062a3fa",
+      "runs/r1-w8-both.json": "47a739a8f3d04e39dd402df93520f05745209d755c4cbddf0c8a800edfddbe98",
+      "runs/r1-w8-mask.json": "90e44d95ff6fb2c2a9799c0c3462d3907e160e2f6ce70923d0ebf198f545ba16",
+      "repeat_coco_gpu.py": "9c5ae471a62d3daf4a820b7f7b5f3e192e8602092a613a9ae0721ee4699ee4a1",
+      "train_coco_gpu.py": "c613907c9d2bb2bc1704c95665ee4deada08c501b8556583f421d64742e83add",
+      "series.json": "18eb7fda5816ccf87c7e6541cc88739427cf62117a84f83d0daf9da6570f09f7"
+    }
+  }
+}

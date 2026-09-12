@@ -97,6 +97,17 @@ series result or a speedup claim. The
 [checkpoint archive](../bench/results/cuda-series-checkpoint-8-trials.tar.gz)
 and `validation/cuda-series-checkpoint-8-{audit,manifest}.json` retain this evidence.
 
+A later immutable 17-trial checkpoint also passed, covering 34 full epochs.
+Five complete groups now have exact loss-vector and final-model equality:
+repetition 0 at workers 0/2/8, and repetition 1 at workers 0/2. The incomplete
+repetition-1/workers-8 group is not counted as a complete comparison. Source,
+runtime, command, raw/parent and memory-accounting checks passed for all 17
+trials. No aggregate timing is emitted. The original server archive and its
+downloaded copy have the same SHA-256; see the
+[17-trial archive](../bench/results/cuda-series-checkpoint-17-trials.tar.gz) and
+`validation/cuda-series-checkpoint-17-{audit,manifest}.json`. The older checkpoint
+and rejected early auditor result remain preserved.
+
 Twelve synthetic corruption/false-completion cases in
 `tests/test_gpu_series_audit.py` passed on M2, including the complete-series
 bootstrap branch with known constant ratios and the CPU-capped worker case.
