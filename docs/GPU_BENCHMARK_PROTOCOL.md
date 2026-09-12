@@ -97,12 +97,14 @@ series result or a speedup claim. The
 [checkpoint archive](../bench/results/cuda-series-checkpoint-8-trials.tar.gz)
 and `validation/cuda-series-checkpoint-8-{audit,manifest}.json` retain this evidence.
 
-Twelve synthetic corruption/false-completion cases are prepared in
-`tests/test_gpu_series_audit.py` and included in the wheel workflow. They have
-not yet run: both benchmark hosts are reserved for ongoing experiments. The
-complete-series/bootstrap branch has therefore not yet passed these new tests
-or a complete real-series audit. Interim success must not be promoted to that
-broader claim.
+Twelve synthetic corruption/false-completion cases in
+`tests/test_gpu_series_audit.py` passed on M2, including the complete-series
+bootstrap branch with known constant ratios and the CPU-capped worker case.
+They also reject altered loss/model records after recomputing archive hashes,
+truncated traces, false completion, reordered trials, altered RSS and forged
+statistics. The combined 21-test JUnit report (including nine dataset-fixture
+checks) and source hashes are in `validation/benchmark-audits-m2.*`. A complete
+real-series audit is still pending; synthetic success is not that broader claim.
 
 The RSS trace spans trainer initialization, training and validation work. It is
 not a per-epoch training-RSS peak and does not observe between-sample spikes.

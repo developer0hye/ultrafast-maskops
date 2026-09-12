@@ -44,7 +44,13 @@ effect is consistent with avoiding a scan of every full-resolution output, but
 cache/bandwidth attribution has not been separately measured.
 
 Full real COCO non-overlap verification of this new installed wheel with the
-dataset wheel is running separately. The completed 18-process overlap/non-overlap
+dataset wheel completed all nine independent processes: 5,000 images and 625
+batches each at workers 0/2/8, with exact reference/replay/native equality. The
+full report and log are `bench/results/masks-only-augmented-both-nonoverlap-m2-v1.*`;
+the independently checked raw-child hashes are in
+`docs/validation/masks-only-full-nonoverlap-audit.json`. These full-output hashes
+also match the previous corrected-build experiment within each worker count.
+The earlier 18-process overlap/non-overlap
 experiment in [COCO_BOUNDS.md](COCO_BOUNDS.md) belongs to the earlier corrected
 binary. The ongoing server GPU series also retains its original binaries, so
 neither experiment may be relabeled as this optimization's throughput result.
