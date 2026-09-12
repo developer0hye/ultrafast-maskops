@@ -2,6 +2,11 @@
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 
+This `perf/resize-roi` worktree contains an unbuilt, untested resize-region
+candidate. The results below belong to its parent implementations, not to this
+new kernel. See [RESIZE_ROI.md](RESIZE_ROI.md) for the proposed invariants,
+prepared boundary tests and remaining validation.
+
 The 12-job platform/Python [wheel CI workflow](WHEEL_CI.md) is prepared and
 locally linted. Hosted execution awaits the repository visibility choice; this
 is not Windows or broader Python compatibility evidence. The main branch now

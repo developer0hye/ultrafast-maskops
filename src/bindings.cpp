@@ -110,7 +110,41 @@ struct Rasterizer {
         }
         dirty=cv::Rect();
     }
-    void render(const Polygons &p, size_t i, int h, int w, cv::Mat &dst, int color) {
+    cv::Rect resize_support(cv::Mat &dst) {
+        const cv::Rect full(0,0,dst.cols,dst.rows);
+        const int h=scratch.rows, w=scratch.cols;
+        // Preserve the full-image sampling lattice. Power-of-two integer
+        // scales have exact reciprocal coefficients; the dimension bound keeps
+        // half-integer source coordinates representable in resize.cpp's float.
+        const int scale=w/dst.cols;
+        const bool exact=scale>0 && (scale&(scale-1))==0 &&
+            w%dst.cols==0 && h%dst.rows==0 && h/dst.rows==scale &&
+            h<=(1<<23) && w<=(1<<23);
+        if(!exact) {
+            cv::resize(scratch,dst,dst.size(),0,0,cv::INTER_LINEAR);
+            return full;
+        }
+        if(dirty.empty()) {
+            dst.setTo(0);
+            return {};
+        }
+        const int left=dirty.x/scale, top=dirty.y/scale;
+        const int right=(dirty.x+dirty.width+scale-1)/scale;
+        const int bottom=(dirty.y+dirty.height+scale-1)/scale;
+        const cv::Rect reduced(left,top,right-left,bottom-top);
+        // Zeroing a full output plus rewriting a large ROI can lose to a single
+        // full resize. This initial cost guard is fixed before measurement.
+        if(size_t(reduced.width)*reduced.height*2>=size_t(dst.cols)*dst.rows) {
+            cv::resize(scratch,dst,dst.size(),0,0,cv::INTER_LINEAR);
+            return full;
+        }
+        const cv::Rect source(left*scale,top*scale,reduced.width*scale,reduced.height*scale);
+        dst.setTo(0);
+        cv::Mat target=dst(reduced);
+        cv::resize(scratch(source),target,target.size(),0,0,cv::INTER_LINEAR);
+        return reduced;
+    }
+    cv::Rect render(const Polygons &p, size_t i, int h, int w, cv::Mat &dst, int color) {
         prepare(h,w);
         int count = int(p.offsets[i+1]-p.offsets[i]);
         if (count) {
@@ -118,7 +152,7 @@ struct Rasterizer {
             dirty=p.extents[i].clipped(h,w);
             cv::fillPoly(scratch, &ptr, &count, 1, cv::Scalar(color));
         }
-        cv::resize(scratch, dst, dst.size(), 0, 0, cv::INTER_LINEAR);
+        return resize_support(dst);
     }
     py::tuple raster(const Polygons &p, int h, int w, int r, int color, bool keep) {
         const auto a=dimensions(h,w,r), n=p.size();
@@ -134,8 +168,8 @@ struct Rasterizer {
             if (!keep) small.create(h/r,w/r,CV_8UC1);
             for (size_t i=0;i<n;++i) {
                 cv::Mat dst=keep?cv::Mat(h/r,w/r,CV_8UC1,out+i*a):small;
-                render(p,i,h,w,dst,color);
-                sums[i]=uint64_t(cv::sum(dst)[0]);
+                const auto support=render(p,i,h,w,dst,color);
+                sums[i]=support.empty()?uint64_t(0):uint64_t(cv::sum(dst(support))[0]);
             }
         }
         return py::make_tuple(masks,areas);
@@ -174,7 +208,7 @@ struct Rasterizer {
                 dirty=p.combined.clipped(h,w);
                 cv::fillPoly(scratch,ptrs.data(),counts.data(),int(ptrs.size()),cv::Scalar(color));
             }
-            cv::Mat dst(h/r,w/r,CV_8UC1,out); cv::resize(scratch,dst,dst.size());
+            cv::Mat dst(h/r,w/r,CV_8UC1,out); resize_support(dst);
         }
         return result;
     }

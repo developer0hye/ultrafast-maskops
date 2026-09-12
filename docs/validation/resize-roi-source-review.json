@@ -1,0 +1,32 @@
+{
+  "scope": "source review for an unbuilt resize-region candidate; no parity or performance claim",
+  "files": [
+    {
+      "project": "OpenCV-4.13.0",
+      "path": "modules/imgproc/src/resize.cpp",
+      "sha256": "89db2e4de92e1d03890f3e7fe517f895a36514f355da097b2c8e4c55fc1847e4"
+    },
+    {
+      "project": "KleidiCV-0.7.0",
+      "path": "adapters/opencv/kleidicv_hal.cpp",
+      "sha256": "904c7225d1037dca373129c408197aa6989fa9181c46114dc0fac8c5c7e11eb1"
+    },
+    {
+      "project": "KleidiCV-0.7.0",
+      "path": "kleidicv/include/kleidicv/resize/resize_linear.h",
+      "sha256": "25746d8b867862aba3d397c540b9dcce8e01e77b2a7e4012a9306d74dcbdf4a4"
+    },
+    {
+      "project": "KleidiCV-0.7.0",
+      "path": "kleidicv/src/resize/resize_neon.cpp",
+      "sha256": "7a9d696e2f71f90b5c2bf262090962a509207b3a3f446d75b8eca29e963cfde5"
+    }
+  ],
+  "inspected_behaviors": [
+    "generic resize float source coordinates",
+    "equal half-scale LINEAR to fast-area dispatch",
+    "uint8 scalar/vector rounding",
+    "KleidiCV 150000-pixel half-scale dispatch threshold",
+    "KleidiCV generic uint8 linear support is for upscaling"
+  ]
+}
