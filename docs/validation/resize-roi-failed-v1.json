@@ -1,0 +1,37 @@
+{
+  "scope": "initial ROI candidate failed parity; not eligible for merge or performance claims",
+  "tests": [
+    {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "14",
+      "skipped": "0",
+      "tests": "179",
+      "time": "94.300",
+      "timestamp": "2026-09-13T04:29:05.683230+09:00",
+      "hostname": "Yonghyeui-MacBookAir.local"
+    }
+  ],
+  "native_build": {
+    "bindings_sha256": "b7cd4ca4d2174a5ee6127d93d67355da6dba8f5853a10c53fa6b600d5b216ade",
+    "cmake_sha256": "13177f15e47776ae22c251a2eee6079a68788b19b56397c48d2c7e48adbf574e",
+    "template_sha256": "76643f1d3cdb44abd7d7647853c1f7ae03e22d76a07027de9c7cb58340260213",
+    "compiler": "AppleClang 21.0.0.21000334",
+    "build_type": "Release"
+  },
+  "extension_sha256": "e39f270490da0c2a29118ef9afd56411455d61cc4bd77c349d75c49ff707d298",
+  "source_sha256": {
+    "src/bindings.cpp": "b7cd4ca4d2174a5ee6127d93d67355da6dba8f5853a10c53fa6b600d5b216ade",
+    "tests/test_resize_roi.py": "7a2de7e9e9d59fdd7fd705ce01cc1ae3ea916f20a48a8cb8ab874ff3580573a0",
+    "CMakeLists.txt": "13177f15e47776ae22c251a2eee6079a68788b19b56397c48d2c7e48adbf574e"
+  },
+  "artifacts_sha256": {
+    "ultrafast_maskops-0.1.0a1.tar.gz": "8c599b6b49893281657efeb63cae7f508993a6651d7914d4ca1939abbeb5767c",
+    "ultrafast_maskops-0.1.0a1-cp312-cp312-macosx_26_0_arm64.whl": "1047d53f42982c7f57b50697808fbf01d432f88cb2e5116884a5e7cfccd3ca5a",
+    ".gitignore": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+  },
+  "test_artifacts_sha256": {
+    "resize-roi-tests-v1.log": "0d1917ce55214faa3f9ba63d4f85d02a045755ab567bec79817682c4d3141e97",
+    "resize-roi-tests-v1.xml": "6fc6db4af2d392eaa8ac393e746ea98c381cb9782fa12e831fee39c704c05c35"
+  }
+}

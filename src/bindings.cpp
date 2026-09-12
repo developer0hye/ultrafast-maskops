@@ -128,10 +128,19 @@ struct Rasterizer {
             dst.setTo(0);
             return {};
         }
-        const int left=dirty.x/scale, top=dirty.y/scale;
+        int left=dirty.x/scale, top=dirty.y/scale;
         const int right=(dirty.x+dirty.width+scale-1)/scale;
         const int bottom=(dirty.y+dirty.height+scale-1)/scale;
-        const cv::Rect reduced(left,top,right-left,bottom-top);
+        int width=right-left, height=bottom-top;
+        // Carotene's single-channel linear HAL requires both output dimensions
+        // >=8. Preserve that eligibility: switching a small crop to the generic
+        // path changes integer rounding at scales >=4, even with exact sampling
+        // coordinates. Extend into known-zero scratch, retaining aligned origins.
+        if(dst.cols>=8 && dst.rows>=8) {
+            width=std::max(width,8); height=std::max(height,8);
+            left=std::min(left,dst.cols-width); top=std::min(top,dst.rows-height);
+        }
+        const cv::Rect reduced(left,top,width,height);
         // Zeroing a full output plus rewriting a large ROI can lose to a single
         // full resize. This initial cost guard is fixed before measurement.
         if(size_t(reduced.width)*reduced.height*2>=size_t(dst.cols)*dst.rows) {

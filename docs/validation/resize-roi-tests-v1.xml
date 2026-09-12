@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="14" skipped="0" tests="179" time="94.300" timestamp="2026-09-13T04:29:05.683230+09:00" hostname="Yonghyeui-MacBookAir.local"><testcase classname="tests.test_gpu_series_audit" name="test_full_audit_and_cpu_capped_validation[0]" time="0.331" /><testcase classname="tests.test_gpu_series_audit" name="test_full_audit_and_cpu_capped_validation[8]" time="0.358" /><testcase classname="tests.test_gpu_series_audit" name="test_partial_cannot_become_a_final_summary" time="0.238" /><testcase classname="tests.test_gpu_series_audit" name="test_changed_raw_artifacts_are_rejected[checksum-raw checksum mismatch]" time="0.187" /><testcase classname="tests.test_gpu_series_audit" name="test_changed_raw_artifacts_are_rejected[loss-loss trace differs]" time="0.278" /><testcase classname="tests.test_gpu_series_audit" name="test_changed_raw_artifacts_are_rejected[truncated_loss-loss trace truncated]" time="0.216" /><testcase classname="tests.test_gpu_series_audit" name="test_changed_raw_artifacts_are_rejected[peak-RSS maximum mismatch]" time="0.192" /><testcase classname="tests.test_gpu_series_audit" name="test_changed_raw_artifacts_are_rejected[model-final model differs]" time="0.265" /><testcase classname="tests.test_gpu_series_audit" name="test_changed_raw_artifacts_are_rejected[compact-compact/raw disagreement]" time="0.205" /><testcase classname="tests.test_gpu_series_audit" name="test_false_completion_and_statistics_are_rejected[missing-complete flag with missing trials]" time="0.172" /><testcase classname="tests.test_gpu_series_audit" name="test_false_completion_and_statistics_are_rejected[order-reordered records]" time="0.197" /><testcase classname="tests.test_gpu_series_audit" name="test_false_completion_and_statistics_are_rejected[summary-paired summary mismatch]" time="0.290" /><testcase classname="tests.test_integration" name="test_full_format[True-0]" time="1.968" /><testcase classname="tests.test_integration" name="test_full_format[True-1]" time="0.025" /><testcase classname="tests.test_integration" name="test_full_format[True-5]" time="0.020" /><testcase classname="tests.test_integration" name="test_full_format[True-129]" time="0.023" /><testcase classname="tests.test_integration" name="test_full_format[True-256]" time="0.028" /><testcase classname="tests.test_integration" name="test_full_format[False-0]" time="0.019" /><testcase classname="tests.test_integration" name="test_full_format[False-1]" time="0.020" /><testcase classname="tests.test_integration" name="test_full_format[False-5]" time="0.021" /><testcase classname="tests.test_integration" name="test_full_format[False-129]" time="0.025" /><testcase classname="tests.test_integration" name="test_full_format[False-256]" time="0.029" /><testcase classname="tests.test_integration" name="test_dataloader_spawn[0]" time="0.024" /><testcase classname="tests.test_integration" name="test_dataloader_spawn[2]" time="21.235" /><testcase classname="tests.test_integration" name="test_unknown_profile_rejected" time="0.019" /><testcase classname="tests.test_integration" name="test_actual_yolo_dataset_first_batches[0]" time="0.446" /><testcase classname="tests.test_integration" name="test_actual_yolo_dataset_first_batches[2]" time="21.010" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-1-0]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-1-1]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-1-5]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-1-20]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-1-100]" time="0.005" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-1-127]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-1-128]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-1-129]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-1-255]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-1-256]" time="0.004" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-1-500]" time="0.006" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-2-0]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-2-1]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-2-5]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-2-20]" time="0.001" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-2-100]" time="0.001" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-2-127]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-2-128]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-2-129]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-2-255]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-2-256]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-2-500]" time="0.005" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-4-0]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-4-1]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-4-5]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-4-20]" time="0.001" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-4-100]" time="0.001" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-4-127]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-4-128]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-4-129]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-4-255]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-4-256]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-4-500]" time="0.005" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-8-0]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-8-1]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-8-5]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-8-20]" time="0.001" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-8-100]" time="0.001" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-8-127]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-8-128]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-8-129]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-8-255]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-8-256]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[retained-8-500]" time="0.005" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-1-0]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-1-1]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-1-5]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-1-20]" time="0.001" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-1-100]" time="0.001" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-1-127]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-1-128]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-1-129]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-1-255]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-1-256]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-1-500]" time="0.006" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-2-0]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-2-1]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-2-5]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-2-20]" time="0.001" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-2-100]" time="0.001" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-2-127]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-2-128]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-2-129]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-2-255]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-2-256]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-2-500]" time="0.005" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-4-0]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-4-1]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-4-5]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-4-20]" time="0.001" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-4-100]" time="0.001" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-4-127]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-4-128]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-4-129]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-4-255]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-4-256]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-4-500]" time="0.005" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-8-0]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-8-1]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-8-5]" time="0.000" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-8-20]" time="0.001" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-8-100]" time="0.001" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-8-127]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-8-128]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-8-129]" time="0.002" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-8-255]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-8-256]" time="0.003" /><testcase classname="tests.test_parity" name="test_overlap_boundaries[bounded-8-500]" time="0.005" /><testcase classname="tests.test_parity" name="test_multiple_contours_one_fill[0]" time="0.000" /><testcase classname="tests.test_parity" name="test_multiple_contours_one_fill[1]" time="0.000" /><testcase classname="tests.test_parity" name="test_multiple_contours_one_fill[127]" time="0.000" /><testcase classname="tests.test_parity" name="test_multiple_contours_one_fill[255]" time="0.000" /><testcase classname="tests.test_parity" name="test_empty_contracts" time="0.000" /><testcase classname="tests.test_parity" name="test_snapshot_lifetime_and_concurrency" time="0.001" /><testcase classname="tests.test_parity" name="test_invalid_inputs" time="0.001" /><testcase classname="tests.test_parity" name="test_private_opencv_threads_and_import_order" time="0.242" /><testcase classname="tests.test_parity" name="test_ndarray_packing_and_empty_contours" time="0.001" /><testcase classname="tests.test_parity" name="test_10000_seeded_differential_cases" time="0.129"><failure message="AssertionError: assert b'@\x00\x00\x...0\x00\x00\x00' == b'@\x00\x00\x...0\x00\x00\x00'&#10;  &#10;  At index 181 diff: b'`' != b'_'&#10;  Use -v to get more diff">def test_10000_seeded_differential_cases():
+        rng = np.random.default_rng(20260912)
+        engine = native.Rasterizer()
+        for case in range(10000):
+            shape = tuple(map(int, rng.integers(8, 65, 2)))
+            ratio = (1, 2, 4, 8)[case % 4]
+            n = int(rng.integers(1, 9))
+            segments = [rng.uniform(-30, 90, (int(rng.integers(1, 18)), 2)) for _ in range(n)]
+            if case % 5 == 0:
+                segments = [s[::-1] for s in segments]
+            for segment in segments:
+                segment.flags.writeable = False
+            before = [s.tobytes() for s in segments]
+            color = (0, 1, 127, 255)[case % 4]
+            packed = native.PackedPolygons.from_segments(segments)
+&gt;           equal(reference.polygons2masks(shape, segments, color, ratio), engine.masks(shape, packed, color, ratio))
+
+tests/test_parity.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+a = array([[[ 64,   0,   0,   0,   0,   0,   0,  96,  32, 127, 127, 127, 127,  32, 127],
+        [ 64,   0,   0,   0,   0,... 0,   0,   0,   0],
+        [  0, 127, 127, 127, 127, 127, 127, 127, 127, 127,   0,   0,   0,   0,   0]]], dtype=uint8)
+b = array([[[ 64,   0,   0,   0,   0,   0,   0,  96,  32, 127, 127, 127, 127,  32, 127],
+        [ 64,   0,   0,   0,   0,... 0,   0,   0,   0],
+        [  0, 127, 127, 127, 127, 127, 127, 127, 127, 127,   0,   0,   0,   0,   0]]], dtype=uint8)
+
+    def equal(a, b):
+        assert a.shape == b.shape
+        assert a.dtype == b.dtype
+&gt;       assert a.tobytes() == b.tobytes()
+E       AssertionError: assert b'@\x00\x00\x...0\x00\x00\x00' == b'@\x00\x00\x...0\x00\x00\x00'
+E         
+E         At index 181 diff: b'`' != b'_'
+E         Use -v to get more diff
+
+tests/test_parity.py:14: AssertionError</failure></testcase><testcase classname="tests.test_parity" name="test_misaligned_packed_input_is_copied_safely" time="0.000" /><testcase classname="tests.test_parity" name="test_cached_geometry_extents_follow_each_raster_size[retained]" time="0.001" /><testcase classname="tests.test_parity" name="test_cached_geometry_extents_follow_each_raster_size[bounded]" time="0.001" /><testcase classname="tests.test_parity" name="test_compiled_profile_matches_kernel_and_build_sources" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[0-1]" time="0.001" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[0-3]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[0-4]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[0-7]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[1-1]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[1-3]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[1-4]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[1-7]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[127-1]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[127-3]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[127-4]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[127-7]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[255-1]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[255-3]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[255-4]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_vertices_keep_edges_holes_and_degenerate_pixels[255-7]" time="0.000" /><testcase classname="tests.test_parity" name="test_repeated_points_keep_instance_count_dtype_and_tie_order[255]" time="0.002" /><testcase classname="tests.test_parity" name="test_repeated_points_keep_instance_count_dtype_and_tie_order[256]" time="0.002" /><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[0-1]" time="0.005" /><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[0-2]" time="0.004" /><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[0-4]" time="0.002"><failure message="AssertionError: assert b'&lt;:111/&amp;$###...\x00\x00\x00I' == b'J:311/\'%$$...\x00\x00\x00I'&#10;  &#10;  At index 0 diff: b'&lt;' != b'J'&#10;  Use -v to get more diff">ratio = 4, color = 0
+
+    @pytest.mark.parametrize("ratio", [1, 2, 4, 8, 16])
+    @pytest.mark.parametrize("color", [0, 1, 127, 255])
+    def test_small_roi_dispatch_boundaries(ratio, color):
+        shape = (128, 256)
+        engine = native.Rasterizer()
+        polygons = []
+        # Reduced ROI widths cross scalar, half-vector, vector and tail boundaries.
+        # Unaligned starts and thin triangles exercise fractional edge masks.
+        for width in (1, 2, 3, 7, 8, 9, 15, 16, 17, 31, 32, 33):
+            for start in (0, 1, 3, 7, 17, 255):
+                x = start - 4
+                y = (start * 3) % 128 - 2
+                polygons.append(np.array([[x, y], [x + width * ratio, y + 1], [x + 1, y + ratio * 2]], np.float32))
+        # The same instance buffer sees earlier nonzero values, an off-image shape,
+        # then a new on-image shape in bounded overlap mode.
+        polygons.extend([np.array([[400, 300], [500, 300], [400, 400]], np.float32), polygons[0]])
+        packed = native.PackedPolygons.from_segments(polygons)
+        equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, polygons, color, ratio))
+        for mode in ("bounded", "retained"):
+            result, order = engine.overlap(shape, packed, ratio, mode=mode)
+            expected, expected_order = reference.polygons2masks_overlap(shape, polygons, ratio)
+&gt;           equal(result, expected)
+
+tests/test_resize_roi.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = array([[60, 58, 49, ...,  0,  0,  0],
+       [59, 47, 43, ...,  0,  0,  0],
+       [72, 54, 52, ...,  0,  0,  0],
+    ...  0,  0,  0],
+       [ 0,  0,  0, ...,  0,  0,  0],
+       [ 0,  0,  0, ...,  0,  0, 73]], shape=(32, 64), dtype=uint8)
+expected = array([[74, 58, 51, ...,  0,  0,  0],
+       [57, 51, 39, ...,  0,  0,  0],
+       [60, 56, 53, ...,  0,  0,  0],
+    ...  0,  0,  0],
+       [ 0,  0,  0, ...,  0,  0,  0],
+       [ 0,  0,  0, ...,  0,  0, 73]], shape=(32, 64), dtype=uint8)
+
+    def equal(actual, expected):
+        assert actual.shape == expected.shape and actual.dtype == expected.dtype
+&gt;       assert actual.tobytes() == expected.tobytes()
+E       AssertionError: assert b'&lt;:111/&amp;$###...\x00\x00\x00I' == b'J:311/\'%$$...\x00\x00\x00I'
+E         
+E         At index 0 diff: b'&lt;' != b'J'
+E         Use -v to get more diff
+
+tests/test_resize_roi.py:11: AssertionError</failure></testcase><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[0-8]" time="0.003"><failure message="assert b'E9300.*%&quot;&quot;&quot;...\x00\x00\x00J' == b'C:511/,%&quot;&quot;&quot;...\x00\x00\x00J'&#10;  &#10;  At index 0 diff: b'E' != b'C'&#10;  Use -v to get more diff">ratio = 8, color = 0
+
+    @pytest.mark.parametrize("ratio", [1, 2, 4, 8, 16])
+    @pytest.mark.parametrize("color", [0, 1, 127, 255])
+    def test_small_roi_dispatch_boundaries(ratio, color):
+        shape = (128, 256)
+        engine = native.Rasterizer()
+        polygons = []
+        # Reduced ROI widths cross scalar, half-vector, vector and tail boundaries.
+        # Unaligned starts and thin triangles exercise fractional edge masks.
+        for width in (1, 2, 3, 7, 8, 9, 15, 16, 17, 31, 32, 33):
+            for start in (0, 1, 3, 7, 17, 255):
+                x = start - 4
+                y = (start * 3) % 128 - 2
+                polygons.append(np.array([[x, y], [x + width * ratio, y + 1], [x + 1, y + ratio * 2]], np.float32))
+        # The same instance buffer sees earlier nonzero values, an off-image shape,
+        # then a new on-image shape in bounded overlap mode.
+        polygons.extend([np.array([[400, 300], [500, 300], [400, 400]], np.float32), polygons[0]])
+        packed = native.PackedPolygons.from_segments(polygons)
+        equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, polygons, color, ratio))
+        for mode in ("bounded", "retained"):
+            result, order = engine.overlap(shape, packed, ratio, mode=mode)
+            expected, expected_order = reference.polygons2masks_overlap(shape, polygons, ratio)
+&gt;           equal(result, expected)
+
+tests/test_resize_roi.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = array([[69, 57, 51, 48, 48, 46, 42, 37, 34, 34, 34, 32, 30, 26, 25, 23, 18, 18, 18, 18, 18, 18, 18, 17, 16, 10, 10, 10...  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 74]], dtype=uint8)
+expected = array([[67, 58, 53, 49, 49, 47, 44, 37, 34, 34, 34, 33, 31, 26, 25, 23, 18, 18, 18, 18, 18, 18, 18, 18, 16, 10, 10, 10...  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 74]], dtype=uint8)
+
+    def equal(actual, expected):
+        assert actual.shape == expected.shape and actual.dtype == expected.dtype
+&gt;       assert actual.tobytes() == expected.tobytes()
+E       assert b'E9300.*%"""...\x00\x00\x00J' == b'C:511/,%"""...\x00\x00\x00J'
+E         
+E         At index 0 diff: b'E' != b'C'
+E         Use -v to get more diff
+
+tests/test_resize_roi.py:11: AssertionError</failure></testcase><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[0-16]" time="0.002"><failure message="AssertionError: assert b'JC;::961,++...0\x00\x00\x00' == b'JC;::962,++...0\x00\x00\x00'&#10;  &#10;  At index 7 diff: b'1' != b'2'&#10;  Use -v to get more diff">ratio = 16, color = 0
+
+    @pytest.mark.parametrize("ratio", [1, 2, 4, 8, 16])
+    @pytest.mark.parametrize("color", [0, 1, 127, 255])
+    def test_small_roi_dispatch_boundaries(ratio, color):
+        shape = (128, 256)
+        engine = native.Rasterizer()
+        polygons = []
+        # Reduced ROI widths cross scalar, half-vector, vector and tail boundaries.
+        # Unaligned starts and thin triangles exercise fractional edge masks.
+        for width in (1, 2, 3, 7, 8, 9, 15, 16, 17, 31, 32, 33):
+            for start in (0, 1, 3, 7, 17, 255):
+                x = start - 4
+                y = (start * 3) % 128 - 2
+                polygons.append(np.array([[x, y], [x + width * ratio, y + 1], [x + 1, y + ratio * 2]], np.float32))
+        # The same instance buffer sees earlier nonzero values, an off-image shape,
+        # then a new on-image shape in bounded overlap mode.
+        polygons.extend([np.array([[400, 300], [500, 300], [400, 400]], np.float32), polygons[0]])
+        packed = native.PackedPolygons.from_segments(polygons)
+        equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, polygons, color, ratio))
+        for mode in ("bounded", "retained"):
+            result, order = engine.overlap(shape, packed, ratio, mode=mode)
+            expected, expected_order = reference.polygons2masks_overlap(shape, polygons, ratio)
+&gt;           equal(result, expected)
+
+tests/test_resize_roi.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = array([[74, 67, 59, 58, 58, 57, 54, 49, 44, 43, 43, 42, 39, 37, 32, 32],
+       [69, 65, 60, 53, 53, 53, 53, 50, 34, 3... 0,  0,  0,  0,  0,  0,  0,  0],
+       [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0]], dtype=uint8)
+expected = array([[74, 67, 59, 58, 58, 57, 54, 50, 44, 43, 43, 42, 41, 37, 32, 31],
+       [69, 65, 60, 52, 52, 52, 52, 47, 45, 3... 0,  0,  0,  0,  0,  0,  0,  0],
+       [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0]], dtype=uint8)
+
+    def equal(actual, expected):
+        assert actual.shape == expected.shape and actual.dtype == expected.dtype
+&gt;       assert actual.tobytes() == expected.tobytes()
+E       AssertionError: assert b'JC;::961,++...0\x00\x00\x00' == b'JC;::962,++...0\x00\x00\x00'
+E         
+E         At index 7 diff: b'1' != b'2'
+E         Use -v to get more diff
+
+tests/test_resize_roi.py:11: AssertionError</failure></testcase><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[1-1]" time="0.005" /><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[1-2]" time="0.004" /><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[1-4]" time="0.003"><failure message="AssertionError: assert b'\x00\x00\x0...0\x00\x00\x00' == b'\x00\x00\x0...0\x00\x00\x00'&#10;  &#10;  At index 2048 diff: b'\x00' != b'\x01'&#10;  Use -v to get more diff">ratio = 4, color = 1
+
+    @pytest.mark.parametrize("ratio", [1, 2, 4, 8, 16])
+    @pytest.mark.parametrize("color", [0, 1, 127, 255])
+    def test_small_roi_dispatch_boundaries(ratio, color):
+        shape = (128, 256)
+        engine = native.Rasterizer()
+        polygons = []
+        # Reduced ROI widths cross scalar, half-vector, vector and tail boundaries.
+        # Unaligned starts and thin triangles exercise fractional edge masks.
+        for width in (1, 2, 3, 7, 8, 9, 15, 16, 17, 31, 32, 33):
+            for start in (0, 1, 3, 7, 17, 255):
+                x = start - 4
+                y = (start * 3) % 128 - 2
+                polygons.append(np.array([[x, y], [x + width * ratio, y + 1], [x + 1, y + ratio * 2]], np.float32))
+        # The same instance buffer sees earlier nonzero values, an off-image shape,
+        # then a new on-image shape in bounded overlap mode.
+        polygons.extend([np.array([[400, 300], [500, 300], [400, 400]], np.float32), polygons[0]])
+        packed = native.PackedPolygons.from_segments(polygons)
+&gt;       equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, polygons, color, ratio))
+
+tests/test_resize_roi.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = array([[[0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        ...,
+      ... 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0]]], shape=(74, 32, 64), dtype=uint8)
+expected = array([[[0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        ...,
+      ... 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0]]], shape=(74, 32, 64), dtype=uint8)
+
+    def equal(actual, expected):
+        assert actual.shape == expected.shape and actual.dtype == expected.dtype
+&gt;       assert actual.tobytes() == expected.tobytes()
+E       AssertionError: assert b'\x00\x00\x0...0\x00\x00\x00' == b'\x00\x00\x0...0\x00\x00\x00'
+E         
+E         At index 2048 diff: b'\x00' != b'\x01'
+E         Use -v to get more diff
+
+tests/test_resize_roi.py:11: AssertionError</failure></testcase><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[1-8]" time="0.002"><failure message="AssertionError: assert b'\x00\x00\x0...0\x00\x00\x00' == b'\x00\x00\x0...0\x00\x00\x00'&#10;  &#10;  At index 1601 diff: b'\x00' != b'\x01'&#10;  Use -v to get more diff">ratio = 8, color = 1
+
+    @pytest.mark.parametrize("ratio", [1, 2, 4, 8, 16])
+    @pytest.mark.parametrize("color", [0, 1, 127, 255])
+    def test_small_roi_dispatch_boundaries(ratio, color):
+        shape = (128, 256)
+        engine = native.Rasterizer()
+        polygons = []
+        # Reduced ROI widths cross scalar, half-vector, vector and tail boundaries.
+        # Unaligned starts and thin triangles exercise fractional edge masks.
+        for width in (1, 2, 3, 7, 8, 9, 15, 16, 17, 31, 32, 33):
+            for start in (0, 1, 3, 7, 17, 255):
+                x = start - 4
+                y = (start * 3) % 128 - 2
+                polygons.append(np.array([[x, y], [x + width * ratio, y + 1], [x + 1, y + ratio * 2]], np.float32))
+        # The same instance buffer sees earlier nonzero values, an off-image shape,
+        # then a new on-image shape in bounded overlap mode.
+        polygons.extend([np.array([[400, 300], [500, 300], [400, 400]], np.float32), polygons[0]])
+        packed = native.PackedPolygons.from_segments(polygons)
+&gt;       equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, polygons, color, ratio))
+
+tests/test_resize_roi.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = array([[[0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        ...,
+      ... 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0]]], shape=(74, 16, 32), dtype=uint8)
+expected = array([[[0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        ...,
+      ... 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0]]], shape=(74, 16, 32), dtype=uint8)
+
+    def equal(actual, expected):
+        assert actual.shape == expected.shape and actual.dtype == expected.dtype
+&gt;       assert actual.tobytes() == expected.tobytes()
+E       AssertionError: assert b'\x00\x00\x0...0\x00\x00\x00' == b'\x00\x00\x0...0\x00\x00\x00'
+E         
+E         At index 1601 diff: b'\x00' != b'\x01'
+E         Use -v to get more diff
+
+tests/test_resize_roi.py:11: AssertionError</failure></testcase><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[1-16]" time="0.002"><failure message="AssertionError: assert b'\x01\x00\x0...0\x00\x00\x00' == b'\x01\x00\x0...0\x00\x00\x00'&#10;  &#10;  At index 3491 diff: b'\x00' != b'\x01'&#10;  Use -v to get more diff">ratio = 16, color = 1
+
+    @pytest.mark.parametrize("ratio", [1, 2, 4, 8, 16])
+    @pytest.mark.parametrize("color", [0, 1, 127, 255])
+    def test_small_roi_dispatch_boundaries(ratio, color):
+        shape = (128, 256)
+        engine = native.Rasterizer()
+        polygons = []
+        # Reduced ROI widths cross scalar, half-vector, vector and tail boundaries.
+        # Unaligned starts and thin triangles exercise fractional edge masks.
+        for width in (1, 2, 3, 7, 8, 9, 15, 16, 17, 31, 32, 33):
+            for start in (0, 1, 3, 7, 17, 255):
+                x = start - 4
+                y = (start * 3) % 128 - 2
+                polygons.append(np.array([[x, y], [x + width * ratio, y + 1], [x + 1, y + ratio * 2]], np.float32))
+        # The same instance buffer sees earlier nonzero values, an off-image shape,
+        # then a new on-image shape in bounded overlap mode.
+        polygons.extend([np.array([[400, 300], [500, 300], [400, 400]], np.float32), polygons[0]])
+        packed = native.PackedPolygons.from_segments(polygons)
+&gt;       equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, polygons, color, ratio))
+
+tests/test_resize_roi.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = array([[[1, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        ...,
+      ..., 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0]]], shape=(74, 8, 16), dtype=uint8)
+expected = array([[[1, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        ...,
+      ..., 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0],
+        [0, 0, 0, ..., 0, 0, 0]]], shape=(74, 8, 16), dtype=uint8)
+
+    def equal(actual, expected):
+        assert actual.shape == expected.shape and actual.dtype == expected.dtype
+&gt;       assert actual.tobytes() == expected.tobytes()
+E       AssertionError: assert b'\x01\x00\x0...0\x00\x00\x00' == b'\x01\x00\x0...0\x00\x00\x00'
+E         
+E         At index 3491 diff: b'\x00' != b'\x01'
+E         Use -v to get more diff
+
+tests/test_resize_roi.py:11: AssertionError</failure></testcase><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[127-1]" time="0.005" /><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[127-2]" time="0.004" /><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[127-4]" time="0.003"><failure message="AssertionError: assert b'\x00\x00\x0...0\x00\x00\x00' == b'\x00\x00\x0...0\x00\x00\x00'&#10;  &#10;  At index 9027 diff: b'_' != b'`'&#10;  Use -v to get more diff">ratio = 4, color = 127
+
+    @pytest.mark.parametrize("ratio", [1, 2, 4, 8, 16])
+    @pytest.mark.parametrize("color", [0, 1, 127, 255])
+    def test_small_roi_dispatch_boundaries(ratio, color):
+        shape = (128, 256)
+        engine = native.Rasterizer()
+        polygons = []
+        # Reduced ROI widths cross scalar, half-vector, vector and tail boundaries.
+        # Unaligned starts and thin triangles exercise fractional edge masks.
+        for width in (1, 2, 3, 7, 8, 9, 15, 16, 17, 31, 32, 33):
+            for start in (0, 1, 3, 7, 17, 255):
+                x = start - 4
+                y = (start * 3) % 128 - 2
+                polygons.append(np.array([[x, y], [x + width * ratio, y + 1], [x + 1, y + ratio * 2]], np.float32))
+        # The same instance buffer sees earlier nonzero values, an off-image shape,
+        # then a new on-image shape in bounded overlap mode.
+        polygons.extend([np.array([[400, 300], [500, 300], [400, 400]], np.float32), polygons[0]])
+        packed = native.PackedPolygons.from_segments(polygons)
+&gt;       equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, polygons, color, ratio))
+
+tests/test_resize_roi.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = array([[[  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,...   [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0]]], shape=(74, 32, 64), dtype=uint8)
+expected = array([[[  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,...   [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0]]], shape=(74, 32, 64), dtype=uint8)
+
+    def equal(actual, expected):
+        assert actual.shape == expected.shape and actual.dtype == expected.dtype
+&gt;       assert actual.tobytes() == expected.tobytes()
+E       AssertionError: assert b'\x00\x00\x0...0\x00\x00\x00' == b'\x00\x00\x0...0\x00\x00\x00'
+E         
+E         At index 9027 diff: b'_' != b'`'
+E         Use -v to get more diff
+
+tests/test_resize_roi.py:11: AssertionError</failure></testcase><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[127-8]" time="0.002"><failure message="AssertionError: assert b'\x00\x00\x0...0\x00\x00\x00' == b'\x00\x00\x0...0\x00\x00\x00'&#10;  &#10;  At index 1632 diff: b'_' != b'`'&#10;  Use -v to get more diff">ratio = 8, color = 127
+
+    @pytest.mark.parametrize("ratio", [1, 2, 4, 8, 16])
+    @pytest.mark.parametrize("color", [0, 1, 127, 255])
+    def test_small_roi_dispatch_boundaries(ratio, color):
+        shape = (128, 256)
+        engine = native.Rasterizer()
+        polygons = []
+        # Reduced ROI widths cross scalar, half-vector, vector and tail boundaries.
+        # Unaligned starts and thin triangles exercise fractional edge masks.
+        for width in (1, 2, 3, 7, 8, 9, 15, 16, 17, 31, 32, 33):
+            for start in (0, 1, 3, 7, 17, 255):
+                x = start - 4
+                y = (start * 3) % 128 - 2
+                polygons.append(np.array([[x, y], [x + width * ratio, y + 1], [x + 1, y + ratio * 2]], np.float32))
+        # The same instance buffer sees earlier nonzero values, an off-image shape,
+        # then a new on-image shape in bounded overlap mode.
+        polygons.extend([np.array([[400, 300], [500, 300], [400, 400]], np.float32), polygons[0]])
+        packed = native.PackedPolygons.from_segments(polygons)
+&gt;       equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, polygons, color, ratio))
+
+tests/test_resize_roi.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = array([[[  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,...   [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0]]], shape=(74, 16, 32), dtype=uint8)
+expected = array([[[  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,...   [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0]]], shape=(74, 16, 32), dtype=uint8)
+
+    def equal(actual, expected):
+        assert actual.shape == expected.shape and actual.dtype == expected.dtype
+&gt;       assert actual.tobytes() == expected.tobytes()
+E       AssertionError: assert b'\x00\x00\x0...0\x00\x00\x00' == b'\x00\x00\x0...0\x00\x00\x00'
+E         
+E         At index 1632 diff: b'_' != b'`'
+E         Use -v to get more diff
+
+tests/test_resize_roi.py:11: AssertionError</failure></testcase><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[127-16]" time="0.002"><failure message="AssertionError: assert b'\x7f\x00\x0...0\x00\x00\x00' == b'\x7f\x00\x0...0\x00\x00\x00'&#10;  &#10;  At index 256 diff: b'_' != b'`'&#10;  Use -v to get more diff">ratio = 16, color = 127
+
+    @pytest.mark.parametrize("ratio", [1, 2, 4, 8, 16])
+    @pytest.mark.parametrize("color", [0, 1, 127, 255])
+    def test_small_roi_dispatch_boundaries(ratio, color):
+        shape = (128, 256)
+        engine = native.Rasterizer()
+        polygons = []
+        # Reduced ROI widths cross scalar, half-vector, vector and tail boundaries.
+        # Unaligned starts and thin triangles exercise fractional edge masks.
+        for width in (1, 2, 3, 7, 8, 9, 15, 16, 17, 31, 32, 33):
+            for start in (0, 1, 3, 7, 17, 255):
+                x = start - 4
+                y = (start * 3) % 128 - 2
+                polygons.append(np.array([[x, y], [x + width * ratio, y + 1], [x + 1, y + ratio * 2]], np.float32))
+        # The same instance buffer sees earlier nonzero values, an off-image shape,
+        # then a new on-image shape in bounded overlap mode.
+        polygons.extend([np.array([[400, 300], [500, 300], [400, 400]], np.float32), polygons[0]])
+        packed = native.PackedPolygons.from_segments(polygons)
+&gt;       equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, polygons, color, ratio))
+
+tests/test_resize_roi.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = array([[[127,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,...    [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0]]], shape=(74, 8, 16), dtype=uint8)
+expected = array([[[127,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,...    [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0]]], shape=(74, 8, 16), dtype=uint8)
+
+    def equal(actual, expected):
+        assert actual.shape == expected.shape and actual.dtype == expected.dtype
+&gt;       assert actual.tobytes() == expected.tobytes()
+E       AssertionError: assert b'\x7f\x00\x0...0\x00\x00\x00' == b'\x7f\x00\x0...0\x00\x00\x00'
+E         
+E         At index 256 diff: b'_' != b'`'
+E         Use -v to get more diff
+
+tests/test_resize_roi.py:11: AssertionError</failure></testcase><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[255-1]" time="0.005" /><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[255-2]" time="0.003" /><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[255-4]" time="0.003"><failure message="AssertionError: assert b'\x00\x00\x0...0\x00\x00\x00' == b'\x00\x00\x0...0\x00\x00\x00'&#10;  &#10;  At index 9027 diff: b'\xbf' != b'\xc0'&#10;  Use -v to get more diff">ratio = 4, color = 255
+
+    @pytest.mark.parametrize("ratio", [1, 2, 4, 8, 16])
+    @pytest.mark.parametrize("color", [0, 1, 127, 255])
+    def test_small_roi_dispatch_boundaries(ratio, color):
+        shape = (128, 256)
+        engine = native.Rasterizer()
+        polygons = []
+        # Reduced ROI widths cross scalar, half-vector, vector and tail boundaries.
+        # Unaligned starts and thin triangles exercise fractional edge masks.
+        for width in (1, 2, 3, 7, 8, 9, 15, 16, 17, 31, 32, 33):
+            for start in (0, 1, 3, 7, 17, 255):
+                x = start - 4
+                y = (start * 3) % 128 - 2
+                polygons.append(np.array([[x, y], [x + width * ratio, y + 1], [x + 1, y + ratio * 2]], np.float32))
+        # The same instance buffer sees earlier nonzero values, an off-image shape,
+        # then a new on-image shape in bounded overlap mode.
+        polygons.extend([np.array([[400, 300], [500, 300], [400, 400]], np.float32), polygons[0]])
+        packed = native.PackedPolygons.from_segments(polygons)
+&gt;       equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, polygons, color, ratio))
+
+tests/test_resize_roi.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = array([[[  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,...   [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0]]], shape=(74, 32, 64), dtype=uint8)
+expected = array([[[  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,...   [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0]]], shape=(74, 32, 64), dtype=uint8)
+
+    def equal(actual, expected):
+        assert actual.shape == expected.shape and actual.dtype == expected.dtype
+&gt;       assert actual.tobytes() == expected.tobytes()
+E       AssertionError: assert b'\x00\x00\x0...0\x00\x00\x00' == b'\x00\x00\x0...0\x00\x00\x00'
+E         
+E         At index 9027 diff: b'\xbf' != b'\xc0'
+E         Use -v to get more diff
+
+tests/test_resize_roi.py:11: AssertionError</failure></testcase><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[255-8]" time="0.002"><failure message="AssertionError: assert b'\x00\x00\x0...0\x00\x00\x00' == b'\x00\x00\x0...0\x00\x00\x00'&#10;  &#10;  At index 1632 diff: b'\xbf' != b'\xc0'&#10;  Use -v to get more diff">ratio = 8, color = 255
+
+    @pytest.mark.parametrize("ratio", [1, 2, 4, 8, 16])
+    @pytest.mark.parametrize("color", [0, 1, 127, 255])
+    def test_small_roi_dispatch_boundaries(ratio, color):
+        shape = (128, 256)
+        engine = native.Rasterizer()
+        polygons = []
+        # Reduced ROI widths cross scalar, half-vector, vector and tail boundaries.
+        # Unaligned starts and thin triangles exercise fractional edge masks.
+        for width in (1, 2, 3, 7, 8, 9, 15, 16, 17, 31, 32, 33):
+            for start in (0, 1, 3, 7, 17, 255):
+                x = start - 4
+                y = (start * 3) % 128 - 2
+                polygons.append(np.array([[x, y], [x + width * ratio, y + 1], [x + 1, y + ratio * 2]], np.float32))
+        # The same instance buffer sees earlier nonzero values, an off-image shape,
+        # then a new on-image shape in bounded overlap mode.
+        polygons.extend([np.array([[400, 300], [500, 300], [400, 400]], np.float32), polygons[0]])
+        packed = native.PackedPolygons.from_segments(polygons)
+&gt;       equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, polygons, color, ratio))
+
+tests/test_resize_roi.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = array([[[  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,...   [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0]]], shape=(74, 16, 32), dtype=uint8)
+expected = array([[[  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,...   [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0]]], shape=(74, 16, 32), dtype=uint8)
+
+    def equal(actual, expected):
+        assert actual.shape == expected.shape and actual.dtype == expected.dtype
+&gt;       assert actual.tobytes() == expected.tobytes()
+E       AssertionError: assert b'\x00\x00\x0...0\x00\x00\x00' == b'\x00\x00\x0...0\x00\x00\x00'
+E         
+E         At index 1632 diff: b'\xbf' != b'\xc0'
+E         Use -v to get more diff
+
+tests/test_resize_roi.py:11: AssertionError</failure></testcase><testcase classname="tests.test_resize_roi" name="test_small_roi_dispatch_boundaries[255-16]" time="0.002"><failure message="AssertionError: assert b'\xff\x00\x0...0\x00\x00\x00' == b'\xff\x00\x0...0\x00\x00\x00'&#10;  &#10;  At index 256 diff: b'\xbf' != b'\xc0'&#10;  Use -v to get more diff">ratio = 16, color = 255
+
+    @pytest.mark.parametrize("ratio", [1, 2, 4, 8, 16])
+    @pytest.mark.parametrize("color", [0, 1, 127, 255])
+    def test_small_roi_dispatch_boundaries(ratio, color):
+        shape = (128, 256)
+        engine = native.Rasterizer()
+        polygons = []
+        # Reduced ROI widths cross scalar, half-vector, vector and tail boundaries.
+        # Unaligned starts and thin triangles exercise fractional edge masks.
+        for width in (1, 2, 3, 7, 8, 9, 15, 16, 17, 31, 32, 33):
+            for start in (0, 1, 3, 7, 17, 255):
+                x = start - 4
+                y = (start * 3) % 128 - 2
+                polygons.append(np.array([[x, y], [x + width * ratio, y + 1], [x + 1, y + ratio * 2]], np.float32))
+        # The same instance buffer sees earlier nonzero values, an off-image shape,
+        # then a new on-image shape in bounded overlap mode.
+        polygons.extend([np.array([[400, 300], [500, 300], [400, 400]], np.float32), polygons[0]])
+        packed = native.PackedPolygons.from_segments(polygons)
+&gt;       equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, polygons, color, ratio))
+
+tests/test_resize_roi.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = array([[[255,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,...    [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0]]], shape=(74, 8, 16), dtype=uint8)
+expected = array([[[255,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,...    [  0,   0,   0, ...,   0,   0,   0],
+        [  0,   0,   0, ...,   0,   0,   0]]], shape=(74, 8, 16), dtype=uint8)
+
+    def equal(actual, expected):
+        assert actual.shape == expected.shape and actual.dtype == expected.dtype
+&gt;       assert actual.tobytes() == expected.tobytes()
+E       AssertionError: assert b'\xff\x00\x0...0\x00\x00\x00' == b'\xff\x00\x0...0\x00\x00\x00'
+E         
+E         At index 256 diff: b'\xbf' != b'\xc0'
+E         Use -v to get more diff
+
+tests/test_resize_roi.py:11: AssertionError</failure></testcase><testcase classname="tests.test_resize_roi" name="test_non_power_of_two_and_noninteger_scales[shape0-4]" time="0.000" /><testcase classname="tests.test_resize_roi" name="test_non_power_of_two_and_noninteger_scales[shape1-4]" time="0.000" /><testcase classname="tests.test_resize_roi" name="test_non_power_of_two_and_noninteger_scales[shape2-3]" time="0.000" /><testcase classname="tests.test_resize_roi" name="test_non_power_of_two_and_noninteger_scales[shape3-6]" time="0.000" /><testcase classname="tests.test_resize_roi" name="test_combined_contours_keep_original_fill_coordinates" time="0.001" /><testcase classname="tests.test_resize_roi" name="test_many_equal_and_zero_areas_keep_uint64_sort_order" time="0.027"><failure message="AssertionError: assert b'\x00\x00\x0...0\x00\x00\x00' == b'\x00\x00\x0...0\x00\x00\x00'&#10;  &#10;  At index 788 diff: b'\x0e' != b'\xb4'&#10;  Use -v to get more diff">def test_many_equal_and_zero_areas_keep_uint64_sort_order():
+        point = np.array([[33, 17]], np.float32)
+        offscreen = np.array([[300, 200]], np.float32)
+        triangle = np.array([[21, 13], [63, 17], [25, 49]], np.float32)
+        polygons = [x.copy() for x in [triangle, offscreen, point] * 90]
+        packed = native.PackedPolygons.from_segments(polygons)
+        engine = native.Rasterizer()
+        for ratio in (1, 2, 4, 8):
+            expected = reference.polygons2masks_overlap((128, 256), polygons, ratio)
+            for mode in ("bounded", "retained"):
+                actual = engine.overlap((128, 256), packed, ratio, mode=mode)
+                for a, b in zip(actual, expected):
+&gt;                   equal(a, b)
+
+tests/test_resize_roi.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actual = array([[0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       ...,
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0]], shape=(32, 64), dtype=int32)
+expected = array([[0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       ...,
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0]], shape=(32, 64), dtype=int32)
+
+    def equal(actual, expected):
+        assert actual.shape == expected.shape and actual.dtype == expected.dtype
+&gt;       assert actual.tobytes() == expected.tobytes()
+E       AssertionError: assert b'\x00\x00\x0...0\x00\x00\x00' == b'\x00\x00\x0...0\x00\x00\x00'
+E         
+E         At index 788 diff: b'\x0e' != b'\xb4'
+E         Use -v to get more diff
+
+tests/test_resize_roi.py:11: AssertionError</failure></testcase><testcase classname="tests.test_resize_roi" name="test_large_coordinate_precision_guard" time="0.024" /><testcase classname="tests.test_resize_roi" name="test_half_scale_arm_hal_area_threshold" time="0.001" /><testcase classname="tests.test_training" name="test_yolo11n_cpu_losses_gradients_and_sgd_updates[0-True]" time="3.147" /><testcase classname="tests.test_training" name="test_yolo11n_cpu_losses_gradients_and_sgd_updates[0-False]" time="0.359" /><testcase classname="tests.test_training" name="test_yolo11n_cpu_losses_gradients_and_sgd_updates[5-True]" time="0.377" /><testcase classname="tests.test_training" name="test_yolo11n_cpu_losses_gradients_and_sgd_updates[5-False]" time="0.358" /></testsuite></testsuites>

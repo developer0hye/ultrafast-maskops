@@ -78,6 +78,28 @@ def test_many_equal_and_zero_areas_keep_uint64_sort_order():
                 equal(a, b)
 
 
+@pytest.mark.parametrize("ratio", [2, 4, 8, 16])
+@pytest.mark.parametrize("color", [1, 127, 255])
+def test_carotene_crop_dimension_thresholds(ratio, color):
+    # Full output is HAL-eligible; support crosses the 8x8 output threshold
+    # independently along both axes, including crops touching the image edges.
+    shape = (32 * ratio, 40 * ratio)
+    polygons = []
+    for width in (7, 8, 9):
+        for height in (7, 8, 9):
+            for x, y in ((0, 0), (3 * ratio, 5 * ratio), (34 * ratio, 26 * ratio)):
+                polygons.append(
+                    np.array([[x, y], [x + width * ratio - 1, y + 1], [x + 1, y + height * ratio - 1]], np.int32)
+                )
+    engine = native.Rasterizer()
+    packed = native.PackedPolygons.from_segments(polygons)
+    equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, polygons, color, ratio))
+    expected = reference.polygons2masks_overlap(shape, polygons, ratio)
+    for mode in ("bounded", "retained"):
+        for actual, wanted in zip(engine.overlap(shape, packed, ratio, mode=mode), expected):
+            equal(actual, wanted)
+
+
 def test_large_coordinate_precision_guard():
     # Width beyond exact half-integer float coordinates: exercise full-resize
     # fallback without allocating a two-dimensional multi-gigabyte image.

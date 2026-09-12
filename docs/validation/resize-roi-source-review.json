@@ -1,5 +1,5 @@
 {
-  "scope": "source review for an unbuilt resize-region candidate; no parity or performance claim",
+  "scope": "source review for experimental ROI dispatch correction; observed first candidate parity failure retained separately; no speed claim",
   "files": [
     {
       "project": "OpenCV-4.13.0",
@@ -20,6 +20,21 @@
       "project": "KleidiCV-0.7.0",
       "path": "kleidicv/src/resize/resize_neon.cpp",
       "sha256": "7a9d696e2f71f90b5c2bf262090962a509207b3a3f446d75b8eca29e963cfde5"
+    },
+    {
+      "project": "OpenCV-4.13.0",
+      "path": "hal/carotene/src/resize.cpp",
+      "sha256": "d713bc68b7ff74011d9b6d7fe3c7c6b497b65927e7108c1a71a272b07363f1e0"
+    },
+    {
+      "project": "OpenCV-4.13.0",
+      "path": "hal/carotene/hal/tegra_hal.hpp",
+      "sha256": "4798dd11ce253bd6157e9e564db6eb86811b875a1a6d39aec237d61cc91a01e4"
+    },
+    {
+      "project": "KleidiCV-0.7.0",
+      "path": "adapters/opencv/kleidicv_hal.h",
+      "sha256": "75434e21c587d538858f94c55807ae0bdf98a23cf87433c81936484cc4e69136"
     }
   ],
   "inspected_behaviors": [
@@ -27,6 +42,9 @@
     "equal half-scale LINEAR to fast-area dispatch",
     "uint8 scalar/vector rounding",
     "KleidiCV 150000-pixel half-scale dispatch threshold",
-    "KleidiCV generic uint8 linear support is for upscaling"
+    "KleidiCV generic uint8 linear support is for upscaling",
+    "Carotene single-channel linear requires destination width and height at least 8",
+    "Carotene different downsampling implementations for scale <=2 and >2",
+    "KleidiCV resize falls back to previous Carotene HAL then generic OpenCV"
   ]
 }

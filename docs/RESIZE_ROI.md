@@ -1,9 +1,11 @@
 # Experimental resize region candidate
 
-This worktree is based on the tested masks-only implementation. The changes in
-this document are **not built, executed or benchmarked yet**. The ongoing main
-worktree augmentation verification and the server GPU series use their original
-installed wheels. No earlier result is evidence for this candidate.
+This worktree is based on the tested masks-only implementation. The first fresh
+wheel built and installed, but failed 14 of 179 parity/integration/auditor tests
+(165 passed). That candidate is rejected. A correction preserving the Arm resize
+dispatch threshold passed all 191 tests in a fresh M2 wheel installation. No timing
+or memory benefit has been measured for either candidate. The server GPU series
+uses its original installed wheels; earlier results are not candidate evidence.
 
 ## Change and candidate invariants
 
@@ -11,7 +13,8 @@ Polygon filling still uses the complete raster scratch image, original integer
 coordinates and unchanged contour order. After filling, the cached inclusive
 polygon extents give a conservative rectangle containing every possible nonzero
 pixel. The candidate aligns that rectangle outward to the source sampling
-blocks, resizes only that crop into its corresponding output rectangle, and
+blocks, extends it to preserve the 8×8 HAL eligibility threshold when applicable,
+resizes only that crop into its corresponding output rectangle, and
 sets the rest of the output to zero. Overlap area reduction visits only the
 returned support rectangle. Instance ordering still uses the existing unsigned
 area vector and NumPy sort.
@@ -42,17 +45,40 @@ The inspected pinned OpenCV 4.13.0 source switches equal 2× linear downsampling
 to its fast area path. Its single-channel scalar tail and vector kernels use
 the same integer rounding form for each 2×2 block. In the macOS build, the
 KleidiCV 0.7.0 adapter can instead handle this operation above 150,000 source
-pixels; a crop can cross that dispatch threshold. Those paths still require
-actual bitwise comparison. Generic downsampling at larger ratios also needs
-SIMD-tail and row-stride coverage.
+pixels; a crop can cross that dispatch threshold. KleidiCV falls back to the
+previously defined Carotene HAL, then generic OpenCV. Carotene requires at least
+eight output pixels along each axis for single-channel linear resize. Below that
+threshold the generic path can round differently at scales 4/8/16. The initial
+candidate exposed these differences: mask bytes and overlap area order changed.
+The failures and exact binary identity are preserved in
+`validation/resize-roi-failed-v1.json` and `resize-roi-tests-v1.*`.
 
-`tests/test_resize_roi.py` prepares 28 checks covering crop widths around SIMD
+The correction extends small crops to at least 8×8 output pixels whenever the
+full output meets that threshold. Extension stays inside the image and on the
+sampling lattice; it includes only additional zero-valued scratch outside the
+support. The original half-output cost guard still applies after extension.
+This preserves eligibility rather than replacing the reference's rounding.
+
+`tests/test_resize_roi.py` now contains 40 checks covering crop widths around SIMD
 boundaries, unaligned origins, thin shapes, clipping, colors 0/1/127/255,
 retained/bounded modes, zero/equal areas with more than 255 instances, combined
 contours, noninteger/other integer scales, the half-scale Arm dispatch threshold
-and coordinates above the float guard. These tests are not yet run. Full core,
-framework/model-update parity, sanitizer, real-corpus output and benchmark checks
-remain necessary before merging.
+and coordinates above the float guard, including 12 added combinations spanning
+the Carotene width/height threshold and image edges. The corrected wheel's full
+suite passed in 95.90 seconds: 179 native/parity/integration checks and 12 artifact
+auditor checks, with no failures, errors or skips. This includes 10,000 seeded
+differential cases and deterministic CPU model updates. The NumPy-only installed
+wheel smoke, RECORD/runtime audit and all nine bundled notice files also passed.
+Exact wheel/source hashes and reports are in `validation/resize-roi-passed-v2.json`
+and `resize-roi-tests-v2.*`. Sanitizer, real-corpus output, Linux and benchmark
+checks remain necessary before merging.
+
+The first build's 573 selected dependency files, including 61 Carotene files,
+match the existing notice inventory. Their collected notices are present in the
+wheel; no missing Carotene notices were found. Selected HAL/CPU/build options
+match the earlier masks-only build. This evidence and the compressed compiler
+graph are retained in `validation/resize-roi-dependency-audit-v1.json` and
+`resize-roi-compiled-deps-v1.txt.gz`; this is not a complete redistribution audit.
 
 ## Performance and memory scope
 

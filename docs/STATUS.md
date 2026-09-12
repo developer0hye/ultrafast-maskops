@@ -2,6 +2,13 @@
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 
+This experimental `perf/resize-roi` branch adds sampling-aligned resize crops.
+The initial crop candidate failed parity at Arm dispatch boundaries; its corrected
+wheel passed 191 M2 tests, including 40 crop cases. Failure artifacts are retained.
+This candidate still needs Linux, sanitizer, real-corpus and performance validation
+before merging; see [RESIZE_ROI.md](RESIZE_ROI.md). Historical numbers below do not
+measure this candidate.
+
 This `perf/resize-roi` worktree contains an unbuilt, untested resize-region
 candidate. The results below belong to its parent implementations, not to this
 new kernel. See [RESIZE_ROI.md](RESIZE_ROI.md) for the proposed invariants,
