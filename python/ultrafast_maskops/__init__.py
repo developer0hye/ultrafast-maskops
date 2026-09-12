@@ -83,7 +83,7 @@ class Rasterizer:
     def masks(self, imgsz, packed, color=1, downsample_ratio=1):
         h, w, r = _dimensions(imgsz, downsample_ratio)
         with self._lock:
-            return self._core.raster(packed._native, h, w, r, operator.index(color), True)[0]
+            return self._core.masks(packed._native, h, w, r, operator.index(color))
 
     def overlap(self, imgsz, packed, downsample_ratio=1, *, mode="auto"):
         h, w, r = _dimensions(imgsz, downsample_ratio)

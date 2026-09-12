@@ -1,0 +1,11 @@
+{
+  "scope": "local workflow syntax and helper source identification only; no hosted build/test claim",
+  "actionlint": "1.7.12",
+  "actionlint_exit_code": 0,
+  "files_sha256": {
+    ".github/workflows/wheels.yml": "95e0af86d7aea9aa4bfe14641629dbe836afc512beea01f9bd0e5dbae08d599f",
+    "bench/ci_wheel_check.py": "4d04b7d27c75e09a96e92c05d03737d5af7949e2ad0888993651b2559043bb40",
+    "bench/audit_wheel.py": "f11eac261ecbea76eefb6d2e052dec92d7f3506b2cdef51725d11b1afa07ce63"
+  },
+  "hosted_execution": "not started; repository visibility choice pending"
+}

@@ -1,0 +1,9 @@
+workers=0 reference trial=0: 5000 augmented outputs match
+workers=0 reference trial=1: 5000 augmented outputs match
+workers=0 native trial=2: 5000 augmented outputs match
+workers=2 reference trial=0: 5000 augmented outputs match
+workers=2 reference trial=1: 5000 augmented outputs match
+workers=2 native trial=2: 5000 augmented outputs match
+workers=8 reference trial=0: 5000 augmented outputs match
+workers=8 reference trial=1: 5000 augmented outputs match
+workers=8 native trial=2: 5000 augmented outputs match

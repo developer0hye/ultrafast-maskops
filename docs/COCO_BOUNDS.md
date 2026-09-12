@@ -91,7 +91,14 @@ all nine fresh processes at workers 0/2/8 produced 5,000 outputs each, with exac
 reference/replay/native agreement within every worker count. Complete evidence
 is `bench/results/coco-byte-access-augmented-both-m2.json`, including verifier,
 runtime, source and input hashes. It measures correctness, not throughput.
-Full non-overlap verification is now running. Exact-source performance reruns,
+Full non-overlap verification also completed: nine independent processes,
+5,000 images and 625 batches each, with reference/replay/native agreement at
+workers 0/2/8. Its report and log are
+`bench/results/coco-byte-access-augmented-both-nonoverlap-m2.{json,log}`;
+`docs/validation/coco-nonoverlap-artifact-audit.json` independently compares all
+child reports and retains their hashes. Both augmentation results predate the
+subsequent masks-only kernel and MSVC build configuration changes.
+Exact-source performance reruns,
 the repeated GPU comparison and portable wheels remain open. GPU pilots are
 documented separately in [CUDA_WHEEL_VALIDATION.md](CUDA_WHEEL_VALIDATION.md).
 This candidate is not release-ready.

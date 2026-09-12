@@ -1,0 +1,18 @@
+{
+  "scope": "CPython 3.12 M2 installed wheel; no Windows or other Python claim",
+  "artifacts": {
+    "ultrafast_maskops-0.1.0a1.tar.gz": "9ac0dd510bb744e96f4425a39e6b430de9fb65d9b752171974c8a77008ec34cc",
+    "ultrafast_maskops-0.1.0a1-cp312-cp312-macosx_26_0_arm64.whl": "0659680b4ee2098a610d033d08fe47ef6cd8a8612d30821b48b5b7a1b43fdce8"
+  },
+  "source_sha256": {
+    "src/bindings.cpp": "99e10b49b6ac531eabd9797c4f19d3254ff72767aa5cac1d4afbb961425e9a10",
+    "CMakeLists.txt": "13177f15e47776ae22c251a2eee6079a68788b19b56397c48d2c7e48adbf574e",
+    "python/ultrafast_maskops/__init__.py": "0b381bd51042cea607d9742593e8ece643d8e4dedd4fff80522a7bc9b4ac99fa"
+  },
+  "tests": 139,
+  "notice_files": 9,
+  "numpy_only_import_and_native_smoke": true,
+  "benchmark_report_sha256": "28e1c5f7628b25e14ac62535529ce0ca07d4277234d61742a8d5d5cc417182a8",
+  "benchmark_raw_reports_verified": 5,
+  "benchmark_samples_per_case_per_method_per_process": 30
+}

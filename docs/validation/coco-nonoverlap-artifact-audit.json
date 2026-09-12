@@ -1,0 +1,80 @@
+{
+  "scope": "independent artifact comparison of completed non-overlap verification, not performance",
+  "report_sha256": "630efed0368339033e56e7cd91318eea6d5f06f9f00183f3fc1caf12e9c90bb4",
+  "complete": true,
+  "raw_children": [
+    {
+      "path": "w0-0-reference.json",
+      "sha256": "3b0295884dcfe495e550d7f7661c22cd20f5ec58618915ef1cdf0d486d3cc2cd",
+      "images": 5000,
+      "batches": 625,
+      "output_sha256": "23ee25738e51b59c0d2e82e1449425b1d9098ebaf0a6f2a0dbef15e339b8a76d"
+    },
+    {
+      "path": "w0-1-reference.json",
+      "sha256": "3b0295884dcfe495e550d7f7661c22cd20f5ec58618915ef1cdf0d486d3cc2cd",
+      "images": 5000,
+      "batches": 625,
+      "output_sha256": "23ee25738e51b59c0d2e82e1449425b1d9098ebaf0a6f2a0dbef15e339b8a76d"
+    },
+    {
+      "path": "w0-2-native.json",
+      "sha256": "b8c07afc22c8640ec56ab4411f5060940631ccf164b877062fe494da0c6ab69a",
+      "images": 5000,
+      "batches": 625,
+      "output_sha256": "23ee25738e51b59c0d2e82e1449425b1d9098ebaf0a6f2a0dbef15e339b8a76d"
+    },
+    {
+      "path": "w2-0-reference.json",
+      "sha256": "5f9ffbaed68540faaa1ff5145d528257f4d6dbc6e6be54ec5c5b0f28080ba47d",
+      "images": 5000,
+      "batches": 625,
+      "output_sha256": "41489672356716d864ea9dc091dfe8fb8da2d5d126f068095529f734aeeea94d"
+    },
+    {
+      "path": "w2-1-reference.json",
+      "sha256": "5f9ffbaed68540faaa1ff5145d528257f4d6dbc6e6be54ec5c5b0f28080ba47d",
+      "images": 5000,
+      "batches": 625,
+      "output_sha256": "41489672356716d864ea9dc091dfe8fb8da2d5d126f068095529f734aeeea94d"
+    },
+    {
+      "path": "w2-2-native.json",
+      "sha256": "5d4193a20cb395e8506331b6900d5fe4649cc58f2bf6d92cf66de65da14844a2",
+      "images": 5000,
+      "batches": 625,
+      "output_sha256": "41489672356716d864ea9dc091dfe8fb8da2d5d126f068095529f734aeeea94d"
+    },
+    {
+      "path": "w8-0-reference.json",
+      "sha256": "479ec64094b4bb80d1d5ab5955ce24ba61da458c7e98b72fa84acba1e2c4d713",
+      "images": 5000,
+      "batches": 625,
+      "output_sha256": "504fbf27b11859d48cb220fe19445a849c9ca4c27f7c9b2f94b22aab5d5ec354"
+    },
+    {
+      "path": "w8-1-reference.json",
+      "sha256": "479ec64094b4bb80d1d5ab5955ce24ba61da458c7e98b72fa84acba1e2c4d713",
+      "images": 5000,
+      "batches": 625,
+      "output_sha256": "504fbf27b11859d48cb220fe19445a849c9ca4c27f7c9b2f94b22aab5d5ec354"
+    },
+    {
+      "path": "w8-2-native.json",
+      "sha256": "e1b56769b1be2e200ee3266ca7485cf55e2c3056ffcaa857ec0e449425689c5e",
+      "images": 5000,
+      "batches": 625,
+      "output_sha256": "504fbf27b11859d48cb220fe19445a849c9ca4c27f7c9b2f94b22aab5d5ec354"
+    }
+  ],
+  "candidate_source_sha256": {
+    "CMakeLists.txt": "901102bdbbb32895297ebbea701401d2a204c7d98d82dc90b631f59c4ef76cba",
+    "bench/coco_loader.py": "a2a6976e665cbda2887ca8ee7c12c7c1dcc5d9a80f10c079fa8eb3baa80dd20b",
+    "pyproject.toml": "bc18d48a06df856d78d0b5495078f69d186e57849528430c243adb0550cc9270",
+    "python/ultrafast_maskops/__init__.py": "1d7f585c198118a408282bb2cae12f81b74ce9e7b97f2f2fa50f13a3ec7f55d5",
+    "python/ultrafast_maskops/ultralytics.py": "0bd934e308d5808ea97e7add5b53d36bf02533a4980f24276971cad21564da5d",
+    "src/bindings.cpp": "1aef71f436c6e949b1a3b028c7f35b8f2c7a90c3b3203ba20cbd91d954e01164",
+    "src/build_profile.h.in": "76643f1d3cdb44abd7d7647853c1f7ae03e22d76a07027de9c7cb58340260213"
+  },
+  "note": "This evidence predates the later masks-only kernel and MSVC build changes."
+}

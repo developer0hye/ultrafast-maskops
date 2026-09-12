@@ -37,6 +37,13 @@ files and extension hash are recorded and checked between processes. Native
 cache files live only in the new report's `.runs/native-cache` directory. This
 checks the composition of the two libraries as well as mask-only replacement.
 
+The alignment-corrected build completed both full overlap and non-overlap
+experiments on M2: 18 independent processes in total, each with 5,000 images and
+625 batches, with exact reference/replay/native agreement at workers 0/2/8.
+The non-overlap raw-child artifact audit is retained alongside the full reports;
+see [COCO_BOUNDS.md](COCO_BOUNDS.md). These are correctness results for the source
+and extension hashes embedded in those reports, not later kernel revisions.
+
 ```sh
 python bench/verify_augmented_coco.py \
   --corpus /path/to/coco/segment --benchmark /path/to/full-loader.json \

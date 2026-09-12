@@ -140,6 +140,22 @@ struct Rasterizer {
         }
         return py::make_tuple(masks,areas);
     }
+    Array<uint8_t> masks(const Polygons &p, int h, int w, int r, int color) {
+        const auto a=dimensions(h,w,r), n=p.size();
+        if (color<0 || color>255) throw py::value_error("color must be in [0,255]");
+        if (n && a > size_t(PY_SSIZE_T_MAX)/n) throw py::value_error("output size overflow");
+        Array<uint8_t> result({py::ssize_t(n),py::ssize_t(h/r),py::ssize_t(w/r)});
+        auto *out=result.mutable_data();
+        {
+            py::gil_scoped_release release;
+            std::lock_guard<std::mutex> guard(mutex);
+            for (size_t i=0;i<n;++i) {
+                cv::Mat dst(h/r,w/r,CV_8UC1,out+i*a);
+                render(p,i,h,w,dst,color);
+            }
+        }
+        return result;
+    }
     Array<uint8_t> single(const Polygons &p,int h,int w,int r,int color) {
         dimensions(h,w,r);
         if (color<0 || color>255) throw py::value_error("color must be in [0,255]");
@@ -234,5 +250,5 @@ PYBIND11_MODULE(_native,m) {
     m.def("opencv_build_info",[](){return cv::getBuildInformation();});
     py::class_<Polygons>(m,"Polygons").def(py::init<Array<int32_t>,Array<int64_t>>()).def("__len__",&Polygons::size);
     py::class_<Rasterizer>(m,"Rasterizer").def(py::init<size_t>()).def("raster",&Rasterizer::raster)
-        .def("single",&Rasterizer::single).def("compose",&Rasterizer::compose);
+        .def("masks",&Rasterizer::masks).def("single",&Rasterizer::single).def("compose",&Rasterizer::compose);
 }

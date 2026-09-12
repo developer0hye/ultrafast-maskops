@@ -1,0 +1,68 @@
+Using CPython 3.12.13 interpreter at: /Volumes/T7/ultrafast-vision-build/venv/bin/python
+Creating virtual environment with seed packages at: /Volumes/T7/ultrafast-vision-build/mask-masks-only-clean-v1
+ + pip==26.2.1
+Activate with: source /Volumes/T7/ultrafast-vision-build/mask-masks-only-clean-v1/bin/activate
+Using Python 3.12.13 environment at: /Volumes/T7/ultrafast-vision-build/mask-masks-only-clean-v1
+Resolved 1 package in 1ms
+Installed 1 package in 92ms
+ + numpy==2.4.4
+Using Python 3.12.13 environment at: /Volumes/T7/ultrafast-vision-build/mask-masks-only-clean-v1
+Resolved 1 package in 0.55ms
+Prepared 1 package in 12ms
+Installed 1 package in 1ms
+ + ultrafast-maskops==0.1.0a1 (from file:///Volumes/T7/ultrafast-vision-build/mask-masks-only-dist-v1/ultrafast_maskops-0.1.0a1-cp312-cp312-macosx_26_0_arm64.whl)
+Installed wheel and 9 notice files verified on arm64
+Using Python 3.12.13 environment at: /Volumes/T7/ultrafast-vision-build/mask-masks-only-clean-v1
+Resolved 46 packages in 1.17s
+   Building ultralytics @ file:///Volumes/T7/ultrafast-vision-build/ultralytics.tar.gz
+      Built ultralytics @ file:///Volumes/T7/ultrafast-vision-build/ultralytics.tar.gz
+Prepared 2 packages in 571ms
+Installed 45 packages in 817ms
+ + anyio==4.15.1
+ + certifi==2026.7.22
+ + charset-normalizer==3.5.1
+ + cloudpickle==3.1.2
+ + contourpy==1.4.0
+ + cycler==0.12.1
+ + filelock==3.32.6
+ + fonttools==4.65.0
+ + fsspec==2026.7.0
+ + h11==0.16.0
+ + httpcore==1.0.9
+ + httpx==0.28.1
+ + idna==3.19
+ + iniconfig==2.3.0
+ + jinja2==3.1.6
+ + kiwisolver==1.5.1
+ + markupsafe==3.0.3
+ + matplotlib==3.11.2
+ + mpmath==1.3.0
+ + networkx==3.6.1
+ + nvidia-ml-py==13.610.43
+ + opencv-python==4.13.0.92
+ + packaging==26.3
+ + pi-heif==1.4.0
+ + pillow==12.1.1
+ + pluggy==1.6.0
+ + polars==1.44.2
+ + polars-runtime-32==1.44.2
+ + psutil==7.2.2
+ + pygments==2.21.0
+ + pyparsing==3.3.2
+ + pytest==9.1.1
+ + python-dateutil==2.9.0.post0
+ + pyyaml==6.0.3
+ + requests==2.34.2
+ + setuptools==84.0.0
+ + six==1.17.0
+ + sympy==1.14.0
+ + torch==2.10.0
+ + torchvision==0.25.0
+ + typing-extensions==4.16.0
+ + ultralytics==8.4.149 (from file:///Volumes/T7/ultrafast-vision-build/ultralytics.tar.gz)
+ + ultralytics-platform==0.1.40
+ + ultralytics-thop==2.1.6
+ + urllib3==2.7.0
+........................................................................ [ 51%]
+...................................................................      [100%]
+139 passed in 96.73s (0:01:36)
