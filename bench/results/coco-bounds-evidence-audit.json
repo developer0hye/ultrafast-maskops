@@ -1,0 +1,18 @@
+{
+  "scope": "consistency audit for measured source 01247c5 before untyped byte-access correction; no performance claim for subsequent kernels",
+  "source_archive_sha256": "23a8e5a931de3233621d3585a5adac7ce4c6eb39d950b3484a9c3448898653f6",
+  "hosts": {
+    "m2": {
+      "benchmark_sha256": "40276ae0dad5059347074757d1f510c7343191cbb2a0bf3b4ba0429356c84d33",
+      "runs": 30,
+      "output_sha256": "4dd43c61ce5d129361f321593e22cf8e5d2ed3ee793fbd2e41d42b75ae28df97",
+      "raw_runs_archive_sha256": "5addf154e0f9c8f1bdd47e4c63de853c66e89db06b4a2ed0d30a886dc7e7600c"
+    },
+    "server": {
+      "benchmark_sha256": "e9ce8590d46fb2e63f2ba15690e47e33d0f644b6513f1a2ed0435d343b67c270",
+      "runs": 30,
+      "output_sha256": "81118723b01b4f3ca696dea1f7c3dd275b203a3e0dded57ac1c1667e22165481",
+      "raw_runs_archive_sha256": "9f06460afc26c609e7598b9bb5f4cc71226d459e7fccd0f9acf0f03fd210c507"
+    }
+  }
+}

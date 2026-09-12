@@ -1,0 +1,93 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-9.1.1, pluggy-1.6.0 -- /Volumes/T7/ultrafast-vision-build/mask-coco-bounds-asan-venv/bin/python
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /Users/yhkwon/Documents/ultrafast-maskops-coco-bounds
+configfile: pyproject.toml
+plugins: anyio-4.15.1, hypothesis-6.168.0
+collecting ... collected 1 item
+
+tests/test_parity.py::test_misaligned_packed_input_is_copied_safely /Users/yhkwon/Documents/ultrafast-maskops-coco-bounds/src/bindings.cpp:51:43: runtime error: load of misaligned address 0x000117991f91 for type 'const long long *', which requires 8 byte alignment
+0x000117991f91: note: pointer points here
+ 00 00 00  00 00 00 00 00 00 00 00  00 04 00 00 00 00 00 00  00 07 00 00 00 00 00 00  00 00 2f 08 01
+              ^ 
+    #0 0x000117c91250  (_native.cpython-312-darwin.so:arm64+0x99250)
+    #1 0x000117c8f5c4  (_native.cpython-312-darwin.so:arm64+0x975c4)
+    #2 0x000117c8f0b4  (_native.cpython-312-darwin.so:arm64+0x970b4)
+    #3 0x000117c87020  (_native.cpython-312-darwin.so:arm64+0x8f020)
+    #4 0x000117c2b380  (_native.cpython-312-darwin.so:arm64+0x33380)
+    #5 0x0001077ca854 in cfunction_call+0x44 (libpython3.12.dylib:arm64+0x262854)
+    #6 0x00010756d394 in _PyObject_MakeTpCall+0x164 (libpython3.12.dylib:arm64+0x5394)
+    #7 0x0001077f6268 in method_vectorcall.llvm.17471280503060819811+0x388 (libpython3.12.dylib:arm64+0x28e268)
+    #8 0x000107815c30 in slot_tp_init+0x74c (libpython3.12.dylib:arm64+0x2adc30)
+    #9 0x00010781333c in type_call+0x90 (libpython3.12.dylib:arm64+0x2ab33c)
+    #10 0x000117c0efd8  (_native.cpython-312-darwin.so:arm64+0x16fd8)
+    #11 0x0001076079fc in _PyEval_EvalFrameDefault+0x2a7b8 (libpython3.12.dylib:arm64+0x9f9fc)
+    #12 0x0001078155f4 in slot_tp_init+0x110 (libpython3.12.dylib:arm64+0x2ad5f4)
+    #13 0x00010781333c in type_call+0x90 (libpython3.12.dylib:arm64+0x2ab33c)
+    #14 0x0001076079fc in _PyEval_EvalFrameDefault+0x2a7b8 (libpython3.12.dylib:arm64+0x9f9fc)
+    #15 0x0001076186f0 in _PyObject_Call_Prepend+0x124 (libpython3.12.dylib:arm64+0xb06f0)
+    #16 0x00010761810c in slot_tp_call+0x70 (libpython3.12.dylib:arm64+0xb010c)
+    #17 0x0001076079fc in _PyEval_EvalFrameDefault+0x2a7b8 (libpython3.12.dylib:arm64+0x9f9fc)
+    #18 0x0001076186f0 in _PyObject_Call_Prepend+0x124 (libpython3.12.dylib:arm64+0xb06f0)
+    #19 0x00010761810c in slot_tp_call+0x70 (libpython3.12.dylib:arm64+0xb010c)
+    #20 0x00010760b064 in _PyEval_EvalFrameDefault+0x2de20 (libpython3.12.dylib:arm64+0xa3064)
+    #21 0x0001076186f0 in _PyObject_Call_Prepend+0x124 (libpython3.12.dylib:arm64+0xb06f0)
+    #22 0x00010761810c in slot_tp_call+0x70 (libpython3.12.dylib:arm64+0xb010c)
+    #23 0x0001076079fc in _PyEval_EvalFrameDefault+0x2a7b8 (libpython3.12.dylib:arm64+0x9f9fc)
+    #24 0x0001076186f0 in _PyObject_Call_Prepend+0x124 (libpython3.12.dylib:arm64+0xb06f0)
+    #25 0x00010761810c in slot_tp_call+0x70 (libpython3.12.dylib:arm64+0xb010c)
+    #26 0x0001076079fc in _PyEval_EvalFrameDefault+0x2a7b8 (libpython3.12.dylib:arm64+0x9f9fc)
+    #27 0x0001076186f0 in _PyObject_Call_Prepend+0x124 (libpython3.12.dylib:arm64+0xb06f0)
+    #28 0x00010761810c in slot_tp_call+0x70 (libpython3.12.dylib:arm64+0xb010c)
+    #29 0x0001076079fc in _PyEval_EvalFrameDefault+0x2a7b8 (libpython3.12.dylib:arm64+0x9f9fc)
+    #30 0x0001076a5270 in PyEval_EvalCode+0xd4 (libpython3.12.dylib:arm64+0x13d270)
+    #31 0x00010782be24 in builtin_exec+0x128 (libpython3.12.dylib:arm64+0x2c3e24)
+    #32 0x00010780bbc8 in cfunction_vectorcall_FASTCALL_KEYWORDS.llvm.12590505012482918791+0x58 (libpython3.12.dylib:arm64+0x2a3bc8)
+    #33 0x00010760747c in _PyEval_EvalFrameDefault+0x2a238 (libpython3.12.dylib:arm64+0x9f47c)
+    #34 0x000107772c60 in pymain_run_module+0x108 (libpython3.12.dylib:arm64+0x20ac60)
+    #35 0x000107716290 in Py_RunMain+0xd8 (libpython3.12.dylib:arm64+0x1ae290)
+    #36 0x00010771d2d8 in pymain_main+0x1c4 (libpython3.12.dylib:arm64+0x1b52d8)
+    #37 0x00010771d104 in Py_BytesMain+0x20 (libpython3.12.dylib:arm64+0x1b5104)
+    #38 0x00018a1f04e0 in start+0x1b4c (dyld:arm64e+0x204e0)
+
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior /Users/yhkwon/Documents/ultrafast-maskops-coco-bounds/src/bindings.cpp:51:43 
+Fatal Python error: Aborted
+
+Current thread 0x00000001f6ffa180 (most recent call first):
+  File "/Volumes/T7/ultrafast-vision-build/mask-coco-bounds-asan-venv/lib/python3.12/site-packages/ultrafast_maskops/__init__.py", line 35 in __init__
+  File "/Users/yhkwon/Documents/ultrafast-maskops-coco-bounds/tests/test_parity.py", line 138 in test_misaligned_packed_input_is_copied_safely
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/_pytest/python.py", line 167 in pytest_pyfunc_call
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/_pytest/python.py", line 1707 in runtest
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/_pytest/runner.py", line 184 in pytest_runtest_call
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/_pytest/runner.py", line 250 in <lambda>
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/_pytest/runner.py", line 361 in from_call
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/_pytest/runner.py", line 249 in call_and_report
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/_pytest/runner.py", line 139 in runtestprotocol
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/_pytest/runner.py", line 118 in pytest_runtest_protocol
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/_pytest/main.py", line 408 in pytest_runtestloop
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/_pytest/main.py", line 384 in _main
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/_pytest/main.py", line 330 in wrap_session
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/_pytest/main.py", line 377 in pytest_cmdline_main
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/_pytest/config/__init__.py", line 229 in _main
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/_pytest/config/__init__.py", line 253 in _console_main
+  File "/Volumes/T7/ultrafast-vision-build/venv/lib/python3.12/site-packages/pytest/__main__.py", line 9 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 198 in _run_module_as_main
+
+Extension modules: numpy._core._multiarray_umath, numpy.linalg._umath_linalg (total: 2)

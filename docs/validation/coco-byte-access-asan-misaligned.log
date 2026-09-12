@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-9.1.1, pluggy-1.6.0 -- /Volumes/T7/ultrafast-vision-build/mask-coco-bounds-asan-venv/bin/python
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: /Users/yhkwon/Documents/ultrafast-maskops-coco-bounds
+configfile: pyproject.toml
+plugins: anyio-4.15.1, hypothesis-6.168.0
+collecting ... collected 1 item
+
+tests/test_parity.py::test_misaligned_packed_input_is_copied_safely PASSED
+
+============================== 1 passed in 0.24s ===============================

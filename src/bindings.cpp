@@ -48,7 +48,7 @@ struct Polygons {
         // A C-contiguous NumPy array need not be naturally aligned. Copy bytes
         // into aligned owned vectors before any typed reads, including offsets.
         std::vector<int64_t> source_offsets(size_t(off.size()));
-        std::memcpy(source_offsets.data(),off.data(),size_t(off.nbytes()));
+        std::memcpy(source_offsets.data(),static_cast<const py::array&>(off).data(),size_t(off.nbytes()));
         if (source_offsets.front() != 0 || source_offsets.back() != xy.shape(0))
             throw py::value_error("offsets must span points");
         for (size_t i=1; i<source_offsets.size(); ++i)
@@ -60,7 +60,7 @@ struct Polygons {
         offsets.resize(source_offsets.size());
         offsets[0]=0;
         extents.resize(size());
-        const auto *bytes=reinterpret_cast<const unsigned char*>(xy.data());
+        const auto *bytes=static_cast<const unsigned char*>(static_cast<const py::array&>(xy).data());
         for(size_t i=0;i<size();++i) {
             auto &box=extents[i];
             const size_t begin=points.size();
@@ -168,7 +168,7 @@ struct Rasterizer {
         if(order.ndim()!=1 || size_t(order.size())!=n || n>INT_MAX)
             throw py::value_error("invalid order length");
         std::vector<int64_t> indices(n);
-        if(n) std::memcpy(indices.data(),order.data(),size_t(order.nbytes()));
+        if(n) std::memcpy(indices.data(),static_cast<const py::array&>(order).data(),size_t(order.nbytes()));
         std::vector<bool> seen(n,false);
         for(auto i:indices) {
             if(i<0 || size_t(i)>=n || seen[i]) throw py::value_error("order must be a permutation");

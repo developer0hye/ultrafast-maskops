@@ -1,0 +1,24 @@
+{
+  "scope": "four deterministic CPU YOLO11n-seg loss/gradient/two-step SGD comparisons; synthetic 128x128 batch of two, not GPU evidence",
+  "command": "python -m pytest -q tests/test_training.py --junitxml=docs/validation/coco-bounds-training-m2.xml",
+  "test_script_sha256": "6e4784d3e905d019fc9462700964c8aa6b0432726f2fff6920bcbef437955293",
+  "junit_sha256": "e7942cb7992d99623bd20e790bdc7c2a3aa71d0cfadf23dc510b39affb678363",
+  "tests": 4,
+  "kernel_source_sha256": {
+    "CMakeLists.txt": "901102bdbbb32895297ebbea701401d2a204c7d98d82dc90b631f59c4ef76cba",
+    "bench/coco_loader.py": "a2a6976e665cbda2887ca8ee7c12c7c1dcc5d9a80f10c079fa8eb3baa80dd20b",
+    "pyproject.toml": "bc18d48a06df856d78d0b5495078f69d186e57849528430c243adb0550cc9270",
+    "python/ultrafast_maskops/__init__.py": "1d7f585c198118a408282bb2cae12f81b74ce9e7b97f2f2fa50f13a3ec7f55d5",
+    "python/ultrafast_maskops/ultralytics.py": "0bd934e308d5808ea97e7add5b53d36bf02533a4980f24276971cad21564da5d",
+    "src/bindings.cpp": "271ebc6128b5dd3594df82d5f965e92617b0d14696caf91ff65f7e12a070738c",
+    "src/build_profile.h.in": "76643f1d3cdb44abd7d7647853c1f7ae03e22d76a07027de9c7cb58340260213"
+  },
+  "extension_sha256": "71c1cdc9d71c1872e777097a30e21ea03558d9dcf17b3586d17d9fbee346d4a0",
+  "upstream_file_sha256": {
+    "cfg/models/11/yolo11-seg.yaml": "c724d65611684accc5d4b84d108ce7216f1018a535cf410022f929e0ec18b65b",
+    "nn/tasks.py": "5f8ce710e0cb3d1f510d9cf327f8ab044321a07b274fcafffca25d7b2d4d7581",
+    "utils/loss.py": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d"
+  },
+  "benchmark_sha256": "40276ae0dad5059347074757d1f510c7343191cbb2a0bf3b4ba0429356c84d33",
+  "source_archive_sha256": "23a8e5a931de3233621d3585a5adac7ce4c6eb39d950b3484a9c3448898653f6"
+}
