@@ -49,24 +49,29 @@ reference, verified by `tests/test_geometry.py`:
 
 ### M2, COCO val2017 segmentation, augmented `__getitem__`
 
-1,000 samples per process, three alternating rounds, identical seeds; the full
-output digest (image, classes, boxes, masks, metadata) is identical for every
-backend and round.
+Measured at commit `490eed2` with 1,000 samples per process, five alternating
+rounds and identical seeds, on a quiet host (1-minute load average 1.9–3.0).
+The full output digest (image, classes, boxes, masks, metadata) is identical
+for every backend and round.
 
 | Backend | ms / sample | Loader speedup |
 |---|---:|---:|
-| Reference | 10.33 | 1.00× |
-| Masks only (`accelerate_dataset`) | 9.68 | 1.07× |
-| Geometry + masks (`accelerate_dataset` + `accelerate_geometry`) | **7.35** | **1.40×** |
+| Reference | 10.09 | 1.00× |
+| Masks only (`accelerate_dataset`) | 9.40 | 1.07× |
+| Geometry + masks (`accelerate_dataset` + `accelerate_geometry`) | **6.95** | **1.45×** |
 
-These loader results predate the sampled mask path described below.
+Per sample, the timed segment stages fall from 3.76 ms to 0.86 ms (4.4×):
 
-Per 1,000 samples, resampling fell from 0.82 s to 0.18 s (4.5×) and
-`apply_segments` from 2.23 s to 0.61 s (3.7×); mask rasterization takes about
-0.26 s instead of 0.69 s (2.5×). The segment stage as a whole is about 3.6×
-faster. Removing it entirely would bound this loader at 10.33 / 6.60 = 1.57×;
-the rest is JPEG decoding, `warpAffine`, HSV conversion and file reads, which
-already run in OpenCV.
+| Stage | Reference | Geometry + masks | Speedup |
+|---|---:|---:|---:|
+| Resampling | 0.82 ms | 0.18 ms | 4.6× |
+| `apply_segments` | 2.24 ms | 0.61 ms | 3.7× |
+| `Format._format_segments` | 0.69 ms | 0.07 ms | 10.3× |
+
+Removing the segment stages entirely would bound this loader at
+10.09 / 6.33 = 1.59×. The rest is JPEG decoding, `warpAffine`, HSV conversion
+and file reads, which already run in OpenCV. Before the sampled mask path
+(commit `134184c`, three rounds), the same loader measured 7.35 ms (1.40×).
 
 ### i5-10400 (Linux), with the sampled mask path
 
@@ -157,14 +162,14 @@ process, and every output was compared with the unmodified function first.
 
 | Backend | M2, µs / call | i5-10400 (Linux), µs / call | M2 speedup | i5-10400 speedup |
 |---|---:|---:|---:|---:|
-| Reference `polygons2masks_overlap` | 1,054 | 1,207 | 1.00× | 1.00× |
-| Previous native path (full resolution) | 411 | 382 | 2.57× | 3.16× |
-| Sampled native path | 69 | 88 | **15.3×** | **13.7×** |
+| Reference `polygons2masks_overlap` | 661 | 1,207 | 1.00× | 1.00× |
+| Previous native path (full resolution) | 263 | 382 | 2.51× | 3.16× |
+| Sampled native path | 50 | 88 | **13.2×** | **13.7×** |
 
-- **M2 wall-clock:** measured at commit `4219950`, just after another job had
-  finished (1-minute load average 3.7–3.9). That inflates the absolute times of
-  every backend in the alternating rounds. With a quiet host, the reference
-  measured about 620 µs.
+- **M2 wall-clock:** measured at commit `490eed2` on a quiet host (1-minute load
+  average 1.9). An earlier run at `4219950`, taken as another job was finishing
+  (load 3.7–3.9), gave 1,054, 411 and 69 µs (15.3×); load slowed the Python
+  reference more than the native paths.
 - **M2 instructions:** retired instructions from `/usr/bin/time -l` do not
   depend on load. Per call they are 9.87 M for the reference, 2.94 M for the
   previous native path and 0.68 M for the sampled path: 14.5× and 4.3× fewer.

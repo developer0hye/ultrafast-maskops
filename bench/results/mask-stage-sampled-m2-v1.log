@@ -1,6 +1,6 @@
-start 22:48  up 8 days,  7:50, 4 users, load averages: 3.70 15.67 23.25
-8b43b9e
-reference    1054.5 us/sample    1.00x
-full          410.8 us/sample    2.57x
-sampled        69.1 us/sample   15.25x
-mid 22:49  up 8 days,  7:51, 4 users, load averages: 3.90 14.94 22.81
+start  0:42  up 8 days,  9:44, 4 users, load averages: 1.90 3.50 9.32 free=81%
+490eed2
+reference     661.3 us/sample    1.00x
+full          263.1 us/sample    2.51x
+sampled        50.0 us/sample   13.24x
+mid  0:42  up 8 days,  9:44, 4 users, load averages: 1.92 3.45 9.24
