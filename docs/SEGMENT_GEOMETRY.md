@@ -85,6 +85,52 @@ discarded: a division whose rounded `t` the reference certainly rejects, and a
 corner's point-in-polygon loop when the corner lies above, below or right of
 every contour vertex (OpenCV then returns -1 without an on-edge match).
 
+## Mask rasterization at the downsampled resolution
+
+The reference overlap-mask stage renders every instance with `cv2.fillPoly` into
+a zeroed full-resolution image, downsamples it 4× with `cv2.resize`, sums it
+and composes the masks by area. For the default `mask_ratio=4` with sides
+divisible by 4, `src/sampled.hpp` computes the same bytes without the
+full-resolution image:
+
+- At exactly 4×, `INTER_LINEAR` reads source rows 4k+1, 4k+2 and columns
+  4j+1, 4j+2 for each output pixel with equal weights, so every output byte is
+  a function of four source pixels. The 16-entry table of that function is
+  calibrated against the installed `cv2.resize` for each output size. The
+  calibration images show every pattern at every output pixel with random
+  unread pixels, and random masks follow; any disagreement disables the path
+  for that size. On the M2, OpenCV's Carotene path (both output sides ≥ 8)
+  gives 1 when any sample is set, and its generic path when at least two are.
+- `fillPoly` is integer arithmetic: 8-connected Bresenham outlines (with
+  OpenCV's clipping), then spans between pairs of active edges sorted by 16.16
+  fixed-point x. The kernel evaluates both only on sampled rows and columns. It
+  computes each edge's crossing at the sampled rows it is active on directly as
+  `x0 + (y - y0) * dx`, sorts each row's crossings and pairs them. That equals
+  OpenCV's incremental active list, because a closed contour crosses every row
+  an even number of times.
+- A vertex with a strictly lower neighbour is not marked: it is the upper end of
+  an edge whose crossing on its own row is the vertex itself, so the fill draws
+  it.
+- One native call does the rest:
+  - it truncates float coordinates as `np.asarray(..., np.int32)` does;
+  - it drops consecutive duplicate vertices (71% of resampled COCO vertices);
+  - it computes the area sums and the composition.
+
+  NEON handles four vertices per step with table-driven compaction, the
+  pattern table lookup (`tbl`) and the composition select.
+- Some inputs use the previous full-resolution path, which keeps its exact
+  error behaviour: coordinates outside the envelope where every intermediate is
+  provably exact (|coordinate| ≥ 2^24, sides > 32,768), non-finite values, and
+  other dtypes or memory layouts.
+
+Existing Rust rasterizers were evaluated as replacements for this replica on
+4,224 real polygons and none reproduces `cv2.fillPoly`:
+
+- imageproc 0.27 matched 75.8% of them and kornia-imgproc 73.3%. They differ
+  on outline pixels and span-end rounding, including simple polygons.
+- tiny-skia, raqote, vello_cpu, agg-rust and other coverage-based fillers
+  matched at most 40%, because they do not draw OpenCV's LINE_8 outline.
+
 ## Reproduce
 
 ```sh

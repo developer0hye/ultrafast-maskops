@@ -183,6 +183,7 @@ def test_compiled_profile_matches_kernel_and_build_sources():
     for key, name in [
         ("bindings_sha256", "src/bindings.cpp"),
         ("geometry_sha256", "src/geometry.hpp"),
+        ("sampled_sha256", "src/sampled.hpp"),
         ("cmake_sha256", "CMakeLists.txt"),
         ("template_sha256", "src/build_profile.h.in"),
     ]:

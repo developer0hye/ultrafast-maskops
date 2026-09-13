@@ -22,7 +22,7 @@ import numpy as np
 import psutil
 import torch
 from ultrafast_maskops import geometry
-from ultrafast_maskops.ultralytics import accelerate_dataset
+from ultrafast_maskops.ultralytics import FastFormat, accelerate_dataset
 from ultralytics.cfg import DEFAULT_CFG
 from ultralytics.data import augment, dataset
 
@@ -64,6 +64,7 @@ def stage_timers():
     wrap(augment.RandomPerspective, "apply_segments", "apply_segments")
     wrap(geometry.FastRandomPerspective, "apply_segments", "apply_segments")
     wrap(augment.Format, "_format_segments", "masks")
+    wrap(FastFormat, "_format_segments", "masks")  # overrides the base method
     # Both are looked up as module globals at call time by update_labels_info.
     wrap(dataset, "resample_segments", "resample")
     wrap(geometry, "resample_stack", "resample")

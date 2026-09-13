@@ -25,9 +25,11 @@ FetchContent_MakeAvailable(opencv)
 # Bind the extension to the project sources used to build it. Reconfigure after
 # a kernel edit even when developers invoke only `cmake --build`.
 set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/bindings.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/geometry.hpp")
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/bindings.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/geometry.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/sampled.hpp")
 file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/src/bindings.cpp" MASKOPS_BINDINGS_SHA256)
 file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/src/geometry.hpp" MASKOPS_GEOMETRY_SHA256)
+file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/src/sampled.hpp" MASKOPS_SAMPLED_SHA256)
 file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt" MASKOPS_CMAKE_SHA256)
 file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/src/build_profile.h.in" MASKOPS_PROFILE_SHA256)
 configure_file(src/build_profile.h.in maskops_build_profile.h @ONLY)

@@ -67,11 +67,11 @@ class FastFormat(Format):
         if self._maskops_engine is None or self._maskops_pid != pid:
             self._maskops_engine = Rasterizer(scratch_limit_bytes=self._maskops_budget)
             self._maskops_pid = pid
-        packed = PackedPolygons.from_segments(instances.segments)
+        engine, segments = self._maskops_engine, instances.segments
         if self.mask_overlap:
-            masks, order = self._maskops_engine.overlap((h, w), packed, self.mask_ratio, mode=self._maskops_mode)
+            masks, order = engine.overlap_segments((h, w), segments, self.mask_ratio, mode=self._maskops_mode)
             return masks[None], instances[order], cls[order]
-        return self._maskops_engine.masks((h, w), packed, 1, self.mask_ratio), instances, cls
+        return engine.masks_segments((h, w), segments, 1, self.mask_ratio), instances, cls
 
 
 def _check_persistent_profile(dataset):
