@@ -1,0 +1,267 @@
+{
+  "preservation_complete": true,
+  "installed_suite_passed": true,
+  "spawn_stress_passed": true,
+  "production_qualified": false,
+  "source_commit": "5f6fc8e4c9da94e33cfd079f35fe3e3f8bec7d52",
+  "tests": {
+    "passed": 257,
+    "failed": 0,
+    "skipped": 0,
+    "shared_collation_cases": 26
+  },
+  "fresh_stress_processes": 18,
+  "archive_bytes": 1668875,
+  "archive_sha256": "ecd5ebadb94f4c3dfcdeaa616f57c6914737a4b0bca0e80abe9ed2a33cc6701b",
+  "file_count": 60,
+  "files": {
+    "mask-shared-linux-v2-source.tar": {
+      "bytes": 880640,
+      "sha256": "5793b268fa28985ac278cd3a9a7f6a71ed8cffba6250db3cc5f5305ac8314783"
+    },
+    "mask-shared-linux-v2-source.json": {
+      "bytes": 8407,
+      "sha256": "1aa14adb83c1029a61de70311b5fee47c80fb3f4a250eb39f309880de2208cd4"
+    },
+    "mask-shared-linux-v2-build.json": {
+      "bytes": 1240,
+      "sha256": "955a55b22a4bafbc2a7a52fec8e2cb794ad87eb1b1aa58541424657b02674a58"
+    },
+    "mask-shared-linux-v2-build.log": {
+      "bytes": 56688,
+      "sha256": "a8873eb734cc586fdcd8a50a0f7d78067079bc17bab1bed6d898d182b094df28"
+    },
+    "mask-shared-linux-v2-lint.json": {
+      "bytes": 685,
+      "sha256": "95b15beb2166d9374dbf947cb12eb279bd997e29b302ae7bb008a02f71af6a01"
+    },
+    "mask-shared-linux-v2-qualify.py": {
+      "bytes": 6349,
+      "sha256": "545ebe29ab8078ec9371378ca028fd0343915b2e8059804f8fc776e0ebd1754e"
+    },
+    "mask-shared-linux-v2-qualification.json": {
+      "bytes": 6089,
+      "sha256": "ad2d139a5e58e3e76d1ccd07c77eb15cf82ef529c5c23491012f3ece19a85828"
+    },
+    "mask-shared-linux-v2-requirements.txt": {
+      "bytes": 1843,
+      "sha256": "deb554bb63e428e326951bd1884a3414c926ac23522f1abf959fe8a41706b5fa"
+    },
+    "mask-shared-linux-v2-freeze.txt": {
+      "bytes": 1976,
+      "sha256": "78078cc6d535d4fcf18728ef599679184e85aa8579730547a0d7b69015d0394e"
+    },
+    "mask-shared-linux-v2-standalone-venv.log": {
+      "bytes": 329,
+      "sha256": "bcfd846d66d0936633cd625bec416292a0a7eb15cfd3ca830a03a1e40a79ca8b"
+    },
+    "mask-shared-linux-v2-standalone-numpy.log": {
+      "bytes": 173,
+      "sha256": "5c323739f74f2c4ae43e0917bb4491911fab777894025212de1cead0bd487f9d"
+    },
+    "mask-shared-linux-v2-standalone-wheel.log": {
+      "bytes": 348,
+      "sha256": "a1864f95c24b47f86f1534991ffe817118338de802a1dad6d41d356379345f57"
+    },
+    "mask-shared-linux-v2-standalone-audit.log": {
+      "bytes": 54,
+      "sha256": "fa755fd84e1396a7b91d11a8c8fc87d43f10be291803b8c0f90cc8dabb03a5e3"
+    },
+    "mask-shared-linux-v2-standalone-wheel-validation.json": {
+      "bytes": 4291,
+      "sha256": "32128cec42ac5ef714b6716fc4811b7d8602b5e38f28163ef5fc81142a784469"
+    },
+    "mask-shared-linux-v2-dependencies.log": {
+      "bytes": 2266,
+      "sha256": "3f8c625458a569af5cfbe4f894f6ee74198c6a87c3ae403ac732bfbab1527223"
+    },
+    "mask-shared-linux-v2-pip-check.log": {
+      "bytes": 30,
+      "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    "mask-shared-linux-v2-tests.log": {
+      "bytes": 341,
+      "sha256": "262f316b90b7acdb86b6f3c60352f67918e4e0f4776bf953d51d7fe939657056"
+    },
+    "mask-shared-linux-v2-tests.xml": {
+      "bytes": 29769,
+      "sha256": "903220e9a7b2bd089174506a7cd11c1dfeee588a6029bb8735ec009f77fd1d53"
+    },
+    "mask-shared-linux-v2-spawn-stress.py": {
+      "bytes": 4101,
+      "sha256": "0b9dccee1ef60ad2e88cb71fecc489e0a928c3dc60d01f143d5ff05776943d2e"
+    },
+    "mask-shared-linux-v2-collect.py": {
+      "bytes": 5644,
+      "sha256": "eee7feb764887513ab42ffba12f61934d663f58d7389cba5580dd87c9f0fa7f7"
+    },
+    "mask-shared-linux-v2-clean/pyvenv.cfg": {
+      "bytes": 184,
+      "sha256": "3cfbe5c70aad1a1c074c0769547b93124a3ddd7c184443417b7c4ab2968537f4"
+    },
+    "mask-shared-linux-v2-dist/ultrafast_maskops-0.1.0a1-cp312-cp312-linux_x86_64.whl": {
+      "bytes": 1278596,
+      "sha256": "8b467c837c323812a0201b81210a6dcd0c180ef50ba0d16531f07ef2c741cd9a"
+    },
+    "mask-shared-linux-v2-dist/ultrafast_maskops-0.1.0a1.tar.gz": {
+      "bytes": 182808,
+      "sha256": "aeedce3a5d289a5b9d862b7a6eaac00c372fe0cc81a7390dba6ca1ae38ab4980"
+    },
+    "mask-shared-linux-v2-spawn-stress/1.log": {
+      "bytes": 98,
+      "sha256": "a466fffcffb800d832076489f3ef1ef023ee51c24d61a9c65ce4d9feb9e3b9f6"
+    },
+    "mask-shared-linux-v2-spawn-stress/4.log": {
+      "bytes": 98,
+      "sha256": "dcccd6d7ca1c7e5add525d3a1dbb806779a38ba16200c3d17cab826ab3755a3b"
+    },
+    "mask-shared-linux-v2-spawn-stress/13.xml": {
+      "bytes": 392,
+      "sha256": "e0d956565e59a91f3c93c35d1206d6a463f62723218d1800c85aaf0151a23887"
+    },
+    "mask-shared-linux-v2-spawn-stress/15.log": {
+      "bytes": 98,
+      "sha256": "bb80a7ec276c43aa4a2dcb73146ecb26e6719ea60b2cd73559d8aa72deb94799"
+    },
+    "mask-shared-linux-v2-spawn-stress/6.log": {
+      "bytes": 98,
+      "sha256": "be7c94c7322d04ab840a70353832988ec82a2c9abda52f21220f8974c9ddaf61"
+    },
+    "mask-shared-linux-v2-spawn-stress/14.log": {
+      "bytes": 98,
+      "sha256": "55037a6485b829190f42abaee701e9bc42e9257a175d7196772ebf8fa0618a3a"
+    },
+    "mask-shared-linux-v2-spawn-stress/11.log": {
+      "bytes": 98,
+      "sha256": "dcccd6d7ca1c7e5add525d3a1dbb806779a38ba16200c3d17cab826ab3755a3b"
+    },
+    "mask-shared-linux-v2-spawn-stress/5.xml": {
+      "bytes": 397,
+      "sha256": "a7b9a75ff3211d2e8daa441963cc485462ba82165f210a77f9fd6faf055b2c64"
+    },
+    "mask-shared-linux-v2-spawn-stress/3.xml": {
+      "bytes": 398,
+      "sha256": "55ca9e24620d24f3ab5993aa01a025590dbf4394e158d4c168050c2bb115f24a"
+    },
+    "mask-shared-linux-v2-spawn-stress/15.xml": {
+      "bytes": 398,
+      "sha256": "a37e0ccc3477efe0506bb91bad5f9ad42ae353b5b91a998d1cd16dd02c9190c1"
+    },
+    "mask-shared-linux-v2-spawn-stress/3.log": {
+      "bytes": 98,
+      "sha256": "55037a6485b829190f42abaee701e9bc42e9257a175d7196772ebf8fa0618a3a"
+    },
+    "mask-shared-linux-v2-spawn-stress/9.log": {
+      "bytes": 98,
+      "sha256": "7fc32e52e0eea461ffa825e3730515c780be2f7fcb0ba04ad2c1355ae9c8a9e9"
+    },
+    "mask-shared-linux-v2-spawn-stress/2.xml": {
+      "bytes": 399,
+      "sha256": "594299c6c4d52054c2d3ca2eb833b68264a2c91673e3df5634914c70ef77a9d9"
+    },
+    "mask-shared-linux-v2-spawn-stress/17.log": {
+      "bytes": 98,
+      "sha256": "f860ff5001c472ce4163615044c8694983f09c4570c5aefa57d6e89665937d10"
+    },
+    "mask-shared-linux-v2-spawn-stress/12.xml": {
+      "bytes": 393,
+      "sha256": "c9ef2684c5f9a2dad1f79e2278bc1c69840a902d3384153a0bc51754daee3436"
+    },
+    "mask-shared-linux-v2-spawn-stress/16.xml": {
+      "bytes": 398,
+      "sha256": "5cf09a38b8c79488ae61b7d97fc194a30f893e45168b31c7be5367e8dcec4e9a"
+    },
+    "mask-shared-linux-v2-spawn-stress/0.xml": {
+      "bytes": 393,
+      "sha256": "ed0a9cbbbd429202544c12206b73290353ce47f66120442fca9180e432556d19"
+    },
+    "mask-shared-linux-v2-spawn-stress/2.log": {
+      "bytes": 98,
+      "sha256": "55037a6485b829190f42abaee701e9bc42e9257a175d7196772ebf8fa0618a3a"
+    },
+    "mask-shared-linux-v2-spawn-stress/11.xml": {
+      "bytes": 397,
+      "sha256": "96f50965a4088fd1678a87d1b9d4a33337de78f3019fc702e5ffc7f755fa5de7"
+    },
+    "mask-shared-linux-v2-spawn-stress/9.xml": {
+      "bytes": 398,
+      "sha256": "3c50cb80bc19bbdefb15c48b0431e835842b8c07b36415ca9d62233d7c7f061c"
+    },
+    "mask-shared-linux-v2-spawn-stress/5.log": {
+      "bytes": 98,
+      "sha256": "bb80a7ec276c43aa4a2dcb73146ecb26e6719ea60b2cd73559d8aa72deb94799"
+    },
+    "mask-shared-linux-v2-spawn-stress/8.xml": {
+      "bytes": 399,
+      "sha256": "3beccd0b2bdd6181994f14413c6f2656b6a3b80f0649ec9af38e69da3a7d8358"
+    },
+    "mask-shared-linux-v2-spawn-stress/7.log": {
+      "bytes": 98,
+      "sha256": "076473d7a6c81a72c2c66927e274e567046a1ae3975703aafadbf10e1151adf5"
+    },
+    "mask-shared-linux-v2-spawn-stress/10.log": {
+      "bytes": 98,
+      "sha256": "bb80a7ec276c43aa4a2dcb73146ecb26e6719ea60b2cd73559d8aa72deb94799"
+    },
+    "mask-shared-linux-v2-spawn-stress/16.log": {
+      "bytes": 98,
+      "sha256": "f860ff5001c472ce4163615044c8694983f09c4570c5aefa57d6e89665937d10"
+    },
+    "mask-shared-linux-v2-spawn-stress/1.xml": {
+      "bytes": 392,
+      "sha256": "bf67ef9bc86c72c9f37bca3f84d479df5271bc275420ad9e3f60ae30dc01530c"
+    },
+    "mask-shared-linux-v2-spawn-stress/12.log": {
+      "bytes": 98,
+      "sha256": "be7c94c7322d04ab840a70353832988ec82a2c9abda52f21220f8974c9ddaf61"
+    },
+    "mask-shared-linux-v2-spawn-stress/4.xml": {
+      "bytes": 398,
+      "sha256": "ece2cb5f0051e3221c8a050ee400bc4068fdb2d1a978d20ce3c591dfc5c15270"
+    },
+    "mask-shared-linux-v2-spawn-stress/6.xml": {
+      "bytes": 393,
+      "sha256": "b897a824cc7fa0f2bc2ba2433651d2371cd5da39566bbd70e6c9e3bef7998504"
+    },
+    "mask-shared-linux-v2-spawn-stress/0.log": {
+      "bytes": 98,
+      "sha256": "89085e03d3d752c56d0443b5ca0a834adcbe1453e360b41789d082a0a29bb024"
+    },
+    "mask-shared-linux-v2-spawn-stress/series.json": {
+      "bytes": 17411,
+      "sha256": "210d835cdd70413bd1a82502e5c653cfc1ddc0af49dcd9727be6125d9f74b21c"
+    },
+    "mask-shared-linux-v2-spawn-stress/8.log": {
+      "bytes": 98,
+      "sha256": "dcccd6d7ca1c7e5add525d3a1dbb806779a38ba16200c3d17cab826ab3755a3b"
+    },
+    "mask-shared-linux-v2-spawn-stress/7.xml": {
+      "bytes": 392,
+      "sha256": "e7b2f03675bc111e3e729bc33891be411905641c0654260e5371168b6d2a8359"
+    },
+    "mask-shared-linux-v2-spawn-stress/17.xml": {
+      "bytes": 397,
+      "sha256": "ce95e59b87a4675f77ab4c62661c36d888e5a54b6ccbef218f53f7fd0d250029"
+    },
+    "mask-shared-linux-v2-spawn-stress/14.xml": {
+      "bytes": 399,
+      "sha256": "3d77a845f6c9a0d2afd92b6f1abc9d956cbe78b5e8c5a13f2b7b33bc65f4e5fb"
+    },
+    "mask-shared-linux-v2-spawn-stress/13.log": {
+      "bytes": 98,
+      "sha256": "89085e03d3d752c56d0443b5ca0a834adcbe1453e360b41789d082a0a29bb024"
+    },
+    "mask-shared-linux-v2-spawn-stress/10.xml": {
+      "bytes": 398,
+      "sha256": "3b904bc29ddfa85aecd47151470c80a3ede2ba5acf49b212ef8bf41e2aacba7a"
+    }
+  },
+  "all_archive_members_read_back": true,
+  "limitations": [
+    "One Linux CPU/Python/Torch profile; four-image spawned stress fixture, workers=2.",
+    "Reference transport normalized only in functional reset tests.",
+    "Previous v1 failed suite and GDB evidence retained separately.",
+    "Current real-data loader and GPU lifecycle/resume grid remain unexecuted.",
+    "No packet speed, memory improvement or general shutdown-reliability claim."
+  ]
+}

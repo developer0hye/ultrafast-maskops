@@ -4,9 +4,11 @@ The candidate adds guarded CPU collation to the optional Ultralytics adapter.
 It is motivated by the [observed spawned-worker abort](WORKER_SHUTDOWN_DIAGNOSIS.md)
 and the extra heap-to-shared-storage copy performed when queue serialization
 receives ordinary batch tensors. The first installed shared-collator revision
-failed qualification (253 passed, one worker-reset failure). The current packet
-revision has not yet run in an installed wheel; see the
-[failure and second debugger trace](SHARED_LINUX_VALIDATION.md).
+failed qualification (253 passed, one worker-reset failure); see the
+[failure and second debugger trace](SHARED_LINUX_VALIDATION.md). The current
+packet revision passed all 257 installed Linux tests and 18 fresh-process reset
+repetitions. See the [bounded qualification evidence](SHARED_PACKET_VALIDATION.md).
+Real-data performance, training/resume and other platforms remain unqualified.
 
 `accelerate_dataset(dataset, persistent=True)` now installs both the instance's
 FastFormat factory and its shared collator before workers are constructed.
@@ -69,8 +71,9 @@ comparison against an unchanged full reference loader.
 The GPU trial harness records and asserts the actual loader collator. Its
 reference backend keeps the original collator; native persistent backends use
 the new instance hook. Old GPU evidence cannot qualify this change. Fresh wheel
-auditing, all installed tests, repeated spawn stress, real-data batches, actual
-training/resume and supported-platform qualification remain required.
+auditing, all installed tests and the declared 18-case spawn stress passed on
+one Linux profile. Real-data batches, actual training/resume and supported-platform
+qualification remain required.
 
 There is no measured speed or memory improvement for this implementation yet.
 Measure shared allocation and full-loader/epoch behavior before choosing a

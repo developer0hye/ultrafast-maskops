@@ -1,8 +1,9 @@
 """Full COCO CPU DataLoader epochs, with separate untimed output verification.
 
 Every sample is a fresh process. The ordinary YOLODataset is used on both sides;
-only its final Format is replaced. No training, dataset-parser acceleration,
-image RAM cache, or augmentation is included in this experiment.
+its final Format is replaced, and explicit persistent mode also enables the
+instance shared collator. No training, dataset-parser acceleration, image RAM
+cache, or augmentation is included in this experiment.
 """
 
 import argparse
@@ -28,6 +29,7 @@ import torch
 import ultralytics
 from torch.utils.data import DataLoader, Subset
 from ultrafast_maskops import _native, backend_info
+from ultrafast_maskops._shared_collate import shared_collate_fn
 from ultrafast_maskops.ultralytics import accelerate_dataset, check_profile
 from ultralytics.cfg import DEFAULT_CFG
 from ultralytics.data.dataset import YOLODataset
@@ -69,6 +71,10 @@ def validate_profile():
     root = Path(ultralytics.__file__).parent
     for name, expected in UPSTREAM_FILES.items():
         assert sha((root / name).read_bytes()) == expected, f"upstream source mismatch: {name}"
+    runtime_sources = Path(__file__).resolve().parents[1] / "python/ultrafast_maskops"
+    installed = Path(_native.__file__).parent
+    for path in runtime_sources.glob("*.py"):
+        assert path.read_bytes() == (installed / path.name).read_bytes(), f"installed runtime mismatch: {path.name}"
 
 
 def digest_value(value, digest):
@@ -150,9 +156,13 @@ def worker(args):
     constructor_s = time.perf_counter() - started
     assert len(dataset) == 5000
     assert dataset.augment is False and not dataset.cache
-    replaced = accelerate_dataset(dataset) if args.backend == "native" else 0
+    replaced = accelerate_dataset(dataset, persistent=args.persistent_mask) if args.backend == "native" else 0
     if args.backend == "native":
         assert replaced == 1
+    expected_collator = (
+        shared_collate_fn if args.backend == "native" and args.persistent_mask else YOLODataset.collate_fn
+    )
+    assert dataset.collate_fn is expected_collator
     count = args.limit or len(dataset)
     assert 1 <= count <= len(dataset)
     selected = dataset.labels[:count]
@@ -182,13 +192,14 @@ def worker(args):
         batch_size=args.batch,
         shuffle=False,
         num_workers=args.worker_count,
-        collate_fn=YOLODataset.collate_fn,
+        collate_fn=dataset.collate_fn,
         pin_memory=False,
         drop_last=False,
         worker_init_fn=seed_worker,
         generator=torch.Generator().manual_seed(912),
         **kwargs,
     )
+    assert loader.collate_fn is expected_collator
     before = psutil.Process().memory_info().rss
     available_before = psutil.virtual_memory().available
     swap_before = psutil.swap_memory()
@@ -222,10 +233,24 @@ def worker(args):
         verification_batches += 1
         del batch
     assert verified == count and verification_batches == batches
+    # Outside all timers and resource-sampling markers. Preserve failures from
+    # either backend: a returned epoch alone does not prove clean worker exit.
+    iterator = getattr(loader, "_iterator", None)
+    workers = list(getattr(iterator, "_workers", ()))
+    worker_pids = [worker.pid for worker in workers]
+    if iterator is not None:
+        iterator._shutdown_workers()
+    worker_exitcodes = [worker.exitcode for worker in workers]
+    assert len(workers) == args.worker_count
+    assert all(not worker.is_alive() and worker.exitcode == 0 for worker in workers), worker_exitcodes
     assert fingerprint(root) == manifest["fingerprint"]
     result = {
         "backend": args.backend,
         "workers": args.worker_count,
+        "persistent_mask": args.persistent_mask,
+        "collator": f"{loader.collate_fn.__module__}.{loader.collate_fn.__qualname__}",
+        "worker_pids": worker_pids,
+        "worker_exitcodes": worker_exitcodes,
         "images": count,
         "batch_size": args.batch,
         "imgsz": args.imgsz,
@@ -289,6 +314,8 @@ def run_sample(args, run_dir, backend, workers, round_):
         "--limit",
         str(args.limit),
     ]
+    if args.persistent_mask:
+        command.append("--persistent-mask")
     samples = []
     with (run_dir / (stem + ".log")).open("w") as log:
         process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
@@ -369,6 +396,7 @@ def main():
     parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--mask-ratio", type=int, default=4)
     parser.add_argument("--overlap", choices=["yes", "no"], default="yes")
+    parser.add_argument("--persistent-mask", action="store_true", help="native instance factory and shared collator")
     parser.add_argument("--limit", type=int, default=0, help="pilot only: first N images; zero means all 5000")
     parser.add_argument("--backend", choices=["reference", "native"])
     parser.add_argument("--worker-count", type=int, default=0)
@@ -393,8 +421,12 @@ def main():
         )
     )
     report = {
+        "complete": False,
+        "rounds": args.rounds,
+        "worker_counts": args.workers,
         "scope": "pilot" if args.limit or args.rounds < 5 else "full COCO non-augmented CPU DataLoader",
-        "method": "five or specified alternating fresh processes per backend/worker count; whole first epoch and first-batch-excluded remainder; spawn persistent workers, prefetch=2, no pinning; ordinary YOLODataset on both sides",
+        "method": "five or specified alternating fresh processes per backend/worker count; whole first epoch and first-batch-excluded remainder; spawn persistent workers, prefetch=2, no pinning; ordinary YOLODataset on both sides; original reference collator, optional native shared collator; strict zero worker exit checks after untimed verification",
+        "persistent_mask": args.persistent_mask,
         "validation": "full second pass hashes every batch key/type/dtype/shape/value outside timers; input fingerprint before/after each process pre-reads OS cache; no cold-storage claim",
         "memory": "external parent samples benchmark process plus recursive children every 50 ms during timed epoch; RSS sum counts shared pages more than once, is not unique memory or allocation; sampling can miss brief peaks; parent high-water mark also includes dataset construction",
         "platform": platform.platform(),
@@ -417,6 +449,7 @@ def main():
         "corpus": json.loads((args.corpus / "coco.json").read_text()),
         "results": [],
     }
+    args.out.write_text(json.dumps(report, indent=2) + "\n")
     expected = None
     for workers in args.workers:
         for round_ in range(args.rounds):
@@ -439,6 +472,7 @@ def main():
                     flush=True,
                 )
     report["summary"] = summarize(report["results"])
+    report["complete"] = True
     args.out.write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report["summary"], indent=2), flush=True)
 

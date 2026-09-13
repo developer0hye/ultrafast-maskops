@@ -25,6 +25,27 @@ def main():
     root = args.corpus.resolve()
     report = json.loads(args.benchmark.read_text())
     assert "summary" in report, "wait for the benchmark to finish"
+    if "complete" in report:
+        assert report["complete"], "benchmark is incomplete"
+        expected = {
+            (workers, round_, backend)
+            for workers in report["worker_counts"]
+            for round_ in range(report["rounds"])
+            for backend in ("reference", "native")
+        }
+        actual = [(r["workers"], r["round"], r["backend"]) for r in report["results"]]
+        assert len(actual) == len(expected) and set(actual) == expected
+        for r in report["results"]:
+            assert r["persistent_mask"] == report["persistent_mask"]
+            shared = r["backend"] == "native" and r["persistent_mask"]
+            expected_collator = (
+                "ultrafast_maskops._shared_collate.shared_collate_fn"
+                if shared
+                else "ultralytics.data.dataset.YOLODataset.collate_fn"
+            )
+            assert r["collator"] == expected_collator
+            assert len(r["worker_pids"]) == len(set(r["worker_pids"])) == r["workers"]
+            assert r["worker_exitcodes"] == [0] * r["workers"]
     assert source_hashes() == report["source_sha256"], "restore the benchmarked sources before rebuilding the cache"
     assert sha(Path(_native.__file__).read_bytes()) == report["extension_sha256"], "restore the benchmarked extension"
     assert fingerprint(root) == COCO_FINGERPRINT

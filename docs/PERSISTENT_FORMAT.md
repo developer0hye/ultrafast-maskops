@@ -2,7 +2,9 @@
 
 This branch adds an **unvalidated** optional adapter feature on top of the
 unit-scale mask candidate at `25853ef`. The current [shared-batch revision](SHARED_BATCHES.md)
-uses a bytes-only queue packet and is not yet installed-tested. Its preceding
+uses a bytes-only queue packet and passed 257 installed Linux tests plus 18
+fresh-process reset repetitions; see [the evidence](SHARED_PACKET_VALIDATION.md).
+Its preceding
 shared-collator revision failed with 253 passing tests and one worker-reset
 failure; see the [second shutdown trace](SHARED_LINUX_VALIDATION.md).
 For the preceding factory-only revision, a fresh Linux wheel/sdist, standalone
@@ -12,8 +14,8 @@ also fails without importing either new library. See the
 [qualification report](PERSISTENT_LINUX_VALIDATION.md) and preserved failures.
 A later [shutdown diagnosis](WORKER_SHUTDOWN_DIAGNOSIS.md) provides a native trace
 and six passing eager-sharing controls. The current source implements direct
-shared collation and worker-side packet serialization; runtime qualification
-remains pending after the eager-sharing-only revision failed.
+shared collation and worker-side packet serialization. These bounded Linux checks
+passed after the eager-sharing-only revision failed; broader qualification remains pending.
 Actual lifecycle training remains unqualified; M2 remains reserved by its separate
 startup experiment. The earlier 209-test result and loader/GPU evidence predate
 this Python adapter change.
@@ -99,7 +101,8 @@ alongside the existing integration/training tests on Python 3.11–3.13 for each
 Linux, Windows and macOS job. It also selects `test_resize_roi.py` in every core
 parity job, covering the ROI/scale and mixed-scratch boundaries that the earlier
 explicit test list omitted. These workflow edits do not establish execution:
-hosted CI remains pending; the local installed suite failed as documented above.
+hosted CI remains pending; the latest Linux packet suite passed, while earlier
+failed qualification results remain preserved as documented above.
 Local workflow lint passed.
 Python 3.10 still has core-only coverage because its NumPy profile does not meet
 the pinned framework adapter requirement.

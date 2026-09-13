@@ -1,0 +1,18 @@
+{
+  "complete": true,
+  "tool": "ruff 0.15.6",
+  "checks": [
+    "check --ignore E402",
+    "format --check"
+  ],
+  "returncodes": [
+    0,
+    0
+  ],
+  "files": {
+    "bench/coco_loader.py": "5c9e0578b058566b968371ff22e8e54dc2e407b6ff4a2e5a4561b13aa2f9c7e5",
+    "bench/verify_coco_loader.py": "cbc01f8460c4fe1c2c8754b89d4fca02da4b736e59d94292518a5894bdb3fe91"
+  },
+  "checked_at": "2026-09-13T04:03:58.741430+00:00",
+  "runtime_qualification": false
+}

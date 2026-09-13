@@ -3,8 +3,9 @@
 The extended `bench/train_coco_gpu.py` source parses and passes lint, but its new
 flags and lifecycle assertions have not executed. The persistent candidate built
 on Linux, but [installed qualification failed](PERSISTENT_LINUX_VALIDATION.md)
-at a reference spawned-worker reset. Resolve that failure before claiming this
-training protocol is qualified. Earlier GPU
+at a reference spawned-worker reset. The later packet revision passed
+[257 installed tests and 18 fresh-process reset cases](SHARED_PACKET_VALIDATION.md).
+Those checks do not execute or qualify this training protocol. Earlier GPU
 results used another installed adapter, `close_mosaic=0` and two epochs; they
 cannot qualify this change. No new job is automatically queued.
 

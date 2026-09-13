@@ -1,5 +1,9 @@
 # Shared collator v1: failed Linux qualification
 
+This is the preserved v1 failure report. The subsequent packet revision's
+[257-test and 18-process results](SHARED_PACKET_VALIDATION.md) are separate;
+they do not overwrite the observations below.
+
 Source `8e60554097cdba94a834b64730a1d2440d190d2b` built a fresh wheel and
 sdist. A new CPython 3.12.14 environment passed the NumPy-only standalone audit,
 installed-byte/RECORD checks and all nine source/wheel/sdist notice comparisons.
