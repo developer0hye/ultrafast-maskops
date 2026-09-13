@@ -1,8 +1,10 @@
 # GPU lifecycle qualification: prepared, not executed
 
-The extended `bench/train_coco_gpu.py` source parses, but its new flags and
-lifecycle assertions have not executed. Build and test the persistent Format
-candidate first, after the host's current dataset benchmark ends. Earlier GPU
+The extended `bench/train_coco_gpu.py` source parses and passes lint, but its new
+flags and lifecycle assertions have not executed. The persistent candidate built
+on Linux, but [installed qualification failed](PERSISTENT_LINUX_VALIDATION.md)
+at a reference spawned-worker reset. Resolve that failure before claiming this
+training protocol is qualified. Earlier GPU
 results used another installed adapter, `close_mosaic=0` and two epochs; they
 cannot qualify this change. No new job is automatically queued.
 

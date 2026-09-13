@@ -1,0 +1,166 @@
+{
+  "preservation_complete": true,
+  "candidate_qualified": false,
+  "archive_sha256": "752017b7531333650cfebb0388c42a7ae20a2e3cca284caba7a16643a22e1c1a",
+  "archive_bytes": 1635831,
+  "file_count": 35,
+  "files": {
+    "mask-persistent-linux-v1-source.tar": {
+      "bytes": 829440,
+      "sha256": "ac98321528b1cbd1d86d16bd6ecfefb5ca4db88740a90123d5a9f61f3eb4f453"
+    },
+    "mask-persistent-linux-v1-source.json": {
+      "bytes": 7859,
+      "sha256": "cb3e17d551dd831a8b8a558cfba6654de6620014cd17420ac30e5f9b227621d0"
+    },
+    "mask-persistent-linux-v1-build.json": {
+      "bytes": 1252,
+      "sha256": "e61a7303b5c058c86137742a82a905b7698a102e3a1b247a0f842176ee58590a"
+    },
+    "mask-persistent-linux-v1-build.log": {
+      "bytes": 56788,
+      "sha256": "40aaaa819563a2ddaca03a43f09d813ee50ae26b8d91cfd5b170ea07caa30c67"
+    },
+    "mask-persistent-linux-v1-lint.json": {
+      "bytes": 1580,
+      "sha256": "bf2f807be7ffc01d334bf464aa0c0d5cb075a86705a019c58a9d0c899594b95b"
+    },
+    "mask-persistent-linux-v1-ruff-check.log": {
+      "bytes": 4694,
+      "sha256": "901131387a546192e136f2871ca3a28a06328ab27f48ff655e5b4eda6165546f"
+    },
+    "mask-persistent-linux-v1-standalone.json": {
+      "bytes": 6641,
+      "sha256": "90b816ea7330611bb6f1f5f86b4d85a94b07f4679c4cb20f0837365fdeea96ea"
+    },
+    "mask-persistent-linux-v1-standalone-wheel-validation.json": {
+      "bytes": 4150,
+      "sha256": "971ea9c7c5f736e99032d108c03006a928cf83489a4e6e72c004226afe1e0047"
+    },
+    "mask-persistent-linux-v1-standalone-venv.log": {
+      "bytes": 337,
+      "sha256": "77cf29601b039429f3b8af14863209d43aa5fd7c0ef0b8677ff3bcba9be8d884"
+    },
+    "mask-persistent-linux-v1-standalone-numpy.log": {
+      "bytes": 177,
+      "sha256": "d6e6ded1e0f114f970a525a8d6f97eca2c8cdfca2c176e3a471bdd3836957714"
+    },
+    "mask-persistent-linux-v1-standalone-wheel.log": {
+      "bytes": 356,
+      "sha256": "1e477d236f7cd674f2992df1706ef04ea82a1961920a973f4d45cc2affcc0d33"
+    },
+    "mask-persistent-linux-v1-standalone-audit.log": {
+      "bytes": 54,
+      "sha256": "fa755fd84e1396a7b91d11a8c8fc87d43f10be291803b8c0f90cc8dabb03a5e3"
+    },
+    "mask-persistent-linux-v1-runtime-setup.json": {
+      "bytes": 1524,
+      "sha256": "6c21d4cdb96ca44f672d48998f985bcb52b474ab2ea9307616aa2de94fabc638"
+    },
+    "mask-persistent-linux-v1-requirements.txt": {
+      "bytes": 1843,
+      "sha256": "deb554bb63e428e326951bd1884a3414c926ac23522f1abf959fe8a41706b5fa"
+    },
+    "mask-persistent-linux-v1-dependencies.log": {
+      "bytes": 2270,
+      "sha256": "62e8132c38e867a2f2e9be95b4ee5311e5c46a82aee6556070449da8e3210456"
+    },
+    "mask-persistent-linux-v1-pip-check.log": {
+      "bytes": 30,
+      "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    "mask-persistent-linux-v1-freeze.txt": {
+      "bytes": 1980,
+      "sha256": "1dcb2df055181e5a56f407e6e4029489160a0b3463e05018b1c245801dad1f63"
+    },
+    "mask-persistent-linux-v1-runtime-parity.json": {
+      "bytes": 343,
+      "sha256": "5e8f5fc6ad6e607830d8982e86dcc8dd5bb13cc677516bb79b7591988565c999"
+    },
+    "mask-persistent-linux-v1-tests.json": {
+      "bytes": 776,
+      "sha256": "358731d7d7aa0566410dea213494cc71a106b94ef4e11bf4301a43619ca5404b"
+    },
+    "mask-persistent-linux-v1-tests.log": {
+      "bytes": 5708,
+      "sha256": "e4455cf14aaea6b26f78c8106337770a19df6d7f5006e8911c56521b361d62df"
+    },
+    "mask-persistent-linux-v1-tests.xml": {
+      "bytes": 29026,
+      "sha256": "ac73e47d984d5d8ed634b45f1cf990efbcb3576e3f5f5b8efd4ea9f71a80ca6f"
+    },
+    "mask-persistent-linux-v1-reset-repro-1.json": {
+      "bytes": 568,
+      "sha256": "e9dac2de78f7691a1cb5c7b39b2ee86552cf1948fa3df83b817122ed7c7f99be"
+    },
+    "mask-persistent-linux-v1-reset-repro-1.log": {
+      "bytes": 8178,
+      "sha256": "837d7120cb9008698711d60b42653db5ec52e730e6366310203ef9f69173ea10"
+    },
+    "mask-persistent-linux-v1-reset-repro-1.xml": {
+      "bytes": 7323,
+      "sha256": "67ce3e232a72538266a2637d4540551b43a7c15e925e071f228c2bdbb2d3c108"
+    },
+    "mask-persistent-linux-v1-backend.json": {
+      "bytes": 582,
+      "sha256": "5d330079a84f3cd20777df4529fbd8807ee265d159aa805b429e5a0076abf99b"
+    },
+    "mask-persistent-linux-v1-reference-only-first-batch.json": {
+      "bytes": 714,
+      "sha256": "62a77b475973a9380a3b14663a5e55a466f40602c1aefc004fd85f8c74b74dc9"
+    },
+    "mask-persistent-linux-v1-reference-only-first-batch.log": {
+      "bytes": 1124,
+      "sha256": "9b892cbed79bbe2a7989c50d9300bdfd096f3dd0c655f44c950fe8c125bd6976"
+    },
+    "mask-persistent-linux-v1-reference-only-full-epoch.json": {
+      "bytes": 2460,
+      "sha256": "917fe9c2ea9153147197b485e808d023737a2303fd12f354b9c95016372b33b8"
+    },
+    "mask-persistent-linux-v1-reference-only-full-epoch.log": {
+      "bytes": 2870,
+      "sha256": "d08910c8414ad752696c35a21007412c0b840768549ff82f5de7bb944dcbaf40"
+    },
+    "mask-persistent-linux-v1-reference-only-setup.json": {
+      "bytes": 423,
+      "sha256": "36f46b1d1e59643338009a0909dd80bfe4e3c6df67f3a0b2f53762664f858b54"
+    },
+    "mask-persistent-linux-v1-reference-only-setup.log": {
+      "bytes": 788,
+      "sha256": "b99be1ba5907098ce9d6c34ca6e7a9fbc3d11ef80b7e43bb84aa13f6862ed8a0"
+    },
+    "reproduce-reference-reset-v1.py": {
+      "bytes": 4272,
+      "sha256": "94eaeed107bb7ce32fdfcc2954186a0ee05d9e0f7c00979b45fd166323764b56"
+    },
+    "mask-persistent-linux-v1-clean/pyvenv.cfg": {
+      "bytes": 184,
+      "sha256": "3cfbe5c70aad1a1c074c0769547b93124a3ddd7c184443417b7c4ab2968537f4"
+    },
+    "mask-persistent-linux-v1-dist/ultrafast_maskops-0.1.0a1-cp312-cp312-linux_x86_64.whl": {
+      "bytes": 1276071,
+      "sha256": "aff43a9d54b1f73b83b19c199bfcc2ef624b5465b7404aa7902b8158d11835c8"
+    },
+    "mask-persistent-linux-v1-dist/ultrafast_maskops-0.1.0a1.tar.gz": {
+      "bytes": 169418,
+      "sha256": "2ccb116105459532c0f5c09024a96f066cb05ced8ad8fd84faba5a46c9ddc242"
+    }
+  },
+  "source_commit": "d58158009bc52166f8a82c1912621e76f7ddd386",
+  "tests": {
+    "total": 222,
+    "passed": 221,
+    "failed": [
+      "tests.test_persistent_format.test_close_mosaic_retains_format_through_real_worker_reset[True-2]"
+    ],
+    "skipped": 0
+  },
+  "findings": [
+    "Fresh wheel/sdist and NumPy-only installed-wheel/notice checks passed.",
+    "Full installed suite failed; focused rerun also failed with native=False.",
+    "Independent script imports neither new library, but reference reset aborts after a full epoch; first-batch reset returned with two worker exit codes -6; setup reset passed once.",
+    "One successful reset does not establish lifecycle reliability. No exception suppression, worker-mode change, skip or test relaxation was applied.",
+    "Runtime and framework sources were not modified during diagnosis; actual lifecycle training remains unqualified."
+  ],
+  "all_archive_members_read_back": true
+}

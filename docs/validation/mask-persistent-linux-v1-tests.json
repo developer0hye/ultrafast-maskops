@@ -1,0 +1,24 @@
+{
+  "complete": false,
+  "controller_pid": 1619020,
+  "command": [
+    "/home/yonghye/ultrafast-vision-build/mask-persistent-linux-v1-clean/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests",
+    "--junitxml=/home/yonghye/ultrafast-vision-build/mask-persistent-linux-v1-tests.xml"
+  ],
+  "cwd": "/home/yonghye/ultrafast-vision-build/mask-persistent-linux-v1-source",
+  "env": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "YOLO_OFFLINE": "true"
+  },
+  "started_at_ns": 1789269573066206596,
+  "returncode": 1,
+  "finished_at_ns": 1789269606153166395,
+  "log_sha256": "e4455cf14aaea6b26f78c8106337770a19df6d7f5006e8911c56521b361d62df",
+  "xml_sha256": "ac73e47d984d5d8ed634b45f1cf990efbcb3576e3f5f5b8efd4ea9f71a80ca6f"
+}

@@ -1,11 +1,14 @@
 # Persistent Format candidate
 
 This branch adds an **unvalidated** optional adapter feature on top of the
-unit-scale mask candidate at `25853ef`. Runtime, test and trial-harness lint plus
-workflow syntax checks passed on Linux; a fresh wheel, installed tests and
-training/lifecycle checks remain pending. Linux startup measurements have ended;
-M2 remains reserved. The earlier 209-test
-Linux result and loader/GPU evidence predate this Python adapter change.
+unit-scale mask candidate at `25853ef`. A fresh Linux wheel/sdist, standalone
+installation and source/workflow lint passed. The full installed suite failed:
+221 passed and one spawned-worker reset test failed. A reference-only reproducer
+also fails without importing either new library. See the
+[qualification report](PERSISTENT_LINUX_VALIDATION.md) and preserved failures.
+Actual lifecycle training remains unqualified; M2 remains reserved by its separate
+startup experiment. The earlier 209-test result and loader/GPU evidence predate
+this Python adapter change.
 
 ## Behavior
 
@@ -49,7 +52,7 @@ The dataset extension's FastYOLODataset inherits the base transform builder, but
 combined-library execution remains an explicit validation gate. Constructing an
 ordinary reference dataset is still the documented way to opt out.
 
-## Validation prepared, not executed
+## Validation scope and current failure
 
 [New tests](../tests/test_persistent_format.py) cover instance/global isolation,
 unchanged one-shot behavior, repeat/upgrade calls, pickle and direct rebuilds,
@@ -68,8 +71,9 @@ Only the base transform builder is an additional runtime profile guard; the othe
 entries document the reviewed context. Runtime inspect-source agreement still
 needs to pass in the installed environment.
 
-Before merging, build a fresh wheel/sdist and run the entire installed suite on
-both hosts, then verify combined-library datasets and actual CPU/GPU training
+Before merging, resolve the observed reference worker-shutdown failure and pass
+the entire installed suite on both hosts, then verify combined-library datasets
+and actual CPU/GPU training
 through a close-mosaic transition and resumed training. The focused loader tests
 do not execute a training loop or establish loss/model parity after that transition.
 Any throughput claim needs a separately declared repeated benchmark; the earlier
@@ -80,8 +84,8 @@ alongside the existing integration/training tests on Python 3.11–3.13 for each
 Linux, Windows and macOS job. It also selects `test_resize_roi.py` in every core
 parity job, covering the ROI/scale and mixed-scratch boundaries that the earlier
 explicit test list omitted. These workflow edits do not establish execution:
-hosted CI and this candidate's installed tests remain pending; local workflow
-lint has now passed.
+hosted CI remains pending; the local installed suite failed as documented above.
+Local workflow lint passed.
 Python 3.10 still has core-only coverage because its NumPy profile does not meet
 the pinned framework adapter requirement.
 
