@@ -1,0 +1,28 @@
+{
+  "source_commit": "9c4ece56f8a15a251c36a07a0e02af238a7df81b",
+  "source_archive_sha256": "3ac418a33bad521aa9956f878aabf80d5a4283c313a317563d8f386d3b19d935",
+  "tests": 209,
+  "errors": 0,
+  "failures": 0,
+  "skipped": 0,
+  "test_sources": {
+    "tests/reference.py": "30233b6500d508ec44e38c62e5ab03185509048dd1358f4be06330283188cdd1",
+    "tests/test_compare_wheels.py": "b0a5d0021e24bc61b944940b927b1af263e5b0aa3a8c135b2e8490c377b73107",
+    "tests/test_gpu_series_audit.py": "b00a2d3149fadce317ece941e922b7e3e025d71bf2cc8c4aa3cfdc1a9f29d8a6",
+    "tests/test_integration.py": "1d469df5ea1ba29c63d79976baede4827b6258d2b697b562fd56848bd398d957",
+    "tests/test_parity.py": "905e65ab51fefa9c7f61c7db418da24a6a1acdf166f11645cfe33f7d4ccb331d",
+    "tests/test_resize_roi.py": "92e3adb8337a70ebc1f72129f300d67bc069bbb389875cca97908fc79734bf1b",
+    "tests/test_training.py": "6e4784d3e905d019fc9462700964c8aa6b0432726f2fff6920bcbef437955293"
+  },
+  "artifacts": {
+    "mask-unit-scale-linux-tests-v1.xml": "142cbc04079a436a16eb0c2fec0f72562d5ac040bd845c6e0dcc1e25a38902f8",
+    "mask-unit-scale-linux-tests-v1.log": "e5a1bf51b11e6a7139a837ef194f3c025498dd7bae978fc19a095f74b66e3206",
+    "mask-unit-scale-linux-descriptor-v1.json": "bdfe957dfe72e3e78c448b476664fa6c53a89229a636a3b8db23c4a675df7574",
+    "mask-unit-scale-linux-build-v1.log": "7db5d8dd2cf41001972c083246a6313a6423ab071985512d214d02bd625a32fa",
+    "mask-unit-scale-linux-freeze-v1.txt": "715bb66783a0923d35b35c1978b158797d61ec5e32c028cab880dd96a3839dad",
+    "mask-unit-scale-linux-pip-check-v1.log": "338f8d34497568dd5ee9f13634bc91d6f7862e8e692b7e05fc85971d88dd1800",
+    "mask-unit-scale-linux-dist-v1/wheel-validation.json": "c481cbf9132223125839acc3025425720335e605d226df8d8e6fdadc1b2eb664",
+    "mask-unit-scale-linux-dist-v1/ultrafast_maskops-0.1.0a1-cp312-cp312-linux_x86_64.whl": "2ca1875910cec38fd501af9108455609b6c926c8d14dcf570da7b9776a2e0c71"
+  },
+  "scope": "Fresh installed Linux CPython 3.12 wheel; full suite and NumPy-only install/RECORD/notices check. Not timing, sanitizer, portability or full real-data proof."
+}

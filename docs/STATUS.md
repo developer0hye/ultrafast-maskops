@@ -2,9 +2,13 @@
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 
-This `perf/unit-scale-mask` worktree adds an unbuilt, untested unit-scale
-mask-only copy candidate; see [UNIT_SCALE_MASK.md](UNIT_SCALE_MASK.md). The ROI
+This `perf/unit-scale-mask` worktree adds a unit-scale mask-only copy candidate
+that passed all 209 installed-wheel Linux tests; see [UNIT_SCALE_MASK.md](UNIT_SCALE_MASK.md). The ROI
 evidence below applies to its frozen `fec5cab` parent, not this new kernel.
+The new candidate completed two independently audited 270-process comparisons:
+2.1% faster than ROI for ratio-1 non-overlap, but still 1.8% slower at the median
+than masks-only, with the latter interval including one. The regression fix
+remains unproven; see [UNIT_SCALE_RESULTS.md](UNIT_SCALE_RESULTS.md).
 
 This experimental `perf/resize-roi` branch adds sampling-aligned resize crops.
 The initial crop candidate failed parity at Arm dispatch boundaries; its corrected

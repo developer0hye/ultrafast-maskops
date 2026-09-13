@@ -1,0 +1,53 @@
+{
+  "scope": "one valid complete archive accepted; eight forged archives rejected after all modified checksums were recomputed",
+  "auditor_sha256": "f549bae8e47c9ade720e88cc242e1aeb46152cd18f11d1a99333a535c7cff5ce",
+  "driver_sha256": "b517c7d8abcf7bdb74e68d32c1364698b5a28613b1b8f7a2b9a9d3bd993a192e",
+  "original_archive_sha256": "1b4f84d5b8abfcba270112f6bf6cd414eca7923401509455722baaf17efb089a",
+  "cases": [
+    {
+      "name": "valid-control",
+      "returncode": 0,
+      "archive_sha256": "1b4f84d5b8abfcba270112f6bf6cd414eca7923401509455722baaf17efb089a"
+    },
+    {
+      "name": "missing-ci-endpoint",
+      "returncode": 1,
+      "archive_sha256": "1e343103ecb84d56999b148f4b6c212ac47228e1f21fdec55ae83d815ab89d3e"
+    },
+    {
+      "name": "forged-ci",
+      "returncode": 1,
+      "archive_sha256": "c460d12f925f50c7b02e24ab7627eefe7eaa1d7c3f0f4f0c83efcd5c0eba731d"
+    },
+    {
+      "name": "reordered-pair",
+      "returncode": 1,
+      "archive_sha256": "f59dd5bd4c03000f97514180a069e3748ee0d8fdd32d92932cf6ce076a128d4f"
+    },
+    {
+      "name": "missing-worker",
+      "returncode": 1,
+      "archive_sha256": "3157c6cc6bcb6d32e62bc35fa4738aca2f8795939725671c7457c33d2db8eae6"
+    },
+    {
+      "name": "changed-output",
+      "returncode": 1,
+      "archive_sha256": "a385c137b75f1b06a26822b1dda6b0866bd8357bf1a31ff6c9b2c11bb08ce243"
+    },
+    {
+      "name": "changed-samples",
+      "returncode": 1,
+      "archive_sha256": "250ff8412fee6d7a84e0a45ac222bcfe87d3bb1c2b3c09d72856d4144a1ac7f2"
+    },
+    {
+      "name": "orphan-worker",
+      "returncode": 1,
+      "archive_sha256": "37f6401f484e6caff2d266fcba29650d2b7b6d64f4795b9e3f1a6e1c99d6cabb"
+    },
+    {
+      "name": "wrong-empty-layout",
+      "returncode": 1,
+      "archive_sha256": "6d355b1208c006c62110ebd3a4e705fa405995631eb0c3d2db40d9af534fc568"
+    }
+  ]
+}
