@@ -1,0 +1,178 @@
+{
+  "passed": true,
+  "run_id": 34746468696,
+  "source_commit": "252a551db0a097e547897aea83424158d93ca00c",
+  "wheel_binding": {
+    "artifact_id": 10314196359,
+    "run_id": 34744592119,
+    "source_commit": "06a26d106ba8dd896061f987a6561521de68e6e1",
+    "artifact_sha256": "f48a32b5623243698d364100f10f31804f72261121453f8e277063422fb0cf8f",
+    "wheel_sha256": "34f2809a2a29a5c69b163fafdbf150efc95dde6ec2ffc5753df505150eefab55"
+  },
+  "mechanism_controls": [
+    {
+      "backend": "native-packet",
+      "delayed": true,
+      "clean_zero_exit": false,
+      "old_exitcodes": [
+        -15,
+        -15
+      ],
+      "terminated_workers": 2,
+      "join_seconds": [
+        4.995306000000028,
+        5.008365200000071
+      ],
+      "worker_maskops_imported": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "backend": "native-packet",
+      "delayed": false,
+      "clean_zero_exit": true,
+      "old_exitcodes": [
+        0,
+        0
+      ],
+      "terminated_workers": 0,
+      "join_seconds": [
+        2.3516240000000153,
+        0.0341596999999183
+      ],
+      "worker_maskops_imported": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "backend": "stock",
+      "delayed": false,
+      "clean_zero_exit": true,
+      "old_exitcodes": [
+        0,
+        0
+      ],
+      "terminated_workers": 0,
+      "join_seconds": [
+        2.4542498000000705,
+        0.02251499999999851
+      ],
+      "worker_maskops_imported": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "backend": "stock",
+      "delayed": true,
+      "clean_zero_exit": false,
+      "old_exitcodes": [
+        -15,
+        -15
+      ],
+      "terminated_workers": 2,
+      "join_seconds": [
+        4.995329099999935,
+        5.007535500000017
+      ],
+      "worker_maskops_imported": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "backend": "reference-packet",
+      "delayed": true,
+      "clean_zero_exit": false,
+      "old_exitcodes": [
+        -15,
+        -15
+      ],
+      "terminated_workers": 2,
+      "join_seconds": [
+        4.99769260000005,
+        5.00941320000004
+      ],
+      "worker_maskops_imported": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "backend": "reference-packet",
+      "delayed": false,
+      "clean_zero_exit": true,
+      "old_exitcodes": [
+        0,
+        0
+      ],
+      "terminated_workers": 0,
+      "join_seconds": [
+        2.441144300000019,
+        0.07909349999999904
+      ],
+      "worker_maskops_imported": [
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  ],
+  "worker_initializer_records": 24,
+  "runtime": {
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+    "torch": "2.10.0+cpu"
+  },
+  "upstream_method_sources": {
+    "InfiniteDataLoader-close.py": "6064168cb61d764ede8e583105a2e94bcb962cb385ead9ec811dd9c3df9b9154",
+    "InfiniteDataLoader-reset.py": "ba5d4d1652865373cc9a716ae95546c4549502f10f1e216df84e84f025d3f2ab",
+    "Torch-shutdown-workers.py": "b003ca163a5006f2c89b7e626d1d83303ed034e26d0e370a759c6c725826060f"
+  },
+  "archive": "bench/results/mask-windows-deadline-v1-evidence.tar.gz",
+  "archive_bytes": 555520,
+  "archive_sha256": "2a8d5a6786f3c3e45e1fd32fdf4c5018c773c154f2c7b55db498766f647a3046",
+  "members": {
+    "mask-windows-deadline-v1.zip": {
+      "bytes": 540566,
+      "sha256": "6e7cac18d75b66a1eb71cf7c590c51318389bf2d8c6a4822e8269adde5935a7d"
+    },
+    "mask-windows-deadline-v1-run.json": {
+      "bytes": 13611,
+      "sha256": "f51fc76d27a37ed93de71b7cd667b6d760fc23d81b129b6deed327944fdcdb31"
+    },
+    "mask-windows-deadline-v1-artifacts.json": {
+      "bytes": 767,
+      "sha256": "5bb20fa901265c2cf185f50bf40af75c6782a726020a27fa35fd93a8674c4978"
+    },
+    "mask-windows-deadline-v1.log": {
+      "bytes": 48356,
+      "sha256": "196e2620e0268d45c2f943de85bf97cb9b87d980ec0ffe3b86437256931af05c"
+    },
+    "source/bench/windows_reset_deadline.py": {
+      "bytes": 7996,
+      "sha256": "ae9fb0df6e7d0d685963f25bac55144454e0da0e1bf7f3eb5b9ebf5ae64cdceb"
+    },
+    "source/bench/prepare_windows_reset_wheel.py": {
+      "bytes": 2248,
+      "sha256": "4643ce40ff886a385d86169c9c30e5203216e5263e7e81d4edb4f9e894734260"
+    },
+    "source/.github/workflows/wheels.yml": {
+      "bytes": 11736,
+      "sha256": "b9b84ac799b9cf371a6614595f428bc475fa30642894d71001c657a72bfd63d1"
+    }
+  },
+  "scope": "Six predeclared mechanism controls and all 24 child receipts verified. Each delayed case deliberately forces two -15 exits through unchanged 5-second join deadlines and terminate; these are not clean-exit passes. Pure stock and reference-packet workers did not import maskops. Same original failed wheel and installed byte identity verified. This reproduces a possible mechanism, not the unobserved cause of the initial intermittent failure."
+}

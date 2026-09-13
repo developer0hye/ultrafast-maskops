@@ -75,4 +75,22 @@ expect that mechanism and retain `clean_zero_exit=false`; their success must not
 be presented as a clean-exit pass, performance result, or proof that the original
 intermittent failure had this cause. The natural-case exit assertions and original
 failed matrix remain unchanged. The runtime's exact reset/close/shutdown method
-source is retained with the control output. Results are pending.
+source is retained with the control output.
+
+All six controls completed. The [independent readback](validation/mask-windows-deadline-v1-preservation.json)
+verified all 24 child receipts and six JUnit cases. In each ordinary case both
+previous workers exited with code 0. In each delayed case both original 5-second
+join calls expired and upstream called terminate twice; both previous workers
+exited with **-15**, and the replacement generation completed and exited with 0.
+Neither stock nor reference-packet workers imported maskops. Native workers did.
+Thus this possible mechanism also exists without importing the extension. The
+original failed job did not record terminate calls or actual exit codes, so its
+cause remains unproven; no runtime fix or relaxed exit criterion is claimed.
+
+The persistent-format integration test now records original join/terminate calls,
+arguments, timings and exit codes on its previous worker objects, adding them to
+assertion failure context. The exit-code-zero requirement, reset ordering and
+paired output comparisons are retained. Parent-side logging adds diagnostic
+overhead. The next full matrix also qualifies the compact source packaging on
+all supported platforms; any success remains a repetition with richer evidence,
+not erasure of the original failure.
