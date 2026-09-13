@@ -96,3 +96,9 @@ Then complete the installed suite, actual combined-library close-mosaic/resume
 training, and broader platform qualification. Existing kernel test successes do
 not substitute for those gates. M2's separate dataset-startup campaign continues;
 this diagnosis does not modify or qualify its frozen runtime.
+
+The subsequent [native trace and shared-memory control](WORKER_SHUTDOWN_DIAGNOSIS.md)
+locate the abort in deferred PyTorch storage sharing during interpreter shutdown.
+Six eager-sharing diagnostic processes passed with matching batches and zero
+worker exit codes. That extra-copy experiment is not a production fix; the
+original candidate qualification remains failed.

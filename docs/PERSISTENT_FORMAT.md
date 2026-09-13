@@ -6,6 +6,8 @@ installation and source/workflow lint passed. The full installed suite failed:
 221 passed and one spawned-worker reset test failed. A reference-only reproducer
 also fails without importing either new library. See the
 [qualification report](PERSISTENT_LINUX_VALIDATION.md) and preserved failures.
+A later [shutdown diagnosis](WORKER_SHUTDOWN_DIAGNOSIS.md) provides a native trace
+and six passing eager-sharing controls, but no production fix yet.
 Actual lifecycle training remains unqualified; M2 remains reserved by its separate
 startup experiment. The earlier 209-test result and loader/GPU evidence predate
 this Python adapter change.

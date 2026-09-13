@@ -1,0 +1,131 @@
+{
+  "preservation_complete": true,
+  "candidate_qualified": false,
+  "archive_sha256": "e2d469087ea6e1338ebd186a48eb2b1708b72c19aac8ad14031dcd2a443631b4",
+  "archive_bytes": 1646215,
+  "files": {
+    "mask-persistent-linux-v1-reference-gdb-command.json": {
+      "bytes": 1084,
+      "sha256": "261518e09c21fb8a35d24d5a6f407b7ded6f24225b6481aa8dc5ae020de1732b"
+    },
+    "mask-persistent-linux-v1-reference-gdb-full-epoch.log": {
+      "bytes": 13741,
+      "sha256": "712eea5b5b27516c29596a3e9af01b73429d2d9295cace0fba770ed68035c312"
+    },
+    "reproduce-reference-reset-v2.py": {
+      "bytes": 5757,
+      "sha256": "b99bb0d5200a4453f569867d863b698158722b8feec18f424638a10be52069f2"
+    },
+    "mask-persistent-linux-v1-qualification-evidence.tar.gz": {
+      "bytes": 1635831,
+      "sha256": "752017b7531333650cfebb0388c42a7ae20a2e3cca284caba7a16643a22e1c1a"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/0.json": {
+      "bytes": 2486,
+      "sha256": "2b0b747195f9b2dd2a2a228546f7365cdc1aa3424d949361ed466207541ef04d"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/0.log": {
+      "bytes": 2896,
+      "sha256": "f5c52090b5e610fa7e1eb45b9fc7012453f87a2b828215a9b7bfcf2b39b6b31c"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/1.json": {
+      "bytes": 569,
+      "sha256": "a0a3fb6ed402eb6673ec5e5f4dc65f74aaab58cd6f4d87743d15667cfbc3b843"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/1.log": {
+      "bytes": 889,
+      "sha256": "ec20f976f4f6cf8d50879fa0e97ee4eb582f7590420a47c489f59b317bc2dea6"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/2.json": {
+      "bytes": 569,
+      "sha256": "9033a7cf423f82088557da0c82acd118bcd001cd09d2232439566b38c181a0de"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/2.log": {
+      "bytes": 889,
+      "sha256": "ef931e5c8c5c2d0809363b6abc75966631c43b5642c1208e21cbb0db5a222b2b"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/3.json": {
+      "bytes": 569,
+      "sha256": "bd74fdc7ee269a3b49e60c59e405017c83b95d47ff5d76e743f0cbdd05bcc346"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/3.log": {
+      "bytes": 889,
+      "sha256": "d09c77fb9015e66fe16edab5288bc9281a59d68e625d6f02066b1b74114321c3"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/4.json": {
+      "bytes": 570,
+      "sha256": "abc58fdf6e6323ec3a6495d822ce90b063ec81e494cbdba2621d809cdffdc7ff"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/4.log": {
+      "bytes": 890,
+      "sha256": "fd93efca994c63dc737230973235015c89ba3d3881acd5e25b036a20054aa517"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/5.json": {
+      "bytes": 570,
+      "sha256": "0fe53a45fb0c0823f423f43fe65dd7ea50c14e7c7dcb157f7c6890c1a0d837be"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/5.log": {
+      "bytes": 890,
+      "sha256": "f4a2a529275dc4bf20a53fb07fa81ba072f696face36656e030260a53d854e7d"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/6.json": {
+      "bytes": 564,
+      "sha256": "ef4c7322eebfbaf9e47217d682024ebd252b914cc12d61c9a3f249e2b2d7dfdd"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/6.log": {
+      "bytes": 884,
+      "sha256": "534a8b612b2ef45a065d8bc24f24894cbb4b69a4e4b863abe39d549ad613440b"
+    },
+    "mask-persistent-linux-v1-shared-diagnostic/series.json": {
+      "bytes": 4901,
+      "sha256": "1a814c3c9a8f51327f78a80777fdeb99a1074045171275d7165f793aa846d710"
+    }
+  },
+  "file_count": 19,
+  "checked_outcomes": [
+    {
+      "index": 0,
+      "condition": "full-epoch",
+      "shared": false,
+      "passed": false
+    },
+    {
+      "index": 1,
+      "condition": "full-epoch",
+      "shared": true,
+      "passed": true
+    },
+    {
+      "index": 2,
+      "condition": "full-epoch",
+      "shared": true,
+      "passed": true
+    },
+    {
+      "index": 3,
+      "condition": "full-epoch",
+      "shared": true,
+      "passed": true
+    },
+    {
+      "index": 4,
+      "condition": "first-batch",
+      "shared": true,
+      "passed": true
+    },
+    {
+      "index": 5,
+      "condition": "first-batch",
+      "shared": true,
+      "passed": true
+    },
+    {
+      "index": 6,
+      "condition": "setup",
+      "shared": true,
+      "passed": true
+    }
+  ],
+  "all_archive_members_read_back": true,
+  "scope": "reference-only controlled diagnosis, not production implementation or performance; six eager-sharing successes cannot establish universal reliability; debugger scheduling is changed; prior failed candidate evidence nested intact"
+}
