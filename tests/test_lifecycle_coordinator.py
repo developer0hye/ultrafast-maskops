@@ -7,7 +7,9 @@ from pathlib import Path
 
 import pytest
 
-SPEC = importlib.util.spec_from_file_location("lifecycle_coordinator", Path(__file__).parents[1] / "bench/lifecycle_coco_gpu.py")
+SPEC = importlib.util.spec_from_file_location(
+    "lifecycle_coordinator", Path(__file__).parents[1] / "bench/lifecycle_coco_gpu.py"
+)
 coordinator = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(coordinator)
 
@@ -21,66 +23,146 @@ def synthetic_trial(tmp_path, stage="fresh", backend="reference", workers=2):
     corpus = tmp_path / "synthetic-corpus"
     names = ["box_loss", "seg_loss", "cls_loss", "dfl_loss"]
     epochs = [
-        {"epoch": epoch, "seconds": 100.0, "images": 5000, "batches": 1250, "images_per_second": 50.0,
-         "cuda_peak_allocated_bytes": 100, "cuda_peak_reserved_bytes": 200, "loss_names": names,
-         "all_batch_losses": [[1.0, 2.0, 3.0, 4.0] for _ in range(1250)]}
+        {
+            "epoch": epoch,
+            "seconds": 100.0,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 50.0,
+            "cuda_peak_allocated_bytes": 100,
+            "cuda_peak_reserved_bytes": 200,
+            "loss_names": names,
+            "all_batch_losses": [[1.0, 2.0, 3.0, 4.0] for _ in range(1250)],
+        }
         for epoch in range(spec["start_epoch"], 4)
     ]
     wanted = "Format" if backend == "reference" else "FastFormat"
-    collator = "ultralytics.data.dataset.YOLODataset.collate_fn" if backend == "reference" else "ultrafast_maskops._shared_collate.shared_collate_fn"
+    collator = (
+        "ultralytics.data.dataset.YOLODataset.collate_fn"
+        if backend == "reference"
+        else "ultrafast_maskops._shared_collate.shared_collate_fn"
+    )
     lifecycle = []
     for epoch in [None] + list(range(spec["start_epoch"], 4)):
         replacement = (epoch is None and spec["start_epoch"] > 2) or epoch == 2
         closed = spec["start_epoch"] > 2 if epoch is None else epoch >= 2
         row = {
-            "stage": "prepared" if epoch is None else "first-batch", "epoch": epoch,
-            "start_epoch": spec["start_epoch"], "formatter": wanted, "factory": wanted, "collator": collator,
-            "rebuilt_from_initial": closed, "pin_memory": True, "prefetch_factor": 4 if workers else None,
+            "stage": "prepared" if epoch is None else "first-batch",
+            "epoch": epoch,
+            "start_epoch": spec["start_epoch"],
+            "formatter": wanted,
+            "factory": wanted,
+            "collator": collator,
+            "rebuilt_from_initial": closed,
+            "pin_memory": True,
+            "prefetch_factor": 4 if workers else None,
             "worker_start_method": "fork" if workers else None,
             "worker_pids": list(range(2000 if closed else 1000, (2000 if closed else 1000) + workers)),
         }
         if epoch is not None:
             row["pinned_image"] = True
         if replacement:
-            row.update(replaced_worker_pids=list(range(1000, 1000 + workers)), replaced_worker_exitcodes=[0] * workers,
-                       replaced_workers_alive=[False] * workers)
+            row.update(
+                replaced_worker_pids=list(range(1000, 1000 + workers)),
+                replaced_worker_exitcodes=[0] * workers,
+                replaced_workers_alive=[False] * workers,
+            )
         lifecycle.append(row)
     checkpoints = []
-    for epoch in (() if spec["start_epoch"] else (1, 2)):
+    for epoch in () if spec["start_epoch"] else (1, 2):
         checkpoint = run / f"resume-epoch-{epoch}.pt"
         checkpoint.write_bytes(f"synthetic checkpoint {epoch}; not a Torch model".encode())
-        checkpoints.append({"epoch": epoch, "path": str(checkpoint), "bytes": checkpoint.stat().st_size,
-                            "sha256": coordinator.file_sha(checkpoint)})
-    resume = None if not spec["start_epoch"] else {
-        "path": str(tmp_path / (spec["reference_id"] + ".run") / f"resume-epoch-{spec['start_epoch'] - 1}.pt"),
-        "sha256": "c" * 64, "receipt_sha256": "d" * 64,
-        "expected_start_epoch": spec["start_epoch"],
-    }
+        checkpoints.append(
+            {
+                "epoch": epoch,
+                "path": str(checkpoint),
+                "bytes": checkpoint.stat().st_size,
+                "sha256": coordinator.file_sha(checkpoint),
+            }
+        )
+    resume = (
+        None
+        if not spec["start_epoch"]
+        else {
+            "path": str(tmp_path / (spec["reference_id"] + ".run") / f"resume-epoch-{spec['start_epoch'] - 1}.pt"),
+            "sha256": "c" * 64,
+            "receipt_sha256": "d" * 64,
+            "expected_start_epoch": spec["start_epoch"],
+        }
+    )
     value = {
-        "complete": True, "lifecycle_requested": True, "script_sha256": harness["train_coco_gpu.py"],
-        "harness_sources": harness, "corpus_root": str(corpus), "fresh_check_sha256": "e" * 64,
+        "complete": True,
+        "lifecycle_requested": True,
+        "script_sha256": harness["train_coco_gpu.py"],
+        "harness_sources": harness,
+        "corpus_root": str(corpus),
+        "fresh_check_sha256": "e" * 64,
         "fixture": copy.deepcopy(coordinator.FIXTURE),
-        "args": {"workers": workers, "epochs": 4, "batch": 4, "imgsz": 640, "close_mosaic": 2,
-                 "backend": backend, "overlap": "yes", "persistent_mask": True, "out": str(path),
-                 "checkpoint_epochs": [] if spec["start_epoch"] else [1, 2],
-                 "resume_from": None if resume is None else resume["path"],
-                 "resume_receipt": None if resume is None else str(tmp_path / (spec["reference_id"] + ".json"))},
-        "resolved_config": {"epochs": 4, "batch": 4, "imgsz": 640, "workers": workers, "overlap_mask": True,
-                            "close_mosaic": 2, "seed": 912, "deterministic": True, "amp": False,
-                            "optimizer": "SGD", "lr0": 0.001, "cache": False, "rect": False,
-                            "fraction": 1.0, "mask_ratio": 4},
-        "train_workers": workers, "val_workers": workers, "epochs": epochs,
-        "initial_state_sha256": "1" * 64, "final_state_sha256": "2" * 64, "whole_job_seconds": 500.0,
-        "datasets": [{"mode": mode, "images": 5000, "replaced_formats": int(backend != "reference")} for mode in ("train", "val")],
-        "worker_shutdown": {name: {"worker_count": workers, "worker_pids": list(range(2000 if name == "train" else 3000,
-                                                                                   (2000 if name == "train" else 3000) + workers)),
-                                   "worker_exitcodes": [0] * workers, "workers_alive": [False] * workers}
-                            for name in ("train", "val")},
-        "lifecycle": lifecycle, "checkpoints": checkpoints,
-        "resume_input": None if resume is None else {
-            **resume, "restored_state_expectation": {"checkpoint_epoch": spec["start_epoch"] - 1,
-                                                    "optimizer_states": 7, "ema_updates": 12}},
-        "resource_samples": [{"time": 1234.0, "family_rss_bytes": 1000}], "sampled_peak_family_rss_bytes": 1000,
+        "args": {
+            "workers": workers,
+            "epochs": 4,
+            "batch": 4,
+            "imgsz": 640,
+            "close_mosaic": 2,
+            "backend": backend,
+            "overlap": "yes",
+            "persistent_mask": True,
+            "out": str(path),
+            "checkpoint_epochs": [] if spec["start_epoch"] else [1, 2],
+            "resume_from": None if resume is None else resume["path"],
+            "resume_receipt": None if resume is None else str(tmp_path / (spec["reference_id"] + ".json")),
+        },
+        "resolved_config": {
+            "epochs": 4,
+            "batch": 4,
+            "imgsz": 640,
+            "workers": workers,
+            "overlap_mask": True,
+            "close_mosaic": 2,
+            "seed": 912,
+            "deterministic": True,
+            "amp": False,
+            "optimizer": "SGD",
+            "lr0": 0.001,
+            "cache": False,
+            "rect": False,
+            "fraction": 1.0,
+            "mask_ratio": 4,
+        },
+        "train_workers": workers,
+        "val_workers": workers,
+        "epochs": epochs,
+        "initial_state_sha256": "1" * 64,
+        "final_state_sha256": "2" * 64,
+        "whole_job_seconds": 500.0,
+        "datasets": [
+            {"mode": mode, "images": 5000, "replaced_formats": int(backend != "reference")} for mode in ("train", "val")
+        ],
+        "worker_shutdown": {
+            name: {
+                "worker_count": workers,
+                "worker_pids": list(
+                    range(2000 if name == "train" else 3000, (2000 if name == "train" else 3000) + workers)
+                ),
+                "worker_exitcodes": [0] * workers,
+                "workers_alive": [False] * workers,
+            }
+            for name in ("train", "val")
+        },
+        "lifecycle": lifecycle,
+        "checkpoints": checkpoints,
+        "resume_input": None
+        if resume is None
+        else {
+            **resume,
+            "restored_state_expectation": {
+                "checkpoint_epoch": spec["start_epoch"] - 1,
+                "optimizer_states": 7,
+                "ema_updates": 12,
+            },
+        },
+        "resource_samples": [{"time": 1234.0, "family_rss_bytes": 1000}],
+        "sampled_peak_family_rss_bytes": 1000,
     }
     return value, spec, path, harness, corpus, "e" * 64, resume
 
@@ -96,18 +178,35 @@ def test_full_plan_has_54_trials_126_epochs_and_shared_reference_checkpoints(tmp
             for stage, start in (("fresh", 0), ("resume-at-boundary", 2), ("resume-after-boundary", 3)):
                 rows = [row for row in condition if row["stage"] == stage]
                 assert [row["backend"] for row in rows] == ["reference", "mask", "both"]
-                commands = [coordinator.trial_command(row, "python", Path("train.py"), Path("corpus"), Path("fresh.json"), tmp_path) for row in rows]
+                commands = [
+                    coordinator.trial_command(
+                        row, "python", Path("train.py"), Path("corpus"), Path("fresh.json"), tmp_path
+                    )
+                    for row in rows
+                ]
                 if start:
                     inputs = [cmd[cmd.index("--resume-from") + 1] for cmd in commands]
                     assert len(set(inputs)) == 1
-                    assert inputs[0] == str(tmp_path / f"w{workers}-{overlap}-fresh-reference.run" / f"resume-epoch-{start - 1}.pt")
+                    assert inputs[0] == str(
+                        tmp_path / f"w{workers}-{overlap}-fresh-reference.run" / f"resume-epoch-{start - 1}.pt"
+                    )
                     assert all("--checkpoint-epochs" not in cmd for cmd in commands)
                 else:
                     assert all(cmd[-3:] == ["--checkpoint-epochs", "1", "2"] for cmd in commands)
 
 
-@pytest.mark.parametrize("workers,overlaps", [([], ["yes"]), ([2, 2], ["yes"]), ([True], ["yes"]), ([3], ["yes"]),
-                                            ([2], []), ([2], ["no", "no"]), ([2], ["unknown"])])
+@pytest.mark.parametrize(
+    "workers,overlaps",
+    [
+        ([], ["yes"]),
+        ([2, 2], ["yes"]),
+        ([True], ["yes"]),
+        ([3], ["yes"]),
+        ([2], []),
+        ([2], ["no", "no"]),
+        ([2], ["unknown"]),
+    ],
+)
 def test_invalid_plan_rejected(workers, overlaps):
     with pytest.raises(ValueError):
         coordinator.make_plan(workers, overlaps)
@@ -125,11 +224,33 @@ def test_synthetic_trial_validation_and_compaction(tmp_path, stage, backend, wor
     assert "resource_samples" in data[0]  # Validation does not mutate the raw evidence.
 
 
-@pytest.mark.parametrize("damage", ["incomplete", "wrong_fixture", "wrong_resolved_config", "missing_epoch", "nan_loss",
-                                    "short_trace", "no_foreground", "wrong_collator", "not_pinned", "lost_factory",
-                                    "old_worker_abort", "old_worker_alive", "reused_pid", "final_worker_abort",
-                                    "missing_val_worker", "bad_rss", "changed_checkpoint", "bool_exit", "wrong_start",
-                                    "unexpected_worker_change", "replacement_history", "wrong_shutdown_pool"])
+@pytest.mark.parametrize(
+    "damage",
+    [
+        "incomplete",
+        "wrong_fixture",
+        "wrong_resolved_config",
+        "missing_epoch",
+        "nan_loss",
+        "short_trace",
+        "no_foreground",
+        "wrong_collator",
+        "not_pinned",
+        "lost_factory",
+        "old_worker_abort",
+        "old_worker_alive",
+        "reused_pid",
+        "final_worker_abort",
+        "missing_val_worker",
+        "bad_rss",
+        "changed_checkpoint",
+        "bool_exit",
+        "wrong_start",
+        "unexpected_worker_change",
+        "replacement_history",
+        "wrong_shutdown_pool",
+    ],
+)
 def test_corrupt_lifecycle_report_is_rejected(tmp_path, damage):
     data = synthetic_trial(tmp_path)
     value = data[0]
@@ -235,14 +356,22 @@ def test_coordinator_retains_process_failure_and_compares_complete_cohorts(tmp_p
             path = Path(command[command.index("--out") + 1])
             value, *_ = synthetic_trial(path.parent, spec["stage"], spec["backend"], 0)
             profile = {key: "synthetic" for key in coordinator.PROFILE_FIELDS}
-            value = {**profile, **value, "harness_sources": harness,
-                     "script_sha256": harness["train_coco_gpu.py"], "corpus_root": str(corpus),
-                     "fresh_check_sha256": coordinator.file_sha(fresh)}
+            value = {
+                **profile,
+                **value,
+                "harness_sources": harness,
+                "script_sha256": harness["train_coco_gpu.py"],
+                "corpus_root": str(corpus),
+                "fresh_check_sha256": coordinator.file_sha(fresh),
+            }
             if spec["start_epoch"]:
                 checkpoint = Path(command[command.index("--resume-from") + 1])
                 receipt = Path(command[command.index("--resume-receipt") + 1])
-                value["resume_input"].update(path=str(checkpoint), sha256=coordinator.file_sha(checkpoint),
-                                             receipt_sha256=coordinator.file_sha(receipt))
+                value["resume_input"].update(
+                    path=str(checkpoint),
+                    sha256=coordinator.file_sha(checkpoint),
+                    receipt_sha256=coordinator.file_sha(receipt),
+                )
             if failure == "parity" and len(calls) == 2:
                 value["final_state_sha256"] = "f" * 64
             self.code = 1 if failure == "exit" and len(calls) == 3 else 0
@@ -260,8 +389,23 @@ def test_coordinator_retains_process_failure_and_compares_complete_cohorts(tmp_p
     monkeypatch.setattr(coordinator.subprocess, "Popen", FakeProcess)
     # Even an external test interruption must not signal the invented PID.
     monkeypatch.setattr(coordinator.os, "killpg", lambda *_: None, raising=False)
-    monkeypatch.setattr(coordinator.sys, "argv", [str(own), "--corpus", str(corpus), "--fresh-check", str(fresh),
-                                                 "--out", str(output), "--workers", "0", "--overlaps", "yes"])
+    monkeypatch.setattr(
+        coordinator.sys,
+        "argv",
+        [
+            str(own),
+            "--corpus",
+            str(corpus),
+            "--fresh-check",
+            str(fresh),
+            "--out",
+            str(output),
+            "--workers",
+            "0",
+            "--overlaps",
+            "yes",
+        ],
+    )
     if failure:
         with pytest.raises(ValueError, match="trial failed" if failure == "exit" else "loss/model mismatch"):
             coordinator.main()

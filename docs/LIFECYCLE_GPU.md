@@ -144,7 +144,7 @@ own script and `coco_loader.py`, verifies those bytes after training, and requir
 the same two-script identity when resuming from a reference receipt. These
 source changes are not new training or reliability results.
 
-## Prepared coordinator, not yet qualified
+## Coordinator synthetic qualification passed; GPU grid unexecuted
 
 `bench/lifecycle_coco_gpu.py` declares the full plan before launching any trial:
 54 fresh processes and 126 total epochs across workers 0/2/8 and both mask modes.
@@ -169,12 +169,12 @@ marked as a subset, even when it completes all its requested trials. Only the
 default full grid can set `full_protocol_complete`, and that remains a coordinator
 result requiring independent final artifact verification.
 
-The synthetic tests in `tests/test_lifecycle_coordinator.py` are prepared but have
-not run. They check the declared plan/checkpoint relationships, all three lifecycle
+All 63 synthetic tests in `tests/test_lifecycle_coordinator.py` passed on Linux,
+with no failures, errors or skips. They check the declared plan/checkpoint relationships, all three lifecycle
 paths, corruption rejection, cohort comparisons, and failure retention through
 a fake child-process driver. They do not execute GPU training or deserialize a
 real checkpoint. The wheel workflow now selects these framework-free tests in
-every core job, but neither that new workflow nor these tests is qualified yet.
+every core job. Local actionlint passed; hosted matrix execution remains pending.
 
 Example full-grid invocation after installing qualified wheels and binding the
 current original cache to a fresh reference receipt:
@@ -186,14 +186,24 @@ python bench/lifecycle_coco_gpu.py \
   --out /measurement/lifecycle-grid.json
 ```
 
-The paths are placeholders. Both hosts are currently reserved by existing
-measurements; no GPU grid has been launched by this source change.
+The paths are placeholders. The existing measurement reservations have ended,
+but no GPU grid has been launched. Qualified combined runtime wheels, current
+fresh-reference binding and independent final-grid artifact verification remain
+required.
 
-The [queued qualifier](validation/qualify-lifecycle-after-loader-v2.py) waits for
+The [queued qualifier](validation/qualify-lifecycle-after-loader-v2.py) waited for
 the exact Linux full-loader controller PID/start time and a successful terminal
 timing/fresh-reference receipt before running formatting, Ruff, actionlint and
 63 synthetic tests. Its [launch identity](validation/mask-lifecycle-coordinator-linux-v2-launch-identity.json)
 binds the staged source bytes. It never restarts the measurement and never starts
-GPU training. Qualification is still pending. The previous idle watcher was
+GPU training. Its [completed receipt](validation/mask-lifecycle-coordinator-linux-v2-qualification.json)
+records all five commands returning zero, including 63 synthetic tests. The
+[21-member archive](../bench/results/mask-lifecycle-coordinator-linux-v2-evidence.tar.gz)
+preserves original and formatted source, logs, JUnit, watcher and dependency
+identities. All members passed readback; see the
+[preservation receipt](validation/mask-lifecycle-coordinator-linux-v2-preservation.json).
+Formatted Python files were copied back only after before/after hash and AST
+equivalence checks. This remains synthetic qualification, not actual GPU training.
+The previous idle watcher was
 [cancelled before any check ran](validation/mask-lifecycle-coordinator-linux-v1-cancelled.json)
 to add a signal mock to the fake-child tests; its staged source remains preserved.

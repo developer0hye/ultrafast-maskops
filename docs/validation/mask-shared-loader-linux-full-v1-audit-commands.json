@@ -1,0 +1,77 @@
+{
+  "complete": true,
+  "passed": true,
+  "commands": [
+    {
+      "label": "negative",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/bin/python",
+        "/home/yonghye/ultrafast-vision-build/qualify-shared-loader-full-audit-v1.py",
+        "--root",
+        "/home/yonghye/ultrafast-vision-build",
+        "--auditor",
+        "/home/yonghye/ultrafast-vision-build/audit-shared-loader-v1.py",
+        "--identity",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-audit-identity.json",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-audit-negative.json"
+      ],
+      "started_at_ns": 1789277055466852970,
+      "returncode": 0,
+      "finished_at_ns": 1789277060899761722,
+      "log_sha256": "f5e8d6a0c4e1ee772b8a59acc5b8c472a33925fbcac5c23165cf5a3711c3df28"
+    },
+    {
+      "label": "yes",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/bin/python",
+        "/home/yonghye/ultrafast-vision-build/audit-shared-loader-v1.py",
+        "--report",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-overlap-yes.json",
+        "--identity",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-audit-identity.json",
+        "--runs-dir",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-overlap-yes.runs",
+        "--overlap",
+        "yes",
+        "--fresh",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-fresh-yes.json",
+        "--rounds",
+        "5",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-yes-audit.json"
+      ],
+      "started_at_ns": 1789277060899976353,
+      "returncode": 0,
+      "finished_at_ns": 1789277060992572291,
+      "log_sha256": "0d1f4c2a4345b72562c09c685732b73de6f2ff4fa2b21cb67bd79cd65be044c8"
+    },
+    {
+      "label": "no",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/bin/python",
+        "/home/yonghye/ultrafast-vision-build/audit-shared-loader-v1.py",
+        "--report",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-overlap-no.json",
+        "--identity",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-audit-identity.json",
+        "--runs-dir",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-overlap-no.runs",
+        "--overlap",
+        "no",
+        "--fresh",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-fresh-no.json",
+        "--rounds",
+        "5",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-no-audit.json"
+      ],
+      "started_at_ns": 1789277060992812619,
+      "returncode": 0,
+      "finished_at_ns": 1789277061088204446,
+      "log_sha256": "d052fcb6918366e737029ad3ba936f3b17c117058191913da2f211f47157121d"
+    }
+  ],
+  "dependency_state_sha256": "cd1f07f711636c7ed7677af956c7989f733343998e331fe4360b4f8425df8818",
+  "lifecycle_qualification_sha256": "50ec4c0264fc699e51e49fde5703bed7bd540f75558ba73b278f12d38e31a204"
+}

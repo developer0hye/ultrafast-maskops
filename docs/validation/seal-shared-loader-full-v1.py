@@ -51,9 +51,10 @@ def main():
         fresh_path = ROOT / f"{PREFIX}-fresh-{mode}.json"
         audit_path = ROOT / f"{PREFIX}-{mode}-audit.json"
         audit = json.loads(audit_path.read_text())
-        assert sha(json.dumps(audit, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()) == negative[
-            "control_audit_canonical_sha256"
-        ][mode]
+        assert (
+            sha(json.dumps(audit, sort_keys=True, separators=(",", ":"), allow_nan=False).encode())
+            == negative["control_audit_canonical_sha256"][mode]
+        )
         assert audit["complete_requested_samples"] and audit["completed_workers"] == 30
         assert audit["fresh_verified"] and audit["rounds"] == 5
         assert audit["scope"] == "five-pair performance protocol"

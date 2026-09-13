@@ -25,8 +25,7 @@ def bootstrap_oracle(pairs):
     """Enumerate all ordered resamples, independently of weighted combinations."""
     assert len(pairs) == 5
     ratios = sorted(
-        statistics.median(pairs[i][0] for i in indices)
-        / statistics.median(pairs[i][1] for i in indices)
+        statistics.median(pairs[i][0] for i in indices) / statistics.median(pairs[i][1] for i in indices)
         for indices in itertools.product(range(5), repeat=5)
     )
     assert len(ratios) == 3125
@@ -319,7 +318,9 @@ def main():
                 "complete_controls_passed": list(controls),
                 "scope": "Five-pair protocol; all 60 measured records plus both fresh-reference receipts",
                 "synthetic_bootstrap_controls": len(synthetic_pairs),
-                "real_bootstrap_metric_controls": sum(len(group) for c in controls.values() for group in c["summary"].values()),
+                "real_bootstrap_metric_controls": sum(
+                    len(group) for c in controls.values() for group in c["summary"].values()
+                ),
                 "controller_state_sha256": hashlib.sha256(state_path.read_bytes()).hexdigest(),
                 "rejected": len(results),
                 "cases": results,
@@ -327,7 +328,9 @@ def main():
                 "qualification_source_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                 "input_report_sha256": {k: v["report_sha256"] for k, v in controls.items()},
                 "control_audit_canonical_sha256": {
-                    k: hashlib.sha256(json.dumps(v, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
+                    k: hashlib.sha256(
+                        json.dumps(v, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
+                    ).hexdigest()
                     for k, v in controls.items()
                 },
             }

@@ -2,13 +2,22 @@
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 
-The `feat/trainer-lifecycle` branch adds an unvalidated persistent Format factory
-option. Source syntax has been inspected; fresh-wheel, full-suite, worker-reset
-and training/resume qualification remain pending. Earlier unit-scale results
-below do not validate this Python adapter change. See
-[PERSISTENT_FORMAT.md](PERSISTENT_FORMAT.md).
+The `feat/trainer-lifecycle` branch adds a persistent Format factory and a
+bytes-only shared-batch packet. Its current Linux packet wheel passed 257 installed
+tests and 18 fresh-process reset stress cases; earlier factory/shared-storage
+failures remain preserved. The complete 60-process CPU loader experiment and
+both fresh-reference checks passed independent audits. Eight-worker ratios are
+1.0168× for overlap and 1.0304× for non-overlap, with small sampled family-RSS
+changes; the 10% loader gate remains unmet. See
+[SHARED_LOADER_FULL_RESULTS.md](SHARED_LOADER_FULL_RESULTS.md).
 
-This `perf/unit-scale-mask` worktree adds a unit-scale mask-only copy candidate
+The GPU coordinator passed 63 synthetic tests and local workflow lint. Actual
+close-mosaic/resume training, combined current-wheel integration, current macOS
+packet transport and broader release/platform qualification remain pending.
+Synthetic coordinator tests are not training evidence; see
+[LIFECYCLE_GPU.md](LIFECYCLE_GPU.md).
+
+The earlier `perf/unit-scale-mask` worktree added a unit-scale mask-only copy candidate
 that passed all 209 installed-wheel Linux tests; see [UNIT_SCALE_MASK.md](UNIT_SCALE_MASK.md). The ROI
 evidence below applies to its frozen `fec5cab` parent, not this new kernel.
 The new candidate completed two independently audited 270-process comparisons:
@@ -25,7 +34,7 @@ with small family-RSS differences; the 10% loader gate remains unmet. Both full
 audits passed, and 44 damaged-evidence cases were rejected.
 See [UNIT_SCALE_LOADER.md](UNIT_SCALE_LOADER.md).
 
-This experimental `perf/resize-roi` branch adds sampling-aligned resize crops.
+The earlier experimental `perf/resize-roi` branch added sampling-aligned resize crops.
 The initial crop candidate failed parity at Arm dispatch boundaries; its corrected
 wheel passed 191 M2 tests, including 40 crop cases. Failure artifacts are retained.
 The corrected Linux wheel passed 201 tests and all 18 full augmented overlap and
@@ -51,7 +60,7 @@ binaries predate that build-configuration change.
 - Dirty scratch clearing, cached contour extents, conservative composition bounds and consecutive duplicate integer vertex removal are implemented without changing the OpenCV fill/resize sequence. Untyped byte snapshots correct the sanitizer failure on unaligned NumPy input.
 - Earlier scratch-reuse snapshot, nine synthetic cases: wrapper geometric-mean speedup 2.05× on M2 and 2.41× on the i5-10400/3070 server (CPU operation). The initial slower M2 result is retained. These are not exact-current-source measurements.
 - Earlier snapshot, Memray: 75 independent allocation runs on each host; automatic mode reduced working allocation 61–91% in the five measured N≥100 cases. Process RSS is reported separately; the current source needs exact-source reruns.
-- Current project-code ASan/UBSan: 120 core tests passed on macOS, leak detection disabled, private OpenCV uninstrumented. Both the original alignment failure and the separate subprocess runtime-injection failure are retained.
+- Earlier project-code ASan/UBSan: 120 core tests passed on macOS, leak detection disabled, private OpenCV uninstrumented. Both the original alignment failure and the separate subprocess runtime-injection failure are retained.
 - Raw measurements and scope limitations are in [BENCHMARKS.md](BENCHMARKS.md). Invalid inherited Linux ru_maxrss data is explicitly excluded; corrected VmHWM reruns are retained.
 - Full COCO CPU DataLoader harness uses frozen input/upstream hashes, workers 0/2/8, separate full output verification, externally sampled process-family RSS, and fresh-reference cache rebuilding; see [COCO_LOADER.md](COCO_LOADER.md).
 - Full COCO non-augmented CPU DataLoader: 60 fresh measured processes across two hosts and workers 0/2/8; all full outputs match, including an independent original-scanner cache rebuild on each host. The 10% full-loader performance gate remains unmet; family RSS is approximately unchanged. See [COCO_LOADER.md](COCO_LOADER.md) and the complete results in [BENCHMARKS.md](BENCHMARKS.md).

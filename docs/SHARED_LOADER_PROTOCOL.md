@@ -1,11 +1,12 @@
-# Shared collator real-data loader protocol: pilot passed
+# Shared collator real-data loader protocol: full comparison audited
 
 The CPU loader harness now accepts `--persistent-mask`. Both backends still use
 the ordinary YOLODataset and the complete real 5,000-image segmentation fixture.
 The reference retains its original formatter/collator. Native persistent mode
 installs FastFormat and the shared packet collator. It records the actual loader
 collator, and verifies installed Python runtime bytes against the frozen harness
-source tree before execution. The full repeated protocol is not complete.
+source tree before execution. The full repeated protocol has completed; see the
+[results and preserved evidence](SHARED_LOADER_FULL_RESULTS.md).
 
 The [serial pilot controller](validation/launch-shared-loader-linux-v1-pilot.py)
 completed on Linux from frozen harness commit `c25ef28`, using the installed
@@ -18,13 +19,13 @@ also passed independent audits and all 76 damaged-evidence rejection cases.
 This is not a five-pair performance result.
 
 The [full serial controller](validation/run-shared-loader-linux-full-v1.py) has
-now started the separately declared five-pair matrix: 60 fresh measured processes
+now completed the separately declared five-pair matrix: 60 fresh measured processes
 across both modes and workers 0/2/8, followed by two fresh-reference verifications.
 It reuses the exact frozen pilot harness/runtime and requires the sealed pilot
 receipt before launching. Pilot measurements are excluded. The
 [launch identity](validation/mask-shared-loader-linux-full-v1-launch-identity.json)
 records the observed PID, process start ticks, host boot ID and source/qualification
-hashes. This series is still running; no complete repeated aggregate is claimed.
+hashes. Both fresh-reference checks and the independent complete audits passed.
 
 Use both overlap modes, worker counts 0/2/8, five alternating fresh-process pairs,
 batch size 8, image size 640, mask ratio 4, no augmentation, no image RAM cache,
@@ -44,8 +45,8 @@ using the cache finish. Image and annotation bytes remain unchanged.
 This measures full CPU loader behavior, not close-mosaic transitions or training.
 Shared pages are counted in each process RSS; the summed family peak is not
 unique physical memory. The separate GPU lifecycle/resume protocol and direct
-allocation evidence remain necessary. A speed improvement is unproven until the
-full repeated measurements and independent artifact audit complete.
+allocation evidence remain necessary. The completed experiment finds small
+eight-worker gains, with no 10% loader improvement or training-speed claim.
 
 The harness source can be frozen separately from its installed wheel, but all
 runtime Python files and native extension identities must match the measured
@@ -70,10 +71,10 @@ raw/parent records and rebound fresh-report hashes. It exercises wrong collators
 worker aborts, duplicate/missing PIDs, type confusion, incomplete plans, incorrect
 resource arithmetic and altered fresh-reference transport. Both controls passed
 and all 76 damaged cases were rejected after timing and fresh-reference follow-up
-finished. The five-pair path still requires actual complete repeated records and
-its own audit. The pilot archive passed server and downloaded-member readback.
+finished. The five-pair path has now passed its separate qualification against
+actual repeated records. Both archives passed server and downloaded-member readback.
 
-## Five-pair audit qualification prepared, not executed
+## Five-pair audit qualification completed
 
 The separate [full-series qualifier](validation/qualify-shared-loader-full-audit-v1.py)
 requires the completed sixty-process controller and both successful fresh-reference
@@ -94,12 +95,10 @@ The [full-series sealer](validation/seal-shared-loader-full-v1.py) requires thos
 controls, all 92 rejections, matching canonical audit contents, and complete
 report/raw/fresh bindings. It preserves all samples, logs, memory arrays, exact
 source and runtime qualification evidence, then reads every archive member back.
-Downloaded archive/member verification remains a separate required step.
+Downloaded archive/member verification also passed for all 285 members.
 
-These two new scripts have not yet been linted or executed. Wait for the actual
-measurement controller to terminate, then for the already queued lifecycle
-qualification process to terminate, before running more work on the Linux host.
-Inspect and retain both outcomes first. Format/lint the new scripts with recorded
-source hashes and unchanged ASTs; qualify the five-pair auditor against the final
-records, run both complete audits, and only then seal and download the evidence.
-The successful pilot audit does not qualify this five-pair path.
+The full qualifier and sealer passed Ruff formatting/lint, with recorded hashes
+and unchanged ASTs. After both the measurement and queued lifecycle qualification
+terminated successfully, both real controls, all 92 rejections, both full audits
+and archive readback passed. The full-result document links their distinct
+receipts; the earlier pilot evidence was not substituted for this qualification.

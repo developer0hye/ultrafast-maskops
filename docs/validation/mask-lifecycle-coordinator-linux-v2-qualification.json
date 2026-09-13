@@ -1,0 +1,108 @@
+{
+  "complete": true,
+  "passed": true,
+  "controller_pid": 1642183,
+  "commands": [
+    {
+      "label": "format",
+      "command": [
+        "/home/yonghye/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "bench/lifecycle_coco_gpu.py",
+        "tests/test_lifecycle_coordinator.py"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-coordinator-linux-v2-stage",
+      "started_at_ns": 1789277002502064543,
+      "returncode": 0,
+      "finished_at_ns": 1789277002572194567,
+      "log_sha256": "96a977f329ec3c59092d40e041a019b49dcf03ca04055e177aa0ccb8c27234df"
+    },
+    {
+      "label": "lint",
+      "command": [
+        "/home/yonghye/.local/bin/uvx",
+        "ruff==0.15.6",
+        "check",
+        "bench/lifecycle_coco_gpu.py",
+        "tests/test_lifecycle_coordinator.py"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-coordinator-linux-v2-stage",
+      "started_at_ns": 1789277002588105174,
+      "returncode": 0,
+      "finished_at_ns": 1789277002605283355,
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "label": "format-check",
+      "command": [
+        "/home/yonghye/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "--check",
+        "bench/lifecycle_coco_gpu.py",
+        "tests/test_lifecycle_coordinator.py"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-coordinator-linux-v2-stage",
+      "started_at_ns": 1789277002605551554,
+      "returncode": 0,
+      "finished_at_ns": 1789277002621143324,
+      "log_sha256": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938"
+    },
+    {
+      "label": "workflow",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/mask-persistent-linux-v1-tools/actionlint",
+        "-oneline",
+        ".github/workflows/wheels.yml"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-coordinator-linux-v2-stage",
+      "started_at_ns": 1789277002621456581,
+      "returncode": 0,
+      "finished_at_ns": 1789277002629594364,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "tests",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_lifecycle_coordinator.py",
+        "--junitxml=/home/yonghye/ultrafast-vision-build/mask-lifecycle-coordinator-linux-v2-tests.xml"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-coordinator-linux-v2-stage",
+      "started_at_ns": 1789277002629873091,
+      "returncode": 0,
+      "finished_at_ns": 1789277003301315923,
+      "log_sha256": "1781ac18abacb49c86b85d69a0a82cf82b817e14a7865ce29567be82b11c767e"
+    }
+  ],
+  "phase": "qualified-synthetic-protocol",
+  "source_before_sha256": {
+    "bench/lifecycle_coco_gpu.py": "f24b435ce76cde437809910aeb48af0a17013c0c27505deb14242e044a78c033",
+    "tests/test_lifecycle_coordinator.py": "13a9fb931f3051af63925d7c561dacf655cf8cdb3ecbe370e184befb3100dd4d",
+    "pyproject.toml": "bc18d48a06df856d78d0b5495078f69d186e57849528430c243adb0550cc9270",
+    ".github/workflows/wheels.yml": "554615771cc3216c088906500e3615b0c95deedc6ccf134c65f1ed705fee4417"
+  },
+  "script_sha256": "e9703c1de736d66601b197993f19d0ef073a4ec6bd731f1d5c9215572cdf9796",
+  "dependency_identity_sha256": "9ec1a68ddb369e8cba2269e79eafe5f9361938baf32ca85cc24c4769b7d5b79f",
+  "dependency_pid": 1640292,
+  "dependency_start_ticks": "232991152",
+  "started_at_ns": 1789274422442389358,
+  "gpu_training_executed": false,
+  "dependency_state_sha256": "cd1f07f711636c7ed7677af956c7989f733343998e331fe4360b4f8425df8818",
+  "qualification_started_at_ns": 1789277002487761038,
+  "formatting_preserved_ast": true,
+  "source_after_sha256": {
+    "bench/lifecycle_coco_gpu.py": "f711ad52efc9db2f96875474d57c23626edcda966c02e0a105d043721fec01d3",
+    "tests/test_lifecycle_coordinator.py": "671431f01c905feea8d5010dfe842d60cde728c08ab5c16baf16356e6f61a03f",
+    "pyproject.toml": "bc18d48a06df856d78d0b5495078f69d186e57849528430c243adb0550cc9270",
+    ".github/workflows/wheels.yml": "554615771cc3216c088906500e3615b0c95deedc6ccf134c65f1ed705fee4417"
+  },
+  "finished_at_ns": 1789277003302116268,
+  "test_cases": 63,
+  "tests_xml_sha256": "6ebfbaa063493c51aa8feea460c944855835932dd5b7e44b3af9f71f82e4395f",
+  "scope": "Synthetic coordinator plan, validation, fake child-process execution and failure retention; not GPU training or full runtime qualification."
+}

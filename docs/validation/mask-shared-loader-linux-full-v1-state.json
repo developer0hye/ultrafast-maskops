@@ -1,0 +1,126 @@
+{
+  "complete": true,
+  "controller_pid": 1640292,
+  "started_at_ns": 1789273441513024243,
+  "scope": "Full 5000-image CPU loader comparison; five counterbalanced reference/native pairs at workers 0/2/8 for each mask mode. Sixty fresh measured processes plus two fresh-reference verification processes. Pilot excluded. Independent aggregate audit and production qualification remain separate.",
+  "commands": [
+    {
+      "label": "overlap-yes",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/bin/python",
+        "bench/coco_loader.py",
+        "--corpus",
+        "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-overlap-yes.json",
+        "--workers",
+        "0",
+        "2",
+        "8",
+        "--rounds",
+        "5",
+        "--overlap",
+        "yes",
+        "--persistent-mask"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-source",
+      "started_at_ns": 1789273441524430496,
+      "log": "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-overlap-yes.log",
+      "pid": 1640293,
+      "returncode": 0,
+      "finished_at_ns": 1789274859571660714,
+      "log_sha256": "d1a845431b75f6d85b0540e0bb3b6fa1374af5383ed0dffde93ab34412afbd96"
+    },
+    {
+      "label": "overlap-no",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/bin/python",
+        "bench/coco_loader.py",
+        "--corpus",
+        "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-overlap-no.json",
+        "--workers",
+        "0",
+        "2",
+        "8",
+        "--rounds",
+        "5",
+        "--overlap",
+        "no",
+        "--persistent-mask"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-source",
+      "started_at_ns": 1789274859579786542,
+      "log": "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-overlap-no.log",
+      "pid": 1643152,
+      "returncode": 0,
+      "finished_at_ns": 1789276811527312872,
+      "log_sha256": "c746b16f2ed1b482cc875bb6c299d5fa5b1bac1f58c96302fca64b16688c211a"
+    },
+    {
+      "label": "fresh-yes",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/bin/python",
+        "bench/verify_coco_loader.py",
+        "--corpus",
+        "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "--benchmark",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-overlap-yes.json",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-fresh-yes.json"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-source",
+      "started_at_ns": 1789276811535283298,
+      "log": "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-fresh-yes.log",
+      "pid": 1645809,
+      "returncode": 0,
+      "finished_at_ns": 1789276886648267031,
+      "log_sha256": "a1e1f79d39bd7f667532e30bd57c04e1b13b690336290916159268d20bc3bf41"
+    },
+    {
+      "label": "fresh-no",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/bin/python",
+        "bench/verify_coco_loader.py",
+        "--corpus",
+        "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "--benchmark",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-overlap-no.json",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-fresh-no.json"
+      ],
+      "cwd": "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-source",
+      "started_at_ns": 1789276886649117724,
+      "log": "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-fresh-no.log",
+      "pid": 1645979,
+      "returncode": 0,
+      "finished_at_ns": 1789276988306938755,
+      "log_sha256": "a1e1f79d39bd7f667532e30bd57c04e1b13b690336290916159268d20bc3bf41"
+    }
+  ],
+  "script_sha256": "0890ba0515555015724bff8b10617401eff92bd9c6d9ac6f0043cdaa8744ae65",
+  "harness_commit": "c25ef287595af7cbfdd9b6fc0a8029dcadd6ac29",
+  "runtime_source_commit": "5f6fc8e4c9da94e33cfd079f35fe3e3f8bec7d52",
+  "source_archive_sha256": "d2b8e093dd268a9d19ea4c37a1d06cce9448486e86fa9fe07228891285766d09",
+  "qualification_sha256": "ad2d139a5e58e3e76d1ccd07c77eb15cf82ef529c5c23491012f3ece19a85828",
+  "stress_sha256": "210d835cdd70413bd1a82502e5c653cfc1ddc0af49dcd9727be6125d9f74b21c",
+  "pilot_preservation_sha256": "8b4935bb67182803457140e441255eb95a1c14bf4bae47ab306c640d59e41d44",
+  "environment_overrides": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "YOLO_OFFLINE": "true"
+  },
+  "completed_reports": {
+    "yes": "491174643035f55399d90d4e7e32cd8d8633a712a3dd0fba7851f2d45223472f",
+    "no": "0136d6df786520642d9ebfab1b6998fc5453932c54c89106247139cc6d0d8223"
+  },
+  "fresh_reports": {
+    "yes": "b6d325fd83384e0f47f4e709042b46fbbbc39648d263212383dadd7694671c16",
+    "no": "067fa395b3a72b14efca4561def93e6d5bb01e46cb5daeb7f7f074b96f8c0265"
+  },
+  "timing_and_fresh_passed": true,
+  "finished_at_ns": 1789276988307753905,
+  "production_qualified": false
+}

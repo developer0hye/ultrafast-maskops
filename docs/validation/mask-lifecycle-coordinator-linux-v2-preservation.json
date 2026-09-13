@@ -1,0 +1,92 @@
+{
+  "complete": true,
+  "all_members_read_back": true,
+  "test_cases": 63,
+  "gpu_training_executed": false,
+  "archive_sha256": "e323cb9ffe7e29b9cf547429f2575cd70039bcbc687d4f8533a3451e5cca7eff",
+  "archive_bytes": 29723,
+  "file_count": 21,
+  "manifest": {
+    "qualification.json": {
+      "bytes": 4591,
+      "sha256": "50ec4c0264fc699e51e49fde5703bed7bd540f75558ba73b278f12d38e31a204"
+    },
+    "tests.xml": {
+      "bytes": 9185,
+      "sha256": "6ebfbaa063493c51aa8feea460c944855835932dd5b7e44b3af9f71f82e4395f"
+    },
+    "qualified/bench/lifecycle_coco_gpu.py": {
+      "bytes": 20829,
+      "sha256": "f711ad52efc9db2f96875474d57c23626edcda966c02e0a105d043721fec01d3"
+    },
+    "before-format/bench/lifecycle_coco_gpu.py": {
+      "bytes": 19340,
+      "sha256": "f24b435ce76cde437809910aeb48af0a17013c0c27505deb14242e044a78c033"
+    },
+    "qualified/tests/test_lifecycle_coordinator.py": {
+      "bytes": 17511,
+      "sha256": "671431f01c905feea8d5010dfe842d60cde728c08ab5c16baf16356e6f61a03f"
+    },
+    "before-format/tests/test_lifecycle_coordinator.py": {
+      "bytes": 16321,
+      "sha256": "13a9fb931f3051af63925d7c561dacf655cf8cdb3ecbe370e184befb3100dd4d"
+    },
+    "qualified/pyproject.toml": {
+      "bytes": 637,
+      "sha256": "bc18d48a06df856d78d0b5495078f69d186e57849528430c243adb0550cc9270"
+    },
+    "before-format/pyproject.toml": {
+      "bytes": 637,
+      "sha256": "bc18d48a06df856d78d0b5495078f69d186e57849528430c243adb0550cc9270"
+    },
+    "qualified/.github/workflows/wheels.yml": {
+      "bytes": 3664,
+      "sha256": "554615771cc3216c088906500e3615b0c95deedc6ccf134c65f1ed705fee4417"
+    },
+    "before-format/.github/workflows/wheels.yml": {
+      "bytes": 3664,
+      "sha256": "554615771cc3216c088906500e3615b0c95deedc6ccf134c65f1ed705fee4417"
+    },
+    "logs/format.log": {
+      "bytes": 20,
+      "sha256": "96a977f329ec3c59092d40e041a019b49dcf03ca04055e177aa0ccb8c27234df"
+    },
+    "logs/lint.log": {
+      "bytes": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    "logs/format-check.log": {
+      "bytes": 26,
+      "sha256": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938"
+    },
+    "logs/workflow.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/tests.log": {
+      "bytes": 99,
+      "sha256": "1781ac18abacb49c86b85d69a0a82cf82b817e14a7865ce29567be82b11c767e"
+    },
+    "watcher.py": {
+      "bytes": 5652,
+      "sha256": "e9703c1de736d66601b197993f19d0ef073a4ec6bd731f1d5c9215572cdf9796"
+    },
+    "measurement-state.json": {
+      "bytes": 5424,
+      "sha256": "cd1f07f711636c7ed7677af956c7989f733343998e331fe4360b4f8425df8818"
+    },
+    "measurement-launch-identity.json": {
+      "bytes": 1326,
+      "sha256": "9ec1a68ddb369e8cba2269e79eafe5f9361938baf32ca85cc24c4769b7d5b79f"
+    },
+    "watcher-launch-identity.json": {
+      "bytes": 991,
+      "sha256": "a006cdb86d5b0d8c77b8886023e92bf2c00a786e7c6bc2a848a9f7187b5446c9"
+    },
+    "prior-idle-watcher-cancellation.json": {
+      "bytes": 1237,
+      "sha256": "5023505ab23313c8306027d389d4290e3d098ccaac7fd74cec66c2e693c8902c"
+    }
+  },
+  "scope": "Synthetic coordinator validation and fake child-process execution only; actual GPU lifecycle grid remains unexecuted."
+}

@@ -60,6 +60,11 @@ not proven by these two-worker CPU reset tests. A subsequent
 [full-image loader pilot](SHARED_LOADER_PILOT.md) now verifies non-augmented
 CPU loading at workers 0/2/8; GPU pinning and actual lifecycle training remain open.
 
+The subsequent [full repeated comparison](SHARED_LOADER_FULL_RESULTS.md) passed
+all 60 measured processes, two fresh-reference verifications and independent
+artifact qualification. Eight-worker speed gains were small; the 10% loader
+improvement gate and actual GPU lifecycle grid remain open.
+
 A separate [named-storage lifetime diagnostic](SHARED_TRANSPORT_LIFETIME.md) is
 prepared to observe abandoned prefetch handles across repeated resets under
 `file_system` transport. It has not run; the source-level reference-count

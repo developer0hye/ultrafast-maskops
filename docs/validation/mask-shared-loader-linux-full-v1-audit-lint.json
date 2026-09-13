@@ -1,0 +1,58 @@
+{
+  "complete": true,
+  "commands": [
+    {
+      "command": [
+        "/Users/yhkwon/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "docs/validation/audit-shared-loader-v1.py",
+        "docs/validation/qualify-shared-loader-full-audit-v1.py",
+        "docs/validation/seal-shared-loader-full-v1.py"
+      ],
+      "returncode": 0,
+      "stdout": "2 files reformatted, 1 file left unchanged\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/yhkwon/.local/bin/uvx",
+        "ruff==0.15.6",
+        "check",
+        "docs/validation/audit-shared-loader-v1.py",
+        "docs/validation/qualify-shared-loader-full-audit-v1.py",
+        "docs/validation/seal-shared-loader-full-v1.py"
+      ],
+      "returncode": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/yhkwon/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "--check",
+        "docs/validation/audit-shared-loader-v1.py",
+        "docs/validation/qualify-shared-loader-full-audit-v1.py",
+        "docs/validation/seal-shared-loader-full-v1.py"
+      ],
+      "returncode": 0,
+      "stdout": "3 files already formatted\n",
+      "stderr": ""
+    }
+  ],
+  "source_before_sha256": {
+    "docs/validation/audit-shared-loader-v1.py": "5f5ea599a21ebf0a15d4779187f17f8687c03472e5545c3cac9ec901f3a43856",
+    "docs/validation/qualify-shared-loader-full-audit-v1.py": "ad866afb09963c84eb822523806f9aef15bc9bab31dc085c48a942982d8340df",
+    "docs/validation/seal-shared-loader-full-v1.py": "986f9d36af0d920a51902109cd6c6aec71aa708cc5fe48d3918fabf26370012a"
+  },
+  "source_after_sha256": {
+    "docs/validation/audit-shared-loader-v1.py": "5f5ea599a21ebf0a15d4779187f17f8687c03472e5545c3cac9ec901f3a43856",
+    "docs/validation/qualify-shared-loader-full-audit-v1.py": "8891d0adfe494efdc3bc7eb9a8d4214c7e39c9b6508bc244ffe89a283121dcce",
+    "docs/validation/seal-shared-loader-full-v1.py": "50a095b3cc4cc28f75f4a1b697c132441d8d44df70fe3aed2c06a3c344f590f2"
+  },
+  "formatting_preserved_ast": true,
+  "at_ns": 1789276884682585000,
+  "scope": "Local formatting/lint only; full real-artifact auditor qualification remains pending."
+}
