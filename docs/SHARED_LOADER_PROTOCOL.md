@@ -17,6 +17,15 @@ cache verifications passed. The [completed pilot evidence](SHARED_LOADER_PILOT.m
 also passed independent audits and all 76 damaged-evidence rejection cases.
 This is not a five-pair performance result.
 
+The [full serial controller](validation/run-shared-loader-linux-full-v1.py) has
+now started the separately declared five-pair matrix: 60 fresh measured processes
+across both modes and workers 0/2/8, followed by two fresh-reference verifications.
+It reuses the exact frozen pilot harness/runtime and requires the sealed pilot
+receipt before launching. Pilot measurements are excluded. The
+[launch identity](validation/mask-shared-loader-linux-full-v1-launch-identity.json)
+records the observed PID, process start ticks, host boot ID and source/qualification
+hashes. This series is still running; no complete repeated aggregate is claimed.
+
 Use both overlap modes, worker counts 0/2/8, five alternating fresh-process pairs,
 batch size 8, image size 640, mask ratio 4, no augmentation, no image RAM cache,
 and no pinning. The first epoch is timed with periodic process-family RSS

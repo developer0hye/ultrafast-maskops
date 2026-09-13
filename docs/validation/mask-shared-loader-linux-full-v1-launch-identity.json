@@ -1,0 +1,27 @@
+{
+  "launch_observed": true,
+  "complete": false,
+  "controller_pid": 1640292,
+  "controller_start_ticks": "232991152",
+  "host_boot_id": "63fb8452-1fb1-47f1-b0b2-bffe8acf944d",
+  "command": "python3 /home/yonghye/ultrafast-vision-build/run-shared-loader-linux-full-v1.py",
+  "source_archive_sha256": "d2b8e093dd268a9d19ea4c37a1d06cce9448486e86fa9fe07228891285766d09",
+  "harness_commit": "c25ef287595af7cbfdd9b6fc0a8029dcadd6ac29",
+  "runtime_source_commit": "5f6fc8e4c9da94e33cfd079f35fe3e3f8bec7d52",
+  "launcher_sha256": "0890ba0515555015724bff8b10617401eff92bd9c6d9ac6f0043cdaa8744ae65",
+  "qualification_sha256": "ad2d139a5e58e3e76d1ccd07c77eb15cf82ef529c5c23491012f3ece19a85828",
+  "stress_sha256": "210d835cdd70413bd1a82502e5c653cfc1ddc0af49dcd9727be6125d9f74b21c",
+  "pilot_preservation_sha256": "8b4935bb67182803457140e441255eb95a1c14bf4bae47ab306c640d59e41d44",
+  "scope": "Full 5000-image CPU loader comparison; five counterbalanced reference/native pairs at workers 0/2/8 for each mask mode. Sixty fresh measured processes plus two fresh-reference verification processes. Pilot excluded. Independent aggregate audit and production qualification remain separate.",
+  "planned_measured_processes": 60,
+  "pairs_per_condition": 5,
+  "worker_counts": [
+    0,
+    2,
+    8
+  ],
+  "modes": [
+    "yes",
+    "no"
+  ]
+}
