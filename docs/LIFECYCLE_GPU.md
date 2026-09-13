@@ -106,9 +106,10 @@ python bench/train_coco_gpu.py \
 
 Paths above are placeholders, not existing trial receipts. Run serially on the
 reserved host and retain failures. The existing `repeat_coco_gpu.py` coordinator
-does not forward these flags or audit resumed cohorts; a lifecycle coordinator
-and independent final artifact audit remain to be qualified before a full grid
-claim. Single-trial `complete` is insufficient to establish the whole protocol.
+does not forward these flags or audit resumed cohorts. The newly added
+`lifecycle_coco_gpu.py` coordinator is prepared but unexecuted; its tests and
+independent final artifact audit remain to be qualified before a full grid claim.
+Single-trial `complete` is insufficient to establish the whole protocol.
 
 Epoch timing includes upstream closure/reset and the small first-batch
 observation, and excludes checkpoint saving. Whole-job resource samples include
@@ -142,3 +143,57 @@ the partial report. No shutdown override is used. The trial now binds both its
 own script and `coco_loader.py`, verifies those bytes after training, and requires
 the same two-script identity when resuming from a reference receipt. These
 source changes are not new training or reliability results.
+
+## Prepared coordinator, not yet qualified
+
+`bench/lifecycle_coco_gpu.py` declares the full plan before launching any trial:
+54 fresh processes and 126 total epochs across workers 0/2/8 and both mask modes.
+Each condition runs reference, mask-only and combined backends for fresh training,
+resume at the closing boundary and resume after it. All resumed backends use the
+same retained reference checkpoint for that condition. Each output uses a new
+directory. Failures preserve the original raw report, log, return code and hash;
+there is no automatic retry or omission of a failed trial.
+
+The coordinator compares complete loss-trace digests, initial/final model digests,
+resume identity and loader settings within each three-backend cohort. It also
+checks the actual resolved training configuration, full 5,000-image/1,250-batch
+epochs, foreground losses, finite values, CUDA peaks and sampled RSS arithmetic.
+Formatter/factory/collator identity, pinning, worker continuity, reset history and
+final train/validation shutdown must agree with the declared protocol. No
+comparison claims that resumed training reproduces uninterrupted training.
+
+Raw loss/resource arrays stay in their hashed trial files; the parent retains
+compact summaries so it does not accumulate full traces between trials. State
+updates use atomic file replacement. A selected-condition run is explicitly
+marked as a subset, even when it completes all its requested trials. Only the
+default full grid can set `full_protocol_complete`, and that remains a coordinator
+result requiring independent final artifact verification.
+
+The synthetic tests in `tests/test_lifecycle_coordinator.py` are prepared but have
+not run. They check the declared plan/checkpoint relationships, all three lifecycle
+paths, corruption rejection, cohort comparisons, and failure retention through
+a fake child-process driver. They do not execute GPU training or deserialize a
+real checkpoint. The wheel workflow now selects these framework-free tests in
+every core job, but neither that new workflow nor these tests is qualified yet.
+
+Example full-grid invocation after installing qualified wheels and binding the
+current original cache to a fresh reference receipt:
+
+```sh
+python bench/lifecycle_coco_gpu.py \
+  --corpus /measurement/coco-val2017-yolo/segment \
+  --fresh-check /measurement/current-fresh-reference.json \
+  --out /measurement/lifecycle-grid.json
+```
+
+The paths are placeholders. Both hosts are currently reserved by existing
+measurements; no GPU grid has been launched by this source change.
+
+The [queued qualifier](validation/qualify-lifecycle-after-loader-v2.py) waits for
+the exact Linux full-loader controller PID/start time and a successful terminal
+timing/fresh-reference receipt before running formatting, Ruff, actionlint and
+63 synthetic tests. Its [launch identity](validation/mask-lifecycle-coordinator-linux-v2-launch-identity.json)
+binds the staged source bytes. It never restarts the measurement and never starts
+GPU training. Qualification is still pending. The previous idle watcher was
+[cancelled before any check ran](validation/mask-lifecycle-coordinator-linux-v1-cancelled.json)
+to add a signal mock to the fake-child tests; its staged source remains preserved.

@@ -1,0 +1,17 @@
+{
+  "launch_observed": true,
+  "qualification_executed": false,
+  "controller_pid": 1642183,
+  "controller_start_ticks": "233089245",
+  "host_boot_id": "63fb8452-1fb1-47f1-b0b2-bffe8acf944d",
+  "script_sha256": "e9703c1de736d66601b197993f19d0ef073a4ec6bd731f1d5c9215572cdf9796",
+  "source_before_sha256": {
+    "bench/lifecycle_coco_gpu.py": "f24b435ce76cde437809910aeb48af0a17013c0c27505deb14242e044a78c033",
+    "tests/test_lifecycle_coordinator.py": "13a9fb931f3051af63925d7c561dacf655cf8cdb3ecbe370e184befb3100dd4d",
+    "pyproject.toml": "bc18d48a06df856d78d0b5495078f69d186e57849528430c243adb0550cc9270",
+    ".github/workflows/wheels.yml": "554615771cc3216c088906500e3615b0c95deedc6ccf134c65f1ed705fee4417"
+  },
+  "dependency_pid": 1640292,
+  "dependency_start_ticks": "232991152",
+  "scope": "Wait for the exact full CPU loader controller and require its timing/fresh-reference steps to pass before formatting, linting and running 63 synthetic coordinator tests. No GPU training."
+}

@@ -1,0 +1,25 @@
+{
+  "cancelled_before_qualification": true,
+  "pid": 1641563,
+  "reason": "Add an explicit no-op signal mock to the fake-child test before executing it; replace only the queued qualification with v2. The full benchmark continues unchanged.",
+  "commands_executed": [],
+  "prior_qualification_state": {
+    "complete": false,
+    "passed": false,
+    "controller_pid": 1641563,
+    "commands": [],
+    "phase": "waiting-for-measurement",
+    "source_before_sha256": {
+      "bench/lifecycle_coco_gpu.py": "f24b435ce76cde437809910aeb48af0a17013c0c27505deb14242e044a78c033",
+      "tests/test_lifecycle_coordinator.py": "52bb9636b7cf62cf0529e33f2147ff9bdda526660ba7505a126356ee6cc4c13e",
+      "pyproject.toml": "bc18d48a06df856d78d0b5495078f69d186e57849528430c243adb0550cc9270",
+      ".github/workflows/wheels.yml": "554615771cc3216c088906500e3615b0c95deedc6ccf134c65f1ed705fee4417"
+    },
+    "script_sha256": "4b4ef7c403f5dc41a2cc609917826114264c87c459207b26d33c5300b699c981",
+    "dependency_identity_sha256": "9ec1a68ddb369e8cba2269e79eafe5f9361938baf32ca85cc24c4769b7d5b79f",
+    "dependency_pid": 1640292,
+    "dependency_start_ticks": "232991152",
+    "started_at_ns": 1789274312912077446,
+    "gpu_training_executed": false
+  }
+}
