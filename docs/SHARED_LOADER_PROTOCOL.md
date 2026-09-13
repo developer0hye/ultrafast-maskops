@@ -1,11 +1,20 @@
-# Shared collator real-data loader protocol: not executed
+# Shared collator real-data loader protocol: pilot running
 
 The CPU loader harness now accepts `--persistent-mask`. Both backends still use
 the ordinary YOLODataset and the complete real 5,000-image segmentation fixture.
 The reference retains its original formatter/collator. Native persistent mode
 installs FastFormat and the shared packet collator. It records the actual loader
 collator, and verifies installed Python runtime bytes against the frozen harness
-source tree before execution. This protocol has not yet produced measurements.
+source tree before execution. The full repeated protocol is not complete.
+
+The [serial pilot controller](validation/launch-shared-loader-linux-v1-pilot.py)
+is now running on Linux from frozen harness commit `c25ef28`, using the installed
+257-test packet wheel. Its [launch identity](validation/mask-shared-loader-linux-v1-pilot-launch-identity.json)
+binds source, wheel, qualification receipts and actual controller PID. The pilot
+uses all 5,000 images but only one pair per worker count and mask mode: 12 fresh
+measured processes. After both timing modes terminate, it runs two separate
+fresh-reference cache verifications. It stops on any failure and preserves the
+partial state and logs. This launch is not a completed or five-pair result.
 
 Use both overlap modes, worker counts 0/2/8, five alternating fresh-process pairs,
 batch size 8, image size 640, mask ratio 4, no augmentation, no image RAM cache,

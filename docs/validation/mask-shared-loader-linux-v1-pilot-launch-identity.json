@@ -1,0 +1,31 @@
+{
+  "launch_observed": true,
+  "measurement_complete": false,
+  "controller_pid": 1636927,
+  "harness_commit": "c25ef287595af7cbfdd9b6fc0a8029dcadd6ac29",
+  "runtime_source_commit": "5f6fc8e4c9da94e33cfd079f35fe3e3f8bec7d52",
+  "source_archive_sha256": "d2b8e093dd268a9d19ea4c37a1d06cce9448486e86fa9fe07228891285766d09",
+  "source_manifest_sha256": "f146a7c78b12991f5b9955564a699156ccdb3dbbe6c423a686560cf81178fc59",
+  "launcher_sha256": "bd271bc5582e207fc6ec13fe6b9ba935ffa0c129e62b357873f53ae083b963a3",
+  "wheel_sha256": "8b467c837c323812a0201b81210a6dcd0c180ef50ba0d16531f07ef2c741cd9a",
+  "qualification_sha256": "ad2d139a5e58e3e76d1ccd07c77eb15cf82ef529c5c23491012f3ece19a85828",
+  "stress_sha256": "210d835cdd70413bd1a82502e5c653cfc1ddc0af49dcd9727be6125d9f74b21c",
+  "environment_overrides": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "YOLO_OFFLINE": "true"
+  },
+  "scope": "Full 5000-image functional pilot; one reference/native pair at workers 0/2/8 for each mask mode. Twelve fresh measured processes plus two fresh-reference verification processes. No five-pair aggregate or production qualification.",
+  "planned_modes": [
+    "yes",
+    "no"
+  ],
+  "planned_workers": [
+    0,
+    2,
+    8
+  ],
+  "planned_pairs_per_condition": 1,
+  "full_image_count": 5000
+}
