@@ -18,8 +18,8 @@ not establish that these small differences generalize or identify their cause.
 Whole-process peak RSS differs by less than 1 MiB in every condition. The
 candidate is 0.45–0.81 MiB higher than ROI and between 0.086 MiB lower and
 0.105 MiB higher than masks-only. These measurements do not demonstrate reduced
-working allocation. Separate Memray tracking is running; no traced allocation
-number is inferred from RSS.
+working allocation. The separate [75-trace Memray series](UNIT_SCALE_ALLOCATIONS.md) is complete
+and independently audited; its allocation results are not inferred from RSS.
 
 ## Method and evidence
 
@@ -142,7 +142,7 @@ favor the candidate. RSS values are medians in MiB, baseline → candidate.
 
 ## Remaining gates
 
-M2 execution, sanitizer validation, traced working allocation, full real-data
+M2 execution, sanitizer validation, non-overlap traced allocation, full real-data
 validation for this exact binary, DataLoader/GPU throughput, and platform/Python
 wheel CI remain separate requirements. Neither the earlier ROI corpus checks
 nor the earlier GPU series automatically validates this new candidate.

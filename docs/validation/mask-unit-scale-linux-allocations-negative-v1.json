@@ -1,0 +1,37 @@
+{
+  "auditor_sha256": "20f6391d94ed0f07ee230a277078de50736fb997a2b36fff162fc6549e87dc8f",
+  "driver_sha256": "914465be3448b5098a9c0c857a6323414a7604145bff485ef2bb0cf3efe07523",
+  "original_archive_sha256": "369ea7a3e4b7d8488d149256d9b432df78b67426de625506536ea72f3a499eb2",
+  "cases": [
+    {
+      "name": "valid-control",
+      "returncode": 0,
+      "archive_sha256": "369ea7a3e4b7d8488d149256d9b432df78b67426de625506536ea72f3a499eb2"
+    },
+    {
+      "name": "wrong-peak",
+      "returncode": 1,
+      "archive_sha256": "c0bebc5a9b6a1723fd4c2519d8bd8ff0d1a52213b2dc1feadc6b81ef1bd4c284"
+    },
+    {
+      "name": "missing-worker",
+      "returncode": 1,
+      "archive_sha256": "8ba0db5a0223d79ea9f0674c653dced3f287a320a7cd8fec4002d01ffd26af4c"
+    },
+    {
+      "name": "missing-trace",
+      "returncode": 1,
+      "archive_sha256": "c528675e7d254a4267228fa2ba13bdd22597e150c30348a33c11ead965469d45"
+    },
+    {
+      "name": "swapped-traces",
+      "returncode": 1,
+      "archive_sha256": "e67d4957a5e1a9f155a43dc63665bb3e8989c2edb152be681758acde9fb6075d"
+    },
+    {
+      "name": "wrong-output",
+      "returncode": 1,
+      "archive_sha256": "a2fba3e581099fbbd6766d6e05b8ccfd6fbab029e841851433b575031d6c901d"
+    }
+  ]
+}

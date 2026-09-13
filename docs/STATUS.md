@@ -9,6 +9,11 @@ The new candidate completed two independently audited 270-process comparisons:
 2.1% faster than ROI for ratio-1 non-overlap, but still 1.8% slower at the median
 than masks-only, with the latter interval including one. The regression fix
 remains unproven; see [UNIT_SCALE_RESULTS.md](UNIT_SCALE_RESULTS.md).
+The new binary also completed 75 audited Memray traces: public overlap peak
+tracked allocation is 61–91% lower than the upstream Python/OpenCV reference;
+explicit bounded mode reduces it 94–99.6%. These are allocation, not RSS or
+training results. See [UNIT_SCALE_ALLOCATIONS.md](UNIT_SCALE_ALLOCATIONS.md).
+The full 60-process real-data loader series is running.
 
 This experimental `perf/resize-roi` branch adds sampling-aligned resize crops.
 The initial crop candidate failed parity at Arm dispatch boundaries; its corrected

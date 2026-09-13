@@ -1,0 +1,828 @@
+{
+  "scope": "75 separate traced warmed overlap calls; input excluded, output and packing included; not RSS or latency",
+  "complete": true,
+  "archive_sha256": "369ea7a3e4b7d8488d149256d9b432df78b67426de625506536ea72f3a499eb2",
+  "auditor_sha256": "20f6391d94ed0f07ee230a277078de50736fb997a2b36fff162fc6549e87dc8f",
+  "memray": "1.20.0",
+  "trace_checks": [
+    {
+      "trace": "0-4-reference.bin",
+      "pid": 1480832,
+      "total_allocations": 12686,
+      "peak_bytes": 7749792,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "0-4-wrapper.bin",
+      "pid": 1480834,
+      "total_allocations": 808,
+      "peak_bytes": 3014968,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "0-4-bounded.bin",
+      "pid": 1480836,
+      "total_allocations": 1255,
+      "peak_bytes": 481880,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "0-5-reference.bin",
+      "pid": 1480891,
+      "total_allocations": 32154,
+      "peak_bytes": 19678992,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "0-5-wrapper.bin",
+      "pid": 1480995,
+      "total_allocations": 1524,
+      "peak_bytes": 7011864,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "0-5-bounded.bin",
+      "pid": 1481091,
+      "total_allocations": 2680,
+      "peak_bytes": 510776,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "0-6-reference.bin",
+      "pid": 1481150,
+      "total_allocations": 32302,
+      "peak_bytes": 78815136,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "0-6-wrapper.bin",
+      "pid": 1481154,
+      "total_allocations": 1584,
+      "peak_bytes": 7114440,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "0-6-bounded.bin",
+      "pid": 1481156,
+      "total_allocations": 2795,
+      "peak_bytes": 587776,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "0-7-reference.bin",
+      "pid": 1481158,
+      "total_allocations": 63920,
+      "peak_bytes": 153809088,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "0-7-wrapper.bin",
+      "pid": 1481160,
+      "total_allocations": 2708,
+      "peak_bytes": 13403816,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "0-7-bounded.bin",
+      "pid": 1481162,
+      "total_allocations": 5024,
+      "peak_bytes": 630752,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "0-8-reference.bin",
+      "pid": 1481164,
+      "total_allocations": 12730,
+      "peak_bytes": 123717792,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "0-8-wrapper.bin",
+      "pid": 1481166,
+      "total_allocations": 755,
+      "peak_bytes": 41798968,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "0-8-bounded.bin",
+      "pid": 1481168,
+      "total_allocations": 1143,
+      "peak_bytes": 1249400,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-4-wrapper.bin",
+      "pid": 1481172,
+      "total_allocations": 807,
+      "peak_bytes": 3014968,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-4-bounded.bin",
+      "pid": 1481174,
+      "total_allocations": 1255,
+      "peak_bytes": 481880,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-4-reference.bin",
+      "pid": 1481176,
+      "total_allocations": 12685,
+      "peak_bytes": 7749792,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-5-wrapper.bin",
+      "pid": 1481180,
+      "total_allocations": 1524,
+      "peak_bytes": 7011864,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-5-bounded.bin",
+      "pid": 1481182,
+      "total_allocations": 2680,
+      "peak_bytes": 510776,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-5-reference.bin",
+      "pid": 1481185,
+      "total_allocations": 32154,
+      "peak_bytes": 19678992,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-6-wrapper.bin",
+      "pid": 1481187,
+      "total_allocations": 1584,
+      "peak_bytes": 7114440,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-6-bounded.bin",
+      "pid": 1481189,
+      "total_allocations": 2795,
+      "peak_bytes": 587776,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-6-reference.bin",
+      "pid": 1481191,
+      "total_allocations": 32302,
+      "peak_bytes": 78815136,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-7-wrapper.bin",
+      "pid": 1481193,
+      "total_allocations": 2710,
+      "peak_bytes": 13403816,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-7-bounded.bin",
+      "pid": 1481195,
+      "total_allocations": 5024,
+      "peak_bytes": 630752,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-7-reference.bin",
+      "pid": 1481197,
+      "total_allocations": 63920,
+      "peak_bytes": 153809088,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-8-wrapper.bin",
+      "pid": 1481201,
+      "total_allocations": 756,
+      "peak_bytes": 41798968,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-8-bounded.bin",
+      "pid": 1481203,
+      "total_allocations": 1143,
+      "peak_bytes": 1249400,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "1-8-reference.bin",
+      "pid": 1481205,
+      "total_allocations": 12730,
+      "peak_bytes": 123717792,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-4-bounded.bin",
+      "pid": 1481207,
+      "total_allocations": 1255,
+      "peak_bytes": 481880,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-4-reference.bin",
+      "pid": 1481209,
+      "total_allocations": 12685,
+      "peak_bytes": 7749792,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-4-wrapper.bin",
+      "pid": 1481211,
+      "total_allocations": 807,
+      "peak_bytes": 3014968,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-5-bounded.bin",
+      "pid": 1481213,
+      "total_allocations": 2680,
+      "peak_bytes": 510776,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-5-reference.bin",
+      "pid": 1481215,
+      "total_allocations": 32154,
+      "peak_bytes": 19678992,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-5-wrapper.bin",
+      "pid": 1481217,
+      "total_allocations": 1524,
+      "peak_bytes": 7011864,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-6-bounded.bin",
+      "pid": 1481221,
+      "total_allocations": 2794,
+      "peak_bytes": 587776,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-6-reference.bin",
+      "pid": 1481223,
+      "total_allocations": 32302,
+      "peak_bytes": 78815136,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-6-wrapper.bin",
+      "pid": 1481227,
+      "total_allocations": 1584,
+      "peak_bytes": 7114440,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-7-bounded.bin",
+      "pid": 1481229,
+      "total_allocations": 5025,
+      "peak_bytes": 630752,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-7-reference.bin",
+      "pid": 1481231,
+      "total_allocations": 63920,
+      "peak_bytes": 153809088,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-7-wrapper.bin",
+      "pid": 1481233,
+      "total_allocations": 2708,
+      "peak_bytes": 13403816,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-8-bounded.bin",
+      "pid": 1481235,
+      "total_allocations": 1143,
+      "peak_bytes": 1249400,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-8-reference.bin",
+      "pid": 1481237,
+      "total_allocations": 12729,
+      "peak_bytes": 123717792,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "2-8-wrapper.bin",
+      "pid": 1481241,
+      "total_allocations": 755,
+      "peak_bytes": 41798968,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-4-reference.bin",
+      "pid": 1481243,
+      "total_allocations": 12685,
+      "peak_bytes": 7749792,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-4-wrapper.bin",
+      "pid": 1481245,
+      "total_allocations": 807,
+      "peak_bytes": 3014968,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-4-bounded.bin",
+      "pid": 1481247,
+      "total_allocations": 1256,
+      "peak_bytes": 481880,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-5-reference.bin",
+      "pid": 1481249,
+      "total_allocations": 32154,
+      "peak_bytes": 19678992,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-5-wrapper.bin",
+      "pid": 1481251,
+      "total_allocations": 1524,
+      "peak_bytes": 7011864,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-5-bounded.bin",
+      "pid": 1481253,
+      "total_allocations": 2681,
+      "peak_bytes": 510776,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-6-reference.bin",
+      "pid": 1481255,
+      "total_allocations": 32303,
+      "peak_bytes": 78815136,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-6-wrapper.bin",
+      "pid": 1481257,
+      "total_allocations": 1584,
+      "peak_bytes": 7114440,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-6-bounded.bin",
+      "pid": 1481259,
+      "total_allocations": 2794,
+      "peak_bytes": 587776,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-7-reference.bin",
+      "pid": 1481261,
+      "total_allocations": 63920,
+      "peak_bytes": 153809088,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-7-wrapper.bin",
+      "pid": 1481265,
+      "total_allocations": 2709,
+      "peak_bytes": 13403816,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-7-bounded.bin",
+      "pid": 1481267,
+      "total_allocations": 5024,
+      "peak_bytes": 630752,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-8-reference.bin",
+      "pid": 1481271,
+      "total_allocations": 12729,
+      "peak_bytes": 123717792,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-8-wrapper.bin",
+      "pid": 1481273,
+      "total_allocations": 755,
+      "peak_bytes": 41798968,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "3-8-bounded.bin",
+      "pid": 1481275,
+      "total_allocations": 1144,
+      "peak_bytes": 1249400,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-4-wrapper.bin",
+      "pid": 1481277,
+      "total_allocations": 807,
+      "peak_bytes": 3014968,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-4-bounded.bin",
+      "pid": 1481279,
+      "total_allocations": 1255,
+      "peak_bytes": 481880,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-4-reference.bin",
+      "pid": 1481281,
+      "total_allocations": 12685,
+      "peak_bytes": 7749792,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-5-wrapper.bin",
+      "pid": 1481283,
+      "total_allocations": 1524,
+      "peak_bytes": 7011864,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-5-bounded.bin",
+      "pid": 1481285,
+      "total_allocations": 2680,
+      "peak_bytes": 510776,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-5-reference.bin",
+      "pid": 1481289,
+      "total_allocations": 32154,
+      "peak_bytes": 19678992,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-6-wrapper.bin",
+      "pid": 1481291,
+      "total_allocations": 1584,
+      "peak_bytes": 7114440,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-6-bounded.bin",
+      "pid": 1481293,
+      "total_allocations": 2795,
+      "peak_bytes": 587776,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-6-reference.bin",
+      "pid": 1481295,
+      "total_allocations": 32302,
+      "peak_bytes": 78815136,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-7-wrapper.bin",
+      "pid": 1481297,
+      "total_allocations": 2708,
+      "peak_bytes": 13403816,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-7-bounded.bin",
+      "pid": 1481299,
+      "total_allocations": 5024,
+      "peak_bytes": 630752,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-7-reference.bin",
+      "pid": 1481301,
+      "total_allocations": 63921,
+      "peak_bytes": 153809088,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-8-wrapper.bin",
+      "pid": 1481303,
+      "total_allocations": 755,
+      "peak_bytes": 41798968,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-8-bounded.bin",
+      "pid": 1481305,
+      "total_allocations": 1143,
+      "peak_bytes": 1249400,
+      "native_traces": true,
+      "python_allocators": true
+    },
+    {
+      "trace": "4-8-reference.bin",
+      "pid": 1481309,
+      "total_allocations": 12729,
+      "peak_bytes": 123717792,
+      "native_traces": true,
+      "python_allocators": true
+    }
+  ],
+  "summary": [
+    {
+      "case": 4,
+      "fixture": {
+        "n": 100,
+        "h": 640,
+        "w": 640,
+        "ratio": 4,
+        "vertices": 16
+      },
+      "peak_bytes_raw": {
+        "reference": [
+          7749792,
+          7749792,
+          7749792,
+          7749792,
+          7749792
+        ],
+        "wrapper": [
+          3014968,
+          3014968,
+          3014968,
+          3014968,
+          3014968
+        ],
+        "bounded": [
+          481880,
+          481880,
+          481880,
+          481880,
+          481880
+        ]
+      },
+      "peak_bytes_median": {
+        "reference": 7749792,
+        "wrapper": 3014968,
+        "bounded": 481880
+      },
+      "reduction_vs_reference": {
+        "wrapper": 0.6109614296744996,
+        "bounded": 0.93782026666006
+      }
+    },
+    {
+      "case": 5,
+      "fixture": {
+        "n": 255,
+        "h": 640,
+        "w": 640,
+        "ratio": 4,
+        "vertices": 16
+      },
+      "peak_bytes_raw": {
+        "reference": [
+          19678992,
+          19678992,
+          19678992,
+          19678992,
+          19678992
+        ],
+        "wrapper": [
+          7011864,
+          7011864,
+          7011864,
+          7011864,
+          7011864
+        ],
+        "bounded": [
+          510776,
+          510776,
+          510776,
+          510776,
+          510776
+        ]
+      },
+      "peak_bytes_median": {
+        "reference": 19678992,
+        "wrapper": 7011864,
+        "bounded": 510776
+      },
+      "reduction_vs_reference": {
+        "wrapper": 0.6436878474263317,
+        "bounded": 0.9740446055367064
+      }
+    },
+    {
+      "case": 6,
+      "fixture": {
+        "n": 256,
+        "h": 640,
+        "w": 640,
+        "ratio": 4,
+        "vertices": 16
+      },
+      "peak_bytes_raw": {
+        "reference": [
+          78815136,
+          78815136,
+          78815136,
+          78815136,
+          78815136
+        ],
+        "wrapper": [
+          7114440,
+          7114440,
+          7114440,
+          7114440,
+          7114440
+        ],
+        "bounded": [
+          587776,
+          587776,
+          587776,
+          587776,
+          587776
+        ]
+      },
+      "peak_bytes_median": {
+        "reference": 78815136,
+        "wrapper": 7114440,
+        "bounded": 587776
+      },
+      "reduction_vs_reference": {
+        "wrapper": 0.9097325671048769,
+        "bounded": 0.9925423461808148
+      }
+    },
+    {
+      "case": 7,
+      "fixture": {
+        "n": 500,
+        "h": 640,
+        "w": 640,
+        "ratio": 4,
+        "vertices": 16
+      },
+      "peak_bytes_raw": {
+        "reference": [
+          153809088,
+          153809088,
+          153809088,
+          153809088,
+          153809088
+        ],
+        "wrapper": [
+          13403816,
+          13403816,
+          13403816,
+          13403816,
+          13403816
+        ],
+        "bounded": [
+          630752,
+          630752,
+          630752,
+          630752,
+          630752
+        ]
+      },
+      "peak_bytes_median": {
+        "reference": 153809088,
+        "wrapper": 13403816,
+        "bounded": 630752
+      },
+      "reduction_vs_reference": {
+        "wrapper": 0.9128542001367306,
+        "bounded": 0.9958991239841433
+      }
+    },
+    {
+      "case": 8,
+      "fixture": {
+        "n": 100,
+        "h": 640,
+        "w": 640,
+        "ratio": 1,
+        "vertices": 16
+      },
+      "peak_bytes_raw": {
+        "reference": [
+          123717792,
+          123717792,
+          123717792,
+          123717792,
+          123717792
+        ],
+        "wrapper": [
+          41798968,
+          41798968,
+          41798968,
+          41798968,
+          41798968
+        ],
+        "bounded": [
+          1249400,
+          1249400,
+          1249400,
+          1249400,
+          1249400
+        ]
+      },
+      "peak_bytes_median": {
+        "reference": 123717792,
+        "wrapper": 41798968,
+        "bounded": 1249400
+      },
+      "reduction_vs_reference": {
+        "wrapper": 0.6621426286042997,
+        "bounded": 0.9899012100054291
+      }
+    }
+  ],
+  "limits": [
+    "Instrumentation is not used for timing.",
+    "Before/after installed descriptors bind the frozen environment; original workers did not record separate wheel descriptors.",
+    "Parity is checked against retained oracle hashes; this auditor does not rerun mask operations.",
+    "Memray coverage is tracked Python/native heap allocation, not stack, device or whole-process memory.",
+    "Only overlap wrapper and bounded composition are covered; non-overlap allocation is unmeasured."
+  ]
+}
