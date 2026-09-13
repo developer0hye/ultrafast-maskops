@@ -13,11 +13,77 @@ on:
         description: Run ID that must own the artifact
         type: string
         default: ''
+      sdist_only:
+        description: Validate a source-only wheel rebuild on Linux Python 3.12
+        type: boolean
+        default: false
 
 permissions:
   contents: read
 
 jobs:
+  sdist-rebuild:
+    if: github.event_name == 'workflow_dispatch' && inputs.sdist_only && inputs.inspect_artifact == ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CMAKE_BUILD_PARALLEL_LEVEL: '2'
+      OMP_NUM_THREADS: '1'
+      YOLO_OFFLINE: 'true'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Install source build dependencies
+        run: |
+          python -m pip install build==1.3.0 scikit-build-core==0.11.6 pybind11==3.0.1 ninja==1.13.2 numpy==2.4.4
+          cmake --version
+      - name: Build and inspect source distribution
+        id: unpack
+        run: |
+          mkdir sdist-evidence
+          git rev-parse HEAD > sdist-evidence/source-commit.txt
+          python -m build --sdist --no-isolation
+          python bench/inspect_sdist.py --checkout . --archive dist/ultrafast_maskops-0.1.0a1.tar.gz --destination "$RUNNER_TEMP/sdist-rebuild" --report sdist-evidence/source-inspection.json
+      - name: Build wheel using only unpacked source
+        working-directory: ${{ steps.unpack.outputs.source }}
+        run: python -m build --wheel --no-isolation
+      - name: Create clean installed runtime
+        run: |
+          python -m venv "$RUNNER_TEMP/sdist-runtime"
+          echo "$RUNNER_TEMP/sdist-runtime/bin" >> "$GITHUB_PATH"
+      - name: Audit installed source-built wheel and run core tests
+        working-directory: ${{ steps.unpack.outputs.source }}
+        run: |
+          python -m pip install numpy==2.4.4
+          python -m pip install --no-deps dist/*.whl
+          python bench/ci_wheel_check.py
+          python -m pip install pytest==9.1.1 opencv-python==4.13.0.92 numpy==2.4.4
+          python -m pytest -q tests/test_parity.py tests/test_resize_roi.py tests/test_gpu_series_audit.py tests/test_lifecycle_coordinator.py tests/test_lifecycle_gpu_audit.py --junitxml=dist/core-tests.xml
+          python -m pip freeze > dist/final-environment.txt
+      - name: Collect source rebuild artifacts
+        if: always()
+        env:
+          SDIST_SOURCE: ${{ steps.unpack.outputs.source }}
+        run: |
+          mkdir -p sdist-evidence
+          if [ -d dist ]; then
+            cp -a dist sdist-evidence/original-dist
+          fi
+          if [ -n "$SDIST_SOURCE" ] && [ -d "$SDIST_SOURCE/dist" ]; then
+            cp -a "$SDIST_SOURCE/dist" sdist-evidence/rebuilt
+          fi
+      - name: Preserve source rebuild evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: sdist-rebuild
+          path: sdist-evidence/
+          if-no-files-found: error
+          retention-days: 14
   inspect-artifact:
     if: github.event_name == 'workflow_dispatch' && inputs.inspect_artifact != ''
     runs-on: ubuntu-24.04
@@ -45,7 +111,7 @@ jobs:
           if-no-files-found: error
           retention-days: 14
   wheel:
-    if: github.event_name != 'workflow_dispatch' || inputs.inspect_artifact == ''
+    if: github.event_name != 'workflow_dispatch' || (inputs.inspect_artifact == '' && !inputs.sdist_only)
     strategy:
       fail-fast: false
       max-parallel: 3

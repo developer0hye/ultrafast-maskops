@@ -13,6 +13,7 @@ license = "AGPL-3.0-only"
 [tool.scikit-build]
 wheel.packages = ["python/ultrafast_maskops"]
 cmake.build-type = "Release"
+sdist.exclude = ["bench/results/*.tar.gz*", "bench/results/*.zip"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
