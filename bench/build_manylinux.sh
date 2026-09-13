@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
+: "${GITHUB_WORKSPACE:?run through the hosted workflow}"
+[[ "$PWD" == "$GITHUB_WORKSPACE" ]]
+# Checkout and build-step Git see different temporary HOME configuration.
+# Trust only this known checkout inside the disposable container.
+git config --global --add safe.directory "$GITHUB_WORKSPACE"
 export PATH="/opt/python/cp312-cp312/bin:$PATH"
 mkdir -p manylinux-evidence
 git rev-parse HEAD > manylinux-evidence/source-commit.txt
