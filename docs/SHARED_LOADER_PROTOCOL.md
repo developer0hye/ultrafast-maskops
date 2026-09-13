@@ -72,3 +72,34 @@ resource arithmetic and altered fresh-reference transport. Both controls passed
 and all 76 damaged cases were rejected after timing and fresh-reference follow-up
 finished. The five-pair path still requires actual complete repeated records and
 its own audit. The pilot archive passed server and downloaded-member readback.
+
+## Five-pair audit qualification prepared, not executed
+
+The separate [full-series qualifier](validation/qualify-shared-loader-full-audit-v1.py)
+requires the completed sixty-process controller and both successful fresh-reference
+steps. It binds their recorded hashes, invokes the auditor with `rounds=5`, and
+requires 30 complete records per mask mode. Its 92 damaged-evidence cases include
+late-round omissions, duplicate rounds, reversed execution order, incorrect p95,
+missing aggregate groups/metrics, and a fresh receipt covering only pilot counts.
+Worker transport cases select a native row with two workers by its fields; the
+pilot's fixed row index would select a zero-worker row in the five-pair matrix.
+
+For all 30 real metric summaries and three synthetic mathematical controls, a
+separate oracle enumerates all 3,125 ordered paired resamples. This checks the
+auditor's weighted-combination implementation, including ties and percentile
+interpolation. Five pairs remain a small sample: agreement between calculations
+does not establish statistical coverage or eliminate shared-host interference.
+
+The [full-series sealer](validation/seal-shared-loader-full-v1.py) requires those
+controls, all 92 rejections, matching canonical audit contents, and complete
+report/raw/fresh bindings. It preserves all samples, logs, memory arrays, exact
+source and runtime qualification evidence, then reads every archive member back.
+Downloaded archive/member verification remains a separate required step.
+
+These two new scripts have not yet been linted or executed. Wait for the actual
+measurement controller to terminate, then for the already queued lifecycle
+qualification process to terminate, before running more work on the Linux host.
+Inspect and retain both outcomes first. Format/lint the new scripts with recorded
+source hashes and unchanged ASTs; qualify the five-pair auditor against the final
+records, run both complete audits, and only then seal and download the evidence.
+The successful pilot audit does not qualify this five-pair path.
