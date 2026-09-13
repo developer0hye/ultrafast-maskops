@@ -42,5 +42,7 @@ source files also match this worktree. The
 [test log](validation/mask-unit-scale-linux-tests-v1.log) and
 [installed descriptor](validation/mask-unit-scale-linux-descriptor-v1.json)
 are retained. This is Linux correctness evidence; sanitizer, M2, portability,
-non-overlap working-allocation and real-loader performance gates remain open.
+non-overlap working-allocation gates remain open. The completed real-loader
+comparison is recorded in [UNIT_SCALE_LOADER.md](UNIT_SCALE_LOADER.md); its 10%
+performance target remains unmet.
 The [overlap allocation series](UNIT_SCALE_ALLOCATIONS.md) is complete and audited.

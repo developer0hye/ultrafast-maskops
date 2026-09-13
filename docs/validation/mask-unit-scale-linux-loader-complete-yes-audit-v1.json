@@ -1,0 +1,617 @@
+{
+  "complete_requested_samples": true,
+  "overlap": true,
+  "completed_workers": 30,
+  "report_sha256": "ebd88cd05eaff759c7dd0c96d29fddc8678109ef8b6e850a63028df907b2c511",
+  "identity_sha256": "017627f71b26620dae0f6a7e3089207444734a77a50902b143fc8cfeeee3e6c3",
+  "auditor_sha256": "6aff47e7ca67bfc7a550bcfdfb2e54931285a831d2223fc58dd100170c8e16e8",
+  "raw_sha256": {
+    "0-0-reference.json": "de8ae220982a84d7fa3e319d57e198ea23639625b6fa9528624e16760408b4de",
+    "0-0-reference.memory.json": "b6b10d1a0a20cf31134873c7394409b4d250109535d795edfa0ea886e8eef231",
+    "0-0-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-0-reference.log": "da656604f5b8639407e0df1dbd9d19dfae6adc80b55a70e2d2cf6d772b9060e9",
+    "0-0-native.json": "7bb57951a22f1c84c8a39f5347efb69c323429e46a7660ae04199b6c34a86cef",
+    "0-0-native.memory.json": "5a8694ee76d025d13baf83e0f0138dd4bc134b3707e0537ad9e159b71658af49",
+    "0-0-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-0-native.log": "6adf3fa833eadcf27a4015769d658397468636e15b0273d355aefd7daad6e37b",
+    "0-1-native.json": "f0edfd1e667883236b3489a0219892d21e6f5e983194ff89670ee8fe80b89de4",
+    "0-1-native.memory.json": "b5523130f75db2851eec8256eed798f868446380693581b1f0ae77a0b7c2e2ad",
+    "0-1-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-1-native.log": "0f6aebaa3ea00e46d8235025acc5a2b95eecbcadbbb0b11f1e125c2af5306570",
+    "0-1-reference.json": "9fe8ff9d23b0b5c039fc9f2d53ef6dfb83a9fc7aa847c53699feb517200e3bd2",
+    "0-1-reference.memory.json": "464862cbf4a09afa70dbb6ff2ff13d006a02d03761dcdd2c7edee2ef3a01b07f",
+    "0-1-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-1-reference.log": "b80f81d76fb60070522ebbc4386b56b6acb27d4f724e4aee4cb4673a0a4d45d9",
+    "0-2-reference.json": "62466e1470ed46e4cc038a743bd1561c724fc1bceb9174f22535f90ef77b924a",
+    "0-2-reference.memory.json": "f053748c99b420894cae4609dfa2aac7c19d84995b663f05327d5fb23993d512",
+    "0-2-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-2-reference.log": "ec17db8ee6c6659a8171d13d689ae9f9fb4daffa7374664ef1272efe22779954",
+    "0-2-native.json": "2d5f4ea2976cf60fc680c8547d3efa7d201c360d56e144533cee85ed604e144c",
+    "0-2-native.memory.json": "5200319471d9fc41f6bd5f48afabd2205ba55c3e3953841d5ec74ea3a4f22892",
+    "0-2-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-2-native.log": "8920f16b48aa79e76ebb80d8497b5a712ee70264a01b40e45e905f04cdf49aa4",
+    "0-3-native.json": "9063f4720d6b6daa1dfefefd3b026312280c056809ab0294ee42877b97d7cbfa",
+    "0-3-native.memory.json": "d63b9bc7d8a0fb91a2f8c0f6e1f892e0c3089068a2be5904a83775cbebecb231",
+    "0-3-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-3-native.log": "f6bdfbdd44439c6e30c4eb048699575817602b8d60f32f6931a96c9beeb1f7c0",
+    "0-3-reference.json": "4ac1c724d5e1bf3f617d8cb1ae24d0a8ff1d4b9ce3c77cb4e549b3b154b94dd7",
+    "0-3-reference.memory.json": "a107cb393c32be21089aef0c75d5023426f085a7165095724a594312fbe39a78",
+    "0-3-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-3-reference.log": "ccea1dbe2387273b99b2450e78d591809060cfe56c1798c7a0176bae6e7032fe",
+    "0-4-reference.json": "16d5c5736b52477497a84c601ecc46debe98be186dbe7fecba40e89639fe163b",
+    "0-4-reference.memory.json": "e50257f03b29486d661a783785681dd5a11a364dee5aa9173c2f12c69f2dfd16",
+    "0-4-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-4-reference.log": "0130ad5f3020c5a9b3f3242e572ccca31bfc45bac5806c818fe1683b25031777",
+    "0-4-native.json": "9a0b35f7b767fcb2cc897ad61adebe5599b723ac013c7e58c829ce7a680c3b55",
+    "0-4-native.memory.json": "0d2fd27dba24f12df04457ead504a0364bacff16d8a2c9d113117045ce5741dc",
+    "0-4-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-4-native.log": "a0047854d9e8e263ba6ec782c377d33dadf9f5a02c0ffe4e997e34fb3ae29548",
+    "2-0-reference.json": "e833bae2d7d98e37f64ae8822768d66754fbaaf8d947f38693e14b2852fb715c",
+    "2-0-reference.memory.json": "26eed95225e0b98e560847f8b6075077aad7d1ab3b52825aaf870541dbfe9a72",
+    "2-0-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "2-0-reference.log": "cadc5716c9196b53c5716dd65bfbaafa1aa49dedc90c34093c56dad4edc6b8e3",
+    "2-0-native.json": "96cb02e97ab4aca92883207e8225cbad7d3b91be3e6f6b1028b6540f8cd85cd9",
+    "2-0-native.memory.json": "233ba56074d4eb3ca6a7d196e1f4d0c76a423e5f6e189d559867eac0b512e43f",
+    "2-0-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "2-0-native.log": "1fd337d9650e06c149a4b967f7edf3721e3c4312522a6df540f0b4824ce19812",
+    "2-1-native.json": "78d159056d0950e0b1dc753eb70ddc2db7a9d50dd116e5b770ab3c486a29f5b2",
+    "2-1-native.memory.json": "ba23ef731f750e2b508bce99036109aed7f819835acf6bebd44c81a19666d3f2",
+    "2-1-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "2-1-native.log": "1f0dd2c0b5dc6458531cb98b8e7020c0aaf62fb5cc86a83a45aee8414904468e",
+    "2-1-reference.json": "8b1604a98556af99cd66821061c20b6717e21780ded4d98f0128e3243f80a479",
+    "2-1-reference.memory.json": "5a9f3ac96dd1fc06560ecd54746212ea18f497880659c6a885b744058e93ca92",
+    "2-1-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "2-1-reference.log": "7db1dfc06604e44c9dc6f733c31ea00e06bc41d8c3a4d0bbf65a1f2a7da59031",
+    "2-2-reference.json": "b2cc2def8dcc58a3d830da0416a34c1e58f7d128a5f95466f82013a4c9eab490",
+    "2-2-reference.memory.json": "2a0b53833b71568307e94b000b22e3655286048bb4d267e29163cce6b737b576",
+    "2-2-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "2-2-reference.log": "f12472d456530888f7f29804bb2d95de4d6a6713c4c67f9aaba7ce2d6a822e41",
+    "2-2-native.json": "5deeb6a2fe2a2d21d930a135fb653df036901d8783a42f709981d3258e90764c",
+    "2-2-native.memory.json": "6fa81ac2ff2e3001224d1de295eac888376f93bc82591e5597748e733a41153b",
+    "2-2-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "2-2-native.log": "4ca8fa27e338994ba85256fb3d808ca0fbc1724a24df8fa54c943f9c2bb12145",
+    "2-3-native.json": "029ee447868f774134645fde158dc6114400e911b70cfc66b873f4124e4e9450",
+    "2-3-native.memory.json": "2b7a310fd78b703a75a4ca20a2320fca785447a7eafee1f8dd13ed6a01b491b9",
+    "2-3-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "2-3-native.log": "ef5d592256c368489a061380ac75e409348dd4ce45e15e56633be8c3b83d197f",
+    "2-3-reference.json": "972f54c5dfe5e605408bced841479dbc9cd81c781d4c2b608b2c84d71c1130fc",
+    "2-3-reference.memory.json": "39553017622f1624f428e3e3ca6d06f50637e18bf8350452309792a1e01efdf6",
+    "2-3-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "2-3-reference.log": "a7fc0aa3e8dd236ce95273eb4c60b7c49b9e9d97fd11142854601aad06d58109",
+    "2-4-reference.json": "554e9c027c108473dce14ccf06f20b2fcf2a3ff5913eaeac7e1ddfbe07005d07",
+    "2-4-reference.memory.json": "5b0b20659846b9b9b086d134d01f572b19dfefbbb0ed6a129ab6149bd09f5bb3",
+    "2-4-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "2-4-reference.log": "7aa486eec7580703ad5718e3029e452077688b6440cb3ad5b25d843183b17263",
+    "2-4-native.json": "0e21b350a036348df2bde5c489e008fdd22254636d0f1ef7a3e32eb79d65b27f",
+    "2-4-native.memory.json": "7263f94a882fd535e2eaeab038a9f214efd90435a751d482fbfad687dec9e139",
+    "2-4-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "2-4-native.log": "70013dba5b193f0647e304feb1f19ece879d9abcff564faafb4721102c9150db",
+    "8-0-reference.json": "186124d96f226d1da83b9efda1cef2872f45d75b5e1b9b9b3881db19872affcd",
+    "8-0-reference.memory.json": "a95ffcbc529b234457fd80c3467eb49ae86eea5143a178a8f579772f4022bc8f",
+    "8-0-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "8-0-reference.log": "3f8943edd2823a6c5f9912ae963b700f2c9534edb44d9452402b1ba937fdbf59",
+    "8-0-native.json": "248e2590ea07731bb7de755a97bb9fc507f4a7b143a84f7fc4522f3d8e9e84fb",
+    "8-0-native.memory.json": "6bd96d40cc4fcf8da255dfcd998c68db160ffda7ba334d388b66f6492c640972",
+    "8-0-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "8-0-native.log": "1ca72d34a60d6c626bf1f89895705c557682092f3041181bd3dbad4360a9d2fa",
+    "8-1-native.json": "d8dadae173f79dad38d1f5763cb085cf20b2d200210d0beae30646c123248201",
+    "8-1-native.memory.json": "5d006729ae6181ae1e46deabd74c1298cece6d5e4da868cfe1c1f784b573dea5",
+    "8-1-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "8-1-native.log": "9fd290a23aacb904c54fd992dd92d2894f5f307ca1bb8751dd2794ff7b5d9535",
+    "8-1-reference.json": "2971ec7d650379795a9598560689b05e4fa47d86b446ca101a216f0513e9f560",
+    "8-1-reference.memory.json": "0f09b658cd3df9d9f5fad5a837f1d4bd56589670449e0a6c52e78da32a4a7e3e",
+    "8-1-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "8-1-reference.log": "88ca38ffda55ff9a817ccbb01cc29f86d5e8d0129265cf81770c09bd01653791",
+    "8-2-reference.json": "6a209e479d6acacb7ff80259c235f0282bb5316e03af430156ed3f8994995149",
+    "8-2-reference.memory.json": "5702b8a19746142e3dc4ec6efc49aea7b8e9da8b999ae0abdbe4207368860306",
+    "8-2-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "8-2-reference.log": "5e370782a6dd9f3f76c9e363813ed2887dbe28860deb6f544694beab30df5a68",
+    "8-2-native.json": "5e061be502060b5c73a652a46c1d6060aff86b39d78350d66d06bf10776b6f2a",
+    "8-2-native.memory.json": "fa88ca7ff613b0b042e02ccf3d682f43dc24444218cd7039f2b0761d0acbc8fc",
+    "8-2-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "8-2-native.log": "9d1c28e487edd9e655e22d13034334d0142f8676a164c300d0086f7c758bdfa0",
+    "8-3-native.json": "b42b2e871fb35a8d4faad75b5d83c9b47e9471e8b7e62bdf049649f5dc7e87c0",
+    "8-3-native.memory.json": "d9ed007f60e7f1878debb4a8beafee81d1fdee3cf5e0e84e82f8e74bac385b43",
+    "8-3-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "8-3-native.log": "dc4789b9996c81d7a1be8fbfbb67dff4ad78241a550800c73ae5ddc1c4244f2e",
+    "8-3-reference.json": "5a3e4792b3d81587d6f00a075f9ef948fab94ca30ddac24f3d9a140f8b5f1430",
+    "8-3-reference.memory.json": "5d245215bb06277b86159d236640e9c02c15fa9880d187b07077fb1bf3f4a411",
+    "8-3-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "8-3-reference.log": "5d309a3e35d7f727befac995ae86ac56781d9b536e69994b19e9e83f8d26e20b",
+    "8-4-reference.json": "569cfd0c166cedeb8b6dfacafd3eedc56c9c0865573b042036099cb611ea2b24",
+    "8-4-reference.memory.json": "c72927b026a995726897d2164573ac2ced885d1f6c0fe971f532c23de10a9c2f",
+    "8-4-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "8-4-reference.log": "5a70547fabf8bf7a87b350794d4a0e354407d3998495a941294d6913beb129ea",
+    "8-4-native.json": "553b95fe8f3e5522d4e403274d792439f20296a7a3d3af5eb91963cfc9e51cbb",
+    "8-4-native.memory.json": "63fc1c71d20f5e68d31ba19d5c832830f1765d31fbf5f317a05ae3fa071c1b5a",
+    "8-4-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "8-4-native.log": "9247bcc419d71fe2a4b41e0baa80bd598db8875be872746dcd952532390e4548"
+  },
+  "output_sha256": "81118723b01b4f3ca696dea1f7c3dd275b203a3e0dded57ac1c1667e22165481",
+  "limits": [
+    "Audits retained artifacts; does not rerun full input fingerprinting or native code.",
+    "Sampled family RSS sums shared pages and may miss peaks; maximum sampling gaps are retained.",
+    "All complete worker outputs come from the separate untimed verification pass.",
+    "Full aggregate intervals use exact paired enumeration, replacing the original random-bootstrap intervals.",
+    "Partial checkpoints have no aggregate and do not establish cache freshness."
+  ],
+  "fresh_raw_sha256": {
+    "fresh-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "fresh-reference.log": "f41a732f430d656fdfe834b4972692403c61287f4fa5d0714640d4c994265368",
+    "fresh-reference.json": "92dd93bb70bfd2029ded2001277a481cd407663ade1381c35e6ab525f3d4c711"
+  },
+  "fresh_reference_sha256": "f52e08c8b34983deaec5ddd9d95aa4bcaedfc63b89bc8cb8dd416a27cdd68457",
+  "summary": {
+    "0": {
+      "epoch_s": {
+        "reference_median": 21.883443797938526,
+        "candidate_median": 22.23506323620677,
+        "reference_over_candidate": 0.9841862631766354,
+        "paired_bootstrap_ci95": [
+          0.9841862631766354,
+          1.0183204102733163
+        ],
+        "raw_pairs": [
+          [
+            22.361537794116884,
+            22.530552692245692
+          ],
+          [
+            21.621282423846424,
+            21.434083594940603
+          ],
+          [
+            22.97172842780128,
+            22.55844839802012
+          ],
+          [
+            21.27383113792166,
+            21.373388790991157
+          ],
+          [
+            21.883443797938526,
+            22.23506323620677
+          ]
+        ]
+      },
+      "first_batch_s": {
+        "reference_median": 0.04154355498030782,
+        "candidate_median": 0.03726566210389137,
+        "reference_over_candidate": 1.1147944953853306,
+        "paired_bootstrap_ci95": [
+          1.1104557896281002,
+          1.1653601436867216
+        ],
+        "raw_pairs": [
+          [
+            0.04146681819111109,
+            0.03720527235418558
+          ],
+          [
+            0.041633402928709984,
+            0.03749217512086034
+          ],
+          [
+            0.04141767881810665,
+            0.037286220118403435
+          ],
+          [
+            0.04330436326563358,
+            0.03715963987633586
+          ],
+          [
+            0.04154355498030782,
+            0.03726566210389137
+          ]
+        ]
+      },
+      "after_first_batch_s": {
+        "reference_median": 21.841900242958218,
+        "candidate_median": 22.19779757410288,
+        "reference_over_candidate": 0.9839669980791307,
+        "paired_bootstrap_ci95": [
+          0.9839669980791307,
+          1.0181672938478692
+        ],
+        "raw_pairs": [
+          [
+            22.320070975925773,
+            22.493347419891506
+          ],
+          [
+            21.579649020917714,
+            21.396591419819742
+          ],
+          [
+            22.930310748983175,
+            22.521162177901715
+          ],
+          [
+            21.230526774656028,
+            21.33622915111482
+          ],
+          [
+            21.841900242958218,
+            22.19779757410288
+          ]
+        ]
+      },
+      "images_per_s": {
+        "reference_median": 228.48323354256573,
+        "candidate_median": 224.87005981877226,
+        "reference_over_candidate": 1.0160678292463896,
+        "paired_bootstrap_ci95": [
+          0.9820091887695748,
+          1.0160678292463896
+        ],
+        "raw_pairs": [
+          [
+            223.5982178880137,
+            221.92087643375223
+          ],
+          [
+            231.2536278831189,
+            233.27332740179395
+          ],
+          [
+            217.65885034357296,
+            221.6464497814856
+          ],
+          [
+            235.03053904979305,
+            233.9357623114726
+          ],
+          [
+            228.48323354256573,
+            224.87005981877226
+          ]
+        ]
+      },
+      "sampled_family_peak_rss_bytes": {
+        "reference_median": 706785280,
+        "candidate_median": 706797568,
+        "reference_over_candidate": 0.9999826145411977,
+        "paired_bootstrap_ci95": [
+          0.9983489841907995,
+          1.0086690789321087
+        ],
+        "raw_pairs": [
+          [
+            712486912,
+            706363392
+          ],
+          [
+            706097152,
+            706797568
+          ],
+          [
+            707190784,
+            706666496
+          ],
+          [
+            706785280,
+            706977792
+          ],
+          [
+            705888256,
+            707055616
+          ]
+        ]
+      }
+    },
+    "2": {
+      "epoch_s": {
+        "reference_median": 15.646404448896646,
+        "candidate_median": 14.902881843037903,
+        "reference_over_candidate": 1.0498911964605082,
+        "paired_bootstrap_ci95": [
+          1.0136358568144053,
+          1.0998247177524836
+        ],
+        "raw_pairs": [
+          [
+            15.716215526685119,
+            14.390696909744292
+          ],
+          [
+            15.646404448896646,
+            15.0957041233778
+          ],
+          [
+            16.390557816717774,
+            14.902881843037903
+          ],
+          [
+            15.487525734584779,
+            15.279181010089815
+          ],
+          [
+            15.603174455929548,
+            14.640842812135816
+          ]
+        ]
+      },
+      "first_batch_s": {
+        "reference_median": 2.695694626774639,
+        "candidate_median": 2.70014239102602,
+        "reference_over_candidate": 0.9983527667777213,
+        "paired_bootstrap_ci95": [
+          0.9899751286430027,
+          1.0018938691036097
+        ],
+        "raw_pairs": [
+          [
+            2.71104674693197,
+            2.7110994458198547
+          ],
+          [
+            2.7002168889157474,
+            2.6951126982457936
+          ],
+          [
+            2.6944474265910685,
+            2.70014239102602
+          ],
+          [
+            2.695694626774639,
+            2.698323125950992
+          ],
+          [
+            2.6941155451349914,
+            2.7213972019962966
+          ]
+        ]
+      },
+      "after_first_batch_s": {
+        "reference_median": 12.946187559980899,
+        "candidate_median": 12.202739452011883,
+        "reference_over_candidate": 1.0609246891562896,
+        "paired_bootstrap_ci95": [
+          1.0167693829478273,
+          1.1223799741023404
+        ],
+        "raw_pairs": [
+          [
+            13.005168779753149,
+            11.679597463924438
+          ],
+          [
+            12.946187559980899,
+            12.400591425132006
+          ],
+          [
+            13.696110390126705,
+            12.202739452011883
+          ],
+          [
+            12.79183110781014,
+            12.580857884138823
+          ],
+          [
+            12.909058910794556,
+            11.919445610139519
+          ]
+        ]
+      },
+      "images_per_s": {
+        "reference_median": 319.56223657203174,
+        "candidate_median": 335.50557889820635,
+        "reference_over_candidate": 0.9524796506259829,
+        "paired_bootstrap_ci95": [
+          0.9092357935394673,
+          0.9865475784792586
+        ],
+        "raw_pairs": [
+          [
+            318.14274826597557,
+            347.4466894382563
+          ],
+          [
+            319.56223657203174,
+            331.2200583116096
+          ],
+          [
+            305.053681266429,
+            335.50557889820635
+          ],
+          [
+            322.84046436382243,
+            327.2426707097836
+          ],
+          [
+            320.4476123831257,
+            341.5103941868355
+          ]
+        ]
+      },
+      "sampled_family_peak_rss_bytes": {
+        "reference_median": 2123448320,
+        "candidate_median": 2114240512,
+        "reference_over_candidate": 1.0043551374348085,
+        "paired_bootstrap_ci95": [
+          1.000003863092019,
+          1.0057104239926882
+        ],
+        "raw_pairs": [
+          [
+            2123448320,
+            2114240512
+          ],
+          [
+            2119000064,
+            2110640128
+          ],
+          [
+            2127351808,
+            2115272704
+          ],
+          [
+            2123771904,
+            2112786432
+          ],
+          [
+            2120589312,
+            2120581120
+          ]
+        ]
+      }
+    },
+    "8": {
+      "epoch_s": {
+        "reference_median": 15.953149162698537,
+        "candidate_median": 15.637660740874708,
+        "reference_over_candidate": 1.020174911519802,
+        "paired_bootstrap_ci95": [
+          1.0121998680580582,
+          1.0243567042874095
+        ],
+        "raw_pairs": [
+          [
+            15.970859562978148,
+            15.662788953166455
+          ],
+          [
+            15.953149162698537,
+            15.573822181206197
+          ],
+          [
+            15.886201370041817,
+            15.694727762136608
+          ],
+          [
+            15.860087247099727,
+            15.558442081790417
+          ],
+          [
+            15.972470364067703,
+            15.637660740874708
+          ]
+        ]
+      },
+      "first_batch_s": {
+        "reference_median": 10.62869706330821,
+        "candidate_median": 10.645786785986274,
+        "reference_over_candidate": 0.9983946961345721,
+        "paired_bootstrap_ci95": [
+          0.9924749435480771,
+          1.0077120387781704
+        ],
+        "raw_pairs": [
+          [
+            10.651491811033338,
+            10.645786785986274
+          ],
+          [
+            10.690200076904148,
+            10.608387778978795
+          ],
+          [
+            10.590894647873938,
+            10.671196000184864
+          ],
+          [
+            10.62869706330821,
+            10.655445324722677
+          ],
+          [
+            10.624918670393527,
+            10.6258151717484
+          ]
+        ]
+      },
+      "after_first_batch_s": {
+        "reference_median": 5.295306722167879,
+        "candidate_median": 5.011845569126308,
+        "reference_over_candidate": 1.056558237705434,
+        "paired_bootstrap_ci95": [
+          1.0541003766064663,
+          1.0669825356582947
+        ],
+        "raw_pairs": [
+          [
+            5.31936775194481,
+            5.0170021671801805
+          ],
+          [
+            5.262949085794389,
+            4.965434402227402
+          ],
+          [
+            5.295306722167879,
+            5.023531761951745
+          ],
+          [
+            5.231390183791518,
+            4.90299675706774
+          ],
+          [
+            5.347551693674177,
+            5.011845569126308
+          ]
+        ]
+      },
+      "images_per_s": {
+        "reference_median": 313.41774272950073,
+        "candidate_median": 319.74091795780447,
+        "reference_over_candidate": 0.9802240661949366,
+        "paired_bootstrap_ci95": [
+          0.9762224387408551,
+          0.9879471748188784
+        ],
+        "raw_pairs": [
+          [
+            313.0701876303789,
+            319.2279494380328
+          ],
+          [
+            313.41774272950073,
+            321.0515660075906
+          ],
+          [
+            314.7385509936312,
+            318.5783197885379
+          ],
+          [
+            315.2567777276465,
+            321.36893743699403
+          ],
+          [
+            313.03861494388474,
+            319.74091795780447
+          ]
+        ]
+      },
+      "sampled_family_peak_rss_bytes": {
+        "reference_median": 6359691264,
+        "candidate_median": 6344384512,
+        "reference_over_candidate": 1.0024126456981048,
+        "paired_bootstrap_ci95": [
+          0.9992775620722024,
+          1.0025174978692633
+        ],
+        "raw_pairs": [
+          [
+            6359691264,
+            6343720960
+          ],
+          [
+            6359707648,
+            6346465280
+          ],
+          [
+            6339801088,
+            6344384512
+          ],
+          [
+            6367617024,
+            6354857984
+          ],
+          [
+            6358196224,
+            6343811072
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -13,8 +13,10 @@ The new binary also completed 75 audited Memray traces: public overlap peak
 tracked allocation is 61–91% lower than the upstream Python/OpenCV reference;
 explicit bounded mode reduces it 94–99.6%. These are allocation, not RSS or
 training results. See [UNIT_SCALE_ALLOCATIONS.md](UNIT_SCALE_ALLOCATIONS.md).
-The full 60-process real-data loader series is running. Its first three workers
-passed complete-output and raw-memory checks; no full speedup is established.
+The full 60-process real-data loader series and both rebuilt-cache reference
+checks completed. All outputs match. Epoch ratios range from 0.9842 to 1.0499,
+with small family-RSS differences; the 10% loader gate remains unmet. Both full
+audits passed, and 44 damaged-evidence cases were rejected.
 See [UNIT_SCALE_LOADER.md](UNIT_SCALE_LOADER.md).
 
 This experimental `perf/resize-roi` branch adds sampling-aligned resize crops.

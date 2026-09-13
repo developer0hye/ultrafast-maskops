@@ -1,0 +1,279 @@
+{
+  "complete_controls_passed": [
+    "yes",
+    "no"
+  ],
+  "rejected": 44,
+  "cases": [
+    {
+      "mode": "yes",
+      "damage": "missing_run",
+      "rejected": true,
+      "reason": "incomplete requested sample count"
+    },
+    {
+      "mode": "yes",
+      "damage": "order",
+      "rejected": true,
+      "reason": "missing, extra or reordered samples"
+    },
+    {
+      "mode": "yes",
+      "damage": "raw_parent",
+      "rejected": true,
+      "reason": "raw/parent disagreement"
+    },
+    {
+      "mode": "yes",
+      "damage": "incomplete_images",
+      "rejected": true,
+      "reason": "incomplete epoch or verification"
+    },
+    {
+      "mode": "yes",
+      "damage": "wrong_overlap",
+      "rejected": true,
+      "reason": "wrong mask/augmentation/cache configuration"
+    },
+    {
+      "mode": "yes",
+      "damage": "wrong_source",
+      "rejected": true,
+      "reason": "worker identity drift"
+    },
+    {
+      "mode": "yes",
+      "damage": "output_parity",
+      "rejected": true,
+      "reason": "full output parity mismatch"
+    },
+    {
+      "mode": "yes",
+      "damage": "bad_throughput",
+      "rejected": true,
+      "reason": "wrong throughput"
+    },
+    {
+      "mode": "yes",
+      "damage": "wrong_topology",
+      "rejected": true,
+      "reason": "wrong object population"
+    },
+    {
+      "mode": "yes",
+      "damage": "missing_verification",
+      "rejected": true,
+      "reason": "incomplete epoch or verification"
+    },
+    {
+      "mode": "yes",
+      "damage": "missing_parity",
+      "rejected": true,
+      "reason": "missing parity result"
+    },
+    {
+      "mode": "yes",
+      "damage": "memory_peak",
+      "rejected": true,
+      "reason": "wrong family RSS peak"
+    },
+    {
+      "mode": "yes",
+      "damage": "memory_count",
+      "rejected": true,
+      "reason": "wrong sample count"
+    },
+    {
+      "mode": "yes",
+      "damage": "memory_order",
+      "rejected": true,
+      "reason": "unordered memory samples"
+    },
+    {
+      "mode": "yes",
+      "damage": "worker_phase",
+      "rejected": true,
+      "reason": "worker not terminal"
+    },
+    {
+      "mode": "yes",
+      "damage": "extra_artifact",
+      "rejected": true,
+      "reason": "missing or extra raw artifacts"
+    },
+    {
+      "mode": "yes",
+      "damage": "fresh_binding",
+      "rejected": true,
+      "reason": "fresh reference not bound to complete report"
+    },
+    {
+      "mode": "yes",
+      "damage": "fresh_output",
+      "rejected": true,
+      "reason": "fresh reference mismatch"
+    },
+    {
+      "mode": "yes",
+      "damage": "fresh_phase",
+      "rejected": true,
+      "reason": "fresh reference not terminal"
+    },
+    {
+      "mode": "yes",
+      "damage": "fresh_count",
+      "rejected": true,
+      "reason": "fresh reference not bound to complete report"
+    },
+    {
+      "mode": "yes",
+      "damage": "cache_hash_missing",
+      "rejected": true,
+      "reason": "missing rebuilt cache hash"
+    },
+    {
+      "mode": "yes",
+      "damage": "aggregate",
+      "rejected": true,
+      "reason": "wrong parent median/p95"
+    },
+    {
+      "mode": "no",
+      "damage": "missing_run",
+      "rejected": true,
+      "reason": "incomplete requested sample count"
+    },
+    {
+      "mode": "no",
+      "damage": "order",
+      "rejected": true,
+      "reason": "missing, extra or reordered samples"
+    },
+    {
+      "mode": "no",
+      "damage": "raw_parent",
+      "rejected": true,
+      "reason": "raw/parent disagreement"
+    },
+    {
+      "mode": "no",
+      "damage": "incomplete_images",
+      "rejected": true,
+      "reason": "incomplete epoch or verification"
+    },
+    {
+      "mode": "no",
+      "damage": "wrong_overlap",
+      "rejected": true,
+      "reason": "wrong mask/augmentation/cache configuration"
+    },
+    {
+      "mode": "no",
+      "damage": "wrong_source",
+      "rejected": true,
+      "reason": "worker identity drift"
+    },
+    {
+      "mode": "no",
+      "damage": "output_parity",
+      "rejected": true,
+      "reason": "full output parity mismatch"
+    },
+    {
+      "mode": "no",
+      "damage": "bad_throughput",
+      "rejected": true,
+      "reason": "wrong throughput"
+    },
+    {
+      "mode": "no",
+      "damage": "wrong_topology",
+      "rejected": true,
+      "reason": "wrong object population"
+    },
+    {
+      "mode": "no",
+      "damage": "missing_verification",
+      "rejected": true,
+      "reason": "incomplete epoch or verification"
+    },
+    {
+      "mode": "no",
+      "damage": "missing_parity",
+      "rejected": true,
+      "reason": "missing parity result"
+    },
+    {
+      "mode": "no",
+      "damage": "memory_peak",
+      "rejected": true,
+      "reason": "wrong family RSS peak"
+    },
+    {
+      "mode": "no",
+      "damage": "memory_count",
+      "rejected": true,
+      "reason": "wrong sample count"
+    },
+    {
+      "mode": "no",
+      "damage": "memory_order",
+      "rejected": true,
+      "reason": "unordered memory samples"
+    },
+    {
+      "mode": "no",
+      "damage": "worker_phase",
+      "rejected": true,
+      "reason": "worker not terminal"
+    },
+    {
+      "mode": "no",
+      "damage": "extra_artifact",
+      "rejected": true,
+      "reason": "missing or extra raw artifacts"
+    },
+    {
+      "mode": "no",
+      "damage": "fresh_binding",
+      "rejected": true,
+      "reason": "fresh reference not bound to complete report"
+    },
+    {
+      "mode": "no",
+      "damage": "fresh_output",
+      "rejected": true,
+      "reason": "fresh reference mismatch"
+    },
+    {
+      "mode": "no",
+      "damage": "fresh_phase",
+      "rejected": true,
+      "reason": "fresh reference not terminal"
+    },
+    {
+      "mode": "no",
+      "damage": "fresh_count",
+      "rejected": true,
+      "reason": "fresh reference not bound to complete report"
+    },
+    {
+      "mode": "no",
+      "damage": "cache_hash_missing",
+      "rejected": true,
+      "reason": "missing rebuilt cache hash"
+    },
+    {
+      "mode": "no",
+      "damage": "aggregate",
+      "rejected": true,
+      "reason": "wrong parent median/p95"
+    }
+  ],
+  "auditor_sha256": "6aff47e7ca67bfc7a550bcfdfb2e54931285a831d2223fc58dd100170c8e16e8",
+  "qualification_source_sha256": "1ecebadca2ad4a25ffe693a4b71bd0e814f10ecb7bf6a8c108d035ccbd09a8d7",
+  "input_report_sha256": {
+    "yes": "ebd88cd05eaff759c7dd0c96d29fddc8678109ef8b6e850a63028df907b2c511",
+    "no": "4fde8091aab77a5795fb0bba81b2e19cca52b8f34febea300b09f0adfe74ffff"
+  }
+}
