@@ -68,6 +68,30 @@ faster. Removing it entirely would bound this loader at 10.33 / 6.60 = 1.57×;
 the rest is JPEG decoding, `warpAffine`, HSV conversion and file reads, which
 already run in OpenCV.
 
+### i5-10400 (Linux), with the sampled mask path
+
+Measured at commit `54fc9f6` with 1,000 samples per process and five
+alternating rounds, on an otherwise idle host. The output digest is identical
+for every backend and round.
+
+| Backend | ms / sample | Loader speedup |
+|---|---:|---:|
+| Reference | 14.15 | 1.00× |
+| Masks only | 13.03 | 1.09× |
+| Geometry + masks | **8.71** | **1.63×** |
+
+Per sample, the timed segment stages fall from 6.52 ms to 1.08 ms (6.0×):
+
+| Stage | Reference | Geometry + masks | Speedup |
+|---|---:|---:|---:|
+| Resampling | 1.66 ms | 0.39 ms | 4.3× |
+| `apply_segments` | 3.60 ms | 0.56 ms | 6.5× |
+| `Format._format_segments` | 1.25 ms | 0.14 ms | 8.9× |
+
+The `_format_segments` time includes the instance reordering that both
+implementations perform. Removing the segment stages entirely would bound this
+loader at 14.15 / 7.64 = 1.85×.
+
 ### Anatomy of `apply_segments`
 
 On 1,500 captured COCO calls (median 24 instances and 24,000 points per call;
@@ -118,8 +142,10 @@ full-resolution image:
   - it drops consecutive duplicate vertices (71% of resampled COCO vertices);
   - it computes the area sums and the composition.
 
-  NEON handles four vertices per step with table-driven compaction, the
-  pattern table lookup (`tbl`) and the composition select.
+  On arm64, NEON handles four vertices per step with table-driven compaction,
+  the pattern table lookup (`tbl`) and the composition select. On x86-64, SSE2
+  converts two vertices per step and does the span ORs and the composition,
+  and SSSE3 `pshufb`, selected at run time, does the table lookup.
 - Some inputs use the previous full-resolution path, which keeps its exact
   error behaviour: coordinates outside the envelope where every intermediate is
   provably exact (|coordinate| ≥ 2^24, sides > 32,768), non-finite values, and
@@ -129,21 +155,25 @@ The results below are for 2,000 captured COCO Format calls (27,497 instances)
 from `bench/mask_stage.py`. They are medians of five alternating rounds in one
 process, and every output was compared with the unmodified function first.
 
-| Backend | µs / call | Instructions / call | Speedup |
-|---|---:|---:|---:|
-| Reference `polygons2masks_overlap` | 1,054 | 9.87 M | 1.00× |
-| Previous native path (full resolution) | 411 | 2.94 M | 2.57× |
-| Sampled native path | 69 | 0.68 M | **15.3×** |
+| Backend | M2, µs / call | i5-10400 (Linux), µs / call | M2 speedup | i5-10400 speedup |
+|---|---:|---:|---:|---:|
+| Reference `polygons2masks_overlap` | 1,054 | 1,207 | 1.00× | 1.00× |
+| Previous native path (full resolution) | 411 | 382 | 2.57× | 3.16× |
+| Sampled native path | 69 | 88 | **15.3×** | **13.7×** |
 
-- **Wall-clock:** the run started as another job was finishing (1-minute load
-  average 3.7–3.9). That inflates the absolute times of every backend in the
-  alternating rounds. With a quiet host, the reference measured about 620 µs.
-- **Instructions:** retired instructions from `/usr/bin/time -l` do not depend on
-  load. They give 14.5× against the reference and 4.3× against the previous
-  native path.
-- **x86-64:** the Linux and Windows CI builds (MSVC, scalar fallbacks) pass the
-  same parity tests. The calibration finds a table there too, so the sampled
-  path is active on all three CI platforms.
+- **M2 wall-clock:** measured at commit `4219950`, just after another job had
+  finished (1-minute load average 3.7–3.9). That inflates the absolute times of
+  every backend in the alternating rounds. With a quiet host, the reference
+  measured about 620 µs.
+- **M2 instructions:** retired instructions from `/usr/bin/time -l` do not
+  depend on load. Per call they are 9.87 M for the reference, 2.94 M for the
+  previous native path and 0.68 M for the sampled path: 14.5× and 4.3× fewer.
+- **i5-10400:** measured at commit `54fc9f6` (SSE2/SSSE3 paths) on an otherwise
+  idle host with a load average below 1. The same host's run before the x86
+  SIMD paths gave 111 µs (11.0×).
+- **Portability:** the Linux and Windows CI builds (GCC, MSVC) pass the same
+  parity tests, and the calibration finds a table on all three CI platforms,
+  so the sampled path is active everywhere.
 
 Inside the loader, `Format._format_segments` also reorders the instances
 (`instances[order]`, which copies every segment array). Both implementations

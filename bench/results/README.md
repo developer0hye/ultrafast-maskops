@@ -8,5 +8,7 @@
 - `coco-source-manifest.json`, `coco-segment-manifest.json`: frozen official COCO images/annotations, converter and complete converted Segmentation fixture provenance.
 - `coco-loader-pilot-m2.json`: 64-image execution/parity smoke at workers 0/2. One run per backend/configuration; its timing and degenerate bootstrap intervals are not representative performance evidence.
 - `mask-stage-sampled-m2-v1.json`, `.log`: overlap-mask stage (`bench/mask_stage.py`) on 2,000 captured COCO Format calls. Reference, the full-resolution native path and the sampled native path, five alternating rounds; every output is compared with the unmodified function first. The log records the load average around the run.
+- `mask-stage-sampled-linux-v1.json`: the same mask-stage measurement on an i5-10400 (Linux) at commit `54fc9f6`; `sampled-linux-v1-env.txt` records the host, compiler and commit.
+- `geometry-loader-sampled-linux-v1.json`: augmented COCO val2017 segmentation `__getitem__` (`bench/geometry_loader.py`) on the same host and commit, 1,000 samples and five alternating rounds per backend, with identical output digests.
 
 Full methodology, unfavorable cases and incomplete release gates: [report](../../docs/BENCHMARKS.md).

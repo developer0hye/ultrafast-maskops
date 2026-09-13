@@ -1,0 +1,4 @@
+Linux 7.0.0-28-generic x86_64
+Model name:                              Intel(R) Core(TM) i5-10400 CPU @ 2.90GHz
+gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+54fc9f64f780316686e050eb83254884d44f262e
