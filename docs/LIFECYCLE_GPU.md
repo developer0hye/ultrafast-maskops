@@ -17,12 +17,15 @@ Optional arguments enable the separate lifecycle protocol:
   numbers are zero-based and must precede the final epoch.
 - `--resume-from PATH --resume-receipt JSON` resumes a retained checkpoint from
   a completed reference trial with the same script, installed packages, upstream
-  sources, corpus, cache proof and training settings. The checkpoint must match
+  sources, resolved corpus path, corpus bytes, cache proof and training settings. The checkpoint must match
   the receipt's recorded path and SHA-256 before PyTorch deserializes it.
 
 All outputs use new directories. Resume passes the upstream-supported `save_dir`
 override so restored checkpoint arguments cannot send writes to the original
-trial directory. Input checkpoint bytes must remain unchanged. Intermediate
+trial directory. Input checkpoint and receipt bytes must remain unchanged; the
+reported receipt hash binds the exact bytes parsed before training. The resolved
+corpus path is checked because relative content hashes alone do not bind paths
+stored in reference caches and label dictionaries. Intermediate
 optimizer state and EMA updates must be present, and their state counts/update
 counter must be observed after the unmodified resume routine restores them.
 This is not an independent byte-by-byte audit of every restored optimizer tensor.

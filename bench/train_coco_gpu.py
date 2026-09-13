@@ -49,15 +49,19 @@ def main():
     assert all(0 <= epoch < args.epochs - 1 for epoch in args.checkpoint_epochs)
     assert bool(args.resume_from) == bool(args.resume_receipt)
     lifecycle = bool(args.close_mosaic or args.persistent_mask or args.resume_from or args.checkpoint_epochs)
-    resume_receipt, resume_sha, expected_start = None, None, 0
+    resume_receipt, resume_sha, resume_receipt_sha, expected_start = None, None, None, 0
     resume_state = None
     if args.resume_from:
         assert args.close_mosaic and not args.checkpoint_epochs
         args.resume_from = args.resume_from.resolve()
         args.resume_receipt = args.resume_receipt.resolve()
-        resume_receipt = json.loads(args.resume_receipt.read_text())
+        receipt_bytes = args.resume_receipt.read_bytes()
+        resume_receipt = json.loads(receipt_bytes)
+        resume_receipt_sha = hashlib.sha256(receipt_bytes).hexdigest()
+        del receipt_bytes
         assert resume_receipt["complete"] and resume_receipt["args"]["backend"] == "reference"
         assert resume_receipt["script_sha256"] == file_sha(__file__)
+        assert resume_receipt["corpus_root"] == str(args.corpus.resolve()), "resume corpus path differs"
         for key in ("workers", "epochs", "batch", "imgsz", "overlap", "close_mosaic", "persistent_mask"):
             assert resume_receipt["args"][key] == getattr(args, key), f"resume protocol differs: {key}"
         matches = [c for c in resume_receipt["checkpoints"] if Path(c["path"]).resolve() == args.resume_from]
@@ -365,6 +369,7 @@ def main():
         "packages": packages,
         "mask_build": maskops.backend_info(),
         "fixture": COCO_FINGERPRINT,
+        "corpus_root": str(root),
         "original_cache_sha256": cache_sha,
         "fresh_check_sha256": file_sha(args.fresh_check),
         "python": sys.version,
@@ -383,7 +388,7 @@ def main():
         "lifecycle_requested": lifecycle,
         "resume_input": None if not args.resume_from else {
             "path": str(args.resume_from), "sha256": resume_sha,
-            "receipt_sha256": file_sha(args.resume_receipt), "expected_start_epoch": expected_start,
+            "receipt_sha256": resume_receipt_sha, "expected_start_epoch": expected_start,
             "restored_state_expectation": resume_state,
         },
     }
@@ -430,6 +435,7 @@ def main():
             assert file_sha(checkpoint["path"]) == checkpoint["sha256"]
         if args.resume_from:
             assert file_sha(args.resume_from) == resume_sha, "input checkpoint changed"
+            assert file_sha(args.resume_receipt) == resume_receipt_sha, "input checkpoint receipt changed"
         final_sha = state_sha(unwrap_model(trainer.model))
         assert final_sha != trainer.initial_state_sha, "model must actually update"
         assert file_sha(cache) == cache_sha, "original cache changed"
