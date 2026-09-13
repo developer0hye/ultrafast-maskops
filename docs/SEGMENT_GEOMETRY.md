@@ -55,13 +55,35 @@ backend and round.
 
 | Backend | ms / sample | Loader speedup |
 |---|---:|---:|
-| Reference | 10.37 | 1.00× |
-| Masks only (`accelerate_dataset`) | 10.20 | 1.02× |
-| Geometry + masks (`accelerate_dataset` + `accelerate_geometry`) | **8.24** | **1.26×** |
+| Reference | 10.33 | 1.00× |
+| Masks only (`accelerate_dataset`) | 9.68 | 1.07× |
+| Geometry + masks (`accelerate_dataset` + `accelerate_geometry`) | **7.35** | **1.40×** |
 
-Per 1,000 samples, resampling fell from 0.82 s to 0.18 s and `apply_segments`
-from 2.22 s to 0.96 s. The remaining `apply_segments` time is the NumPy affine
-product kept for exactness; a calibrated native product is next.
+Per 1,000 samples, resampling fell from 0.82 s to 0.18 s (4.5×) and
+`apply_segments` from 2.23 s to 0.61 s (3.7×); mask rasterization takes about
+0.26 s instead of 0.69 s (2.5×). The segment stage as a whole is about 3.6×
+faster. Removing it entirely would bound this loader at 10.33 / 6.60 = 1.57×;
+the rest is JPEG decoding, `warpAffine`, HSV conversion and file reads, which
+already run in OpenCV.
+
+### Anatomy of `apply_segments`
+
+On 1,500 captured COCO calls (median 24 instances and 24,000 points per call;
+67% of instances cross the image border after mosaic), one call takes 2.09 ms in
+the reference and 0.60 ms here: 0.41 ms is the NumPy part kept verbatim (the
+homogeneous array and `xy @ M.T`), the rest one native pass that divides by w,
+computes every box and clips.
+
+The matrix product stays in NumPy deliberately. Apple's Accelerate reproduces a
+fused multiply-add chain in k order for almost every size, but computes the
+last row of a 1,001-row product differently; random calibration data cannot
+reliably expose a one-row tail, so no calibration can guarantee a BLAS's order
+for every size and position.
+
+Inside the native pass, work is skipped only when its result is provably
+discarded: a division whose rounded `t` the reference certainly rejects, and a
+corner's point-in-polygon loop when the corner lies above, below or right of
+every contour vertex (OpenCV then returns -1 without an on-edge match).
 
 ## Reproduce
 
