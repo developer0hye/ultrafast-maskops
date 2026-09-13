@@ -1,0 +1,30 @@
+{
+  "complete_requested_samples": false,
+  "overlap": true,
+  "completed_workers": 3,
+  "report_sha256": "89fb9772d3caa7bed256157d3e8ac07002929dbf3570b6ca4d0ca9cf70c25c3e",
+  "identity_sha256": "017627f71b26620dae0f6a7e3089207444734a77a50902b143fc8cfeeee3e6c3",
+  "auditor_sha256": "6aff47e7ca67bfc7a550bcfdfb2e54931285a831d2223fc58dd100170c8e16e8",
+  "raw_sha256": {
+    "0-0-reference.json": "de8ae220982a84d7fa3e319d57e198ea23639625b6fa9528624e16760408b4de",
+    "0-0-reference.memory.json": "b6b10d1a0a20cf31134873c7394409b4d250109535d795edfa0ea886e8eef231",
+    "0-0-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-0-reference.log": "da656604f5b8639407e0df1dbd9d19dfae6adc80b55a70e2d2cf6d772b9060e9",
+    "0-0-native.json": "7bb57951a22f1c84c8a39f5347efb69c323429e46a7660ae04199b6c34a86cef",
+    "0-0-native.memory.json": "5a8694ee76d025d13baf83e0f0138dd4bc134b3707e0537ad9e159b71658af49",
+    "0-0-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-0-native.log": "6adf3fa833eadcf27a4015769d658397468636e15b0273d355aefd7daad6e37b",
+    "0-1-native.json": "f0edfd1e667883236b3489a0219892d21e6f5e983194ff89670ee8fe80b89de4",
+    "0-1-native.memory.json": "b5523130f75db2851eec8256eed798f868446380693581b1f0ae77a0b7c2e2ad",
+    "0-1-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-1-native.log": "0f6aebaa3ea00e46d8235025acc5a2b95eecbcadbbb0b11f1e125c2af5306570"
+  },
+  "output_sha256": "81118723b01b4f3ca696dea1f7c3dd275b203a3e0dded57ac1c1667e22165481",
+  "limits": [
+    "Audits retained artifacts; does not rerun full input fingerprinting or native code.",
+    "Sampled family RSS sums shared pages and may miss peaks; maximum sampling gaps are retained.",
+    "All complete worker outputs come from the separate untimed verification pass.",
+    "Full aggregate intervals use exact paired enumeration, replacing the original random-bootstrap intervals.",
+    "Partial checkpoints have no aggregate and do not establish cache freshness."
+  ]
+}
