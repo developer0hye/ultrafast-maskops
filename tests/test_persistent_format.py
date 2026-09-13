@@ -2,6 +2,7 @@
 
 import copy
 import pickle
+from multiprocessing.reduction import ForkingPickler
 from types import SimpleNamespace
 
 import numpy as np
@@ -78,14 +79,26 @@ def equal_batch(left, right):
             assert left[key] == right[key], key
 
 
+class ReferencePacket:
+    __slots__ = ("payload",)
+
+    def __init__(self, batch):
+        self.payload = bytes(ForkingPickler.dumps(batch))
+
+    def __reduce__(self):
+        return pickle.loads, (self.payload,)
+
+
 def reference_transport_collate(batch):
     # The original reference spawn teardown failure is preserved separately.
     # Keep its collation computation independent; prepare only IPC storage here.
     result = YOLODataset.collate_fn(batch)
+    if torch.utils.data.get_worker_info() is None:
+        return result
     for value in result.values():
         if isinstance(value, torch.Tensor):
             value.share_memory_()
-    return result
+    return ReferencePacket(result)
 
 
 @pytest.mark.parametrize("overlap", [True, False])

@@ -1,0 +1,20 @@
+{
+  "complete": true,
+  "host": "yonghye-pc",
+  "tool": "ruff 0.15.6",
+  "checks": [
+    "check",
+    "format --check"
+  ],
+  "returncodes": [
+    0,
+    0
+  ],
+  "checked_at": "2026-09-13T03:56:05.061120+00:00",
+  "files": {
+    "python/ultrafast_maskops/_shared_collate.py": "d5f21af4b980400a09d22aa4c8dcaa4aed91104dcba48e3fa7b66d1c38e70399",
+    "tests/test_shared_collate.py": "5f06da0fbe2d143baefb1235326d3d5ce99f768c024d8a61f5293030e684b945",
+    "tests/test_persistent_format.py": "cdd846bc8414fd5d66f7005aa2af9d9d508bd91ed760917fdcd5ba5159671be8"
+  },
+  "scope": "Three changed Python files; existing unchanged workflow lint belongs to v1 receipt; no runtime qualification."
+}

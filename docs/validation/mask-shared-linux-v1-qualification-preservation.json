@@ -1,0 +1,142 @@
+{
+  "preservation_complete": true,
+  "candidate_qualified": false,
+  "archive_sha256": "dbc13e216cb0e8227b1a0b1dc52db20811f4fc97e4a74e576d7b42cc47575e51",
+  "archive_bytes": 1659129,
+  "file_count": 29,
+  "files": {
+    "mask-shared-linux-v1-source.tar": {
+      "bytes": 870400,
+      "sha256": "45cb2f5b4499edc71db4621ba786c7fcdc0afdb33c293d49efe6746bceaad794"
+    },
+    "mask-shared-linux-v1-source.json": {
+      "bytes": 8400,
+      "sha256": "2ba588e53b52a56a4565d0af6d833a0247fce6d7dd6c4db4f5c5ef7869ae29bf"
+    },
+    "mask-shared-linux-v1-build.json": {
+      "bytes": 1240,
+      "sha256": "09491b5df6766db30747dbc11e8ba19db2368d383faf9b63f164dd40598874b3"
+    },
+    "mask-shared-linux-v1-build.log": {
+      "bytes": 56716,
+      "sha256": "6daf5232d6f6b930f71fbecdc688c6be51b9918f8a98ea3ba30f0e3c09447e91"
+    },
+    "mask-shared-linux-v1-lint.json": {
+      "bytes": 1711,
+      "sha256": "017486dbb29639774927790250473b28f27dbcc8fd6d86dd95f164d324d13a8f"
+    },
+    "mask-shared-linux-v1-standalone.json": {
+      "bytes": 6754,
+      "sha256": "a431f1c9aceacb7ace6409b73e1c30b9a08e9e0c4aeee5f1673d553dcee53388"
+    },
+    "mask-shared-linux-v1-standalone-wheel-validation.json": {
+      "bytes": 4291,
+      "sha256": "2bbe6461d9ed8a3328e112d98d940bc2f28408e12339b26eb69dbbe1fe4194b2"
+    },
+    "mask-shared-linux-v1-standalone-venv.log": {
+      "bytes": 329,
+      "sha256": "84070bdb43d6f16fa7767860e76754cab50a7ea9e3376dfdea2ae51850148b53"
+    },
+    "mask-shared-linux-v1-standalone-numpy.log": {
+      "bytes": 173,
+      "sha256": "d210b83c7f9103c191929d4c5052a0e6e596b2a63290f17c28a88f215c742f97"
+    },
+    "mask-shared-linux-v1-standalone-wheel.log": {
+      "bytes": 348,
+      "sha256": "543dc42b808c3f9f0912a3912e40b6fa94188954d03da227a086fec0b4527f1e"
+    },
+    "mask-shared-linux-v1-standalone-audit.log": {
+      "bytes": 54,
+      "sha256": "fa755fd84e1396a7b91d11a8c8fc87d43f10be291803b8c0f90cc8dabb03a5e3"
+    },
+    "mask-shared-linux-v1-runtime-setup.json": {
+      "bytes": 1600,
+      "sha256": "63eadbaa45cfa75fba0c0a7e1dedd06b6a3fa41dccd0d0d41e94213cf579b4bc"
+    },
+    "mask-shared-linux-v1-requirements.txt": {
+      "bytes": 1843,
+      "sha256": "deb554bb63e428e326951bd1884a3414c926ac23522f1abf959fe8a41706b5fa"
+    },
+    "mask-shared-linux-v1-dependencies.log": {
+      "bytes": 2266,
+      "sha256": "19f83e79a37db87bf4a1fec033abb38b944201c4bd082999de91f1b59f17f307"
+    },
+    "mask-shared-linux-v1-pip-check.log": {
+      "bytes": 30,
+      "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    "mask-shared-linux-v1-freeze.txt": {
+      "bytes": 1976,
+      "sha256": "848a35473f49a60b7c100b57860b8371cff832024105998f92f06a2ea82d3621"
+    },
+    "mask-shared-linux-v1-tests.json": {
+      "bytes": 764,
+      "sha256": "1645d7b9a0fe1d6fd90a6bb13225b3ff12c29201909d2ce1ff8d335829157b9e"
+    },
+    "mask-shared-linux-v1-tests.log": {
+      "bytes": 4349,
+      "sha256": "cce0d05b1458813fd5b091228d5eac588aa9b4741d26e5a58546d2fdc146c5a4"
+    },
+    "mask-shared-linux-v1-tests.xml": {
+      "bytes": 32258,
+      "sha256": "04d9be98a98fd132abb85ee5faef0434538fe3425b7258a3006d679f7b5db91c"
+    },
+    "mask-shared-linux-v1-reset-repro-1.json": {
+      "bytes": 532,
+      "sha256": "b60f377ae4b0d77fa666d0c6f6f63012ee8c0f9abb4f2dc4f02ca5b2df95f58b"
+    },
+    "mask-shared-linux-v1-reset-repro-1.log": {
+      "bytes": 98,
+      "sha256": "3505c63614e0e7a148de9b04c6f41b033d99179a5f2761e50bb62432044da326"
+    },
+    "mask-shared-linux-v1-reset-repro-1.xml": {
+      "bytes": 398,
+      "sha256": "51df6ebdf9c576162d356a66a72998089f60a9be8134053868047798a059f366"
+    },
+    "mask-shared-linux-v1-clean/pyvenv.cfg": {
+      "bytes": 184,
+      "sha256": "3cfbe5c70aad1a1c074c0769547b93124a3ddd7c184443417b7c4ab2968537f4"
+    },
+    "mask-shared-linux-v1-dist/ultrafast_maskops-0.1.0a1-cp312-cp312-linux_x86_64.whl": {
+      "bytes": 1278266,
+      "sha256": "67823a4764f910f7eb9fbd2f319b35313e8f6fed59ea2e1668bacf28b5724c20"
+    },
+    "mask-shared-linux-v1-dist/ultrafast_maskops-0.1.0a1.tar.gz": {
+      "bytes": 179978,
+      "sha256": "18adfb34cbb1e6adc4e0dc19185fca93624998b22661a8e071483c542735ab35"
+    },
+    "mask-shared-linux-v1-gdb-reset/0.log": {
+      "bytes": 4097,
+      "sha256": "312d4f8599f434f7eec1793b97c0e5a25186403863141c7effafe5ac6d55b064"
+    },
+    "mask-shared-linux-v1-gdb-reset/1.log": {
+      "bytes": 4049,
+      "sha256": "4fb78a8e257d1db043958cc425ab8cd8e99de998dbc3d06a8f953cf11df447b0"
+    },
+    "mask-shared-linux-v1-gdb-reset/2.log": {
+      "bytes": 12202,
+      "sha256": "6d7959611439ae1a521de69b4968a9ddf3bc1cd80c96efd34b42ad9edbe28020"
+    },
+    "mask-shared-linux-v1-gdb-reset/series.json": {
+      "bytes": 3570,
+      "sha256": "6f23ca89591111f69d1e225c70c5e1b77be601bc67b935a0e77a45894d42563b"
+    }
+  },
+  "tests": {
+    "total": 254,
+    "passed": 253,
+    "failed": [
+      "tests.test_persistent_format.test_close_mosaic_retains_format_through_real_worker_reset[first-batch-True-2]"
+    ],
+    "skipped": 0
+  },
+  "source_commit": "8e60554097cdba94a834b64730a1d2440d190d2b",
+  "findings": [
+    "Original installed suite failed despite all 23 collation unit cases passing.",
+    "One focused rerun passed; it does not replace the failed original outcome.",
+    "Third bounded GDB attempt caught THPVariable_clear/dealloc restoring the GIL while another thread finalized the worker.",
+    "Eager sharing alone is insufficient: Tensor destruction still occurs on the queue feeder.",
+    "No worker mode, shutdown implementation or exception suppression was changed."
+  ],
+  "all_archive_members_read_back": true
+}

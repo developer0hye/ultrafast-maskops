@@ -2,6 +2,7 @@
 
 import copy
 import pickle
+from multiprocessing.reduction import ForkingPickler
 from types import SimpleNamespace
 
 import pytest
@@ -50,7 +51,10 @@ def samples(counts=(0, 2, 3), overlap=False):
 
 @pytest.fixture
 def worker(monkeypatch):
+    # Isolate value/allocation assertions from transport. Separate round-trip
+    # tests and real spawned-loader lifecycle tests exercise the packet below.
     monkeypatch.setattr(torch.utils.data, "get_worker_info", lambda: SimpleNamespace(id=0))
+    monkeypatch.setattr(shared, "_encode_batch", lambda batch: batch)
 
 
 @pytest.mark.parametrize("overlap", [False, True])
@@ -184,3 +188,27 @@ def test_unsupported_tensor_outputs_require_explicit_integration(worker, kind):
     tensor = torch.eye(2).to_sparse() if kind == "sparse" else torch.ones(2, device="meta")
     with pytest.raises(TypeError, match="dense strided CPU tensors"):
         shared.shared_collate_fn([{"metadata": tensor}])
+
+
+@pytest.mark.parametrize("overlap", [False, True])
+def test_real_packet_round_trip_preserves_reference_batch(monkeypatch, overlap):
+    monkeypatch.setattr(torch.utils.data, "get_worker_info", lambda: SimpleNamespace(id=0))
+    batch = samples(overlap=overlap)
+    expected = YOLODataset.collate_fn(copy.deepcopy(batch))
+    packet = shared.shared_collate_fn(batch)
+    assert type(packet.payload) is bytes
+    decoded = ForkingPickler.loads(ForkingPickler.dumps(packet))
+    equal(expected, decoded)
+    assert decoded["img"].is_shared()
+
+
+def test_packet_contains_handles_not_a_copy_of_tensor_data():
+    tensor = torch.zeros(3, 512, 512, dtype=torch.uint8).share_memory_()
+    packet = shared._encode_batch({"img": tensor})
+    assert type(packet.payload) is bytes
+    assert len(packet.payload) < tensor.numel() // 8
+    tensor.fill_(17)
+    decoded = ForkingPickler.loads(ForkingPickler.dumps(packet))
+    assert torch.equal(decoded["img"], tensor)
+    decoded["img"].fill_(29)
+    assert (tensor == 29).all()  # The payload carries a shared handle, not pixels.

@@ -9,6 +9,13 @@ with exact post-reset batches and clean worker exit codes. **This is not yet a
 production fix or a throughput/memory result.** The original 221/222 suite outcome
 remains a failed qualification.
 
+**Follow-up:** eager sharing proved insufficient in the first installed shared
+collator: 253 tests passed and one reset failed. A second GDB trace catches
+Tensor destruction on the queue feeder during worker finalization, even after
+storage sharing has moved earlier. The [follow-up report](SHARED_LINUX_VALIDATION.md)
+preserves that failure and explains the unvalidated bytes-packet revision.
+The six passing controls below are limited historical evidence, not a fix claim.
+
 ## Observed abort path
 
 GDB followed the original reference-only reproducer and its spawned children.

@@ -3,8 +3,10 @@
 The candidate adds guarded CPU collation to the optional Ultralytics adapter.
 It is motivated by the [observed spawned-worker abort](WORKER_SHUTDOWN_DIAGNOSIS.md)
 and the extra heap-to-shared-storage copy performed when queue serialization
-receives ordinary batch tensors. The new runtime implementation and tests have
-not yet run in an installed wheel; earlier diagnostic successes do not qualify it.
+receives ordinary batch tensors. The first installed shared-collator revision
+failed qualification (253 passed, one worker-reset failure). The current packet
+revision has not yet run in an installed wheel; see the
+[failure and second debugger trace](SHARED_LINUX_VALIDATION.md).
 
 `accelerate_dataset(dataset, persistent=True)` now installs both the instance's
 FastFormat factory and its shared collator before workers are constructed.
@@ -23,6 +25,15 @@ directly into freshly owned shared storage. The pattern matches PyTorch's defaul
 tensor collator's shared output allocation, extended to the pinned YOLO batch
 contract. No output pool is reused while previous batches may remain queued or
 alive in the consumer. Zero-worker calls delegate to the original collator.
+
+After collation, the worker serializes the batch using `ForkingPickler`, whose
+registered Torch reducers encode shared-storage handles. An internal packet
+holds only the resulting bytes. The ordinary queue receiver reconstructs the
+original dict before DataLoader pinning or delivery to the consumer. Tensor
+serialization and destruction no longer belong to the queue feeder's payload
+lifetime. This is a transport change, with metadata serialization overhead;
+it does not serialize a copy of the image/mask pixels. Standard trusted local
+multiprocessing semantics apply. No externally supplied pickle input is added.
 
 Mixed dtypes, noncontiguous or channel-last inputs, and autograd inputs use the
 original Torch operation to preserve promotion/layout/error behavior, followed
@@ -49,8 +60,9 @@ and verify common output fields are already shared before final IPC preparation.
 The persistent lifecycle tests now cover reset before consumption, after a
 first batch and after a full epoch, with workers 0/2 and both mask modes. They
 check zero exit codes for old and replacement workers. Their reference side
-calls the original collator and eagerly shares its outputs, as in the independent
-control. This normalizes reference transport for **functional parity only**;
+calls the original collator, eagerly shares its outputs, and uses a separate
+test-only bytes packet with the standard Torch reducers. This normalizes
+reference transport for **functional parity only**;
 the original unmodified-reference failure remains preserved. It is not a speed
 comparison against an unchanged full reference loader.
 

@@ -2,14 +2,18 @@
 
 This branch adds an **unvalidated** optional adapter feature on top of the
 unit-scale mask candidate at `25853ef`. The current [shared-batch revision](SHARED_BATCHES.md)
-is not yet installed-tested. For the preceding factory-only revision, a fresh Linux wheel/sdist, standalone
+uses a bytes-only queue packet and is not yet installed-tested. Its preceding
+shared-collator revision failed with 253 passing tests and one worker-reset
+failure; see the [second shutdown trace](SHARED_LINUX_VALIDATION.md).
+For the preceding factory-only revision, a fresh Linux wheel/sdist, standalone
 installation and source/workflow lint passed. The full installed suite failed:
 221 passed and one spawned-worker reset test failed. A reference-only reproducer
 also fails without importing either new library. See the
 [qualification report](PERSISTENT_LINUX_VALIDATION.md) and preserved failures.
 A later [shutdown diagnosis](WORKER_SHUTDOWN_DIAGNOSIS.md) provides a native trace
 and six passing eager-sharing controls. The current source implements direct
-shared collation based on that evidence; runtime qualification remains pending.
+shared collation and worker-side packet serialization; runtime qualification
+remains pending after the eager-sharing-only revision failed.
 Actual lifecycle training remains unqualified; M2 remains reserved by its separate
 startup experiment. The earlier 209-test result and loader/GPU evidence predate
 this Python adapter change.
@@ -68,7 +72,7 @@ They also call the actual pinned trainer close-mosaic method, reset real
 InfiniteDataLoader workers at counts 0 and 2, verify prior workers terminate,
 and compare every batch field for both overlap and non-overlap masks. The current
 revision checks zero worker exit codes and all three reset points. Its reference
-collator now prepares shared transport eagerly for functional parity; the original
+collator now prepares shared transport and a test-only bytes packet for functional parity; the original
 reference failures remain preserved separately. This is not throughput evidence. Other random
 augmentations are disabled for this focused equality test; mosaic/mixup/copy-paste/
 cutmix are enabled before the transition and disabled by the reference method.

@@ -7,7 +7,9 @@ below. Direct allocation follows PyTorch's default tensor collation pattern.
 import hashlib
 import inspect
 import os
+import pickle
 from functools import lru_cache
+from multiprocessing.reduction import ForkingPickler
 
 import torch
 from ultralytics.data.dataset import YOLODataset
@@ -83,13 +85,34 @@ def _prepare_shared(value):
             _prepare_shared(child)
 
 
+class _BatchPacket:
+    """Only Python bytes reach the queue feeder; tensors stay in shared storage."""
+
+    __slots__ = ("payload",)
+
+    def __init__(self, batch):
+        self.payload = bytes(ForkingPickler.dumps(batch))
+
+    def __reduce__(self):
+        # Torch's registered reducers in the inner payload rebuild shared tensor
+        # handles. This runs in the receiving process, yielding the usual dict.
+        return pickle.loads, (self.payload,)
+
+
+def _encode_batch(batch):
+    return _BatchPacket(batch)
+
+
 def shared_collate_fn(batch):
     """Preserve the pinned batch contract; prepare worker tensors before IPC.
 
     Common contiguous homogeneous stack/cat fields are written directly into
     shared storage. Other supported tensors use reference operations and eager
     sharing. There is no reusable pool: each returned batch owns its storage.
-    Outside a DataLoader worker, call the original collator unchanged.
+    In workers, return an internal bytes-only packet which the normal queue
+    unpickles to the original batch structure. Serialization and Tensor cleanup
+    therefore stay off the queue feeder thread. Outside a DataLoader worker,
+    call the original collator unchanged.
     """
     _check_process_profile(os.getpid())
     if torch.utils.data.get_worker_info() is None:
@@ -113,7 +136,7 @@ def shared_collate_fn(batch):
             new_batch["batch_idx"][i] += i
         new_batch["batch_idx"] = _combine(new_batch["batch_idx"], stack=False)
     _prepare_shared(new_batch)
-    return new_batch
+    return _encode_batch(new_batch)
 
 
 def share_dataset_batches(dataset):
