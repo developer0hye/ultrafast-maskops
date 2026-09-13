@@ -37,6 +37,16 @@
 #if (defined(__aarch64__) || defined(_M_ARM64)) && !defined(__ARM_BIG_ENDIAN)
 #include <arm_neon.h>
 #define MASKOPS_SAMPLED_NEON 1
+#elif defined(__x86_64__) || defined(_M_X64)
+// SSE2 is the x86-64 baseline; the SSSE3 table lookup is selected at run time.
+#include <immintrin.h>
+#define MASKOPS_SAMPLED_X86 1
+#if defined(_MSC_VER) && !defined(__clang__)
+#include <intrin.h>
+#define MASKOPS_TARGET_SSSE3
+#else
+#define MASKOPS_TARGET_SSSE3 __attribute__((target("ssse3")))
+#endif
 #endif
 
 namespace maskops_sampled {
@@ -196,6 +206,14 @@ inline void or_run(uint8_t *p, int j0, int j1, uint8_t bits) {
     const uint8x16_t v = vdupq_n_u8(bits);
     for (; len >= 16; len -= 16, q += 16) vst1q_u8(q, vorrq_u8(vld1q_u8(q), v));
     if (len) vst1q_u8(q, vorrq_u8(vld1q_u8(q), vandq_u8(v, vld1q_u8(kPrefix.m[len]))));
+#elif defined(MASKOPS_SAMPLED_X86)
+    const __m128i v = _mm_set1_epi8(char(bits));
+    auto *w = reinterpret_cast<__m128i *>(q);
+    for (; len >= 16; len -= 16, ++w) _mm_storeu_si128(w, _mm_or_si128(_mm_loadu_si128(w), v));
+    if (len) {
+        const __m128i prefix = _mm_loadu_si128(reinterpret_cast<const __m128i *>(kPrefix.m[len]));
+        _mm_storeu_si128(w, _mm_or_si128(_mm_loadu_si128(w), _mm_and_si128(v, prefix)));
+    }
 #else
     for (; len > 0; --len, ++q) *q |= bits;
 #endif
@@ -272,6 +290,9 @@ class Sampler {
     // the box in the pattern image and returns the sum of written values.
     uint64_t emit(const Box &b, uint8_t *dst, ptrdiff_t stride) {
         if (b.empty()) return 0;
+#ifdef MASKOPS_SAMPLED_X86
+        if (has_ssse3()) return emit_ssse3(b, dst, stride);
+#endif
         uint64_t area = 0;
         const int bw = int(b.width());
 #ifdef MASKOPS_SAMPLED_NEON
@@ -305,6 +326,48 @@ class Sampler {
     }
 
   private:
+#ifdef MASKOPS_SAMPLED_X86
+    static bool has_ssse3() {
+        static const bool supported = [] {
+#if defined(_MSC_VER) && !defined(__clang__)
+            int info[4];
+            __cpuid(info, 1);
+            return ((info[2] >> 9) & 1) != 0;
+#else
+            return __builtin_cpu_supports("ssse3") != 0;
+#endif
+        }();
+        return supported;
+    }
+
+    // emit() with pshufb as the 16-entry table lookup and psadbw for the sum.
+    MASKOPS_TARGET_SSSE3 uint64_t emit_ssse3(const Box &b, uint8_t *dst, ptrdiff_t stride) {
+        const __m128i table = _mm_loadu_si128(reinterpret_cast<const __m128i *>(lut_)), zero = _mm_setzero_si128();
+        __m128i sums = zero;
+        uint64_t area = 0;
+        const int bw = int(b.width());
+        for (int y = b.y0; y <= b.y1; ++y) {
+            uint8_t *p = pattern_.data() + size_t(y) * size_t(ww) + size_t(b.x0);
+            uint8_t *d = dst + ptrdiff_t(y - b.y0) * stride;
+            int x = 0;
+            for (; x + 16 <= bw; x += 16) {
+                auto *source = reinterpret_cast<__m128i *>(p + x);
+                const __m128i o = _mm_shuffle_epi8(table, _mm_loadu_si128(source));
+                _mm_storeu_si128(reinterpret_cast<__m128i *>(d + x), o);
+                _mm_storeu_si128(source, zero);
+                sums = _mm_add_epi64(sums, _mm_sad_epu8(o, zero));
+            }
+            for (; x < bw; ++x) {
+                const uint8_t o = lut_[p[x]];
+                d[x] = o;
+                area += o;
+                p[x] = 0;
+            }
+        }
+        return area + uint64_t(_mm_cvtsi128_si64(sums)) + uint64_t(_mm_cvtsi128_si64(_mm_unpackhi_epi64(sums, sums)));
+    }
+#endif
+
     // Pixels of every edge's LINE_8 on sampled rows and columns. When both
     // ends are inside, the ends are vertices, each also the end of the edge
     // arriving at it, so only b and the interior are drawn here. A vertex b
@@ -592,13 +655,49 @@ inline bool load_contours(const F *xy, size_t n, size_t m, int32_t *points, int6
         }
         return vminvq_u32(ok) != 0;
     }
+#elif defined(MASKOPS_SAMPLED_X86)
+    if constexpr (std::is_same_v<F, float>) {
+        // Two vertices per step: one cvttps2dq, then a compaction whose only
+        // loop-carried dependency is the running count.
+        const __m128 limit = _mm_set1_ps(float(kCoordLimit));
+        const __m128 magnitude = _mm_castsi128_ps(_mm_set1_epi32(0x7FFFFFFF));
+        __m128 inside = _mm_castsi128_ps(_mm_set1_epi32(-1));
+        bool ok = true;
+        for (size_t i = 0; i < n; ++i) {
+            const float *p = xy + 2 * i * m;
+            uint64_t previous = 0;
+            size_t j = 0;
+            for (; j + 2 <= m; j += 2) {
+                const __m128 v = _mm_loadu_ps(p + 2 * j);
+                inside = _mm_and_ps(inside, _mm_cmplt_ps(_mm_and_ps(v, magnitude), limit));  // false for NaN
+                const __m128i c = _mm_cvttps_epi32(v);
+                const auto a = uint64_t(_mm_cvtsi128_si64(c)), b = uint64_t(_mm_cvtsi128_si64(_mm_unpackhi_epi64(c, c)));
+                std::memcpy(points + 2 * k, &a, sizeof(a));
+                k += (a != previous) | (j == 0);
+                std::memcpy(points + 2 * k, &b, sizeof(b));
+                k += b != a;
+                previous = b;
+            }
+            for (; j < m; ++j) {
+                const float fx = p[2 * j], fy = p[2 * j + 1];
+                const bool in = std::fabs(fx) < float(kCoordLimit) && std::fabs(fy) < float(kCoordLimit);
+                ok &= in;
+                const int32_t x = int32_t(in ? fx : 0.f), y = int32_t(in ? fy : 0.f);
+                const uint64_t key = uint64_t(uint32_t(x)) | (uint64_t(uint32_t(y)) << 32);
+                points[2 * k] = x, points[2 * k + 1] = y;
+                k += (key != previous) | (j == 0);
+                previous = key;
+            }
+            offsets[i + 1] = int64_t(k);
+        }
+        return ok && _mm_movemask_ps(inside) == 0xF;
+    }
 #endif
     bool ok = true;
     const F limit = F(kCoordLimit);
     for (size_t i = 0; i < n; ++i) {
         const F *p = xy + 2 * i * m;
         uint64_t previous = 0;
-        const size_t start = k;
         for (size_t j = 0; j < m; ++j) {
             const F fx = p[2 * j], fy = p[2 * j + 1];
             const bool inside = std::fabs(fx) < limit && std::fabs(fy) < limit;  // false for NaN
@@ -606,7 +705,8 @@ inline bool load_contours(const F *xy, size_t n, size_t m, int32_t *points, int6
             const int32_t x = int32_t(inside ? fx : F(0)), y = int32_t(inside ? fy : F(0));
             const uint64_t key = uint64_t(uint32_t(x)) | (uint64_t(uint32_t(y)) << 32);
             points[2 * k] = x, points[2 * k + 1] = y;
-            k += (key != previous) || (k == start);
+            // The first vertex of each contour is always kept.
+            k += (key != previous) | (j == 0);
             previous = key;
         }
         offsets[i + 1] = int64_t(k);
@@ -629,6 +729,16 @@ inline void paint(T *__restrict out, int ww, const Box &b, const uint8_t *__rest
             for (; x + 16 <= bw; x += 16) {
                 const uint8x16_t m = vld1q_u8(s + x);
                 vst1q_u8(o + x, vbslq_u8(vtstq_u8(m, m), fill, vld1q_u8(o + x)));
+            }
+        }
+#elif defined(MASKOPS_SAMPLED_X86)
+        if constexpr (std::is_same_v<T, uint8_t>) {
+            const __m128i fill = _mm_set1_epi8(char(value)), zero = _mm_setzero_si128();
+            for (; x + 16 <= bw; x += 16) {
+                auto *target = reinterpret_cast<__m128i *>(o + x);
+                const __m128i keep = _mm_cmpeq_epi8(_mm_loadu_si128(reinterpret_cast<const __m128i *>(s + x)), zero);
+                _mm_storeu_si128(target, _mm_or_si128(_mm_and_si128(keep, _mm_loadu_si128(target)),
+                                                      _mm_andnot_si128(keep, fill)));
             }
         }
 #endif
