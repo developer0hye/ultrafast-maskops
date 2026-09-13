@@ -1,0 +1,42 @@
+{
+  "complete": true,
+  "source_before_sha256": "c6224c5df91b2b70576e05839cc26c0785fd8a7d6e788e8f25f7fd43a435d7e1",
+  "source_after_sha256": "521f7f088897b0acb5aff6aceaeeb158df670153b9c4ff711f7e4e6e0c8c2153",
+  "formatting_preserved_ast": true,
+  "commands": [
+    {
+      "command": [
+        "/Users/yhkwon/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "bench/shared_transport_lifetime.py"
+      ],
+      "returncode": 0,
+      "stdout": "1 file reformatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/yhkwon/.local/bin/uvx",
+        "ruff==0.15.6",
+        "check",
+        "bench/shared_transport_lifetime.py"
+      ],
+      "returncode": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/yhkwon/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "--check",
+        "bench/shared_transport_lifetime.py"
+      ],
+      "returncode": 0,
+      "stdout": "1 file already formatted\n",
+      "stderr": ""
+    }
+  ]
+}

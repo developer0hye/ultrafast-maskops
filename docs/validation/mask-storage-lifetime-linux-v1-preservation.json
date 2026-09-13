@@ -1,0 +1,307 @@
+{
+  "created_at_ns": 1789278032332098000,
+  "scope": "Adverse file_system transport evidence; does not qualify release or current macOS. Includes original failed attempts, complete raw traces, two stock PyTorch transport controls, runtime wheel qualification anchor, exact source and read-only proc observations.",
+  "files": {
+    "filedescriptor-control-derivation.json": {
+      "bytes": 1450,
+      "sha256": "be20732cd327877500087376842f8c8a60d8a4f318e45266a75902bbf69739c2"
+    },
+    "final-lint.json": {
+      "bytes": 798,
+      "sha256": "c7d9f74f8d92eea1009d431387521364f69e6aa72b46c447236544ce8361324a"
+    },
+    "finish-storage-lifetime-reference-v1.py": {
+      "bytes": 4067,
+      "sha256": "9273a6cac8d55d59495628d2aa3a630a0898f91288ce9f571250eb38ad6cf324"
+    },
+    "limitations-and-failed-attempts.json": {
+      "bytes": 2086,
+      "sha256": "9107acdbf3dfd3424948951c88c740e93db1915ccfb82cf1a590f92ca0066099"
+    },
+    "mask-shared-linux-v2-qualification-evidence.tar.gz": {
+      "bytes": 1668875,
+      "sha256": "ecd5ebadb94f4c3dfcdeaa616f57c6914737a4b0bca0e80abe9ed2a33cc6701b"
+    },
+    "mask-storage-lifetime-linux-v1-lint.json": {
+      "bytes": 1040,
+      "sha256": "a55b1174f64e13283429fe688c50e4a397b7ebc8416659197b79f4b81eb07c87"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch-exit-gdb.log": {
+      "bytes": 291,
+      "sha256": "af38f5a281bad7ecfc6a408a262f3b3df2d4aa63b395bb9440722f7afe086844"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch-exit-observation.json": {
+      "bytes": 33541,
+      "sha256": "00899a398a7bbc52c7f790e551b90997ae13708fd57ec53423291af8577d9928"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch-post-termination.json": {
+      "bytes": 1329,
+      "sha256": "eb9fde0352e5da6adb6f4c4b22bd057bc15cdf76cd48df8499cca85a6aaaa982"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch.json": {
+      "bytes": 57699,
+      "sha256": "e77eabec6559a57cb2ac075fb6d0795b755d75a7b899d594c502b859a7ecfff2"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch.log": {
+      "bytes": 69,
+      "sha256": "0953ae2635a54a800b413a5a45647fe0f2439d0f87b30d0e27eb289d34ea119d"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch.traces/1647979.jsonl": {
+      "bytes": 2451,
+      "sha256": "df3a94bf17dec3d00c62d4ab9f69381f3ffbb05c0e91499e2055011ecca210ec"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch.traces/1647980.jsonl": {
+      "bytes": 1628,
+      "sha256": "4c63aa2bb128743e8bd0f586e60f216b16f4feca7bedad0ce269bfcc9a9adf0e"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch.traces/1647996.jsonl": {
+      "bytes": 2119,
+      "sha256": "ee639ff8f36c4e7dcc4ff4093652b303e4592df5e82e0ac9aaa34cdc64117498"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch.traces/1647997.jsonl": {
+      "bytes": 1631,
+      "sha256": "e7787d671a4ab7291d1612638eba365191eb33084b6bcb29902288a3a31775d4"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch.traces/1648024.jsonl": {
+      "bytes": 2123,
+      "sha256": "88b67f84fa954d4c11b0fb7e2176f3f21d1c9d7e6f4687a606c67331f138ac7e"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch.traces/1648025.jsonl": {
+      "bytes": 1629,
+      "sha256": "ea713288851557e1cfd7144ff8c674637b251da3531ef5ae5fcd069adf4f080d"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch.traces/1648040.jsonl": {
+      "bytes": 2452,
+      "sha256": "9a354180e620e5d07be16049da7cc0939e8967a47d9b63da5dc5472867b3507a"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch.traces/1648041.jsonl": {
+      "bytes": 1632,
+      "sha256": "16ecee16f659b0d6f5cb833f0a301da0fc5d41ea2e1576cd7e1f261642b8e902"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch.traces/1648056.jsonl": {
+      "bytes": 2452,
+      "sha256": "f5bf18addc7b4b8745634826d1383154ffcbaa8f97b70ea2c2c5365b562ef48d"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch.traces/1648057.jsonl": {
+      "bytes": 1631,
+      "sha256": "c841036e4e8adabfa2f57a9fce3f05f20bcf6a7fb87a6082ca7c15c8d9877479"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch.traces/1648077.jsonl": {
+      "bytes": 2453,
+      "sha256": "e5f82f685eb3713449288c289f3a3ca6fddb8b202402eae13e8c34941837949d"
+    },
+    "mask-storage-lifetime-linux-v1-reference-first-batch.traces/1648078.jsonl": {
+      "bytes": 1632,
+      "sha256": "4e6123c24805df88850bcc718c479cac62a6c3a384dae48849b66513c268bd1f"
+    },
+    "mask-storage-lifetime-linux-v1-runtime-sources/_shared_collate.py": {
+      "bytes": 5959,
+      "sha256": "d5f21af4b980400a09d22aa4c8dcaa4aed91104dcba48e3fa7b66d1c38e70399"
+    },
+    "mask-storage-lifetime-linux-v1-runtime-sources/build.py": {
+      "bytes": 19283,
+      "sha256": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a"
+    },
+    "mask-storage-lifetime-linux-v1-runtime-sources/dataset.py": {
+      "bytes": 58216,
+      "sha256": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e"
+    },
+    "mask-storage-lifetime-linux-v1-runtime-sources/manifest.json": {
+      "bytes": 1220,
+      "sha256": "85e291aad089b9f5cc632a162a9b7fcc0f40d964cdddd67c145eae241a725b1e"
+    },
+    "mask-storage-lifetime-linux-v1-runtime-sources/mask-storage-lifetime-linux-v1.py": {
+      "bytes": 11787,
+      "sha256": "521f7f088897b0acb5aff6aceaeeb158df670153b9c4ff711f7e4e6e0c8c2153"
+    },
+    "mask-storage-lifetime-linux-v1-runtime-sources/reductions.py": {
+      "bytes": 23096,
+      "sha256": "9e30a6fb517daf7213582280ad0ff1e3b70be7fb389842675183ee75d8555931"
+    },
+    "mask-storage-lifetime-linux-v1-stock-torch-filedescriptor.json": {
+      "bytes": 734,
+      "sha256": "8dadc239d9ed0ab6768e5f46f6ecc2ab13c632829cee4644abc0aefceeda5015"
+    },
+    "mask-storage-lifetime-linux-v1-stock-torch-filedescriptor.log": {
+      "bytes": 646,
+      "sha256": "efce9ddc3d130deedd9136c741c32cec899f05836fdfad8af4a93865b6b43b6f"
+    },
+    "mask-storage-lifetime-linux-v1-stock-torch-filedescriptor.process.json": {
+      "bytes": 1357,
+      "sha256": "0685f1dc0a1ccb69fd6cc9ac5f324ec888684d44ba304427437038a93530969f"
+    },
+    "mask-storage-lifetime-linux-v1-stock-torch-full-epoch.json": {
+      "bytes": 730,
+      "sha256": "a164ed94b96254b2c1be4c92868d9f9c139ebceca728f7f5c3f976b8c1ceb635"
+    },
+    "mask-storage-lifetime-linux-v1-stock-torch-full-epoch.log": {
+      "bytes": 1156,
+      "sha256": "701956fb3020341264d97a05b816f51d2b5580ffb11b071bcf34d6c179ffa7da"
+    },
+    "mask-storage-lifetime-linux-v1-stock-torch-full-epoch.process.json": {
+      "bytes": 9199,
+      "sha256": "47e214e7fb9cc6ce00cddaf091d801c01404c31d8fb1ed773318f17548e5c2cb"
+    },
+    "mask-storage-lifetime-linux-v1-summary.json": {
+      "bytes": 7819,
+      "sha256": "996914040273ec9eeba104f3541cee4fd5e8fce0f75897961d1ae17479fb7fad"
+    },
+    "mask-storage-lifetime-linux-v1.py": {
+      "bytes": 11787,
+      "sha256": "521f7f088897b0acb5aff6aceaeeb158df670153b9c4ff711f7e4e6e0c8c2153"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.json": {
+      "bytes": 61669,
+      "sha256": "8c75ef9a80478ec409d1f3653c74331dc4bc2b3a208753ceb12eb400508e751f"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.log": {
+      "bytes": 583,
+      "sha256": "7c7baf5447a29d2ea4c9e724bbe72fb3c0c09fc2d7f169e8fc3e5e8866ec6b80"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.process.json": {
+      "bytes": 27844,
+      "sha256": "a5bdb2d9d83e434c76c517cdd1dd6b02998c21e1d99ed1af0344cf1abcdd66d0"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.traces/1648914.jsonl": {
+      "bytes": 2455,
+      "sha256": "5460c4484917c032d2f886d32e0b355090ba64705b744c20e885a119619affad"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.traces/1648915.jsonl": {
+      "bytes": 1633,
+      "sha256": "73ea44d3d9d854c0398a94e0ba389a6bfde6e64a38e1d6fad93ad902507ab861"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.traces/1648982.jsonl": {
+      "bytes": 2453,
+      "sha256": "39564392c44f87ea6d77f835b7a8a6db710b060821ef91a983fa7d0d62b75763"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.traces/1648983.jsonl": {
+      "bytes": 815,
+      "sha256": "a4e677cc642bae46d8b94bcb5b5a5a68b820a1479247fa00de8d53857a23da09"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.traces/1648992.jsonl": {
+      "bytes": 2449,
+      "sha256": "19b4dae37c6ef28793fc856a039dfd1e7b95a7bb4ce0111bf6f802d2728d1d7e"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.traces/1648993.jsonl": {
+      "bytes": 1632,
+      "sha256": "60f101fddfcfcfd2f4f5b977bfb01308b9a9faf10b2781c78e8edc668ca88809"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.traces/1649068.jsonl": {
+      "bytes": 2452,
+      "sha256": "d99078954e636dd14994bbd8678d23b5ecfad5c2634bf9e8dbcb443384b70acd"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.traces/1649069.jsonl": {
+      "bytes": 1630,
+      "sha256": "f733046d42defcc4cef101f0ef4017564c28889213d72b2674a92d84e6c19a65"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.traces/1649087.jsonl": {
+      "bytes": 2451,
+      "sha256": "2700586edab08524e559daa1f85ace01f679141a02b1ee5cbc60a6b6eb665a29"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.traces/1649088.jsonl": {
+      "bytes": 1632,
+      "sha256": "8ffac29fc896421bbd70367134da881b99b0fef5049b640af197324c85d20563"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.traces/1649097.jsonl": {
+      "bytes": 2451,
+      "sha256": "5bcd656c1248334ccb4d112c5298241ce14dffbfc7fb5fc0aae3066700f8cc46"
+    },
+    "mask-storage-lifetime-linux-v2-native-first-batch.traces/1649098.jsonl": {
+      "bytes": 1631,
+      "sha256": "042650bebecd2ff14e99cca7f0d131f78f813b13df0153f3194b47ed6b2e2917"
+    },
+    "mask-storage-lifetime-linux-v2-reference-first-batch.json": {
+      "bytes": 30457,
+      "sha256": "e9b9dffe8743afc9ec3c7c9d5d69c1ed3d855bdf1227ab0f00dc5458d9a1ff88"
+    },
+    "mask-storage-lifetime-linux-v2-reference-first-batch.log": {
+      "bytes": 3277,
+      "sha256": "d361ffb802bec652c3d888d9587f6111863a36fbcad3c35c26243743366b1c66"
+    },
+    "mask-storage-lifetime-linux-v2-reference-first-batch.process.json": {
+      "bytes": 19126,
+      "sha256": "a331b8d1163070865b422253583430c44d3bd0c29913d382a071bbcbf7192efe"
+    },
+    "mask-storage-lifetime-linux-v2-reference-first-batch.traces/1649406.jsonl": {
+      "bytes": 2455,
+      "sha256": "140bcdbe865897f1e2bb33fc084985b7f1d0e5ea971ee34f086c886b8673a6bc"
+    },
+    "mask-storage-lifetime-linux-v2-reference-first-batch.traces/1649407.jsonl": {
+      "bytes": 1629,
+      "sha256": "23184d4505f5c6d2dc8d261d3492e4cba3d31424d0b13b6fa602dae58262571f"
+    },
+    "mask-storage-lifetime-linux-v2-reference-first-batch.traces/1649416.jsonl": {
+      "bytes": 2453,
+      "sha256": "dfd5e43ab5ce5858ea33ea29218088619cee4465ce2b6186589294f45fd323ec"
+    },
+    "mask-storage-lifetime-linux-v2-reference-first-batch.traces/1649417.jsonl": {
+      "bytes": 1632,
+      "sha256": "9fee982cd85ce3e27370a0258241efbdf714a70c6375b3ea50c18099ba84ad9d"
+    },
+    "mask-storage-lifetime-linux-v2-reference-first-batch.traces/1649591.jsonl": {
+      "bytes": 2122,
+      "sha256": "f9b1bfdcc5ea7bf666cb94c233e10e08bc412ec09278249c8de12a4d6a35f2dd"
+    },
+    "mask-storage-lifetime-linux-v2-reference-first-batch.traces/1649592.jsonl": {
+      "bytes": 1632,
+      "sha256": "315e21530bf45c5eb3a24cfbe392c3a8e0f25372492dde75a50594135901729f"
+    },
+    "mask-storage-lifetime-linux-v2-reference-first-batch.traces/1649603.jsonl": {
+      "bytes": 2286,
+      "sha256": "be5279650f2fb58e8437d88addf4bbd4ae701f1af907ed8c08f71ae447183cf8"
+    },
+    "mask-storage-lifetime-linux-v2-reference-first-batch.traces/1649604.jsonl": {
+      "bytes": 1629,
+      "sha256": "e8f2ba4b3e7fcffb4b45fd7fcb3be301bd72cb187e0de1c2eda49bcdd1b0d455"
+    },
+    "mask-storage-lifetime-snapshot-regression.json": {
+      "bytes": 749,
+      "sha256": "6712d4ace9f971a007c9236e152e0d54007da7f890520cd66ee24860fac0836e"
+    },
+    "mask-storage-lifetime-stock-controls.json": {
+      "bytes": 1359,
+      "sha256": "1a6a991eaf18157eaab6d22059d3cef3500d0ac40f6e755b47b8b186320c3344"
+    },
+    "observe-transport-process-linux-v1.py": {
+      "bytes": 7180,
+      "sha256": "6d3d1282b7c6b23a876571c5cd6b3a3032b03dc920f41728e4206e62d67a187b"
+    },
+    "reproduce-torch-filedescriptor-exit-linux-v1.py": {
+      "bytes": 3197,
+      "sha256": "f7cc843f28e14bc7a9df9ea1b6d704b58ac28663ca47c5d9cf7fe18f4c237eb4"
+    },
+    "reproduce-torch-filesystem-exit-linux-v1.py": {
+      "bytes": 3185,
+      "sha256": "7c5f68c6a376d4512bf6023f21ce8ef2155efbbd524d83fee74a1ebe5f14de6b"
+    },
+    "resource_tracker.py": {
+      "bytes": 11077,
+      "sha256": "f9d73a8145f8026ec48ebe4127e7e84960e297cb2e247159f8df4f858cfccbf6"
+    },
+    "summarize-storage-lifetime-corrected.py": {
+      "bytes": 6476,
+      "sha256": "1192a842396422830183ab26bc4ca795461de1e6b45c535b9ade293c29771288"
+    },
+    "summarize-storage-lifetime-first-attempt.py": {
+      "bytes": 5362,
+      "sha256": "e2d914f66e10461f9975c7dffdf23421cd1c4c046d2c6e23d05e3e91e9a2fe9a"
+    },
+    "torch-v2.10.0-libshm-core.cpp": {
+      "bytes": 4416,
+      "sha256": "b181fea0dfecca789ad52c4655ab91f03c955f1d20592398c9322ccdf33afb4a"
+    },
+    "torch-v2.10.0-libshm-manager.cpp": {
+      "bytes": 5327,
+      "sha256": "8d2903c63d7bdb75759fb204504ceb0aff62495b23f9676e2a82e258e461122a"
+    },
+    "upstream-source-links.json": {
+      "bytes": 679,
+      "sha256": "790f8ece788f873c1a46ab09a51d50f186906b680bdf619275804ba9c83168f2"
+    }
+  },
+  "archive": "bench/results/mask-storage-lifetime-linux-v1-evidence.tar.gz",
+  "archive_bytes": 1758577,
+  "archive_sha256": "39e4fbba5a9ab16116894a101836efe072514960b8861d6859ec168d2ba0dd3d",
+  "members": 74,
+  "all_members_readback_verified": true
+}

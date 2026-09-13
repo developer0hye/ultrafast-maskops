@@ -1,0 +1,208 @@
+{
+  "complete": true,
+  "qualification_passed": false,
+  "reports": [
+    {
+      "name": "mask-storage-lifetime-linux-v1-reference-first-batch",
+      "backend": "reference",
+      "report_sha256": "e77eabec6559a57cb2ac075fb6d0795b755d75a7b899d594c502b859a7ecfff2",
+      "source_sha256": {
+        "/home/yonghye/ultrafast-vision-build/mask-storage-lifetime-linux-v1.py": "521f7f088897b0acb5aff6aceaeeb158df670153b9c4ff711f7e4e6e0c8c2153",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/lib/python3.12/site-packages/ultrafast_maskops/_shared_collate.py": "d5f21af4b980400a09d22aa4c8dcaa4aed91104dcba48e3fa7b66d1c38e70399",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/lib/python3.12/site-packages/torch/multiprocessing/reductions.py": "9e30a6fb517daf7213582280ad0ff1e3b70be7fb389842675183ee75d8555931",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/lib/python3.12/site-packages/ultralytics/data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/lib/python3.12/site-packages/ultralytics/data/dataset.py": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e"
+      },
+      "cycles": [
+        {
+          "observed_handles": 25,
+          "present_handles": 15,
+          "present_storage_bytes": 613928
+        },
+        {
+          "observed_handles": 48,
+          "present_handles": 23,
+          "present_storage_bytes": 820136
+        },
+        {
+          "observed_handles": 71,
+          "present_handles": 31,
+          "present_storage_bytes": 1026344
+        },
+        {
+          "observed_handles": 96,
+          "present_handles": 46,
+          "present_storage_bytes": 1640272
+        },
+        {
+          "observed_handles": 121,
+          "present_handles": 61,
+          "present_storage_bytes": 2254200
+        },
+        {
+          "observed_handles": 146,
+          "present_handles": 76,
+          "present_storage_bytes": 2868128
+        }
+      ],
+      "body_protocol_passed": true,
+      "requested_cycles": 6,
+      "completed_resets": 6,
+      "worker_exitcodes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "historical_probe_pid_list_alias_bug": true,
+      "after_close_plus_3s": {
+        "observed_handles": 146,
+        "present_handles": 76,
+        "present_storage_bytes": 2868128
+      },
+      "process": {
+        "passed": false,
+        "supervision": "manual; original attach denied and cleanup-observer race preserved",
+        "post_termination_handles": 0
+      }
+    },
+    {
+      "name": "mask-storage-lifetime-linux-v2-native-first-batch",
+      "backend": "native",
+      "report_sha256": "8c75ef9a80478ec409d1f3653c74331dc4bc2b3a208753ceb12eb400508e751f",
+      "source_sha256": {
+        "/home/yonghye/ultrafast-vision-build/mask-storage-lifetime-linux-v1.py": "521f7f088897b0acb5aff6aceaeeb158df670153b9c4ff711f7e4e6e0c8c2153",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/lib/python3.12/site-packages/ultrafast_maskops/_shared_collate.py": "d5f21af4b980400a09d22aa4c8dcaa4aed91104dcba48e3fa7b66d1c38e70399",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/lib/python3.12/site-packages/torch/multiprocessing/reductions.py": "9e30a6fb517daf7213582280ad0ff1e3b70be7fb389842675183ee75d8555931",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/lib/python3.12/site-packages/ultralytics/data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/lib/python3.12/site-packages/ultralytics/data/dataset.py": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e"
+      },
+      "cycles": [
+        {
+          "observed_handles": 25,
+          "present_handles": 15,
+          "present_storage_bytes": 613928
+        },
+        {
+          "observed_handles": 45,
+          "present_handles": 25,
+          "present_storage_bytes": 1023912
+        },
+        {
+          "observed_handles": 70,
+          "present_handles": 40,
+          "present_storage_bytes": 1637840
+        },
+        {
+          "observed_handles": 95,
+          "present_handles": 55,
+          "present_storage_bytes": 2251768
+        },
+        {
+          "observed_handles": 120,
+          "present_handles": 65,
+          "present_storage_bytes": 2661752
+        },
+        {
+          "observed_handles": 145,
+          "present_handles": 80,
+          "present_storage_bytes": 3275680
+        }
+      ],
+      "body_protocol_passed": true,
+      "requested_cycles": 6,
+      "completed_resets": 6,
+      "worker_exitcodes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "historical_probe_pid_list_alias_bug": true,
+      "after_close_plus_3s": {
+        "observed_handles": 145,
+        "present_handles": 80,
+        "present_storage_bytes": 3275680
+      },
+      "process": {
+        "passed": false,
+        "timeout": true,
+        "returncode": -15,
+        "post_termination_handles": 0,
+        "receipt_sha256": "a5bdb2d9d83e434c76c517cdd1dd6b02998c21e1d99ed1af0344cf1abcdd66d0"
+      }
+    },
+    {
+      "name": "mask-storage-lifetime-linux-v2-reference-first-batch",
+      "backend": "reference",
+      "report_sha256": "e9b9dffe8743afc9ec3c7c9d5d69c1ed3d855bdf1227ab0f00dc5458d9a1ff88",
+      "source_sha256": {
+        "/home/yonghye/ultrafast-vision-build/mask-storage-lifetime-linux-v1.py": "521f7f088897b0acb5aff6aceaeeb158df670153b9c4ff711f7e4e6e0c8c2153",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/lib/python3.12/site-packages/ultrafast_maskops/_shared_collate.py": "d5f21af4b980400a09d22aa4c8dcaa4aed91104dcba48e3fa7b66d1c38e70399",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/lib/python3.12/site-packages/torch/multiprocessing/reductions.py": "9e30a6fb517daf7213582280ad0ff1e3b70be7fb389842675183ee75d8555931",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/lib/python3.12/site-packages/ultralytics/data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-clean/lib/python3.12/site-packages/ultralytics/data/dataset.py": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e"
+      },
+      "cycles": [
+        {
+          "observed_handles": 25,
+          "present_handles": 10,
+          "present_storage_bytes": 409984
+        },
+        {
+          "observed_handles": 50,
+          "present_handles": 25,
+          "present_storage_bytes": 1023912
+        },
+        {
+          "observed_handles": 73,
+          "present_handles": 33,
+          "present_storage_bytes": 1230120
+        }
+      ],
+      "body_protocol_passed": false,
+      "requested_cycles": 6,
+      "completed_resets": 3,
+      "worker_exitcodes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -6,
+        0
+      ],
+      "historical_probe_pid_list_alias_bug": true,
+      "after_close_plus_3s": {
+        "observed_handles": 97,
+        "present_handles": 52,
+        "present_storage_bytes": 2041872
+      },
+      "process": {
+        "passed": false,
+        "timeout": true,
+        "returncode": -15,
+        "post_termination_handles": 0,
+        "receipt_sha256": "a331b8d1163070865b422253583430c44d3bd0c29913d382a071bbcbf7192efe"
+      }
+    }
+  ],
+  "scope": "Observed Linux file_system failures; instrumented small synthetic data, no speed/RSS or macOS claim."
+}

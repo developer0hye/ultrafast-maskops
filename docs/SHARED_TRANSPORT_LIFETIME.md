@@ -1,45 +1,113 @@
-# Named shared-memory lifetime: diagnostic prepared, not executed
+# Named shared-memory lifetime: Linux failure observed
 
-The packet wheel's Linux qualification and CPU loader measurements do not prove
-memory reclamation on every supported transport/platform. The pinned PyTorch
-`reduce_storage` implementation increments the shared reference count for
-`file_system` transport, while `rebuild_storage_filename` decrements it when a
-receiver reconstructs the storage. Queued batches can be abandoned during a
-loader reset. Whether their names persist while the parent remains alive must
-be measured; this source observation alone does not establish a leak or a
-candidate-specific regression.
+The current packet wheel is **not qualified for `file_system` transport**.
+On Linux / CPython 3.12.14 / PyTorch 2.10.0+cu128, both the original Ultralytics
+collator and packet collator left named storage alive after repeated resets.
+The parent processes then failed to exit naturally. A stock PyTorch DataLoader
+control reproduced the exit hang without importing either project or Ultralytics;
+the otherwise identical `file_descriptor` control exited normally.
+These observations do not establish macOS behavior or a candidate-specific leak.
 
-The new [diagnostic](../bench/shared_transport_lifetime.py) compares the original
-Ultralytics collator with the packet collator in separate fresh processes. It
-uses the actual pinned `InfiniteDataLoader.reset()` and `close()` methods, two
-spawned workers, prefetch factor 2, synthetic 128-pixel image tensors and variable
-instance counts. `file_system` is selected explicitly inside every worker.
-No worker shutdown method or reference transport is replaced.
+## Actual observations
 
-A reducer wrapper records only handles returned by PyTorch's original storage
-reducer. After each reset, the parent opens those exact names read-only using
-`shm_open`, closes the descriptors, and records which names still exist. It never
-enumerates unrelated shared-memory objects or unlinks anything. Records include
-source hashes, original/replacement worker PIDs and exit codes, traced handle
-sizes, and cumulative observations over six resets. Consumed batches must match
-the original collator's values, dtypes, shapes, strides and field order. Full
-epochs must contain four batches; first-batch cases must consume exactly one.
+The [diagnostic](../bench/shared_transport_lifetime.py) used two spawned workers,
+batch size 4, prefetch factor 2, no pinning, and 16 synthetic 128-pixel image
+samples with variable instance counts. Each requested cycle consumes and checks
+one batch, then calls the actual pinned `InfiniteDataLoader.reset()`. No worker
+shutdown method or reference collator was replaced. The installed mask wheel is
+the [previously qualified Linux packet wheel](SHARED_PACKET_VALIDATION.md).
 
-Run setup-only, first-batch and full-epoch reset points independently for each
-backend. Every invocation needs a new output name; keep failures and all JSONL
-traces. Setup-only cases consume no batch but wait up to 30 seconds for a storage
-trace from each worker, so an empty import-time shutdown cannot count as an
-abandoned-prefetch observation. Both immediate and three-second-after-close
-observations are retained.
-`protocol_passed` means the requested diagnostic completed with parity and clean
-worker exits. It deliberately does not mean no surviving handles, bounded memory,
-or production qualification. Handle payload sizes are not physical RSS, and
-instrumented execution is not a performance benchmark.
+| Case | Completed resets / requested | Observed names still present 3 s after close | Named payload bytes | Actual process outcome |
+| --- | ---: | ---: | ---: | --- |
+| Original collator, initial direct run | 6 / 6 | 76 | 2,868,128 | Hung after successful diagnostic body; manually terminated |
+| Packet collator, supervised | 6 / 6 | 80 | 3,275,680 | Body passed; exit exceeded 20 s; supervisor sent SIGTERM |
+| Original collator, same supervisor | 3 / 6 | 52 | 2,041,872 | Worker SIGABRT during fourth reset, then parent exit hang |
 
-The script is not yet linted or executed. Existing measurements must terminate
-before qualification or execution on either host. The Linux lifecycle qualifier
-already queued behind its CPU benchmark must also finish before another job.
-Start with one reference/native pair per reset point; preserve and investigate
-worker failures before any repetition. Linux `file_system` observations do not
-substitute for an actual macOS run. This isolates batch transport; full-image
-FastFormat, close-mosaic training and resume protocols remain separate gates.
+All consumed batches matched the original collator's values, dtypes, shapes,
+strides, container types and field order. The initial reference and packet cases
+observed zero exit codes for all reset and final workers. The supervised reference
+case explicitly failed: worker 1649603 exited with -6. It must not be reported as
+a completed six-reset control or omitted from a comparison.
+
+In the initial reference and packet cases, cumulative named payload bytes grew
+from 613,928 after the first reset to the final values above. These are small,
+instrumented, scheduling-sensitive observations, **not physical RSS, performance
+measurements, or a quantified regression between collators**. Only names recorded
+by PyTorch's storage reducer were probed read-only; the diagnostic never unlinked
+memory. All traced names were absent after the respective parents were terminated,
+and the related managers/resource trackers subsequently exited.
+
+## Isolating the exit failure
+
+The [stock PyTorch reproducer](../bench/reproduce_torch_filesystem_exit.py) uses
+one complete ordinary DataLoader epoch, two spawned workers, four verified
+batches, and no resets, private shutdown calls or reducer instrumentation.
+Both workers exited with code 0 in each control:
+
+| Stock PyTorch transport | Body | Natural process exit |
+| --- | --- | --- |
+| `file_system` | Passed | Hung; terminated after 20 s |
+| `file_descriptor` | Passed | Code 0, no timeout or signal |
+
+The descriptor control changes only the sharing-strategy literal and associated
+text in the filesystem reproducer; the exact generated source and diff are in
+the archive. These are one-run causal controls, not broad platform qualification.
+
+Faulthandler captured the stuck main thread in
+`multiprocessing.resource_tracker.ResourceTracker._stop_locked`, called by
+`__del__`, waiting for the tracker process. Read-only `/proc` snapshots showed
+that both stock-case `torch_shm_manager` processes retained a write descriptor
+for the exact pipe the tracker was reading. The parent still held manager
+connections. This supports a shutdown dependency cycle in this runtime.
+
+The public PyTorch 2.10.0 [manager launcher](https://github.com/pytorch/pytorch/blob/v2.10.0/torch/lib/libshm/core.cpp)
+forks and execs the manager, while the [manager loop](https://github.com/pytorch/pytorch/blob/v2.10.0/torch/lib/libshm/manager.cpp)
+waits for client connections to disappear before final cleanup. Tagged source
+copies support the explanation; they are not proof of the wheel's complete
+binary compilation provenance. The exact installed Python tracker source and
+runtime diagnostic sources are also preserved. No global runtime workaround was
+installed, and this does not prove a fix for the separate worker abort.
+
+## Evidence quality and retained failures
+
+The [process supervisor](../bench/observe_transport_process.py) requires an actual
+child return code in addition to the diagnostic body's `complete` and
+`protocol_passed` fields. A successful body is insufficient. On an exit timeout,
+it captures process/descriptor state and a SIGUSR1 faulthandler stack, then stops
+only its child. It does not signal managers/trackers or alter queue shutdown.
+
+The first unsupervised process required manual termination. Attaching GDB was
+denied by ptrace policy; that log is retained. The manual cleanup observer sent
+SIGTERM successfully, then hit a permission race while reading `/proc` during
+exit. A separate read-only follow-up confirmed terminal processes and absent
+handles. That observer failure is preserved rather than labeled successful.
+
+The first summary check also exposed a diagnostic defect: historical
+`worker_pids` fields referenced a mutable list and grew as later workers were
+appended. Raw reports are unchanged. The corrected summary reconstructs each
+probe's scope from recorded retired workers and verifies the frozen per-probe
+trace hashes and payload totals. It explicitly flags the alias defect. Current
+source copies the PID list; an isolated execution of the actual probe function
+reproduces the original bug and verifies the fix. This is not a new complete
+loader run of the corrected source.
+
+The [74-member evidence archive](../bench/results/mask-storage-lifetime-linux-v1-evidence.tar.gz)
+contains all five runs, JSONL traces, termination/proc observations, failures,
+exact executed sources, stock controls, upstream source copies and the frozen
+runtime's wheel qualification archive. Its 1,758,577 bytes have SHA-256
+`39e4fbba5a9ab16116894a101836efe072514960b8861d6859ec168d2ba0dd3d`.
+Every member was read back and hashed; see the
+[preservation manifest](validation/mask-storage-lifetime-linux-v1-preservation.json),
+[loader observation summary](validation/mask-storage-lifetime-linux-v1-summary.json),
+[stock control checks](validation/mask-storage-lifetime-stock-controls.json), and
+[snapshot regression](validation/mask-storage-lifetime-snapshot-regression.json).
+
+## Remaining scope
+
+Do not promote `file_system` or current macOS packet transport as qualified.
+Setup-only and full-epoch repeated-reset comparisons remain unexecuted; the
+full-epoch stock control above is not that matrix. Fix or explicitly resolve the
+runtime exit dependency and storage lifetime before extending that transport.
+The successful Linux `file_descriptor` control does not substitute for actual
+close-mosaic/resume GPU training, current combined-wheel validation, or supported
+platform/wheel qualification. Those remain separate gates.

@@ -1,0 +1,22 @@
+{
+  "scope": "Execute the actual probe_handles AST function with empty traces; verifies historical-list independence, not a new loader qualification.",
+  "results": [
+    {
+      "source": "/tmp/mask-storage-lifetime-linux-v1-readback/mask-storage-lifetime-linux-v1.py",
+      "sha256": "521f7f088897b0acb5aff6aceaeeb158df670153b9c4ff711f7e4e6e0c8c2153",
+      "recorded_worker_pids_after_input_append": [
+        17,
+        19
+      ],
+      "snapshot_is_independent": false
+    },
+    {
+      "source": "bench/shared_transport_lifetime.py",
+      "sha256": "b894fe3e3428b2e401967450c716083eba0293ef5a6c341ac86bdbc73569b161",
+      "recorded_worker_pids_after_input_append": [
+        17
+      ],
+      "snapshot_is_independent": true
+    }
+  ]
+}

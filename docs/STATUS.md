@@ -17,6 +17,13 @@ packet transport and broader release/platform qualification remain pending.
 Synthetic coordinator tests are not training evidence; see
 [LIFECYCLE_GPU.md](LIFECYCLE_GPU.md).
 
+Linux `file_system` diagnostics now expose retained storage and parent exit hangs
+in both collators. A stock PyTorch full-epoch control reproduced the hang without
+project imports; changing only to `file_descriptor` exited normally. One original
+collator reset also aborted a worker. The current `file_system` transport remains
+unqualified; this is adverse evidence, not a new performance or release pass.
+See [SHARED_TRANSPORT_LIFETIME.md](SHARED_TRANSPORT_LIFETIME.md).
+
 The earlier `perf/unit-scale-mask` worktree added a unit-scale mask-only copy candidate
 that passed all 209 installed-wheel Linux tests; see [UNIT_SCALE_MASK.md](UNIT_SCALE_MASK.md). The ROI
 evidence below applies to its frozen `fec5cab` parent, not this new kernel.

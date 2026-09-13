@@ -65,7 +65,10 @@ all 60 measured processes, two fresh-reference verifications and independent
 artifact qualification. Eight-worker speed gains were small; the 10% loader
 improvement gate and actual GPU lifecycle grid remain open.
 
-A separate [named-storage lifetime diagnostic](SHARED_TRANSPORT_LIFETIME.md) is
-prepared to observe abandoned prefetch handles across repeated resets under
-`file_system` transport. It has not run; the source-level reference-count
-observation does not establish a leak or a regression in either collator.
+The subsequent [named-storage lifetime diagnostic](SHARED_TRANSPORT_LIFETIME.md)
+found retained handles and parent exit hangs under Linux `file_system` transport.
+A stock PyTorch control reproduced the exit hang without either project or
+Ultralytics, while its `file_descriptor` control exited normally. A supervised
+original-collator reset also aborted a worker. All failures are preserved;
+`file_system` and current macOS packet transport remain unqualified. These
+small instrumented observations do not quantify a candidate-specific leak.

@@ -1,0 +1,38 @@
+{
+  "complete": true,
+  "scope": "One stock PyTorch full-epoch run per transport, two spawned workers; no project imports or reducer instrumentation. file_system exit fails, file_descriptor exits normally.",
+  "controls": [
+    {
+      "name": "mask-storage-lifetime-linux-v1-stock-torch-full-epoch",
+      "body_passed": true,
+      "process_passed": false,
+      "returncode": -15,
+      "verified_batches": 4,
+      "report_sha256": "a164ed94b96254b2c1be4c92868d9f9c139ebceca728f7f5c3f976b8c1ceb635",
+      "process_receipt_sha256": "47e214e7fb9cc6ce00cddaf091d801c01404c31d8fb1ed773318f17548e5c2cb",
+      "manager_write_ends_matching_tracker_read_pipe": [
+        {
+          "manager_pid": 1649870,
+          "fd": "6",
+          "pipe": "pipe:[90646857]",
+          "tracker_pid": 1649763
+        },
+        {
+          "manager_pid": 1649871,
+          "fd": "6",
+          "pipe": "pipe:[90646857]",
+          "tracker_pid": 1649763
+        }
+      ]
+    },
+    {
+      "name": "mask-storage-lifetime-linux-v1-stock-torch-filedescriptor",
+      "body_passed": true,
+      "process_passed": true,
+      "returncode": 0,
+      "verified_batches": 4,
+      "report_sha256": "8dadc239d9ed0ab6768e5f46f6ecc2ab13c632829cee4644abc0aefceeda5015",
+      "process_receipt_sha256": "0685f1dc0a1ccb69fd6cc9ac5f324ec888684d44ba304427437038a93530969f"
+    }
+  ]
+}

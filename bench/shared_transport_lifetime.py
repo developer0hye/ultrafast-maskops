@@ -58,11 +58,18 @@ def traced_reduce_storage(storage):
         _, manager, handle, size, *dtype = result[1]
         assert not dtype, "registered for untyped CPU storage only"
         trace_dir = Path(torch.utils.data.get_worker_info().dataset.trace_dir)
-        payload = (json.dumps({
-            "pid": os.getpid(), "manager": os.fsdecode(manager),
-            "handle": os.fsdecode(handle), "storage_bytes": size,
-            "at_ns": time.time_ns(),
-        }) + "\n").encode()
+        payload = (
+            json.dumps(
+                {
+                    "pid": os.getpid(),
+                    "manager": os.fsdecode(manager),
+                    "handle": os.fsdecode(handle),
+                    "storage_bytes": size,
+                    "at_ns": time.time_ns(),
+                }
+            )
+            + "\n"
+        ).encode()
         descriptor = os.open(trace_dir / f"{os.getpid()}.jsonl", os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o600)
         try:
             assert os.write(descriptor, payload) == len(payload)
@@ -125,8 +132,10 @@ def probe_handles(trace_dir, worker_pids):
         elif ctypes.get_errno() != errno.ENOENT:
             raise OSError(ctypes.get_errno(), f"shm_open failed for observed handle {handle}")
     return {
-        "worker_pids": worker_pids, "observed_handles": len(names),
-        "trace_sha256": trace_hashes, "present": present,
+        "worker_pids": list(worker_pids),
+        "observed_handles": len(names),
+        "trace_sha256": trace_hashes,
+        "present": present,
         "present_storage_bytes": sum(record["storage_bytes"] for record in present),
         "scope": "Named storage payload sizes, not physical RSS or allocator overhead; parent still alive.",
     }
@@ -147,18 +156,34 @@ def main():
     traces = args.out.with_suffix(".traces")
     traces.mkdir()  # no reuse of an earlier attempt
     state = {
-        "complete": False, "protocol_passed": False, "args": vars(args) | {"out": str(args.out)},
-        "pid": os.getpid(), "python": sys.version, "platform": platform.platform(),
-        "torch_version": torch.__version__, "sharing_strategy": "file_system",
-        "context": "spawn", "workers": 2, "prefetch_factor": 2, "batch_size": 4,
-        "instrumented_reducers": True, "performance_measurement": False,
-        "cycles": [], "started_at_ns": time.time_ns(),
+        "complete": False,
+        "protocol_passed": False,
+        "args": vars(args) | {"out": str(args.out)},
+        "pid": os.getpid(),
+        "python": sys.version,
+        "platform": platform.platform(),
+        "torch_version": torch.__version__,
+        "sharing_strategy": "file_system",
+        "context": "spawn",
+        "workers": 2,
+        "prefetch_factor": 2,
+        "batch_size": 4,
+        "instrumented_reducers": True,
+        "performance_measurement": False,
+        "cycles": [],
+        "started_at_ns": time.time_ns(),
         "source_sha256": {
             str(path): hashlib.sha256(path.read_bytes()).hexdigest()
-            for path in map(Path, (
-                __file__, shared.__file__, reductions.__file__,
-                inspect.getfile(InfiniteDataLoader), inspect.getfile(YOLODataset),
-            ))
+            for path in map(
+                Path,
+                (
+                    __file__,
+                    shared.__file__,
+                    reductions.__file__,
+                    inspect.getfile(InfiniteDataLoader),
+                    inspect.getfile(YOLODataset),
+                ),
+            )
         },
     }
     loader = None
@@ -175,8 +200,13 @@ def main():
         torch.multiprocessing.set_sharing_strategy("file_system")
         save()
         loader = InfiniteDataLoader(
-            Fixture(traces), batch_size=4, shuffle=False, num_workers=2,
-            multiprocessing_context="spawn", prefetch_factor=2, pin_memory=False,
+            Fixture(traces),
+            batch_size=4,
+            shuffle=False,
+            num_workers=2,
+            multiprocessing_context="spawn",
+            prefetch_factor=2,
+            pin_memory=False,
             worker_init_fn=initialize_worker,
             collate_fn=YOLODataset.collate_fn if args.backend == "reference" else shared.shared_collate_fn,
         )
@@ -200,7 +230,9 @@ def main():
                 save()
             if args.reset_point != "setup":
                 for batch_index, batch in enumerate(loader):
-                    expected = YOLODataset.collate_fn([sample(i) for i in range(batch_index * 4, (batch_index + 1) * 4)])
+                    expected = YOLODataset.collate_fn(
+                        [sample(i) for i in range(batch_index * 4, (batch_index + 1) * 4)]
+                    )
                     require_equal(batch, expected)
                     record["verified_batches"] += 1
                     del batch, expected
@@ -251,8 +283,15 @@ def main():
         finally:
             state.update(complete=True, finished_at_ns=time.time_ns())
             save()
-    print(json.dumps({"complete": state["complete"], "protocol_passed": state["protocol_passed"],
-                      "surviving_handles": len(state["handles_after_close_plus_3s"]["present"])}))
+    print(
+        json.dumps(
+            {
+                "complete": state["complete"],
+                "protocol_passed": state["protocol_passed"],
+                "surviving_handles": len(state["handles_after_close_plus_3s"]["present"]),
+            }
+        )
+    )
 
 
 if __name__ == "__main__":
