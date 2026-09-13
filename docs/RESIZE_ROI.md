@@ -3,8 +3,10 @@
 This worktree is based on the tested masks-only implementation. The first fresh
 wheel built and installed, but failed 14 of 179 parity/integration/auditor tests
 (165 passed). That candidate is rejected. A correction preserving the Arm resize
-dispatch threshold passed all 191 tests in a fresh M2 wheel installation. No timing
-or memory benefit has been measured for either candidate. The server GPU series
+dispatch threshold passed all 191 tests in a fresh M2 wheel installation. The
+[Linux paired comparison](PAIRED_WHEEL_RESULTS.md) shows ratio-4 public-call gains,
+a ratio-1 non-overlap regression and less than 1 MiB RSS differences; M2 timing
+and isolated working allocation remain unmeasured for this candidate. The server GPU series
 uses its original installed wheels; earlier results are not candidate evidence.
 
 ## Linux installed-wheel validation
@@ -34,7 +36,7 @@ An initial offline dependency install could not resolve the uncached pinned
 PyTorch URL. Its log is retained; installation succeeded with the same frozen
 requirements after allowing downloads. No version was changed to pass tests.
 This wheel has not been manylinux-repaired. The full real-corpus overlap and
-non-overlap checks below passed; sanitizer and performance checks remain outstanding.
+non-overlap checks below passed; sanitizer, M2 and end-to-end performance checks remain outstanding.
 Neither Linux parity nor the earlier GPU results establish ROI speed or memory benefits.
 
 ## Linux full augmented overlap and non-overlap verification
@@ -145,7 +147,7 @@ differential cases and deterministic CPU model updates. The NumPy-only installed
 wheel smoke, RECORD/runtime audit and all nine bundled notice files also passed.
 Exact wheel/source hashes and reports are in `validation/resize-roi-passed-v2.json`
 and `resize-roi-tests-v2.*`. Linux full real-corpus output validation is recorded
-above. Sanitizer and benchmark checks remain necessary before merging.
+above. Sanitizer, M2 and end-to-end benchmark checks remain necessary before merging.
 
 The first build's 573 selected dependency files, including 61 Carotene files,
 match the existing notice inventory. Their collected notices are present in the
@@ -174,11 +176,14 @@ allocated and filling still uses that image, so this is **not** a claim of
 polygon-sized raster scratch or lower process RSS. Actual allocation and timing
 measurements must accompany any result.
 
-The [paired wheel protocol](PAIRED_WHEELS.md) now prepares a counterbalanced
-comparison with the tested masks-only baseline across the frozen nine cases and
-three public call paths. Both installed-wheel descriptors passed byte/source and
-shared-profile checks. Actual oracle, timing, RSS and aggregate execution remain
-pending; no benchmark is queued while the host runs the 500k dataset experiment.
+The [paired wheel protocol](PAIRED_WHEELS.md) completed the Linux counterbalanced
+comparison against the tested masks-only baseline across the frozen nine cases
+and three public call paths. All 270 measured processes, separate oracle checks
+and 54 independently recomputed timing/RSS summaries passed the artifact audit.
+The [complete results](PAIRED_WHEEL_RESULTS.md) retain the ratio-1 non-overlap
+regression along with the ratio-4 gains. M2 remains unmeasured while its 500k
+dataset experiment runs; isolated working-allocation and real-loader timing
+still need their own measurements.
 
 After this candidate's correctness and cost are established, a separate step can
 consider cropping the raster scratch itself. That needs a distinct proof of

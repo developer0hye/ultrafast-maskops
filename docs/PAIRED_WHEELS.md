@@ -1,11 +1,13 @@
 # Paired installed-wheel comparison preparation
 
 `bench/compare_wheels.py` compares the tested masks-only baseline wheel with the
-corrected resize-ROI wheel. It is prepared but **not measured or execution-tested
-yet**. Only its read-only descriptor mode has run for both installed environments;
-Ruff also passed. Do not interpret this protocol or the descriptors as a speedup.
+corrected resize-ROI wheel. The Linux 270-process comparison is complete and
+independently audited; see [PAIRED_WHEEL_RESULTS.md](PAIRED_WHEEL_RESULTS.md) for
+all conditions, the ratio-1 non-overlap regression and the limited RSS difference.
+Oracle/worker/aggregate qualification and eight forged-archive rejection checks
+also passed on Linux. M2 descriptors alone are preparation, not performance evidence.
 
-The baseline is the M2 wheel with SHA-256
+The following preparation describes the still-unmeasured M2 pair. Its baseline is the wheel with SHA-256
 `0659680b4ee2098a610d033d08fe47ef6cd8a8612d30821b48b5b7a1b43fdce8`.
 The corrected candidate is
 `e5b5eb8b09bb66527365c6263e3882a529ca810f0340ba2375c51a180dd79481`.
@@ -85,8 +87,8 @@ python bench/compare_wheels.py \
 
 Use actual mounted paths and a new output name. The current RSS/platform helpers
 target macOS and Linux; this script is not Windows benchmark coverage. Linux
-needs independently built and validated baseline/candidate wheels after the
-active GPU series finishes. No process is queued automatically by this document.
+now has independently built and validated baseline/candidate wheels and the
+completed comparison linked above. No process is queued automatically by this document.
 
 The ten no-copy output-hashing checks passed as part of the 201-test Linux
 installed-wheel run (see RESIZE_ROI.md). The M2 run and actual oracle/worker/

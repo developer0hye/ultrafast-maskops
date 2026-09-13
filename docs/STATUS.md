@@ -8,8 +8,11 @@ wheel passed 191 M2 tests, including 40 crop cases. Failure artifacts are retain
 The corrected Linux wheel passed 201 tests and all 18 full augmented overlap and
 non-overlap runs (5,000 images per run; reference/reference/native at workers 0/2/8), with an
 independent audit of the complete raw evidence. Its 375 selected dependency files
-match the bundled notice inventory. Sanitizer and candidate timing/
-memory validation remain open before merging; see [RESIZE_ROI.md](RESIZE_ROI.md).
+match the bundled notice inventory. The audited 270-process Linux comparison
+shows 1.47–3.77× public-call gains in nonempty ratio-4 cases, a 3.7% ratio-1
+non-overlap regression and less than 1 MiB RSS differences. See
+[PAIRED_WHEEL_RESULTS.md](PAIRED_WHEEL_RESULTS.md). Sanitizer, M2, working-allocation
+and end-to-end validation remain open before merging; see [RESIZE_ROI.md](RESIZE_ROI.md).
 Historical performance numbers below belong to parent implementations and do not
 measure this candidate.
 
