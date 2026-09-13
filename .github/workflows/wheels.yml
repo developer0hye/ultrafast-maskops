@@ -17,13 +17,46 @@ on:
         description: Validate a source-only wheel rebuild on Linux Python 3.12
         type: boolean
         default: false
+      manylinux_only:
+        description: Build and execute a repaired glibc 2.28 Python 3.12 wheel
+        type: boolean
+        default: false
 
 permissions:
   contents: read
 
 jobs:
+  manylinux:
+    if: github.event_name == 'workflow_dispatch' && inputs.manylinux_only && !inputs.sdist_only && inputs.inspect_artifact == ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    container:
+      image: quay.io/pypa/manylinux_2_28_x86_64@sha256:53390351aeb4688114b02c36a23b3e6ce1166ee9b7afc5df1a4f776354fc764c
+    defaults:
+      run:
+        shell: bash
+    env:
+      OMP_NUM_THREADS: '1'
+      YOLO_OFFLINE: 'true'
+      CMAKE_BUILD_PARALLEL_LEVEL: '2'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build repair and execute in the pinned base-glibc container
+        run: bash bench/build_manylinux.sh
+      - name: Preserve original and repaired artifacts with all evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: maskops-manylinux-py3.12
+          path: |
+            manylinux-evidence/
+            dist/
+          if-no-files-found: error
+          retention-days: 14
   sdist-rebuild:
-    if: github.event_name == 'workflow_dispatch' && inputs.sdist_only && inputs.inspect_artifact == ''
+    if: github.event_name == 'workflow_dispatch' && inputs.sdist_only && !inputs.manylinux_only && inputs.inspect_artifact == ''
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
@@ -111,7 +144,7 @@ jobs:
           if-no-files-found: error
           retention-days: 14
   wheel:
-    if: github.event_name != 'workflow_dispatch' || (inputs.inspect_artifact == '' && !inputs.sdist_only)
+    if: github.event_name != 'workflow_dispatch' || (inputs.inspect_artifact == '' && !inputs.sdist_only && !inputs.manylinux_only)
     strategy:
       fail-fast: false
       max-parallel: 3
