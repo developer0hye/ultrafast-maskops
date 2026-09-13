@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "inspection_run": 34745678653,
+  "original_run": 34744592119,
+  "original_artifact": 10312709120,
+  "original_source": "06a26d106ba8dd896061f987a6561521de68e6e1",
+  "sdist_bytes": 116015854,
+  "sdist_sha256": "715f0534d3887f415f849a1322ec558007ec86e7bf4903ecda56053c86f93c67",
+  "excluded_benchmark_archive_bytes": 110188256,
+  "test_counts": {
+    "core-tests.xml": {
+      "cases": 289,
+      "failures": 0,
+      "errors": 0,
+      "skipped": []
+    },
+    "integration-tests.xml": {
+      "cases": 67,
+      "failures": 0,
+      "errors": 0,
+      "skipped": []
+    }
+  },
+  "archive": "bench/results/mask-sdist-original-inspection-v1-evidence.tar.gz",
+  "archive_bytes": 23266,
+  "archive_sha256": "d7561b5b2faad7940684b0b4f13c7fe6a6d0cb4a91634672a65084d24bd75327",
+  "members": {
+    "mask-artifact-inspection-v1.zip": {
+      "bytes": 11611,
+      "sha256": "bd58395a318e554d96e3e833fd2f1b9706f37b530d54eb162edca0e15adf9a36"
+    },
+    "artifact-api.json": {
+      "bytes": 755,
+      "sha256": "a41f19afaa2fde08e8b97e031848db6ed89f937c1e1ad4af4e47f5d37e791dc3"
+    },
+    "inspection/wheel-validation.json": {
+      "bytes": 4353,
+      "sha256": "15fa32d3521f23f0b139d3231ddc33eaf766e462ce96f12ae08d81380f85eacb"
+    },
+    "inspection/core-tests.xml": {
+      "bytes": 35591,
+      "sha256": "f467c2f6276936b48afd3c64fd8851334b1886809d1d9fdc9822fc37fca18168"
+    },
+    "inspection/artifact-api.json": {
+      "bytes": 821,
+      "sha256": "29d2e5c17f5a4b5fddd47779881c434dab49bcb6714b90227e8200346509377e"
+    },
+    "inspection/integration-tests.xml": {
+      "bytes": 8733,
+      "sha256": "c0249a95f18c301fb8798c1448c4e3e1f22f1d96cc598929239cea3fa93d0bf8"
+    },
+    "inspection/run-api.json": {
+      "bytes": 14914,
+      "sha256": "14c22fc01e07088cd576637bcedff0db95683c02c98035e58cb692deb0647a31"
+    },
+    "inspection/final-environment.txt": {
+      "bytes": 1176,
+      "sha256": "d48c9e4689ccf18ea5bb27b2f62f6e54838c28f57c911346c768d85df8744015"
+    },
+    "inspection/source-pyproject.toml": {
+      "bytes": 637,
+      "sha256": "bc18d48a06df856d78d0b5495078f69d186e57849528430c243adb0550cc9270"
+    },
+    "inspection/inspection.json": {
+      "bytes": 7744,
+      "sha256": "801bce5bcce861ff35241a53391037b78d94b1207c78e966e41f50f156c4ec5e"
+    }
+  },
+  "scope": "Readback of original small hosted inspection, including its GitHub ZIP digest and source pyproject binding. The original 117MB artifact is not backed up by this bundle."
+}

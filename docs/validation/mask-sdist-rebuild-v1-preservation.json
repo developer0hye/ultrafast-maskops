@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "run_id": 34745913090,
+  "source_commit": "e86419ef6fc6e7d34a7b3c0ef09859f3607d49b7",
+  "source_files_byte_identical": 87,
+  "sdist_bytes": 6036842,
+  "sdist_sha256": "9509eba2fa6ef36041baf211c389ddcf247c67758f0b1c75dc61ae8b4cc5bfb6",
+  "old_sdist_bytes": 116015854,
+  "size_reduction_percent": 94.79653703191289,
+  "wheel_bytes": 1278618,
+  "wheel_sha256": "293f1b4657dfef5ec44ac94ddccd49bf616b197679363958b8ccd02f868e23ea",
+  "native": {
+    "ultrafast_maskops/_native.cpython-312-x86_64-linux-gnu.so": {
+      "sha256": "b91b1e56430924f3fe35e5e267c123e2ebedf81e776a69d3026e28af9819de24",
+      "bytes": 3138648
+    }
+  },
+  "core_tests_passed": 289,
+  "core_skipped": 0,
+  "notices_checked": 9,
+  "archive": "bench/results/mask-sdist-rebuild-v1-evidence.tar.gz",
+  "archive_bytes": 13345445,
+  "archive_sha256": "0300b0c3a4a47f1f8c148e0bd1a0172537ebb088465889eabd6dab8160efcffc",
+  "members": {
+    "mask-sdist-rebuild-v1.zip": {
+      "bytes": 13317232,
+      "sha256": "8ff9b53277168edb710db8609d8ea883b9863943e4ff429d86003aaadd9a95a3"
+    },
+    "mask-sdist-rebuild-v1-run.json": {
+      "bytes": 13592,
+      "sha256": "372af227156d7d9998cb6e66d80837a4a21dcf70054ac7be7e544f88d9289749"
+    },
+    "mask-sdist-rebuild-v1-artifacts.json": {
+      "bytes": 752,
+      "sha256": "2f3ee6568340bce1df7b06f9fe3f016cd9bd812d71e294fd44cab7f8b3f3fa15"
+    },
+    "mask-sdist-rebuild-v1.log": {
+      "bytes": 114158,
+      "sha256": "e419b5d76f8447d4679c536d0be702bfacc05ce2f8d07518e46bd545570deae7"
+    }
+  },
+  "scope": "Original GitHub ZIP digest, all ZIP members, both identical source archives, 87 checkout source files, wheel RECORD/member hashes and 9 notice files rechecked; JUnit 289 cases without skips/failures/errors. Linux Python 3.12 source rebuild only, not the whole platform/runtime gate. CMake downloads pinned hash-verified OpenCV during building; this is not an offline source kit."
+}
