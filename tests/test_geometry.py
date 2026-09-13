@@ -139,7 +139,8 @@ def test_fast_random_perspective_matches_reference(perspective, dtype):
         fast = copy.copy(ref)
         fast.__class__ = geometry.FastRandomPerspective
         for _ in range(20):
-            segments = (rng.random((int(rng.integers(0, 40)), 1000, 2)) * 1200 - 200).astype(np.float32)
+            num = int(rng.choice([1000, 1001, 1003]))  # includes BLAS tail sizes
+            segments = (rng.random((int(rng.integers(0, 40)), num, 2)) * 1200 - 200).astype(np.float32)
             matrix, size = random_matrix(rng, perspective, dtype), (640, 480)
             same(fast.apply_segments(segments.copy(), matrix, size), ref.apply_segments(segments.copy(), matrix, size))
 

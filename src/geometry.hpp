@@ -204,23 +204,46 @@ void segment_box(const T *seg, int64_t m, int width, int height, T box[4], std::
         const T x = seg[2 * i], y = seg[2 * i + 1];
         if (x >= 0 && y >= 0 && x <= W && y <= H) add(x, y);
     }
+    const T tiny = T(1e-20);  // |a| >= tiny*|d| keeps a/d away from underflow to zero
     for (int64_t i = 0; i < m; ++i) {
         const int64_t next = i + 1 == m ? 0 : i + 1;  // np.roll(segment, -1, axis=0)
         const T sx = seg[2 * i], sy = seg[2 * i + 1];
         const T dx = seg[2 * next] - sx, dy = seg[2 * next + 1] - sy;
         for (int k = 0; k < 4; ++k) {
-            const T t = (bounds[k] - (axes[k] ? sy : sx)) / (axes[k] ? dy : dx);
+            const T a = bounds[k] - (axes[k] ? sy : sx), d = axes[k] ? dy : dx;
+            // Skip only divisions whose rounded t the reference certainly
+            // rejects: d == 0 gives +-inf or NaN; nonzero a with the opposite
+            // sign gives t < 0 (not -0.0, given the underflow guard); |a| >
+            // 2|d| gives t >= 2. Everything else is computed exactly as NumPy.
+            if (d == T(0)) continue;
+            const T abs_a = std::abs(a), abs_d = std::abs(d);
+            if (a != T(0) && (a > T(0)) != (d > T(0)) && abs_a >= tiny * abs_d) continue;
+            if (abs_a > T(2) * abs_d) continue;
+            const T t = a / d;
+            if (!(t >= 0 && t <= 1)) continue;
             const T px = t * dx, py = t * dy;  // t[:, :, None] * delta[:, None, :]
             const T ix = sx + px, iy = sy + py;
             const T other = axes[k] ? ix : iy;  // inter[:, k, 1 - axes[k]]
-            if (t >= 0 && t <= 1 && other >= 0 && other <= lims[k]) add(ix, iy);
+            if (other >= 0 && other <= lims[k]) add(ix, iy);
         }
     }
     contour.resize(size_t(2 * m));
-    for (int64_t i = 0; i < 2 * m; ++i) contour[size_t(i)] = static_cast<float>(seg[i]);
+    float cx0 = std::numeric_limits<float>::infinity(), cy0 = cx0, cx1 = -cx0, cy1 = -cx0;
+    for (int64_t i = 0; i < m; ++i) {
+        const float x = static_cast<float>(seg[2 * i]), y = static_cast<float>(seg[2 * i + 1]);
+        contour[size_t(2 * i)] = x, contour[size_t(2 * i + 1)] = y;
+        cx0 = std::min(cx0, x), cx1 = std::max(cx1, x), cy0 = std::min(cy0, y), cy1 = std::max(cy1, y);
+    }
     const T corners[4][2] = {{T(0), T(0)}, {W, T(0)}, {T(0), H}, {W, H}};
-    for (const auto &corner : corners)
-        if (inside_or_on(contour, float(double(corner[0])), float(double(corner[1])))) add(corner[0], corner[1]);
+    for (const auto &corner : corners) {
+        const float px = float(double(corner[0])), py = float(double(corner[1]));
+        // Above, below or right of every vertex: each edge takes pointPolygonTest's
+        // first three "continue" conditions and cannot satisfy its on-edge
+        // equality, so the result is -1 without the loop. (Left of every vertex
+        // still runs it: collinear edges there return 0.)
+        if (py < cy0 || py > cy1 || px > cx1) continue;
+        if (inside_or_on(contour, px, py)) add(corner[0], corner[1]);
+    }
     if (!any) {
         box[0] = box[1] = box[2] = box[3] = T(0);
     } else {
@@ -266,6 +289,26 @@ template <typename T> py::object segment_boxes(py::array_t<T, py::array::c_style
     return std::move(boxes);
 }
 
+// apply_segments after NumPy's product: xy[:, :2] / xy[:, 2:3] reshaped to
+// [N,M,2], then segment_boxes on it. The product itself stays in NumPy, since a
+// BLAS may pick different multiply-add orders by matrix size and position.
+// Returns (segments, boxes); boxes is None when segment_boxes defers.
+template <typename T> py::tuple project_boxes(Input<T> xyw, int64_t n, int64_t m, int width, int height, bool clip) {
+    if (xyw.ndim() != 2 || xyw.shape(1) != 3 || n < 0 || m < 0 || xyw.shape(0) != n * m)
+        throw py::value_error("expected xyw[N*M,3]");
+    const T *p = aligned_data<T>(xyw, "xyw");
+    py::array_t<T, py::array::c_style> segments({py::ssize_t(n), py::ssize_t(m), py::ssize_t(2)});
+    T *s = segments.mutable_data();
+    {
+        py::gil_scoped_release release;
+        for (int64_t i = 0; i < n * m; ++i) {
+            s[2 * i] = p[3 * i] / p[3 * i + 2];
+            s[2 * i + 1] = p[3 * i + 1] / p[3 * i + 2];
+        }
+    }
+    return py::make_tuple(segments, segment_boxes<T>(segments, width, height, clip));
+}
+
 // numpy.interp(x, arange(len(fp)), fp) for calibration against NumPy.
 inline py::array_t<double> interp_values(Input<double> x, Input<double> fp, bool fused) {
     if (x.ndim() != 1 || fp.ndim() != 1 || fp.size() < 2) throw py::value_error("expected 1-D x and fp (len >= 2)");
@@ -280,6 +323,10 @@ inline py::array_t<double> interp_values(Input<double> x, Input<double> fp, bool
 inline void register_geometry(py::module_ &m) {
     m.def("resample_stack", &resample_stack, py::arg("points"), py::arg("offsets"), py::arg("n"), py::arg("fused"));
     m.def("interp_values", &interp_values, py::arg("x"), py::arg("fp"), py::arg("fused"));
+    m.def("project_boxes_f32", &project_boxes<float>, py::arg("xyw"), py::arg("n"), py::arg("m"), py::arg("width"),
+          py::arg("height"), py::arg("clip"));
+    m.def("project_boxes_f64", &project_boxes<double>, py::arg("xyw"), py::arg("n"), py::arg("m"), py::arg("width"),
+          py::arg("height"), py::arg("clip"));
     m.def("segment_boxes_f32", &segment_boxes<float>, py::arg("segments"), py::arg("width"), py::arg("height"),
           py::arg("clip"));
     m.def("segment_boxes_f64", &segment_boxes<double>, py::arg("segments"), py::arg("width"), py::arg("height"),

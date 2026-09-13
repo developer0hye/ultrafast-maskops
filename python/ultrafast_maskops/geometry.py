@@ -32,6 +32,7 @@ _SOURCE_HASHES = {
     "YOLODataset.update_labels_info": "7bb1a13a6db3aa30898cf5ed231403d6bdbc6451897cf5e6592509c7f5ae5b0b",
 }
 _BOXES = {np.dtype(np.float32): _native.segment_boxes_f32, np.dtype(np.float64): _native.segment_boxes_f64}
+_PROJECT = {np.dtype(np.float32): _native.project_boxes_f32, np.dtype(np.float64): _native.project_boxes_f64}
 _UNSET = object()
 _interp_fused = _UNSET
 _interp_lock = threading.Lock()
@@ -118,19 +119,23 @@ def segment_boxes(segments, width, height, clip):
     kernel = _BOXES.get(segments.dtype)
     aligned = segments.flags.c_contiguous and segments.flags.aligned and segments.flags.writeable
     bboxes = kernel(segments, int(width), int(height), bool(clip)) if kernel is not None and aligned else None
-    if bboxes is None:
-        bboxes = np.stack([augment.segment2box(xy, width, height) for xy in segments], 0)
-        if clip:
-            segments[..., 0] = segments[..., 0].clip(bboxes[:, 0:1], bboxes[:, 2:3])
-            segments[..., 1] = segments[..., 1].clip(bboxes[:, 1:2], bboxes[:, 3:4])
+    return _reference_boxes(segments, width, height, clip) if bboxes is None else bboxes
+
+
+def _reference_boxes(segments, width, height, clip):
+    bboxes = np.stack([augment.segment2box(xy, width, height) for xy in segments], 0)
+    if clip:
+        segments[..., 0] = segments[..., 0].clip(bboxes[:, 0:1], bboxes[:, 2:3])
+        segments[..., 1] = segments[..., 1].clip(bboxes[:, 1:2], bboxes[:, 3:4])
     return bboxes
 
 
 class FastRandomPerspective(RandomPerspective):
-    """RandomPerspective whose segment boxes and clipping run natively."""
+    """RandomPerspective whose projection, segment boxes and clipping run natively."""
 
     def apply_segments(self, segments, M, size):
-        """Pinned apply_segments; the NumPy matrix product is unchanged."""
+        """Pinned apply_segments. The matrix product stays in NumPy: a BLAS may
+        choose multiply-add orders by matrix size and position."""
         n, num = segments.shape[:2]
         if n == 0:
             return [], segments
@@ -139,9 +144,14 @@ class FastRandomPerspective(RandomPerspective):
         segments = segments.reshape(-1, 2)
         xy[:, :2] = segments
         xy = xy @ M.T  # transform
-        xy = xy[:, :2] / xy[:, 2:3]
-        segments = xy.reshape(n, -1, 2)
-        bboxes = segment_boxes(segments, size[0], size[1], not self.preserve_obb)
+        clip = not self.preserve_obb
+        kernel = _PROJECT.get(xy.dtype)
+        if kernel is None or not (xy.flags.c_contiguous and xy.flags.aligned):
+            segments = (xy[:, :2] / xy[:, 2:3]).reshape(n, -1, 2)
+            return segment_boxes(segments, size[0], size[1], clip), segments
+        segments, bboxes = kernel(xy, n, num, int(size[0]), int(size[1]), clip)
+        if bboxes is None:
+            bboxes = _reference_boxes(segments, size[0], size[1], clip)
         return bboxes, segments
 
 
