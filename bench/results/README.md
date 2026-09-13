@@ -7,5 +7,6 @@
 - `m2-allocations.json`, `server-allocations.json`: independent Memray heap-allocation experiments, no latency claims. Referenced binary trace files are retained locally/on the server and are not included in this repository.
 - `coco-source-manifest.json`, `coco-segment-manifest.json`: frozen official COCO images/annotations, converter and complete converted Segmentation fixture provenance.
 - `coco-loader-pilot-m2.json`: 64-image execution/parity smoke at workers 0/2. One run per backend/configuration; its timing and degenerate bootstrap intervals are not representative performance evidence.
+- `mask-stage-sampled-m2-v1.json`, `.log`: overlap-mask stage (`bench/mask_stage.py`) on 2,000 captured COCO Format calls. Reference, the full-resolution native path and the sampled native path, five alternating rounds; every output is compared with the unmodified function first. The log records the load average around the run.
 
 Full methodology, unfavorable cases and incomplete release gates: [report](../../docs/BENCHMARKS.md).

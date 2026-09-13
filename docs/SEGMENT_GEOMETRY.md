@@ -59,6 +59,8 @@ backend and round.
 | Masks only (`accelerate_dataset`) | 9.68 | 1.07× |
 | Geometry + masks (`accelerate_dataset` + `accelerate_geometry`) | **7.35** | **1.40×** |
 
+These loader results predate the sampled mask path described below.
+
 Per 1,000 samples, resampling fell from 0.82 s to 0.18 s (4.5×) and
 `apply_segments` from 2.23 s to 0.61 s (3.7×); mask rasterization takes about
 0.26 s instead of 0.69 s (2.5×). The segment stage as a whole is about 3.6×
@@ -122,6 +124,30 @@ full-resolution image:
   error behaviour: coordinates outside the envelope where every intermediate is
   provably exact (|coordinate| ≥ 2^24, sides > 32,768), non-finite values, and
   other dtypes or memory layouts.
+
+The results below are for 2,000 captured COCO Format calls (27,497 instances)
+from `bench/mask_stage.py`. They are medians of five alternating rounds in one
+process, and every output was compared with the unmodified function first.
+
+| Backend | µs / call | Instructions / call | Speedup |
+|---|---:|---:|---:|
+| Reference `polygons2masks_overlap` | 1,054 | 9.87 M | 1.00× |
+| Previous native path (full resolution) | 411 | 2.94 M | 2.57× |
+| Sampled native path | 69 | 0.68 M | **15.3×** |
+
+- **Wall-clock:** the run started as another job was finishing (1-minute load
+  average 3.7–3.9). That inflates the absolute times of every backend in the
+  alternating rounds. With a quiet host, the reference measured about 620 µs.
+- **Instructions:** retired instructions from `/usr/bin/time -l` do not depend on
+  load. They give 14.5× against the reference and 4.3× against the previous
+  native path.
+- **x86-64:** the Linux and Windows CI builds (MSVC, scalar fallbacks) pass the
+  same parity tests. The calibration finds a table there too, so the sampled
+  path is active on all three CI platforms.
+
+Inside the loader, `Format._format_segments` also reorders the instances
+(`instances[order]`, which copies every segment array). Both implementations
+do this identically, and it now takes most of the stage's remaining time.
 
 Existing Rust rasterizers were evaluated as replacements for this replica on
 4,224 real polygons and none reproduces `cv2.fillPoly`:
