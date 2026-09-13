@@ -74,5 +74,14 @@ do not execute a training loop or establish loss/model parity after that transit
 Any throughput claim needs a separately declared repeated benchmark; the earlier
 GPU protocol used `close_mosaic=0` and cannot prove this lifecycle behavior.
 
+The candidate wheel workflow now explicitly selects `test_persistent_format.py`
+alongside the existing integration/training tests on Python 3.11–3.13 for each
+Linux, Windows and macOS job. It also selects `test_resize_roi.py` in every core
+parity job, covering the ROI/scale and mixed-scratch boundaries that the earlier
+explicit test list omitted. These workflow edits do not establish execution:
+hosted CI, local workflow lint and this candidate's installed tests remain pending.
+Python 3.10 still has core-only coverage because its NumPy profile does not meet
+the pinned framework adapter requirement.
+
 No build, test or benchmark is automatically queued by this candidate. Start its
 qualification only after the selected host's current reservation ends.
