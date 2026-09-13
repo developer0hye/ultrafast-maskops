@@ -90,6 +90,7 @@ def main():
     from ultrafast_yolo_dataset.ultralytics import build_yolo_dataset, check_profile
     from ultralytics.models.yolo.segment.train import SegmentationTrainer
     from ultralytics.data.augment import Format
+    from ultralytics.data.dataset import YOLODataset
     from ultralytics.utils.callbacks import get_default_callbacks
     from ultralytics.utils.torch_utils import unwrap_model
 
@@ -256,6 +257,13 @@ def main():
             assert len(formats) == 1 and type(formats[0]) is wanted, "mask acceleration was lost during a rebuild"
             wanted_factory = wanted if args.persistent_mask else Format
             assert dataset.format_class is wanted_factory
+            collator = self.train_loader.collate_fn
+            if args.persistent_mask and args.backend != "reference":
+                from ultrafast_maskops._shared_collate import shared_collate_fn
+
+                assert collator is dataset.collate_fn is shared_collate_fn
+            else:
+                assert collator is dataset.collate_fn is YOLODataset.collate_fn
             rebuilt = id(dataset.transforms) != self.initial_transforms_id
             assert rebuilt == expected_closed, "expected real upstream transform rebuild was not observed"
             self.lifecycle_records.append(
@@ -265,6 +273,7 @@ def main():
                     "start_epoch": self.start_epoch,
                     "formatter": type(formats[0]).__name__,
                     "factory": dataset.format_class.__name__,
+                    "collator": f"{collator.__module__}.{collator.__qualname__}",
                     "rebuilt_from_initial": rebuilt,
                     "worker_pids": [p.pid for p in getattr(self.train_loader.iterator, "_workers", ())],
                 }
@@ -310,6 +319,7 @@ def main():
                     current = list(self.train_loader.iterator._workers)
                     assert len(current) == args.workers
                     assert all(not p.is_alive() for p in self.previous_workers)
+                    assert all(p.exitcode == 0 for p in self.previous_workers)
                     assert not ({p.pid for p in self.previous_workers} & {p.pid for p in current})
             self.seen_images += len(batch["img"])
             return super().preprocess_batch(batch)

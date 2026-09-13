@@ -1,13 +1,15 @@
 # Persistent Format candidate
 
 This branch adds an **unvalidated** optional adapter feature on top of the
-unit-scale mask candidate at `25853ef`. A fresh Linux wheel/sdist, standalone
+unit-scale mask candidate at `25853ef`. The current [shared-batch revision](SHARED_BATCHES.md)
+is not yet installed-tested. For the preceding factory-only revision, a fresh Linux wheel/sdist, standalone
 installation and source/workflow lint passed. The full installed suite failed:
 221 passed and one spawned-worker reset test failed. A reference-only reproducer
 also fails without importing either new library. See the
 [qualification report](PERSISTENT_LINUX_VALIDATION.md) and preserved failures.
 A later [shutdown diagnosis](WORKER_SHUTDOWN_DIAGNOSIS.md) provides a native trace
-and six passing eager-sharing controls, but no production fix yet.
+and six passing eager-sharing controls. The current source implements direct
+shared collation based on that evidence; runtime qualification remains pending.
 Actual lifecycle training remains unqualified; M2 remains reserved by its separate
 startup experiment. The earlier 209-test result and loader/GPU evidence predate
 this Python adapter change.
@@ -29,7 +31,8 @@ replaced = accelerate_dataset(segmentation_dataset, persistent=True)
 ```
 
 This replaces current base mask formatters and sets only that dataset instance's
-`format_class` to the module-level `FastFormat`. Future base `build_transforms`
+`format_class` to the module-level `FastFormat`, and installs the guarded shared
+CPU `collate_fn` described in [SHARED_BATCHES.md](SHARED_BATCHES.md). Future base `build_transforms`
 calls therefore create native formatters with the new reference-selected mask
 ratio, overlap setting and all inherited Format options. No trainer override,
 global class replacement, model/loss change, or DataLoader-reset override is
@@ -45,7 +48,8 @@ Persistent mode requires the pinned base segmentation `build_transforms` method
 and a Format/FastFormat factory. Its method source is checked alongside the
 existing mask-function profile. Custom factories, overridden builders, custom
 Format subclasses, and non-default FastFormat mode/budget require their own
-integration and are rejected before changing the instance/list. Rebuilding uses
+integration and are rejected before changing the instance/list. Custom collators
+are also rejected; PyTorch and the collator source are checked. Rebuilding uses
 the default FastFormat auto mode and 64 MiB scratch budget. The scratch budget
 does not cap total process memory.
 
@@ -62,14 +66,18 @@ unknown/custom builder/factory rejection without mutation, preservation of
 non-default settings by rejecting unsupported persistence, and strict flag type.
 They also call the actual pinned trainer close-mosaic method, reset real
 InfiniteDataLoader workers at counts 0 and 2, verify prior workers terminate,
-and compare every batch field for both overlap and non-overlap masks. Other random
+and compare every batch field for both overlap and non-overlap masks. The current
+revision checks zero worker exit codes and all three reset points. Its reference
+collator now prepares shared transport eagerly for functional parity; the original
+reference failures remain preserved separately. This is not throughput evidence. Other random
 augmentations are disabled for this focused equality test; mosaic/mixup/copy-paste/
 cutmix are enabled before the transition and disabled by the reference method.
 
 [Reviewed source identities](persistent-format-source-profile-v1.json) locate
 the builder, close-mosaic, epoch/resume callers and loader reset implementation.
 These were extracted from source without importing the active benchmark runtime.
-Only the base transform builder is an additional runtime profile guard; the other
+The base transform builder and, in the new shared revision, the collator are
+additional runtime profile guards; the other
 entries document the reviewed context. Runtime inspect-source agreement still
 needs to pass in the installed environment.
 
@@ -82,6 +90,7 @@ Any throughput claim needs a separately declared repeated benchmark; the earlier
 GPU protocol used `close_mosaic=0` and cannot prove this lifecycle behavior.
 
 The candidate wheel workflow now explicitly selects `test_persistent_format.py`
+and `test_shared_collate.py`
 alongside the existing integration/training tests on Python 3.11–3.13 for each
 Linux, Windows and macOS job. It also selects `test_resize_roi.py` in every core
 parity job, covering the ROI/scale and mixed-scratch boundaries that the earlier

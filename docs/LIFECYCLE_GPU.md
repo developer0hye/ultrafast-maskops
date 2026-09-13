@@ -113,3 +113,9 @@ Epoch timing includes upstream closure/reset and the small first-batch
 observation, and excludes checkpoint saving. Whole-job resource samples include
 setup/checkpoint work; summed family RSS double-counts shared pages. No new speed,
 memory or accuracy claim is made by preparing this harness.
+
+The current shared-batch revision also observes the actual loader collator and
+requires zero exit codes at worker replacement. Native persistent trials install
+the shared collator, while the reference trial retains its original collator.
+These new assertions and the new runtime have not yet executed in the full GPU
+grid; see [the candidate contract](SHARED_BATCHES.md).

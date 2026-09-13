@@ -1,0 +1,52 @@
+{
+  "complete": true,
+  "checks": [
+    {
+      "command": [
+        "/home/yonghye/.local/bin/uvx",
+        "ruff==0.15.6",
+        "check",
+        "python",
+        "tests",
+        "bench/train_coco_gpu.py"
+      ],
+      "returncode": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/yonghye/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "--check",
+        "python/ultrafast_maskops/_shared_collate.py",
+        "python/ultrafast_maskops/ultralytics.py",
+        "tests/test_shared_collate.py",
+        "tests/test_persistent_format.py",
+        "bench/train_coco_gpu.py"
+      ],
+      "returncode": 0,
+      "stdout": "5 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/mask-persistent-linux-v1-tools/actionlint",
+        ".github/workflows/wheels.yml"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "files_sha256": {
+    "python/ultrafast_maskops/_shared_collate.py": "494f0caeb1a8daa9e8ae121b05f8f54a14ec79c028c6159febcfab5f6867b8bd",
+    "python/ultrafast_maskops/ultralytics.py": "9f956b492c33c92fa70abb726bc64e54548d3fdf9bf33b7a37f9177461363140",
+    "tests/test_shared_collate.py": "606717c2b0a863bc7d970acdb15b6e980f430608e31815da0c5466fee7c803e9",
+    "tests/test_persistent_format.py": "696e65bd079be562fea6333079a6b76fe81bfb670556570c9314880499a9f339",
+    "bench/train_coco_gpu.py": "db2701dc7036bf9f6850230a582638bbc8806a531d6159b240f9c61b04ad7bc9",
+    ".github/workflows/wheels.yml": "12d9c316581339f3b9f56ca9410377da8578d83b89c1848745625ba1114f8e61"
+  },
+  "runtime_tests": "not executed yet"
+}

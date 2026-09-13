@@ -11,6 +11,8 @@ from ultralytics.data.augment import Format
 from ultralytics.data.dataset import YOLODataset
 
 from . import PackedPolygons, Rasterizer, backend_info
+from ._shared_collate import check_shared_collate_profile, shared_collate_fn
+from ._shared_collate import share_dataset_batches as share_dataset_batches
 
 _SOURCE_HASHES = {
     "Format": "5141a276c0d58af8175d53ef165e270e984e549b575408ce54154b0c5648cfdc",
@@ -84,6 +86,7 @@ def _check_persistent_profile(dataset):
         raise RuntimeError("unsupported Ultralytics build_transforms source; retain the original format factory")
     if getattr(dataset, "format_class", None) not in (Format, FastFormat):
         raise TypeError("custom format factories require their own integration")
+    check_shared_collate_profile(dataset)
 
 
 def accelerate_dataset(dataset, *, persistent=False):
@@ -91,9 +94,10 @@ def accelerate_dataset(dataset, *, persistent=False):
 
     Call after construction in an explicit custom trainer/dataset factory.
     This does not change other datasets or globally imported functions.
-    persistent=True also sets this instance's base format_class hook so a
-    subsequent close_mosaic/build_transforms retains acceleration. Repeated
-    persistent opt-in returns zero if the current formatter is already native.
+    persistent=True also sets this instance's base format_class and shared CPU
+    collator hooks. Rebuilds retain acceleration; batch tensors are prepared
+    before IPC to avoid deferred storage sharing during worker teardown.
+    Repeated opt-in returns zero if the current formatter is already native.
     """
     check_profile()
     if type(persistent) is not bool:
@@ -117,6 +121,7 @@ def accelerate_dataset(dataset, *, persistent=False):
         if any(t._maskops_mode != "auto" or t._maskops_budget != 64 * 1024**2 for t in native_formats):
             raise TypeError("persistent acceleration requires the default FastFormat mode and scratch budget")
         dataset.format_class = FastFormat
+        dataset.collate_fn = shared_collate_fn
     for i, replacement in replacements:
         transforms[i] = replacement
     return len(replacements)

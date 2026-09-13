@@ -9,6 +9,7 @@ import pytest
 import torch
 from PIL import Image
 from ultrafast_maskops.ultralytics import FastFormat, accelerate_dataset
+from ultrafast_maskops._shared_collate import shared_collate_fn
 from ultralytics.cfg import DEFAULT_CFG
 from ultralytics.data.augment import Format
 from ultralytics.data.build import InfiniteDataLoader
@@ -77,19 +78,32 @@ def equal_batch(left, right):
             assert left[key] == right[key], key
 
 
+def reference_transport_collate(batch):
+    # The original reference spawn teardown failure is preserved separately.
+    # Keep its collation computation independent; prepare only IPC storage here.
+    result = YOLODataset.collate_fn(batch)
+    for value in result.values():
+        if isinstance(value, torch.Tensor):
+            value.share_memory_()
+    return result
+
+
 @pytest.mark.parametrize("overlap", [True, False])
 def test_persistent_factory_survives_rebuild_pickle_and_repeated_opt_in(corpus, overlap):
     kwargs = options(corpus, overlap)
     original, candidate = YOLODataset(**copy.deepcopy(kwargs)), YOLODataset(**copy.deepcopy(kwargs))
     assert accelerate_dataset(candidate, persistent=True) == 1
     assert candidate.format_class is FastFormat
+    assert candidate.collate_fn is shared_collate_fn
     assert original.format_class is YOLODataset.format_class is Format
+    assert original.collate_fn is YOLODataset.collate_fn
     assert accelerate_dataset(candidate, persistent=True) == 0
     # Use the formatter before pickling, so the native engine must be discarded.
     expected = YOLODataset.collate_fn([original[i] for i in range(2)])
     equal_batch(expected, YOLODataset.collate_fn([candidate[i] for i in range(2)]))
     restored = pickle.loads(pickle.dumps(candidate))
     assert restored.format_class is FastFormat
+    assert restored.collate_fn is shared_collate_fn
     restored.transforms = restored.build_transforms(copy.deepcopy(kwargs["hyp"]))
     assert type(formatter(restored)) is FastFormat
     equal_batch(expected, YOLODataset.collate_fn([restored[i] for i in range(2)]))
@@ -100,6 +114,7 @@ def test_default_remains_one_shot_and_can_be_upgraded(corpus):
     candidate = YOLODataset(**copy.deepcopy(kwargs))
     assert accelerate_dataset(candidate) == 1
     assert candidate.format_class is Format
+    assert candidate.collate_fn is YOLODataset.collate_fn
     candidate.transforms = candidate.build_transforms(copy.deepcopy(kwargs["hyp"]))
     assert type(formatter(candidate)) is Format
     assert accelerate_dataset(candidate) == 1
@@ -109,7 +124,8 @@ def test_default_remains_one_shot_and_can_be_upgraded(corpus):
 
 @pytest.mark.parametrize("workers", [0, 2])
 @pytest.mark.parametrize("overlap", [True, False])
-def test_close_mosaic_retains_format_through_real_worker_reset(corpus, workers, overlap):
+@pytest.mark.parametrize("before_reset", ["first-batch", "full-epoch", "setup"])
+def test_close_mosaic_retains_format_through_real_worker_reset(corpus, workers, overlap, before_reset):
     owners = []
     loader_options = {"multiprocessing_context": "spawn"} if workers else {}
     try:
@@ -119,11 +135,18 @@ def test_close_mosaic_retains_format_through_real_worker_reset(corpus, workers, 
             if native:
                 assert accelerate_dataset(dataset, persistent=True) == 1
             loader = InfiniteDataLoader(
-                dataset, batch_size=2, num_workers=workers, collate_fn=YOLODataset.collate_fn, **loader_options
+                dataset,
+                batch_size=2,
+                num_workers=workers,
+                collate_fn=dataset.collate_fn if native else reference_transport_collate,
+                **loader_options,
             )
             owner = SimpleNamespace(args=kwargs["hyp"], train_loader=loader)
             owners.append(owner)
-            next(iter(loader))  # Exercise the old iterator before its restart.
+            if before_reset == "first-batch":
+                next(iter(loader))
+            elif before_reset == "full-epoch":
+                assert len(list(loader)) == 2
             previous_transforms = dataset.transforms
             previous_workers = list(getattr(loader.iterator, "_workers", ()))
             # This is the actual unmodified trainer method, also used on resume.
@@ -136,11 +159,16 @@ def test_close_mosaic_retains_format_through_real_worker_reset(corpus, workers, 
                 restarted = list(loader.iterator._workers)
                 assert len(restarted) == workers
                 assert all(not worker.is_alive() for worker in previous_workers)
+                assert all(worker.exitcode == 0 for worker in previous_workers)
                 assert not ({worker.pid for worker in previous_workers} & {worker.pid for worker in restarted})
         left, right = (list(owner.train_loader) for owner in owners)
         assert len(left) == len(right) == 2
         for expected, actual in zip(left, right):
             equal_batch(expected, actual)
+        for owner in owners:
+            remaining = list(getattr(owner.train_loader.iterator, "_workers", ()))
+            owner.train_loader.close()
+            assert all(not worker.is_alive() and worker.exitcode == 0 for worker in remaining)
     finally:
         for owner in owners:
             owner.train_loader.close()
@@ -212,3 +240,17 @@ def test_persistent_flag_requires_bool(corpus):
     with pytest.raises(TypeError, match="persistent must be a bool"):
         accelerate_dataset(dataset, persistent=1)
     assert formatter(dataset) is previous and dataset.format_class is Format
+
+
+def test_custom_collator_rejected_before_persistent_mutation(corpus):
+    dataset = YOLODataset(**options(corpus))
+    previous = formatter(dataset)
+
+    def custom(batch):
+        return batch
+
+    dataset.collate_fn = custom
+    with pytest.raises(TypeError, match="custom collators"):
+        accelerate_dataset(dataset, persistent=True)
+    assert formatter(dataset) is previous and dataset.format_class is Format
+    assert dataset.collate_fn is custom
