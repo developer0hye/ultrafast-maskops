@@ -27,7 +27,7 @@ permissions:
 
 jobs:
   windows-reset:
-    if: github.event_name == 'workflow_dispatch' && inputs.windows_reset && !inputs.sdist_only && !inputs.windows_reset && inputs.inspect_artifact == ''
+    if: github.event_name == 'workflow_dispatch' && inputs.windows_reset && !inputs.sdist_only && inputs.inspect_artifact == ''
     runs-on: windows-2022
     timeout-minutes: 30
     permissions:
