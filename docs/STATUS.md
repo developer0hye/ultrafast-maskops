@@ -2,6 +2,12 @@
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 
+The `feat/trainer-lifecycle` branch adds an unvalidated persistent Format factory
+option. Source syntax has been inspected; fresh-wheel, full-suite, worker-reset
+and training/resume qualification remain pending. Earlier unit-scale results
+below do not validate this Python adapter change. See
+[PERSISTENT_FORMAT.md](PERSISTENT_FORMAT.md).
+
 This `perf/unit-scale-mask` worktree adds a unit-scale mask-only copy candidate
 that passed all 209 installed-wheel Linux tests; see [UNIT_SCALE_MASK.md](UNIT_SCALE_MASK.md). The ROI
 evidence below applies to its frozen `fec5cab` parent, not this new kernel.

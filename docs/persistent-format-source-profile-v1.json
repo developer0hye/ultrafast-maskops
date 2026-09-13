@@ -1,0 +1,72 @@
+{
+  "upstream_commit": "795a556942a12fe0124cf767888194a1d0b83e2e",
+  "scope": "Selected upstream lifecycle sources reviewed without importing the measured environment. Persistent opt-in checks YOLODataset.build_transforms plus the existing mask profile; other entries record caller/worker-reset context, not additional runtime guards.",
+  "sources": {
+    "SegmentationTrainer.__init__": {
+      "sha256": "7d704ed6db33fd618efafd74671beb5d171dfdb591e3280718a663eeb03d6dcb",
+      "file": "models/yolo/segment/train.py",
+      "file_sha256": "7e36dd8f80702daf041b0187731f61125031413a87acdc378786f3ea9d5fbf3f",
+      "start_line": 29,
+      "end_line": 40
+    },
+    "SegmentationTrainer.build_dataset": {
+      "sha256": "2d004adb8adc8a0fbb1b6dfc016ec48d0b20d0ef3eaa6428561991bf62eef17c",
+      "file": "models/yolo/detect/train.py",
+      "file_sha256": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f",
+      "start_line": 64,
+      "end_line": 76
+    },
+    "SegmentationTrainer._close_dataloader_mosaic": {
+      "sha256": "ee5b6df05c4167d6e702a40a80ac75260526d1798dda4c9ac719ed0df8513a36",
+      "file": "engine/trainer.py",
+      "file_sha256": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+      "start_line": 1110,
+      "end_line": 1116
+    },
+    "SegmentationTrainer._do_train": {
+      "sha256": "c80adf87051def523ea2b01e0a9a3098fbbf3fe912b07ce77b4e42f5d8875071",
+      "file": "engine/trainer.py",
+      "file_sha256": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+      "start_line": 450,
+      "end_line": 682
+    },
+    "SegmentationTrainer.resume_training": {
+      "sha256": "0ba8d74013e8b514639da1a132d115e7ebb565fdebe40fe68e0db0ffb58da3bf",
+      "file": "engine/trainer.py",
+      "file_sha256": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+      "start_line": 1088,
+      "end_line": 1108
+    },
+    "YOLODataset.close_mosaic": {
+      "sha256": "bb3430692c52cbac32ba91ebce0ecb7ab19aac308865a777c238102554cab103",
+      "file": "data/dataset.py",
+      "file_sha256": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e",
+      "start_line": 364,
+      "end_line": 374
+    },
+    "YOLODataset.build_transforms": {
+      "sha256": "85dc9e28f59b2f7a54ced5190cede13c4a918348f5fa5a9b411db461d08f0c72",
+      "file": "data/dataset.py",
+      "file_sha256": "6c30496c691aefeb0646bea23a1519d2960c927b71dae10c370afcd9765f0e0e",
+      "start_line": 304,
+      "end_line": 333
+    },
+    "build_yolo_dataset": {
+      "sha256": "b241900e63bb270c9a554f958d2445725736b432636a92a467c7ab516327b38a",
+      "file": "data/build.py",
+      "file_sha256": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+      "start_line": 237,
+      "end_line": 282
+    },
+    "InfiniteDataLoader": {
+      "sha256": "f2550a9e45bdc4f538eecd667891ae910de1e8907d39be751f7702602d9b5fa7",
+      "file": "data/build.py",
+      "file_sha256": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+      "start_line": 45,
+      "end_line": 105
+    }
+  },
+  "runtime_guarded_here": [
+    "YOLODataset.build_transforms"
+  ]
+}

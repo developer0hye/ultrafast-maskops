@@ -3,6 +3,11 @@
 Experimental C++/OpenCV batch polygon rasterization for Ultralytics. This is an
 alpha implementation, not yet a published or release-qualified replacement.
 
+This branch adds an unvalidated `accelerate_dataset(..., persistent=True)` option
+to retain the native formatter across dataset transform rebuilds. See
+[the candidate and pending checks](docs/PERSISTENT_FORMAT.md). Existing benchmark
+and installed-suite results below predate this adapter change.
+
 Implemented: `polygon2mask`, `polygons2masks`, `polygons2masks_overlap`, owned
 `PackedPolygons`, per-worker `Rasterizer`, and an explicit `FastFormat` adapter.
 The original PRD and all release gates remain in [docs/PRD.md](docs/PRD.md).
@@ -79,12 +84,17 @@ accelerate_dataset(yolo_segmentation_dataset)
 ```
 
 Call this explicitly in a dataset factory/custom trainer after construction.
-Rebuilding dataset transforms requires opting in again. In particular, the pinned
+With the default one-shot option, rebuilding transforms requires opting in again. The pinned
 trainer's `close_mosaic` step rebuilds them: reapply acceleration after that rebuild
 and before DataLoader workers are reset. The helper accelerates the current
 transform list; it does not install a persistent training-lifecycle hook. Custom
 Format subclasses are not replaced. Rolling back means constructing the original
 dataset normally.
+
+The experimental `persistent=True` option instead sets the instance's base
+`format_class` hook, so the reference builder can recreate FastFormat itself.
+It requires the pinned base segmentation transform builder and default native
+mode/budget; it leaves the class-level factory and other datasets unchanged.
 
 ## Evidence and remaining work
 

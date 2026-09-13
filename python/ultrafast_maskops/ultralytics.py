@@ -8,6 +8,7 @@ import cv2
 import numpy as np
 from ultralytics.data import utils
 from ultralytics.data.augment import Format
+from ultralytics.data.dataset import YOLODataset
 
 from . import PackedPolygons, Rasterizer, backend_info
 
@@ -17,6 +18,7 @@ _SOURCE_HASHES = {
     "polygons2masks": "0b06719c1864120ec1f1f39b6158971bf455ebc8a1b095f33057872cd1a48528",
     "polygons2masks_overlap": "95743aa94524665769288d311d1443acab92a59f2f9116c67d1616c98bf1e89f",
 }
+_BUILD_TRANSFORMS_SHA256 = "85dc9e28f59b2f7a54ced5190cede13c4a918348f5fa5a9b411db461d08f0c72"
 
 
 def check_profile():
@@ -70,20 +72,51 @@ class FastFormat(Format):
         return self._maskops_engine.masks((h, w), packed, 1, self.mask_ratio), instances, cls
 
 
-def accelerate_dataset(dataset):
+def _check_persistent_profile(dataset):
+    builder = getattr(getattr(dataset, "build_transforms", None), "__func__", None)
+    if builder is not YOLODataset.build_transforms or not getattr(dataset, "use_segments", False):
+        raise TypeError("persistent acceleration requires the base segmentation build_transforms hook")
+    try:
+        source_hash = hashlib.sha256(inspect.getsource(builder).encode()).hexdigest()
+    except (OSError, TypeError):
+        source_hash = None
+    if source_hash != _BUILD_TRANSFORMS_SHA256:
+        raise RuntimeError("unsupported Ultralytics build_transforms source; retain the original format factory")
+    if getattr(dataset, "format_class", None) not in (Format, FastFormat):
+        raise TypeError("custom format factories require their own integration")
+
+
+def accelerate_dataset(dataset, *, persistent=False):
     """Replace this dataset's base Format transforms and return their count.
 
     Call after construction in an explicit custom trainer/dataset factory.
     This does not change other datasets or globally imported functions.
+    persistent=True also sets this instance's base format_class hook so a
+    subsequent close_mosaic/build_transforms retains acceleration. Repeated
+    persistent opt-in returns zero if the current formatter is already native.
     """
     check_profile()
+    if type(persistent) is not bool:
+        raise TypeError("persistent must be a bool")
     transforms = getattr(getattr(dataset, "transforms", None), "transforms", None)
     if transforms is None:
         raise TypeError("expected an Ultralytics dataset with Compose.transforms")
+    if persistent:
+        _check_persistent_profile(dataset)
+        if type(transforms) is not list or any(
+            isinstance(t, Format) and type(t) not in (Format, FastFormat) for t in transforms
+        ):
+            raise TypeError("custom transform containers/Format subclasses require their own integration")
     indices = [i for i, t in enumerate(transforms) if type(t) is Format and t.return_mask]
-    if not indices:
+    already_native = persistent and any(type(t) is FastFormat and t.return_mask for t in transforms)
+    if not indices and not already_native:
         raise ValueError("no supported segmentation Format transform found")
     replacements = [(i, FastFormat.from_reference(transforms[i])) for i in indices]
+    if persistent:
+        native_formats = [t for t in transforms if type(t) is FastFormat] + [t for _, t in replacements]
+        if any(t._maskops_mode != "auto" or t._maskops_budget != 64 * 1024**2 for t in native_formats):
+            raise TypeError("persistent acceleration requires the default FastFormat mode and scratch budget")
+        dataset.format_class = FastFormat
     for i, replacement in replacements:
         transforms[i] = replacement
     return len(replacements)
