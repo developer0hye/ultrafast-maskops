@@ -56,4 +56,6 @@ Next gates are the [real-data loader protocol](SHARED_LOADER_PROTOCOL.md), actua
 GPU training across close-mosaic and resume, combined dataset/mask integration,
 resource measurements and supported-platform qualification. In particular,
 eight-worker operation, GPU pinning and the declared 54-trial training grid are
-not proven by these two-worker CPU reset tests.
+not proven by these two-worker CPU reset tests. A subsequent
+[full-image loader pilot](SHARED_LOADER_PILOT.md) now verifies non-augmented
+CPU loading at workers 0/2/8; GPU pinning and actual lifecycle training remain open.

@@ -8,6 +8,7 @@ import argparse
 import hashlib
 import json
 import math
+import multiprocessing
 import os
 import platform
 import subprocess
@@ -42,6 +43,9 @@ def file_sha(path):
 
 def main():
     args = arguments()
+    harness_sources = {
+        name: file_sha(Path(__file__).with_name(name)) for name in ("train_coco_gpu.py", "coco_loader.py")
+    }
     assert args.epochs >= 1 and args.batch >= 1 and args.imgsz >= 32
     assert 0 <= args.close_mosaic < args.epochs
     assert not args.close_mosaic or args.backend == "reference" or args.persistent_mask
@@ -61,6 +65,7 @@ def main():
         del receipt_bytes
         assert resume_receipt["complete"] and resume_receipt["args"]["backend"] == "reference"
         assert resume_receipt["script_sha256"] == file_sha(__file__)
+        assert resume_receipt["harness_sources"] == harness_sources
         assert resume_receipt["corpus_root"] == str(args.corpus.resolve()), "resume corpus path differs"
         for key in ("workers", "epochs", "batch", "imgsz", "overlap", "close_mosaic", "persistent_mask"):
             assert resume_receipt["args"][key] == getattr(args, key), f"resume protocol differs: {key}"
@@ -237,6 +242,14 @@ def main():
             validator.callbacks = {name: [] for name in get_default_callbacks()}
             return validator
 
+        def get_dataloader(self, dataset_path, batch_size=16, rank=0, mode="train"):
+            loader = super().get_dataloader(dataset_path, batch_size, rank, mode)
+            if lifecycle and mode == "train":
+                # Resume may reset inside setup, before any epoch-start callback.
+                # Retain only parent Process handles from the unmodified factory.
+                self.setup_workers = list(getattr(loader.iterator, "_workers", ()))
+            return loader
+
         def measure_on_pretrain_routine_end(self):
             self.initial_state_sha = state_sha(unwrap_model(self.model))
             assert self.train_loader.num_workers == args.workers
@@ -249,6 +262,22 @@ def main():
             if lifecycle:
                 closed_on_resume = bool(args.resume_from) and expected_start > args.epochs - args.close_mosaic
                 self.observe_format("prepared", closed_on_resume)
+                if closed_on_resume:
+                    self.observe_replacement(self.setup_workers)
+                self.setup_workers = []
+
+        def observe_replacement(self, previous):
+            current = list(getattr(self.train_loader.iterator, "_workers", ()))
+            observation = self.lifecycle_records[-1]
+            observation.update(
+                replaced_worker_pids=[p.pid for p in previous],
+                replaced_worker_exitcodes=[p.exitcode for p in previous],
+                replaced_workers_alive=[p.is_alive() for p in previous],
+            )
+            assert len(previous) == len(current) == args.workers
+            assert not any(observation["replaced_workers_alive"]), observation
+            assert all(code == 0 for code in observation["replaced_worker_exitcodes"]), observation
+            assert not ({p.pid for p in previous} & {p.pid for p in current}), observation
 
         def observe_format(self, stage, expected_closed):
             dataset = self.train_loader.dataset
@@ -266,6 +295,7 @@ def main():
                 assert collator is dataset.collate_fn is YOLODataset.collate_fn
             rebuilt = id(dataset.transforms) != self.initial_transforms_id
             assert rebuilt == expected_closed, "expected real upstream transform rebuild was not observed"
+            context = self.train_loader.multiprocessing_context
             self.lifecycle_records.append(
                 {
                     "stage": stage,
@@ -276,6 +306,13 @@ def main():
                     "collator": f"{collator.__module__}.{collator.__qualname__}",
                     "rebuilt_from_initial": rebuilt,
                     "worker_pids": [p.pid for p in getattr(self.train_loader.iterator, "_workers", ())],
+                    "worker_start_method": (
+                        (context.get_start_method() if context else multiprocessing.get_start_method())
+                        if self.train_loader.num_workers
+                        else None
+                    ),
+                    "pin_memory": self.train_loader.pin_memory,
+                    "prefetch_factor": self.train_loader.prefetch_factor,
                 }
             )
 
@@ -315,12 +352,11 @@ def main():
             if lifecycle and self.seen_images == 0:
                 boundary = args.epochs - args.close_mosaic
                 self.observe_format("first-batch", bool(args.close_mosaic) and self.epoch >= boundary)
-                if args.close_mosaic and self.epoch == boundary and args.workers:
-                    current = list(self.train_loader.iterator._workers)
-                    assert len(current) == args.workers
-                    assert all(not p.is_alive() for p in self.previous_workers)
-                    assert all(p.exitcode == 0 for p in self.previous_workers)
-                    assert not ({p.pid for p in self.previous_workers} & {p.pid for p in current})
+                pinned_image = batch["img"].is_pinned()
+                assert not self.train_loader.pin_memory or pinned_image, "image did not pass through pinning"
+                self.lifecycle_records[-1]["pinned_image"] = pinned_image
+                if args.close_mosaic and self.epoch == boundary:
+                    self.observe_replacement(self.previous_workers)
             self.seen_images += len(batch["img"])
             return super().preprocess_batch(batch)
 
@@ -388,6 +424,7 @@ def main():
         "scope": "full real-data GPU training trial; not accuracy or repeated speedup evidence",
         "args": {k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items()},
         "script_sha256": file_sha(__file__),
+        "harness_sources": harness_sources,
         "upstream_files": source_hashes,
         "packages": packages,
         "mask_build": maskops.backend_info(),
@@ -454,6 +491,23 @@ def main():
         trainer.lifecycle_records, trainer.checkpoint_records = [], []
         trainer.train()
         whole_job_s = time.perf_counter() - started
+        # The unmodified trainer closes both loaders before returning. Observe
+        # that result instead of overriding close/reset or treating return as
+        # proof of clean worker teardown.
+        shutdown = {}
+        for name, loader in (("train", trainer.train_loader), ("val", trainer.test_loader)):
+            workers = list(getattr(loader.iterator, "_workers", ()))
+            shutdown[name] = {
+                "worker_count": loader.num_workers,
+                "worker_pids": [p.pid for p in workers],
+                "worker_exitcodes": [p.exitcode for p in workers],
+                "workers_alive": [p.is_alive() for p in workers],
+            }
+        report["worker_shutdown"] = shutdown
+        for observation in shutdown.values():
+            assert len(observation["worker_pids"]) == observation["worker_count"]
+            assert all(code == 0 for code in observation["worker_exitcodes"]), observation
+            assert not any(observation["workers_alive"]), observation
         assert [r["epoch"] for r in trainer.epoch_records] == list(range(expected_start, args.epochs))
         assert sorted(r["epoch"] for r in trainer.checkpoint_records) == sorted(args.checkpoint_epochs)
         if lifecycle:
@@ -466,6 +520,7 @@ def main():
         final_sha = state_sha(unwrap_model(trainer.model))
         assert final_sha != trainer.initial_state_sha, "model must actually update"
         assert file_sha(cache) == cache_sha, "original cache changed"
+        assert harness_sources == {name: file_sha(Path(__file__).with_name(name)) for name in harness_sources}
         assert source_hashes == {name: file_sha(upstream / name) for name in source_names}
         report.update(
             complete=True,

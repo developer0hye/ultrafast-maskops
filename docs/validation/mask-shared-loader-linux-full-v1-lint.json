@@ -1,0 +1,47 @@
+{
+  "complete": true,
+  "commands": [
+    {
+      "command": [
+        "/home/yonghye/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "--config",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-source/pyproject.toml",
+        "/home/yonghye/ultrafast-vision-build/run-shared-loader-linux-full-v1.py"
+      ],
+      "returncode": 0,
+      "stdout": "1 file reformatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/yonghye/.local/bin/uvx",
+        "ruff==0.15.6",
+        "check",
+        "--config",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-source/pyproject.toml",
+        "/home/yonghye/ultrafast-vision-build/run-shared-loader-linux-full-v1.py"
+      ],
+      "returncode": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/yonghye/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "--check",
+        "--config",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-source/pyproject.toml",
+        "/home/yonghye/ultrafast-vision-build/run-shared-loader-linux-full-v1.py"
+      ],
+      "returncode": 0,
+      "stdout": "1 file already formatted\n",
+      "stderr": ""
+    }
+  ],
+  "source_sha256": "0890ba0515555015724bff8b10617401eff92bd9c6d9ac6f0043cdaa8744ae65",
+  "formatting_preserved_ast": true
+}

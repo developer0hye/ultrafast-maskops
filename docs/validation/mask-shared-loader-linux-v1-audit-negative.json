@@ -1,0 +1,471 @@
+{
+  "complete_controls_passed": [
+    "yes",
+    "no"
+  ],
+  "rejected": 76,
+  "cases": [
+    {
+      "mode": "yes",
+      "damage": "missing_run",
+      "rejected": true,
+      "reason": "incomplete requested sample count"
+    },
+    {
+      "mode": "yes",
+      "damage": "order",
+      "rejected": true,
+      "reason": "missing, extra or reordered samples"
+    },
+    {
+      "mode": "yes",
+      "damage": "raw_parent",
+      "rejected": true,
+      "reason": "raw/parent disagreement"
+    },
+    {
+      "mode": "yes",
+      "damage": "incomplete_images",
+      "rejected": true,
+      "reason": "incomplete epoch or verification"
+    },
+    {
+      "mode": "yes",
+      "damage": "wrong_overlap",
+      "rejected": true,
+      "reason": "wrong mask/augmentation/cache configuration"
+    },
+    {
+      "mode": "yes",
+      "damage": "wrong_source",
+      "rejected": true,
+      "reason": "worker identity drift"
+    },
+    {
+      "mode": "yes",
+      "damage": "output_parity",
+      "rejected": true,
+      "reason": "full output parity mismatch"
+    },
+    {
+      "mode": "yes",
+      "damage": "bad_throughput",
+      "rejected": true,
+      "reason": "wrong throughput"
+    },
+    {
+      "mode": "yes",
+      "damage": "wrong_topology",
+      "rejected": true,
+      "reason": "wrong object population"
+    },
+    {
+      "mode": "yes",
+      "damage": "missing_verification",
+      "rejected": true,
+      "reason": "incomplete epoch or verification"
+    },
+    {
+      "mode": "yes",
+      "damage": "missing_parity",
+      "rejected": true,
+      "reason": "missing parity result"
+    },
+    {
+      "mode": "yes",
+      "damage": "memory_peak",
+      "rejected": true,
+      "reason": "wrong family RSS peak"
+    },
+    {
+      "mode": "yes",
+      "damage": "memory_count",
+      "rejected": true,
+      "reason": "wrong sample count"
+    },
+    {
+      "mode": "yes",
+      "damage": "memory_order",
+      "rejected": true,
+      "reason": "unordered memory samples"
+    },
+    {
+      "mode": "yes",
+      "damage": "worker_phase",
+      "rejected": true,
+      "reason": "worker not terminal"
+    },
+    {
+      "mode": "yes",
+      "damage": "extra_artifact",
+      "rejected": true,
+      "reason": "missing or extra raw artifacts"
+    },
+    {
+      "mode": "yes",
+      "damage": "fresh_binding",
+      "rejected": true,
+      "reason": "fresh reference not bound to complete report"
+    },
+    {
+      "mode": "yes",
+      "damage": "fresh_output",
+      "rejected": true,
+      "reason": "fresh reference mismatch"
+    },
+    {
+      "mode": "yes",
+      "damage": "fresh_phase",
+      "rejected": true,
+      "reason": "fresh reference not terminal"
+    },
+    {
+      "mode": "yes",
+      "damage": "fresh_count",
+      "rejected": true,
+      "reason": "fresh reference not bound to complete report"
+    },
+    {
+      "mode": "yes",
+      "damage": "cache_hash_missing",
+      "rejected": true,
+      "reason": "missing rebuilt cache hash"
+    },
+    {
+      "mode": "yes",
+      "damage": "aggregate",
+      "rejected": true,
+      "reason": "wrong parent median/p95"
+    },
+    {
+      "mode": "yes",
+      "damage": "wrong_collator",
+      "rejected": true,
+      "reason": "wrong actual collator"
+    },
+    {
+      "mode": "yes",
+      "damage": "missing_opt_in",
+      "rejected": true,
+      "reason": "worker opt-in mismatch"
+    },
+    {
+      "mode": "yes",
+      "damage": "worker_abort",
+      "rejected": true,
+      "reason": "worker did not exit cleanly"
+    },
+    {
+      "mode": "yes",
+      "damage": "missing_worker_pid",
+      "rejected": true,
+      "reason": "invalid worker process identities"
+    },
+    {
+      "mode": "yes",
+      "damage": "duplicate_worker_pid",
+      "rejected": true,
+      "reason": "invalid worker process identities"
+    },
+    {
+      "mode": "yes",
+      "damage": "boolean_worker_pid",
+      "rejected": true,
+      "reason": "invalid worker process identities"
+    },
+    {
+      "mode": "yes",
+      "damage": "boolean_exitcode",
+      "rejected": true,
+      "reason": "worker did not exit cleanly"
+    },
+    {
+      "mode": "yes",
+      "damage": "round_type",
+      "rejected": true,
+      "reason": "invalid round index"
+    },
+    {
+      "mode": "yes",
+      "damage": "wrong_plan",
+      "rejected": true,
+      "reason": "wrong declared plan"
+    },
+    {
+      "mode": "yes",
+      "damage": "incomplete_flag",
+      "rejected": true,
+      "reason": "report is not complete"
+    },
+    {
+      "mode": "yes",
+      "damage": "fresh_collator",
+      "rejected": true,
+      "reason": "wrong fresh-reference configuration or transport"
+    },
+    {
+      "mode": "yes",
+      "damage": "fresh_opt_in",
+      "rejected": true,
+      "reason": "wrong fresh-reference configuration or transport"
+    },
+    {
+      "mode": "yes",
+      "damage": "fresh_topology",
+      "rejected": true,
+      "reason": "wrong fresh-reference configuration or transport"
+    },
+    {
+      "mode": "yes",
+      "damage": "cache_hash_nonhex",
+      "rejected": true,
+      "reason": "missing rebuilt cache hash"
+    },
+    {
+      "mode": "yes",
+      "damage": "abort_log",
+      "rejected": true,
+      "reason": "abort in worker log"
+    },
+    {
+      "mode": "yes",
+      "damage": "missing_packet_source",
+      "rejected": true,
+      "reason": "wrong source identity"
+    },
+    {
+      "mode": "no",
+      "damage": "missing_run",
+      "rejected": true,
+      "reason": "incomplete requested sample count"
+    },
+    {
+      "mode": "no",
+      "damage": "order",
+      "rejected": true,
+      "reason": "missing, extra or reordered samples"
+    },
+    {
+      "mode": "no",
+      "damage": "raw_parent",
+      "rejected": true,
+      "reason": "raw/parent disagreement"
+    },
+    {
+      "mode": "no",
+      "damage": "incomplete_images",
+      "rejected": true,
+      "reason": "incomplete epoch or verification"
+    },
+    {
+      "mode": "no",
+      "damage": "wrong_overlap",
+      "rejected": true,
+      "reason": "wrong mask/augmentation/cache configuration"
+    },
+    {
+      "mode": "no",
+      "damage": "wrong_source",
+      "rejected": true,
+      "reason": "worker identity drift"
+    },
+    {
+      "mode": "no",
+      "damage": "output_parity",
+      "rejected": true,
+      "reason": "full output parity mismatch"
+    },
+    {
+      "mode": "no",
+      "damage": "bad_throughput",
+      "rejected": true,
+      "reason": "wrong throughput"
+    },
+    {
+      "mode": "no",
+      "damage": "wrong_topology",
+      "rejected": true,
+      "reason": "wrong object population"
+    },
+    {
+      "mode": "no",
+      "damage": "missing_verification",
+      "rejected": true,
+      "reason": "incomplete epoch or verification"
+    },
+    {
+      "mode": "no",
+      "damage": "missing_parity",
+      "rejected": true,
+      "reason": "missing parity result"
+    },
+    {
+      "mode": "no",
+      "damage": "memory_peak",
+      "rejected": true,
+      "reason": "wrong family RSS peak"
+    },
+    {
+      "mode": "no",
+      "damage": "memory_count",
+      "rejected": true,
+      "reason": "wrong sample count"
+    },
+    {
+      "mode": "no",
+      "damage": "memory_order",
+      "rejected": true,
+      "reason": "unordered memory samples"
+    },
+    {
+      "mode": "no",
+      "damage": "worker_phase",
+      "rejected": true,
+      "reason": "worker not terminal"
+    },
+    {
+      "mode": "no",
+      "damage": "extra_artifact",
+      "rejected": true,
+      "reason": "missing or extra raw artifacts"
+    },
+    {
+      "mode": "no",
+      "damage": "fresh_binding",
+      "rejected": true,
+      "reason": "fresh reference not bound to complete report"
+    },
+    {
+      "mode": "no",
+      "damage": "fresh_output",
+      "rejected": true,
+      "reason": "fresh reference mismatch"
+    },
+    {
+      "mode": "no",
+      "damage": "fresh_phase",
+      "rejected": true,
+      "reason": "fresh reference not terminal"
+    },
+    {
+      "mode": "no",
+      "damage": "fresh_count",
+      "rejected": true,
+      "reason": "fresh reference not bound to complete report"
+    },
+    {
+      "mode": "no",
+      "damage": "cache_hash_missing",
+      "rejected": true,
+      "reason": "missing rebuilt cache hash"
+    },
+    {
+      "mode": "no",
+      "damage": "aggregate",
+      "rejected": true,
+      "reason": "wrong parent median/p95"
+    },
+    {
+      "mode": "no",
+      "damage": "wrong_collator",
+      "rejected": true,
+      "reason": "wrong actual collator"
+    },
+    {
+      "mode": "no",
+      "damage": "missing_opt_in",
+      "rejected": true,
+      "reason": "worker opt-in mismatch"
+    },
+    {
+      "mode": "no",
+      "damage": "worker_abort",
+      "rejected": true,
+      "reason": "worker did not exit cleanly"
+    },
+    {
+      "mode": "no",
+      "damage": "missing_worker_pid",
+      "rejected": true,
+      "reason": "invalid worker process identities"
+    },
+    {
+      "mode": "no",
+      "damage": "duplicate_worker_pid",
+      "rejected": true,
+      "reason": "invalid worker process identities"
+    },
+    {
+      "mode": "no",
+      "damage": "boolean_worker_pid",
+      "rejected": true,
+      "reason": "invalid worker process identities"
+    },
+    {
+      "mode": "no",
+      "damage": "boolean_exitcode",
+      "rejected": true,
+      "reason": "worker did not exit cleanly"
+    },
+    {
+      "mode": "no",
+      "damage": "round_type",
+      "rejected": true,
+      "reason": "invalid round index"
+    },
+    {
+      "mode": "no",
+      "damage": "wrong_plan",
+      "rejected": true,
+      "reason": "wrong declared plan"
+    },
+    {
+      "mode": "no",
+      "damage": "incomplete_flag",
+      "rejected": true,
+      "reason": "report is not complete"
+    },
+    {
+      "mode": "no",
+      "damage": "fresh_collator",
+      "rejected": true,
+      "reason": "wrong fresh-reference configuration or transport"
+    },
+    {
+      "mode": "no",
+      "damage": "fresh_opt_in",
+      "rejected": true,
+      "reason": "wrong fresh-reference configuration or transport"
+    },
+    {
+      "mode": "no",
+      "damage": "fresh_topology",
+      "rejected": true,
+      "reason": "wrong fresh-reference configuration or transport"
+    },
+    {
+      "mode": "no",
+      "damage": "cache_hash_nonhex",
+      "rejected": true,
+      "reason": "missing rebuilt cache hash"
+    },
+    {
+      "mode": "no",
+      "damage": "abort_log",
+      "rejected": true,
+      "reason": "abort in worker log"
+    },
+    {
+      "mode": "no",
+      "damage": "missing_packet_source",
+      "rejected": true,
+      "reason": "wrong source identity"
+    }
+  ],
+  "auditor_sha256": "5f5ea599a21ebf0a15d4779187f17f8687c03472e5545c3cac9ec901f3a43856",
+  "qualification_source_sha256": "1ad161692d05fe6520a43fb9d9ca62898af27b6d5cd962c6cb27a708691246f3",
+  "input_report_sha256": {
+    "yes": "8e982b1f375dd04330260dd7ef9f714d7d6ee3f29c6d39215918bba7d4389e7f",
+    "no": "62fae3a693460c43a28f55aa631daa8efa9d6a58821d1c6ec8bcef7a2d5cadd8"
+  }
+}

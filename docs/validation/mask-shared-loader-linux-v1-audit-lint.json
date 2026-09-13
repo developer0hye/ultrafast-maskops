@@ -1,0 +1,69 @@
+{
+  "complete": true,
+  "tool": "ruff 0.15.6",
+  "commands": [
+    {
+      "command": [
+        "/home/yonghye/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "--config",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-source/pyproject.toml",
+        "/home/yonghye/ultrafast-vision-build/audit-shared-loader-v1.py",
+        "/home/yonghye/ultrafast-vision-build/qualify-shared-loader-audit-v1.py",
+        "/home/yonghye/ultrafast-vision-build/seal-shared-loader-pilot-v1.py",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-lint-stage/train_coco_gpu.py"
+      ],
+      "returncode": 0,
+      "stdout": "4 files reformatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/yonghye/.local/bin/uvx",
+        "ruff==0.15.6",
+        "check",
+        "--config",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-source/pyproject.toml",
+        "/home/yonghye/ultrafast-vision-build/audit-shared-loader-v1.py",
+        "/home/yonghye/ultrafast-vision-build/qualify-shared-loader-audit-v1.py",
+        "/home/yonghye/ultrafast-vision-build/seal-shared-loader-pilot-v1.py",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-lint-stage/train_coco_gpu.py"
+      ],
+      "returncode": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/yonghye/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "--check",
+        "--config",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-source/pyproject.toml",
+        "/home/yonghye/ultrafast-vision-build/audit-shared-loader-v1.py",
+        "/home/yonghye/ultrafast-vision-build/qualify-shared-loader-audit-v1.py",
+        "/home/yonghye/ultrafast-vision-build/seal-shared-loader-pilot-v1.py",
+        "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-lint-stage/train_coco_gpu.py"
+      ],
+      "returncode": 0,
+      "stdout": "4 files already formatted\n",
+      "stderr": ""
+    }
+  ],
+  "before_sha256": {
+    "/home/yonghye/ultrafast-vision-build/audit-shared-loader-v1.py": "53520472e3060fe91a21744d216a2649be61711baaf78f6ceb140128b9ab233b",
+    "/home/yonghye/ultrafast-vision-build/qualify-shared-loader-audit-v1.py": "b520818b849652042499abe8033168f47eebf8c51127e5cbade74bb879043232",
+    "/home/yonghye/ultrafast-vision-build/seal-shared-loader-pilot-v1.py": "4a5fc3b3196476102521cf17799c6435e4649c0d80ca6881cba409328d5e8df4",
+    "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-lint-stage/train_coco_gpu.py": "51efd8fae9a0afc4b782d262b6c62676d14ccae73225f038c0d5657a07873d9f"
+  },
+  "after_sha256": {
+    "/home/yonghye/ultrafast-vision-build/audit-shared-loader-v1.py": "5f5ea599a21ebf0a15d4779187f17f8687c03472e5545c3cac9ec901f3a43856",
+    "/home/yonghye/ultrafast-vision-build/qualify-shared-loader-audit-v1.py": "1ad161692d05fe6520a43fb9d9ca62898af27b6d5cd962c6cb27a708691246f3",
+    "/home/yonghye/ultrafast-vision-build/seal-shared-loader-pilot-v1.py": "7225f8c0212c0d85f0662b17a064a18ffd846ab1d3d5ac24ccfc6f4937f30413",
+    "/home/yonghye/ultrafast-vision-build/mask-shared-linux-v2-lint-stage/train_coco_gpu.py": "1edf99c37882e960e7c9dae2016b7dee6fbb180fbf7d8fdd4bf4beb38b60d8a7"
+  },
+  "formatting_preserved_ast": true,
+  "gpu_runtime_executed": false
+}

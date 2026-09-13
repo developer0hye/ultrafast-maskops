@@ -1,0 +1,58 @@
+[
+  {
+    "command": [
+      "python3",
+      "/home/yonghye/ultrafast-vision-build/audit-shared-loader-v1.py",
+      "--report",
+      "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-pilot-yes.json",
+      "--identity",
+      "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-audit-identity.json",
+      "--runs-dir",
+      "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-pilot-yes.runs",
+      "--overlap",
+      "yes",
+      "--fresh",
+      "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-fresh-yes.json",
+      "--out",
+      "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-pilot-yes-audit.json"
+    ],
+    "returncode": 0,
+    "log_sha256": "f8ccb38c90f69a0f10ba2703952993423dd4512fbc4c93e1c97200857efbcde2"
+  },
+  {
+    "command": [
+      "python3",
+      "/home/yonghye/ultrafast-vision-build/audit-shared-loader-v1.py",
+      "--report",
+      "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-pilot-no.json",
+      "--identity",
+      "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-audit-identity.json",
+      "--runs-dir",
+      "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-pilot-no.runs",
+      "--overlap",
+      "no",
+      "--fresh",
+      "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-fresh-no.json",
+      "--out",
+      "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-pilot-no-audit.json"
+    ],
+    "returncode": 0,
+    "log_sha256": "a7125caf87600c91b37b87d23e01b62f38b5b5f67e3f22a67f12cab2ef41a676"
+  },
+  {
+    "command": [
+      "python3",
+      "/home/yonghye/ultrafast-vision-build/qualify-shared-loader-audit-v1.py",
+      "--root",
+      "/home/yonghye/ultrafast-vision-build",
+      "--auditor",
+      "/home/yonghye/ultrafast-vision-build/audit-shared-loader-v1.py",
+      "--identity",
+      "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-audit-identity.json",
+      "--out",
+      "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-v1-audit-negative.json"
+    ],
+    "returncode": 0,
+    "log_sha256": "51315372edd82b99ee25a46bc3337dd2bf48f3ad4b7b7d4f66444a3d4ba05c0a"
+  }
+]

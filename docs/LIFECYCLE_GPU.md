@@ -120,3 +120,25 @@ requires zero exit codes at worker replacement. Native persistent trials install
 the shared collator, while the reference trial retains its original collator.
 These new assertions and the new runtime have not yet executed in the full GPU
 grid; see [the candidate contract](SHARED_BATCHES.md).
+
+The latest unexecuted harness also records the loader's actual multiprocessing
+start method, pin-memory setting and prefetch factor. It does not force GPU
+training to use the spawned context of the CPU loader experiment. At the first
+batch of each epoch, it checks that the image is pinned when pinning is enabled.
+At a close-mosaic replacement it retains both old worker PIDs and exit codes in
+the lifecycle record, in addition to asserting clean termination and new PIDs.
+
+Resume after the boundary can reset workers during setup, before epoch callbacks.
+The harness delegates loader construction to the original factory and retains
+only the returned loader's parent Process handles until the pretrain callback.
+It then applies the same old-worker exit/PID checks to this setup-time reset and
+releases those handles. It does not change loader options, reset or shutdown.
+Replacement observations are written before assertions so failures remain visible.
+
+After the unmodified trainer returns, both train and validation loaders must
+have the expected worker count, no live workers and zero exit codes. These
+observations are retained before assertions, so a shutdown failure remains in
+the partial report. No shutdown override is used. The trial now binds both its
+own script and `coco_loader.py`, verifies those bytes after training, and requires
+the same two-script identity when resuming from a reference receipt. These
+source changes are not new training or reliability results.

@@ -1,0 +1,194 @@
+{
+  "complete_requested_samples": true,
+  "rounds": 1,
+  "scope": "one-pair functional pilot",
+  "fresh_verified": true,
+  "overlap": true,
+  "completed_workers": 6,
+  "report_sha256": "8e982b1f375dd04330260dd7ef9f714d7d6ee3f29c6d39215918bba7d4389e7f",
+  "identity_sha256": "e81581ece21dd69201c3662fc4765984085f700f3fad5dd7d3dc0b7257098713",
+  "auditor_sha256": "5f5ea599a21ebf0a15d4779187f17f8687c03472e5545c3cac9ec901f3a43856",
+  "raw_sha256": {
+    "0-0-reference.json": "c6c5ade9437203d493d5f59b787cb2b0d0c319ea412e40e64ab701516d9a94a7",
+    "0-0-reference.memory.json": "4397e25b81583f689285ec6e4886c54729347bf047cb0151bd462392e1c41172",
+    "0-0-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-0-reference.log": "ebb4913f24dab0621e1da2f789c059aa785db192f321780217833a0b9d828112",
+    "0-0-native.json": "8a7f3a1099c5831e46c7c33ccc9d18c67f18dc07745a936705d8aef5a8e0caab",
+    "0-0-native.memory.json": "b315b1420c81f0ac8adc8595ad2214d7059f1a8d1919992317e9c07c348c1f9e",
+    "0-0-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "0-0-native.log": "901107f3a076da1ffc39db29af411aa44b1ec0bb995f64deeeea54306501820c",
+    "2-0-reference.json": "9ea8ebf950d27038d86f9978d520ed12469fa9a0ca0e3056bb406911a467ba01",
+    "2-0-reference.memory.json": "5e10e565c042276d819ea4c1393e94a0872ec7f62759a0a8653d9a65df991bfc",
+    "2-0-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "2-0-reference.log": "997c0fe0844d51031bbebbf74727ebc483a586d8c63d3d6289df2cdabfdcf6d1",
+    "2-0-native.json": "52ca830ce42a712f7b05daad4a23f4df66b49dba248b8cd2f2e37f7643b07401",
+    "2-0-native.memory.json": "007ed871df61812c6b452a1eb0ccb77d8d7f3c70a6e269710aab253e84371e09",
+    "2-0-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "2-0-native.log": "1cfbe26d65bbd31c0c9bb102c46769a96c3f0ae7e5b0c85f68f4d83cbac59265",
+    "8-0-reference.json": "da546ad114e2c83f5324433b79e2ed5ca58a505487d335dfd3b5f48732609f84",
+    "8-0-reference.memory.json": "a426a5c7010c935c1f7aa40eb1a64073e32a10806cd65188299192364e8bf609",
+    "8-0-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "8-0-reference.log": "4cfbde7ed1e50615c2fe1e37cc0d2d01f24999e92451f11cfe634b29c9ef56b9",
+    "8-0-native.json": "cba4a72fbf7f920d5c07c83826599d6e0ab8b6c1f53ab15556c8022e7777938e",
+    "8-0-native.memory.json": "7f75084db8faed9c7e62ab429db3d6585432e72d8f998226e7fcfc89a95627da",
+    "8-0-native.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "8-0-native.log": "adea9877bfea8cbe153d3edcd56f9779a5954e8d8f22ac0815ef0919416c81d6"
+  },
+  "output_sha256": "81118723b01b4f3ca696dea1f7c3dd275b203a3e0dded57ac1c1667e22165481",
+  "limits": [
+    "Audits retained artifacts; does not rerun full input fingerprinting or native code.",
+    "Sampled family RSS sums shared pages and may miss peaks; maximum sampling gaps are retained.",
+    "All complete worker outputs come from the separate untimed verification pass.",
+    "Five-pair aggregate intervals use exact paired enumeration; one-pair pilots have no inferential interval.",
+    "Partial checkpoints have no aggregate and do not establish cache freshness."
+  ],
+  "fresh_raw_sha256": {
+    "fresh-reference.phase": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+    "fresh-reference.log": "bb1a167a233391ee65fa3b33f38449e76f2c61af45a3b50115b608334a64d784",
+    "fresh-reference.json": "33c68dc0c5096c6a7ad6858e56b97c58050ff42e75a5486aa7654de30f655486"
+  },
+  "fresh_reference_sha256": "b55af54b2f1ffed99fcd3faf7ef251be23fbed8e1ff7c9fcd76b78f56b9e7433",
+  "summary": {
+    "0": {
+      "epoch_s": {
+        "raw_pairs": [
+          [
+            23.655909205786884,
+            19.26657959120348
+          ]
+        ],
+        "inferential_claim": false
+      },
+      "first_batch_s": {
+        "raw_pairs": [
+          [
+            0.04205999383702874,
+            0.03823322709649801
+          ]
+        ],
+        "inferential_claim": false
+      },
+      "after_first_batch_s": {
+        "raw_pairs": [
+          [
+            23.613849211949855,
+            19.228346364106983
+          ]
+        ],
+        "inferential_claim": false
+      },
+      "images_per_s": {
+        "raw_pairs": [
+          [
+            211.36367900739418,
+            259.5167438169899
+          ]
+        ],
+        "inferential_claim": false
+      },
+      "sampled_family_peak_rss_bytes": {
+        "raw_pairs": [
+          [
+            699064320,
+            694308864
+          ]
+        ],
+        "inferential_claim": false
+      }
+    },
+    "2": {
+      "epoch_s": {
+        "raw_pairs": [
+          [
+            15.999684785027057,
+            15.428656600881368
+          ]
+        ],
+        "inferential_claim": false
+      },
+      "first_batch_s": {
+        "raw_pairs": [
+          [
+            2.6979527371004224,
+            2.685522569809109
+          ]
+        ],
+        "inferential_claim": false
+      },
+      "after_first_batch_s": {
+        "raw_pairs": [
+          [
+            13.301732047926635,
+            12.743134031072259
+          ]
+        ],
+        "inferential_claim": false
+      },
+      "images_per_s": {
+        "raw_pairs": [
+          [
+            312.5061566637323,
+            324.0722850565209
+          ]
+        ],
+        "inferential_claim": false
+      },
+      "sampled_family_peak_rss_bytes": {
+        "raw_pairs": [
+          [
+            2079268864,
+            2061676544
+          ]
+        ],
+        "inferential_claim": false
+      }
+    },
+    "8": {
+      "epoch_s": {
+        "raw_pairs": [
+          [
+            15.947397316806018,
+            15.671705095097423
+          ]
+        ],
+        "inferential_claim": false
+      },
+      "first_batch_s": {
+        "raw_pairs": [
+          [
+            10.68223226768896,
+            10.625526628922671
+          ]
+        ],
+        "inferential_claim": false
+      },
+      "after_first_batch_s": {
+        "raw_pairs": [
+          [
+            5.2651650491170585,
+            5.0461784661747515
+          ]
+        ],
+        "inferential_claim": false
+      },
+      "images_per_s": {
+        "raw_pairs": [
+          [
+            313.5307850347966,
+            319.04633029140837
+          ]
+        ],
+        "inferential_claim": false
+      },
+      "sampled_family_peak_rss_bytes": {
+        "raw_pairs": [
+          [
+            6225010688,
+            6164705280
+          ]
+        ],
+        "inferential_claim": false
+      }
+    }
+  }
+}
