@@ -75,8 +75,10 @@ an actionable error. This narrow initial matrix will expand only after validatio
 The current integration profile cannot be installed on Python 3.10 because
 NumPy 2.4.4 requires Python 3.11 or newer. Package metadata allows a Python 3.10
 core build with an older NumPy, but that is not a validated adapter combination.
-Current execution evidence is on CPython 3.12; the proposed wider wheel/profile
-matrix remains open.
+The first hosted matrix covers Python 3.10–3.13 on Linux x86-64, Windows x86-64
+and macOS ARM. Eleven jobs passed; Windows 3.13 failed a worker-reset exit check.
+A repetition using the same wheel passed, but the original failure remains
+unexplained. See [the Windows diagnosis and full matrix evidence](docs/WINDOWS_RESET_DIAGNOSIS.md).
 
 ```python
 from ultrafast_maskops.ultralytics import accelerate_dataset

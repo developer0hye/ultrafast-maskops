@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "run_id": 34746107477,
+  "source_commit": "2a2231614555caa5133ccf09da167b9fa792a893",
+  "wheel_binding": {
+    "artifact_id": 10314196359,
+    "run_id": 34744592119,
+    "source_commit": "06a26d106ba8dd896061f987a6561521de68e6e1",
+    "artifact_sha256": "f48a32b5623243698d364100f10f31804f72261121453f8e277063422fb0cf8f",
+    "wheel_sha256": "34f2809a2a29a5c69b163fafdbf150efc95dde6ec2ffc5753df505150eefab55"
+  },
+  "diagnostic_cases": 27,
+  "integration_cases": 67,
+  "failures": 0,
+  "skips": 0,
+  "original_integration_failure_retained": true,
+  "parent_join_events": 108,
+  "max_observed_join_seconds": 2.4808893000001717,
+  "terminate_events": 0,
+  "archive": "bench/results/mask-windows-reset-v2-evidence.tar.gz",
+  "archive_bytes": 565673,
+  "archive_sha256": "f0e10640160ea04a0dcfc64a21754d65234a2d2b25f4872995394cf40040552c",
+  "members": {
+    "mask-windows-reset-v2.zip": {
+      "bytes": 545152,
+      "sha256": "772d02bfe0e951dd955768bf9050f55b9900eec1d56a81e03280c2950ef7e0d9"
+    },
+    "mask-windows-reset-v2-run.json": {
+      "bytes": 13602,
+      "sha256": "ca795e60c0553cb4fe6a6a944d4de7867aa5aaaad138ef0c8981116c57387ddb"
+    },
+    "mask-windows-reset-v2-artifacts.json": {
+      "bytes": 767,
+      "sha256": "3ada5640d0cda328693f71a92a96f138120f7c221da5fb0f719594816d59d36b"
+    },
+    "mask-windows-reset-v2.log": {
+      "bytes": 61819,
+      "sha256": "0d501a37e692281f8933d396a87c8c799ded02312da1b9e9be455c17cf1f3179"
+    },
+    "mask-windows-reset-v1-skipped-run.json": {
+      "bytes": 13600,
+      "sha256": "d5507c8b54f80f2cf796027fc87cc435bca5eb198ec36ff819c0ece56bf76079"
+    },
+    "mask-windows-reset-v1-skipped-jobs.json": {
+      "bytes": 3723,
+      "sha256": "350484c4ada5477e3f2d69a0e9b4f83d666a14269c5199b8e0b0274bcab5bd75"
+    },
+    "source/bench/windows_reset_probe.py": {
+      "bytes": 4647,
+      "sha256": "86cafdd8cff4a700f06b7ed6f5d13f93d993d739703e48d042231d8d920abc2b"
+    },
+    "source/bench/prepare_windows_reset_wheel.py": {
+      "bytes": 2248,
+      "sha256": "4643ce40ff886a385d86169c9c30e5203216e5263e7e81d4edb4f9e894734260"
+    },
+    "source/tests/test_persistent_format.py": {
+      "bytes": 10985,
+      "sha256": "fc1eba2bcee6bcc5665221ee52029d57e2e6f49d94bdd3cdbf6c3f2687f13494"
+    },
+    "source/.github/workflows/wheels.yml": {
+      "bytes": 11286,
+      "sha256": "03b483e1c9428f70b28001fd6dfe7228f6a76c8f4e6b28d2e01135538483c0f8"
+    }
+  },
+  "scope": "All 27 declared records, worker exits, 108 original join deadlines, 27+67 JUnit cases and exact failed-wheel/installed payload binding verified. Original failure remains unexplained; passing repetition is not a fix. Parent-side wrappers add diagnostic overhead; stock collator in this first probe shares module imports with the candidate."
+}

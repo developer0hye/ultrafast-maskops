@@ -49,5 +49,30 @@ condition is removed before the next dispatch.
 
 The corrected dispatch at `2a22316` selects exactly one intended job for each
 of the 12 supported push/pull_request/manual mode combinations checked directly
-from the workflow expressions. It is actively running the diagnostic and full
-integration checks; its outcome is not yet qualified by this document.
+from the workflow expressions. It completed all 27 diagnostic cases and all 67 integration cases without
+failures or skips. The [readback receipt](validation/mask-windows-reset-v2-preservation.json)
+checks the exact original wheel, installed payload, all 27 records, and both
+JUnit reports. All 108 recorded joins used the original 5-second timeout; the
+maximum observed join was 2.481 seconds and none called terminate. The original
+failed integration JUnit is retained alongside the passing repetition. These
+observations do not identify the first failure or establish a correction.
+
+
+## Slow-initialization control
+
+[Run 34746468696](https://github.com/developer0hye/ultrafast-maskops/actions/runs/34746468696)
+uses the same original failed wheel and schedules six additional cases: the three
+collators with ordinary initialization or a deliberately delayed worker callback.
+The delay is three times PyTorch's recorded per-worker join interval (15 seconds
+with the pinned version), exceeding both workers' join windows. Only replacement
+workers use the ordinary initializer. Reset, close, sharing policy and join
+arguments are unchanged. Child initializer receipts record whether maskops was
+imported; stock and reference-packet worker controls must not import it.
+
+This checks whether the unchanged upstream shutdown can force nonzero worker
+exits in all three paths under slow initialization. The delayed controls explicitly
+expect that mechanism and retain `clean_zero_exit=false`; their success must not
+be presented as a clean-exit pass, performance result, or proof that the original
+intermittent failure had this cause. The natural-case exit assertions and original
+failed matrix remain unchanged. The runtime's exact reset/close/shutdown method
+source is retained with the control output. Results are pending.
