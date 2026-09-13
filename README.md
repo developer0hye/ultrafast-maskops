@@ -3,10 +3,11 @@
 Experimental C++/OpenCV batch polygon rasterization for Ultralytics. This is an
 alpha implementation, not yet a published or release-qualified replacement.
 
-This branch adds an unvalidated `accelerate_dataset(..., persistent=True)` option
-to retain the native formatter across dataset transform rebuilds. See
-[the candidate and pending checks](docs/PERSISTENT_FORMAT.md). Existing benchmark
-and installed-suite results below predate this adapter change.
+This branch adds `accelerate_dataset(..., persistent=True)` and shared-batch
+transport to retain the native formatter across dataset transform rebuilds.
+Bounded installed tests have passed on Linux and macOS; the full GPU lifecycle
+campaign and storage-lifetime qualification remain open. See
+[current status](docs/STATUS.md) and [the private development snapshot](docs/PRIVATE_DEVELOPMENT.md).
 
 Implemented: `polygon2mask`, `polygons2masks`, `polygons2masks_overlap`, owned
 `PackedPolygons`, per-worker `Rasterizer`, and an explicit `FastFormat` adapter.
