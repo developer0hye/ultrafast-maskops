@@ -172,7 +172,11 @@ def test_close_mosaic_retains_format_through_real_worker_reset(corpus, workers, 
                 restarted = list(loader.iterator._workers)
                 assert len(restarted) == workers
                 assert all(not worker.is_alive() for worker in previous_workers)
-                assert all(worker.exitcode == 0 for worker in previous_workers)
+                assert all(worker.exitcode == 0 for worker in previous_workers), {
+                    "native": native,
+                    "before_reset": before_reset,
+                    "workers": [(worker.pid, worker.exitcode) for worker in previous_workers],
+                }
                 assert not ({worker.pid for worker in previous_workers} & {worker.pid for worker in restarted})
         left, right = (list(owner.train_loader) for owner in owners)
         assert len(left) == len(right) == 2

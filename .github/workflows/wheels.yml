@@ -17,13 +17,74 @@ on:
         description: Validate a source-only wheel rebuild on Linux Python 3.12
         type: boolean
         default: false
+      windows_reset:
+        description: Diagnose reset lifecycle using the original failed Windows 3.13 wheel
+        type: boolean
+        default: false
 
 permissions:
   contents: read
 
 jobs:
+  windows-reset:
+    if: github.event_name == 'workflow_dispatch' && inputs.windows_reset && !inputs.sdist_only && !inputs.windows_reset && inputs.inspect_artifact == ''
+    runs-on: windows-2022
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      actions: read
+    defaults:
+      run:
+        shell: bash
+    env:
+      OMP_NUM_THREADS: '1'
+      YOLO_OFFLINE: 'true'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Retrieve exact failed wheel and original receipts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python bench/prepare_windows_reset_wheel.py
+      - name: Install original wheel and pinned framework
+        id: runtime
+        run: |
+          python -m venv probe-env
+          echo "$PWD/probe-env/Scripts" >> "$GITHUB_PATH"
+          probe-env/Scripts/python -m pip install numpy==2.4.4 pytest==9.1.1
+          probe-env/Scripts/python -m pip install --no-deps reset-evidence/wheel-input/*.whl
+          probe-env/Scripts/python -m pip install torch==2.10.0 torchvision==0.25.0 --index-url https://download.pytorch.org/whl/cpu
+          probe-env/Scripts/python -m pip install numpy==2.4.4 pillow==12.1.1 opencv-python==4.13.0.92 pi-heif==1.4.0 https://github.com/ultralytics/ultralytics/archive/795a556942a12fe0124cf767888194a1d0b83e2e.tar.gz
+          probe-env/Scripts/python -m pip freeze > reset-evidence/diagnostic-environment.txt
+          probe-env/Scripts/python - <<'PYTHON'
+          import json, sys, sysconfig
+          from pathlib import Path
+          sys.path.insert(0, 'bench')
+          from audit_wheel import audit
+          wheel = next(Path('reset-evidence/wheel-input').glob('*.whl'))
+          result = audit(wheel, Path(sysconfig.get_path('platlib')))
+          Path('reset-evidence/installed-wheel.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
+          assert result['clean'], result['errors']
+          PYTHON
+      - name: Run all 27 predeclared diagnostic cases without retries
+        run: python bench/windows_reset_probe.py
+      - name: Repeat complete integration suite with exit-code context
+        if: always() && steps.runtime.outcome == 'success'
+        run: python -m pytest -q tests/test_integration.py tests/test_training.py tests/test_persistent_format.py tests/test_shared_collate.py --junitxml=reset-evidence/integration-tests.xml
+      - name: Preserve diagnostic evidence including every failure
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: windows-reset-diagnostic
+          path: reset-evidence/
+          if-no-files-found: error
+          retention-days: 14
   sdist-rebuild:
-    if: github.event_name == 'workflow_dispatch' && inputs.sdist_only && inputs.inspect_artifact == ''
+    if: github.event_name == 'workflow_dispatch' && inputs.sdist_only && !inputs.windows_reset && inputs.inspect_artifact == ''
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
@@ -111,7 +172,7 @@ jobs:
           if-no-files-found: error
           retention-days: 14
   wheel:
-    if: github.event_name != 'workflow_dispatch' || (inputs.inspect_artifact == '' && !inputs.sdist_only)
+    if: github.event_name != 'workflow_dispatch' || (inputs.inspect_artifact == '' && !inputs.sdist_only && !inputs.windows_reset)
     strategy:
       fail-fast: false
       max-parallel: 3
