@@ -1,0 +1,3092 @@
+{
+  "complete": false,
+  "controller_pid": 1661338,
+  "script_sha256": "f711ad52efc9db2f96875474d57c23626edcda966c02e0a105d043721fec01d3",
+  "harness_sources": {
+    "train_coco_gpu.py": "1edf99c37882e960e7c9dae2016b7dee6fbb180fbf7d8fdd4bf4beb38b60d8a7",
+    "coco_loader.py": "5c9e0578b058566b968371ff22e8e54dc2e407b6ff4a2e5a4561b13aa2f9c7e5"
+  },
+  "corpus": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+  "fresh_check": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json",
+  "fresh_check_sha256": "067fa395b3a72b14efca4561def93e6d5bb01e46cb5daeb7f7f074b96f8c0265",
+  "scope": "real-data lifecycle/cohort parity; no repeated speedup or resumed/uninterrupted equivalence claim",
+  "full_protocol_requested": true,
+  "planned_trials": 54,
+  "planned_epochs": 126,
+  "plan": [
+    {
+      "id": "w2-yes-fresh-reference",
+      "workers": 2,
+      "overlap": "yes",
+      "stage": "fresh",
+      "backend": "reference",
+      "start_epoch": 0,
+      "reference_id": "w2-yes-fresh-reference"
+    },
+    {
+      "id": "w2-yes-fresh-mask",
+      "workers": 2,
+      "overlap": "yes",
+      "stage": "fresh",
+      "backend": "mask",
+      "start_epoch": 0,
+      "reference_id": "w2-yes-fresh-reference"
+    },
+    {
+      "id": "w2-yes-fresh-both",
+      "workers": 2,
+      "overlap": "yes",
+      "stage": "fresh",
+      "backend": "both",
+      "start_epoch": 0,
+      "reference_id": "w2-yes-fresh-reference"
+    },
+    {
+      "id": "w2-yes-resume-at-boundary-reference",
+      "workers": 2,
+      "overlap": "yes",
+      "stage": "resume-at-boundary",
+      "backend": "reference",
+      "start_epoch": 2,
+      "reference_id": "w2-yes-fresh-reference"
+    },
+    {
+      "id": "w2-yes-resume-at-boundary-mask",
+      "workers": 2,
+      "overlap": "yes",
+      "stage": "resume-at-boundary",
+      "backend": "mask",
+      "start_epoch": 2,
+      "reference_id": "w2-yes-fresh-reference"
+    },
+    {
+      "id": "w2-yes-resume-at-boundary-both",
+      "workers": 2,
+      "overlap": "yes",
+      "stage": "resume-at-boundary",
+      "backend": "both",
+      "start_epoch": 2,
+      "reference_id": "w2-yes-fresh-reference"
+    },
+    {
+      "id": "w2-yes-resume-after-boundary-reference",
+      "workers": 2,
+      "overlap": "yes",
+      "stage": "resume-after-boundary",
+      "backend": "reference",
+      "start_epoch": 3,
+      "reference_id": "w2-yes-fresh-reference"
+    },
+    {
+      "id": "w2-yes-resume-after-boundary-mask",
+      "workers": 2,
+      "overlap": "yes",
+      "stage": "resume-after-boundary",
+      "backend": "mask",
+      "start_epoch": 3,
+      "reference_id": "w2-yes-fresh-reference"
+    },
+    {
+      "id": "w2-yes-resume-after-boundary-both",
+      "workers": 2,
+      "overlap": "yes",
+      "stage": "resume-after-boundary",
+      "backend": "both",
+      "start_epoch": 3,
+      "reference_id": "w2-yes-fresh-reference"
+    },
+    {
+      "id": "w2-no-fresh-reference",
+      "workers": 2,
+      "overlap": "no",
+      "stage": "fresh",
+      "backend": "reference",
+      "start_epoch": 0,
+      "reference_id": "w2-no-fresh-reference"
+    },
+    {
+      "id": "w2-no-fresh-mask",
+      "workers": 2,
+      "overlap": "no",
+      "stage": "fresh",
+      "backend": "mask",
+      "start_epoch": 0,
+      "reference_id": "w2-no-fresh-reference"
+    },
+    {
+      "id": "w2-no-fresh-both",
+      "workers": 2,
+      "overlap": "no",
+      "stage": "fresh",
+      "backend": "both",
+      "start_epoch": 0,
+      "reference_id": "w2-no-fresh-reference"
+    },
+    {
+      "id": "w2-no-resume-at-boundary-reference",
+      "workers": 2,
+      "overlap": "no",
+      "stage": "resume-at-boundary",
+      "backend": "reference",
+      "start_epoch": 2,
+      "reference_id": "w2-no-fresh-reference"
+    },
+    {
+      "id": "w2-no-resume-at-boundary-mask",
+      "workers": 2,
+      "overlap": "no",
+      "stage": "resume-at-boundary",
+      "backend": "mask",
+      "start_epoch": 2,
+      "reference_id": "w2-no-fresh-reference"
+    },
+    {
+      "id": "w2-no-resume-at-boundary-both",
+      "workers": 2,
+      "overlap": "no",
+      "stage": "resume-at-boundary",
+      "backend": "both",
+      "start_epoch": 2,
+      "reference_id": "w2-no-fresh-reference"
+    },
+    {
+      "id": "w2-no-resume-after-boundary-reference",
+      "workers": 2,
+      "overlap": "no",
+      "stage": "resume-after-boundary",
+      "backend": "reference",
+      "start_epoch": 3,
+      "reference_id": "w2-no-fresh-reference"
+    },
+    {
+      "id": "w2-no-resume-after-boundary-mask",
+      "workers": 2,
+      "overlap": "no",
+      "stage": "resume-after-boundary",
+      "backend": "mask",
+      "start_epoch": 3,
+      "reference_id": "w2-no-fresh-reference"
+    },
+    {
+      "id": "w2-no-resume-after-boundary-both",
+      "workers": 2,
+      "overlap": "no",
+      "stage": "resume-after-boundary",
+      "backend": "both",
+      "start_epoch": 3,
+      "reference_id": "w2-no-fresh-reference"
+    },
+    {
+      "id": "w0-yes-fresh-reference",
+      "workers": 0,
+      "overlap": "yes",
+      "stage": "fresh",
+      "backend": "reference",
+      "start_epoch": 0,
+      "reference_id": "w0-yes-fresh-reference"
+    },
+    {
+      "id": "w0-yes-fresh-mask",
+      "workers": 0,
+      "overlap": "yes",
+      "stage": "fresh",
+      "backend": "mask",
+      "start_epoch": 0,
+      "reference_id": "w0-yes-fresh-reference"
+    },
+    {
+      "id": "w0-yes-fresh-both",
+      "workers": 0,
+      "overlap": "yes",
+      "stage": "fresh",
+      "backend": "both",
+      "start_epoch": 0,
+      "reference_id": "w0-yes-fresh-reference"
+    },
+    {
+      "id": "w0-yes-resume-at-boundary-reference",
+      "workers": 0,
+      "overlap": "yes",
+      "stage": "resume-at-boundary",
+      "backend": "reference",
+      "start_epoch": 2,
+      "reference_id": "w0-yes-fresh-reference"
+    },
+    {
+      "id": "w0-yes-resume-at-boundary-mask",
+      "workers": 0,
+      "overlap": "yes",
+      "stage": "resume-at-boundary",
+      "backend": "mask",
+      "start_epoch": 2,
+      "reference_id": "w0-yes-fresh-reference"
+    },
+    {
+      "id": "w0-yes-resume-at-boundary-both",
+      "workers": 0,
+      "overlap": "yes",
+      "stage": "resume-at-boundary",
+      "backend": "both",
+      "start_epoch": 2,
+      "reference_id": "w0-yes-fresh-reference"
+    },
+    {
+      "id": "w0-yes-resume-after-boundary-reference",
+      "workers": 0,
+      "overlap": "yes",
+      "stage": "resume-after-boundary",
+      "backend": "reference",
+      "start_epoch": 3,
+      "reference_id": "w0-yes-fresh-reference"
+    },
+    {
+      "id": "w0-yes-resume-after-boundary-mask",
+      "workers": 0,
+      "overlap": "yes",
+      "stage": "resume-after-boundary",
+      "backend": "mask",
+      "start_epoch": 3,
+      "reference_id": "w0-yes-fresh-reference"
+    },
+    {
+      "id": "w0-yes-resume-after-boundary-both",
+      "workers": 0,
+      "overlap": "yes",
+      "stage": "resume-after-boundary",
+      "backend": "both",
+      "start_epoch": 3,
+      "reference_id": "w0-yes-fresh-reference"
+    },
+    {
+      "id": "w0-no-fresh-reference",
+      "workers": 0,
+      "overlap": "no",
+      "stage": "fresh",
+      "backend": "reference",
+      "start_epoch": 0,
+      "reference_id": "w0-no-fresh-reference"
+    },
+    {
+      "id": "w0-no-fresh-mask",
+      "workers": 0,
+      "overlap": "no",
+      "stage": "fresh",
+      "backend": "mask",
+      "start_epoch": 0,
+      "reference_id": "w0-no-fresh-reference"
+    },
+    {
+      "id": "w0-no-fresh-both",
+      "workers": 0,
+      "overlap": "no",
+      "stage": "fresh",
+      "backend": "both",
+      "start_epoch": 0,
+      "reference_id": "w0-no-fresh-reference"
+    },
+    {
+      "id": "w0-no-resume-at-boundary-reference",
+      "workers": 0,
+      "overlap": "no",
+      "stage": "resume-at-boundary",
+      "backend": "reference",
+      "start_epoch": 2,
+      "reference_id": "w0-no-fresh-reference"
+    },
+    {
+      "id": "w0-no-resume-at-boundary-mask",
+      "workers": 0,
+      "overlap": "no",
+      "stage": "resume-at-boundary",
+      "backend": "mask",
+      "start_epoch": 2,
+      "reference_id": "w0-no-fresh-reference"
+    },
+    {
+      "id": "w0-no-resume-at-boundary-both",
+      "workers": 0,
+      "overlap": "no",
+      "stage": "resume-at-boundary",
+      "backend": "both",
+      "start_epoch": 2,
+      "reference_id": "w0-no-fresh-reference"
+    },
+    {
+      "id": "w0-no-resume-after-boundary-reference",
+      "workers": 0,
+      "overlap": "no",
+      "stage": "resume-after-boundary",
+      "backend": "reference",
+      "start_epoch": 3,
+      "reference_id": "w0-no-fresh-reference"
+    },
+    {
+      "id": "w0-no-resume-after-boundary-mask",
+      "workers": 0,
+      "overlap": "no",
+      "stage": "resume-after-boundary",
+      "backend": "mask",
+      "start_epoch": 3,
+      "reference_id": "w0-no-fresh-reference"
+    },
+    {
+      "id": "w0-no-resume-after-boundary-both",
+      "workers": 0,
+      "overlap": "no",
+      "stage": "resume-after-boundary",
+      "backend": "both",
+      "start_epoch": 3,
+      "reference_id": "w0-no-fresh-reference"
+    },
+    {
+      "id": "w8-yes-fresh-reference",
+      "workers": 8,
+      "overlap": "yes",
+      "stage": "fresh",
+      "backend": "reference",
+      "start_epoch": 0,
+      "reference_id": "w8-yes-fresh-reference"
+    },
+    {
+      "id": "w8-yes-fresh-mask",
+      "workers": 8,
+      "overlap": "yes",
+      "stage": "fresh",
+      "backend": "mask",
+      "start_epoch": 0,
+      "reference_id": "w8-yes-fresh-reference"
+    },
+    {
+      "id": "w8-yes-fresh-both",
+      "workers": 8,
+      "overlap": "yes",
+      "stage": "fresh",
+      "backend": "both",
+      "start_epoch": 0,
+      "reference_id": "w8-yes-fresh-reference"
+    },
+    {
+      "id": "w8-yes-resume-at-boundary-reference",
+      "workers": 8,
+      "overlap": "yes",
+      "stage": "resume-at-boundary",
+      "backend": "reference",
+      "start_epoch": 2,
+      "reference_id": "w8-yes-fresh-reference"
+    },
+    {
+      "id": "w8-yes-resume-at-boundary-mask",
+      "workers": 8,
+      "overlap": "yes",
+      "stage": "resume-at-boundary",
+      "backend": "mask",
+      "start_epoch": 2,
+      "reference_id": "w8-yes-fresh-reference"
+    },
+    {
+      "id": "w8-yes-resume-at-boundary-both",
+      "workers": 8,
+      "overlap": "yes",
+      "stage": "resume-at-boundary",
+      "backend": "both",
+      "start_epoch": 2,
+      "reference_id": "w8-yes-fresh-reference"
+    },
+    {
+      "id": "w8-yes-resume-after-boundary-reference",
+      "workers": 8,
+      "overlap": "yes",
+      "stage": "resume-after-boundary",
+      "backend": "reference",
+      "start_epoch": 3,
+      "reference_id": "w8-yes-fresh-reference"
+    },
+    {
+      "id": "w8-yes-resume-after-boundary-mask",
+      "workers": 8,
+      "overlap": "yes",
+      "stage": "resume-after-boundary",
+      "backend": "mask",
+      "start_epoch": 3,
+      "reference_id": "w8-yes-fresh-reference"
+    },
+    {
+      "id": "w8-yes-resume-after-boundary-both",
+      "workers": 8,
+      "overlap": "yes",
+      "stage": "resume-after-boundary",
+      "backend": "both",
+      "start_epoch": 3,
+      "reference_id": "w8-yes-fresh-reference"
+    },
+    {
+      "id": "w8-no-fresh-reference",
+      "workers": 8,
+      "overlap": "no",
+      "stage": "fresh",
+      "backend": "reference",
+      "start_epoch": 0,
+      "reference_id": "w8-no-fresh-reference"
+    },
+    {
+      "id": "w8-no-fresh-mask",
+      "workers": 8,
+      "overlap": "no",
+      "stage": "fresh",
+      "backend": "mask",
+      "start_epoch": 0,
+      "reference_id": "w8-no-fresh-reference"
+    },
+    {
+      "id": "w8-no-fresh-both",
+      "workers": 8,
+      "overlap": "no",
+      "stage": "fresh",
+      "backend": "both",
+      "start_epoch": 0,
+      "reference_id": "w8-no-fresh-reference"
+    },
+    {
+      "id": "w8-no-resume-at-boundary-reference",
+      "workers": 8,
+      "overlap": "no",
+      "stage": "resume-at-boundary",
+      "backend": "reference",
+      "start_epoch": 2,
+      "reference_id": "w8-no-fresh-reference"
+    },
+    {
+      "id": "w8-no-resume-at-boundary-mask",
+      "workers": 8,
+      "overlap": "no",
+      "stage": "resume-at-boundary",
+      "backend": "mask",
+      "start_epoch": 2,
+      "reference_id": "w8-no-fresh-reference"
+    },
+    {
+      "id": "w8-no-resume-at-boundary-both",
+      "workers": 8,
+      "overlap": "no",
+      "stage": "resume-at-boundary",
+      "backend": "both",
+      "start_epoch": 2,
+      "reference_id": "w8-no-fresh-reference"
+    },
+    {
+      "id": "w8-no-resume-after-boundary-reference",
+      "workers": 8,
+      "overlap": "no",
+      "stage": "resume-after-boundary",
+      "backend": "reference",
+      "start_epoch": 3,
+      "reference_id": "w8-no-fresh-reference"
+    },
+    {
+      "id": "w8-no-resume-after-boundary-mask",
+      "workers": 8,
+      "overlap": "no",
+      "stage": "resume-after-boundary",
+      "backend": "mask",
+      "start_epoch": 3,
+      "reference_id": "w8-no-fresh-reference"
+    },
+    {
+      "id": "w8-no-resume-after-boundary-both",
+      "workers": 8,
+      "overlap": "no",
+      "stage": "resume-after-boundary",
+      "backend": "both",
+      "start_epoch": 3,
+      "reference_id": "w8-no-fresh-reference"
+    }
+  ],
+  "records": [
+    {
+      "spec": {
+        "id": "w2-yes-fresh-reference",
+        "workers": 2,
+        "overlap": "yes",
+        "stage": "fresh",
+        "backend": "reference",
+        "start_epoch": 0,
+        "reference_id": "w2-yes-fresh-reference"
+      },
+      "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.json",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-source/bench/train_coco_gpu.py",
+        "--corpus",
+        "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "--fresh-check",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.json",
+        "--backend",
+        "reference",
+        "--workers",
+        "2",
+        "--epochs",
+        "4",
+        "--batch",
+        "4",
+        "--imgsz",
+        "640",
+        "--overlap",
+        "yes",
+        "--close-mosaic",
+        "2",
+        "--persistent-mask",
+        "--checkpoint-epochs",
+        "1",
+        "2"
+      ],
+      "started_at_ns": 1789278543424424128,
+      "pid": 1661339,
+      "returncode": 0,
+      "finished_at_ns": 1789279001554806554,
+      "log_sha256": "5f46429289ab7d1e23047374c45d8c0c2df1bf2bece01e062b1d15e7d8310e31",
+      "sha256": "71c4e6d6723302ddaaea384263e1ed656b8d072ea36d145baecf9dad3ab35d9b",
+      "validated": true,
+      "report": {
+        "complete": true,
+        "scope": "full real-data GPU lifecycle trial; not accuracy or repeated speedup evidence",
+        "args": {
+          "corpus": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+          "fresh_check": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json",
+          "out": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.json",
+          "backend": "reference",
+          "workers": 2,
+          "epochs": 4,
+          "batch": 4,
+          "imgsz": 640,
+          "overlap": "yes",
+          "close_mosaic": 2,
+          "persistent_mask": true,
+          "checkpoint_epochs": [
+            1,
+            2
+          ],
+          "resume_from": null,
+          "resume_receipt": null
+        },
+        "script_sha256": "1edf99c37882e960e7c9dae2016b7dee6fbb180fbf7d8fdd4bf4beb38b60d8a7",
+        "harness_sources": {
+          "train_coco_gpu.py": "1edf99c37882e960e7c9dae2016b7dee6fbb180fbf7d8fdd4bf4beb38b60d8a7",
+          "coco_loader.py": "5c9e0578b058566b968371ff22e8e54dc2e407b6ff4a2e5a4561b13aa2f9c7e5"
+        },
+        "upstream_files": {
+          "engine/trainer.py": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+          "engine/validator.py": "3c34fed7b2974dd7054e0a800a3edc6c6f11b277ca4f5d80dadeaaf65903412e",
+          "models/yolo/detect/train.py": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f",
+          "models/yolo/segment/train.py": "7e36dd8f80702daf041b0187731f61125031413a87acdc378786f3ea9d5fbf3f",
+          "models/yolo/segment/val.py": "994a12568911a315110242257c8a789f6e06b906705b7b24ead4f38f90c81aa4",
+          "nn/tasks.py": "5f8ce710e0cb3d1f510d9cf327f8ab044321a07b274fcafffca25d7b2d4d7581",
+          "utils/loss.py": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d",
+          "utils/torch_utils.py": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5",
+          "data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+          "cfg/models/11/yolo11-seg.yaml": "c724d65611684accc5d4b84d108ce7216f1018a535cf410022f929e0ec18b65b",
+          "cfg/__init__.py": "4f4deef636360243c08c32f2134bee31f497df7394c3b22c60c58f5452bcee85"
+        },
+        "packages": {
+          "ultrafast_maskops": {
+            "path": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/lib/python3.12/site-packages/ultrafast_maskops",
+            "files": {
+              "__init__.py": "0b381bd51042cea607d9742593e8ece643d8e4dedd4fff80522a7bc9b4ac99fa",
+              "_native.cpython-312-x86_64-linux-gnu.so": "bfb0c15355557b7efb1ae6ef485b3afe5287a2b8d7707ca50b17dbbcd5cf3fa9",
+              "_shared_collate.py": "d5f21af4b980400a09d22aa4c8dcaa4aed91104dcba48e3fa7b66d1c38e70399",
+              "ultralytics.py": "9f956b492c33c92fa70abb726bc64e54548d3fdf9bf33b7a37f9177461363140"
+            }
+          },
+          "ultrafast_yolo_dataset": {
+            "path": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/lib/python3.12/site-packages/ultrafast_yolo_dataset",
+            "files": {
+              "__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+              "_cache.py": "2411fc000ebeeabc5b73d14f4380d0130486d2bcf8e030b2244575ae7254a140",
+              "_native.cpython-312-x86_64-linux-gnu.so": "90274a121c4633008a4c1b191d5c68fac6b1f36e595b8ddbdf03a2a229c6c40c",
+              "_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684",
+              "_scan.py": "92ed533fa8ae1f332bc92e26cd157f98494ab3ff77d7e6113201543e22710083",
+              "_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+              "_ultralytics_profile.json": "ffd8bcff24bb15b771d67626300cc9917b9b0a3f8c0fc456bdcd24337211cfa3",
+              "ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb"
+            }
+          }
+        },
+        "mask_build": {
+          "version": "0.1.0a1",
+          "backend": "C++/OpenCV",
+          "opencv": "4.13.0",
+          "numpy": "2.4.4",
+          "native_workers": 1,
+          "build": {
+            "bindings_sha256": "da270a9525d9c64d1e2d802cb8ec44cbe5743ed76ff6087936a9b00466c1f4a4",
+            "cmake_sha256": "13177f15e47776ae22c251a2eee6079a68788b19b56397c48d2c7e48adbf574e",
+            "template_sha256": "76643f1d3cdb44abd7d7647853c1f7ae03e22d76a07027de9c7cb58340260213",
+            "compiler": "GNU 13.3.0",
+            "build_type": "Release"
+          },
+          "private_opencv_threads": 1,
+          "fallback_count": 0,
+          "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e"
+        },
+        "fixture": {
+          "files": 9952,
+          "bytes": 830426850,
+          "sha256": "8b079ad2d8472ff17b6cca9b0250e831472f12ef500f2b065125f6f39406c208"
+        },
+        "corpus_root": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "original_cache_sha256": "8f2536e077c9682e6f76ad51332fe3ce34d19b1a47a1738f54ad9510ce105b0e",
+        "fresh_check_sha256": "067fa395b3a72b14efca4561def93e6d5bb01e46cb5daeb7f7f074b96f8c0265",
+        "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+        "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+        "torch": "2.10.0+cu128",
+        "numpy": "2.4.4",
+        "opencv": "4.13.0",
+        "gpu": "NVIDIA GeForce RTX 3070",
+        "cuda": "12.8",
+        "cpu_count": 12,
+        "ram_bytes": 33547984896,
+        "load_before": [
+          1.1318359375,
+          0.73291015625,
+          0.740234375
+        ],
+        "timing": "epoch start/end callbacks with CUDA synchronization; excludes setup, validation, checkpoint saving; first epoch includes GPU warmup; upstream may prefetch during loader construction",
+        "memory": "CUDA allocator peaks per epoch; sampled summed process-family RSS double-counts shared pages",
+        "callbacks": "benchmark callbacks only; external logger and analytics callbacks disabled",
+        "lifecycle_requested": true,
+        "resume_input": null,
+        "lifecycle_scope": "Observe the parent dataset formatter/factory and worker reset at the first batch after upstream closure; no close/reset override or worker instrumentation. Compare resumed backends from the same retained reference checkpoint; do not assume upstream resume reproduces uninterrupted RNG/EMA state. Epoch timing includes closure/reset and the small observation callback; checkpoints are outside it.",
+        "nvidia_smi_before": "Sun Sep 13 14:49:06 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.173.02             Driver Version: 580.173.02     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 3070        Off |   00000000:01:00.0 Off |                  N/A |\n|  0%   44C    P8             20W /  240W |     180MiB /   8192MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            2810      G   /usr/lib/xorg/Xorg                      133MiB |\n|    0   N/A  N/A            3044      G   /usr/bin/gnome-shell                      7MiB |\n+-----------------------------------------------------------------------------------------+\n",
+        "worker_shutdown": {
+          "train": {
+            "worker_count": 2,
+            "worker_pids": [
+              1662329,
+              1662330
+            ],
+            "worker_exitcodes": [
+              0,
+              0
+            ],
+            "workers_alive": [
+              false,
+              false
+            ]
+          },
+          "val": {
+            "worker_count": 4,
+            "worker_pids": [
+              1661364,
+              1661365,
+              1661366,
+              1661367
+            ],
+            "worker_exitcodes": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "workers_alive": [
+              false,
+              false,
+              false,
+              false
+            ]
+          }
+        },
+        "whole_job_seconds": 453.4306498877704,
+        "resolved_config": {
+          "task": "segment",
+          "mode": "train",
+          "model": "yolo11n-seg.yaml",
+          "data": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/fixture.yaml",
+          "epochs": 4,
+          "time": null,
+          "patience": 100,
+          "batch": 4,
+          "imgsz": 640,
+          "save": true,
+          "save_period": -1,
+          "cache": false,
+          "device": "0",
+          "workers": 2,
+          "project": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run",
+          "name": "training",
+          "exist_ok": false,
+          "pretrained": false,
+          "cls_remap": true,
+          "optimizer": "SGD",
+          "verbose": false,
+          "seed": 912,
+          "deterministic": true,
+          "single_cls": false,
+          "rect": false,
+          "cos_lr": false,
+          "close_mosaic": 2,
+          "resume": false,
+          "amp": false,
+          "fraction": 1.0,
+          "profile": false,
+          "freeze": null,
+          "multi_scale": 0.0,
+          "compile": false,
+          "channels_last": null,
+          "overlap_mask": true,
+          "mask_ratio": 4,
+          "dropout": 0.0,
+          "val": false,
+          "split": "val",
+          "save_json": false,
+          "conf": null,
+          "iou": 0.7,
+          "max_det": 300,
+          "quantize": null,
+          "dnn": false,
+          "plots": false,
+          "nms": null,
+          "source": null,
+          "vid_stride": 1,
+          "stream_buffer": false,
+          "visualize": false,
+          "augment": false,
+          "agnostic_nms": false,
+          "classes": null,
+          "retina_masks": false,
+          "embed": null,
+          "show": false,
+          "save_frames": false,
+          "save_txt": false,
+          "save_conf": false,
+          "save_crop": false,
+          "show_labels": true,
+          "show_conf": true,
+          "show_boxes": true,
+          "line_width": null,
+          "format": "torchscript",
+          "keras": false,
+          "optimize": false,
+          "dynamic": false,
+          "simplify": true,
+          "opset": null,
+          "workspace": null,
+          "lr0": 0.001,
+          "lrf": 0.01,
+          "momentum": 0.937,
+          "weight_decay": 0.0005,
+          "warmup_epochs": 3.0,
+          "warmup_momentum": 0.8,
+          "warmup_bias_lr": 0.1,
+          "distill_model": null,
+          "dis": 6.0,
+          "box": 7.5,
+          "cls": 0.5,
+          "cls_pw": 0.0,
+          "dfl": 1.5,
+          "pose": 12.0,
+          "kobj": 1.0,
+          "rle": 1.0,
+          "angle": 1.0,
+          "dlog": 1.0,
+          "dgrad": 0.5,
+          "dlam": 1.0,
+          "nbs": 64,
+          "hsv_h": 0.015,
+          "hsv_s": 0.7,
+          "hsv_v": 0.4,
+          "degrees": 0.0,
+          "translate": 0.1,
+          "scale": 0.5,
+          "shear": 0.0,
+          "perspective": 0.0,
+          "flipud": 0.0,
+          "fliplr": 0.5,
+          "bgr": 0.0,
+          "mosaic": 1.0,
+          "mixup": 0.0,
+          "cutmix": 0.0,
+          "copy_paste": 0.0,
+          "copy_paste_mode": "flip",
+          "auto_augment": "randaugment",
+          "erasing": 0.4,
+          "cfg": null,
+          "tracker": "tracktrack.yaml",
+          "save_dir": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/training"
+        },
+        "datasets": [
+          {
+            "mode": "train",
+            "seconds": 0.12020170083269477,
+            "images": 5000,
+            "replaced_formats": 0,
+            "native_cache_hit": null
+          },
+          {
+            "mode": "val",
+            "seconds": 0.16164889791980386,
+            "images": 5000,
+            "replaced_formats": 0,
+            "native_cache_hit": null
+          }
+        ],
+        "initial_state_sha256": "1a78149f324851d3adbebf21103f8f2c5006da4a2589fa779ca7fa3b43b57180",
+        "final_state_sha256": "ba8e30a68693ed9772618d436c3331a3ebf738050304713cc710a6ddeab7999a",
+        "train_workers": 2,
+        "val_workers": 4,
+        "nvidia_smi_after": "Sun Sep 13 14:56:40 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.173.02             Driver Version: 580.173.02     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 3070        Off |   00000000:01:00.0 Off |                  N/A |\n| 31%   48C    P2             49W /  240W |     697MiB /   8192MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            2810      G   /usr/lib/xorg/Xorg                      133MiB |\n|    0   N/A  N/A            3044      G   /usr/bin/gnome-shell                      7MiB |\n|    0   N/A  N/A         1661339      C   ...ces-linux-v2-clean/bin/python        512MiB |\n+-----------------------------------------------------------------------------------------+\n",
+        "lifecycle": [
+          {
+            "stage": "prepared",
+            "epoch": null,
+            "start_epoch": 0,
+            "formatter": "Format",
+            "factory": "Format",
+            "collator": "ultralytics.data.dataset.YOLODataset.collate_fn",
+            "rebuilt_from_initial": false,
+            "worker_pids": [
+              1661355,
+              1661356
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 0,
+            "start_epoch": 0,
+            "formatter": "Format",
+            "factory": "Format",
+            "collator": "ultralytics.data.dataset.YOLODataset.collate_fn",
+            "rebuilt_from_initial": false,
+            "worker_pids": [
+              1661355,
+              1661356
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 1,
+            "start_epoch": 0,
+            "formatter": "Format",
+            "factory": "Format",
+            "collator": "ultralytics.data.dataset.YOLODataset.collate_fn",
+            "rebuilt_from_initial": false,
+            "worker_pids": [
+              1661355,
+              1661356
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 2,
+            "start_epoch": 0,
+            "formatter": "Format",
+            "factory": "Format",
+            "collator": "ultralytics.data.dataset.YOLODataset.collate_fn",
+            "rebuilt_from_initial": true,
+            "worker_pids": [
+              1662329,
+              1662330
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true,
+            "replaced_worker_pids": [
+              1661355,
+              1661356
+            ],
+            "replaced_worker_exitcodes": [
+              0,
+              0
+            ],
+            "replaced_workers_alive": [
+              false,
+              false
+            ]
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 3,
+            "start_epoch": 0,
+            "formatter": "Format",
+            "factory": "Format",
+            "collator": "ultralytics.data.dataset.YOLODataset.collate_fn",
+            "rebuilt_from_initial": true,
+            "worker_pids": [
+              1662329,
+              1662330
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true
+          }
+        ],
+        "checkpoints": [
+          {
+            "epoch": 1,
+            "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-1.pt",
+            "sha256": "325fba1951aa3c80016d6e233fa711091d1c5e7700503eaedd8fd9614aede51c",
+            "bytes": 11935889
+          },
+          {
+            "epoch": 2,
+            "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-2.pt",
+            "sha256": "a84c7742b42c5557d94cb4955156337f21ff8891ac28639eacc5ef8340ec3f41",
+            "bytes": 11936017
+          }
+        ],
+        "sampled_peak_family_rss_bytes": 10232086528,
+        "epochs": [
+          {
+            "epoch": 0,
+            "seconds": 91.71648544585332,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 54.51582641543598,
+            "cuda_peak_allocated_bytes": 1612080128,
+            "cuda_peak_reserved_bytes": 2264924160,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "6853393a60f66e25cccaf9cfe78160539dd6f8e8d3395fb6eac775c2a91fe7ef"
+          },
+          {
+            "epoch": 1,
+            "seconds": 87.00674155680463,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 57.466811312955784,
+            "cuda_peak_allocated_bytes": 1587925504,
+            "cuda_peak_reserved_bytes": 2264924160,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "3e22241227bf24a307a7fdeb1af584d7e56ee7bf4a7a47f95ea3fdd5730d870f"
+          },
+          {
+            "epoch": 2,
+            "seconds": 84.15674360468984,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 59.41294524757922,
+            "cuda_peak_allocated_bytes": 1521054208,
+            "cuda_peak_reserved_bytes": 2269118464,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "01e0bb14b5d8a5d438148ae5c5398b5f7b7bdbbb3b275ec163b9def81da8babb"
+          },
+          {
+            "epoch": 3,
+            "seconds": 83.88779446994886,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 59.60342659612002,
+            "cuda_peak_allocated_bytes": 1533928960,
+            "cuda_peak_reserved_bytes": 2269118464,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "b210ff3918ed7047daba2b0898e554483b00cb1ea8b1a72ddd1f5fe45840c889"
+          }
+        ]
+      }
+    },
+    {
+      "spec": {
+        "id": "w2-yes-fresh-mask",
+        "workers": 2,
+        "overlap": "yes",
+        "stage": "fresh",
+        "backend": "mask",
+        "start_epoch": 0,
+        "reference_id": "w2-yes-fresh-reference"
+      },
+      "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-mask.json",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-source/bench/train_coco_gpu.py",
+        "--corpus",
+        "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "--fresh-check",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-mask.json",
+        "--backend",
+        "mask",
+        "--workers",
+        "2",
+        "--epochs",
+        "4",
+        "--batch",
+        "4",
+        "--imgsz",
+        "640",
+        "--overlap",
+        "yes",
+        "--close-mosaic",
+        "2",
+        "--persistent-mask",
+        "--checkpoint-epochs",
+        "1",
+        "2"
+      ],
+      "started_at_ns": 1789279001637775422,
+      "pid": 1662684,
+      "returncode": 0,
+      "finished_at_ns": 1789279462254452671,
+      "log_sha256": "77d2ce1fe47d8dc9dbd3d4e3d0bb5f94a55efdca767f7af7b7ea75819b4e66dd",
+      "sha256": "c2a84de3afe71c68968aa350f1d4b56beb3cd2c274f7f804c331669b69b67836",
+      "validated": true,
+      "report": {
+        "complete": true,
+        "scope": "full real-data GPU lifecycle trial; not accuracy or repeated speedup evidence",
+        "args": {
+          "corpus": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+          "fresh_check": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json",
+          "out": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-mask.json",
+          "backend": "mask",
+          "workers": 2,
+          "epochs": 4,
+          "batch": 4,
+          "imgsz": 640,
+          "overlap": "yes",
+          "close_mosaic": 2,
+          "persistent_mask": true,
+          "checkpoint_epochs": [
+            1,
+            2
+          ],
+          "resume_from": null,
+          "resume_receipt": null
+        },
+        "script_sha256": "1edf99c37882e960e7c9dae2016b7dee6fbb180fbf7d8fdd4bf4beb38b60d8a7",
+        "harness_sources": {
+          "train_coco_gpu.py": "1edf99c37882e960e7c9dae2016b7dee6fbb180fbf7d8fdd4bf4beb38b60d8a7",
+          "coco_loader.py": "5c9e0578b058566b968371ff22e8e54dc2e407b6ff4a2e5a4561b13aa2f9c7e5"
+        },
+        "upstream_files": {
+          "engine/trainer.py": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+          "engine/validator.py": "3c34fed7b2974dd7054e0a800a3edc6c6f11b277ca4f5d80dadeaaf65903412e",
+          "models/yolo/detect/train.py": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f",
+          "models/yolo/segment/train.py": "7e36dd8f80702daf041b0187731f61125031413a87acdc378786f3ea9d5fbf3f",
+          "models/yolo/segment/val.py": "994a12568911a315110242257c8a789f6e06b906705b7b24ead4f38f90c81aa4",
+          "nn/tasks.py": "5f8ce710e0cb3d1f510d9cf327f8ab044321a07b274fcafffca25d7b2d4d7581",
+          "utils/loss.py": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d",
+          "utils/torch_utils.py": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5",
+          "data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+          "cfg/models/11/yolo11-seg.yaml": "c724d65611684accc5d4b84d108ce7216f1018a535cf410022f929e0ec18b65b",
+          "cfg/__init__.py": "4f4deef636360243c08c32f2134bee31f497df7394c3b22c60c58f5452bcee85"
+        },
+        "packages": {
+          "ultrafast_maskops": {
+            "path": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/lib/python3.12/site-packages/ultrafast_maskops",
+            "files": {
+              "__init__.py": "0b381bd51042cea607d9742593e8ece643d8e4dedd4fff80522a7bc9b4ac99fa",
+              "_native.cpython-312-x86_64-linux-gnu.so": "bfb0c15355557b7efb1ae6ef485b3afe5287a2b8d7707ca50b17dbbcd5cf3fa9",
+              "_shared_collate.py": "d5f21af4b980400a09d22aa4c8dcaa4aed91104dcba48e3fa7b66d1c38e70399",
+              "ultralytics.py": "9f956b492c33c92fa70abb726bc64e54548d3fdf9bf33b7a37f9177461363140"
+            }
+          },
+          "ultrafast_yolo_dataset": {
+            "path": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/lib/python3.12/site-packages/ultrafast_yolo_dataset",
+            "files": {
+              "__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+              "_cache.py": "2411fc000ebeeabc5b73d14f4380d0130486d2bcf8e030b2244575ae7254a140",
+              "_native.cpython-312-x86_64-linux-gnu.so": "90274a121c4633008a4c1b191d5c68fac6b1f36e595b8ddbdf03a2a229c6c40c",
+              "_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684",
+              "_scan.py": "92ed533fa8ae1f332bc92e26cd157f98494ab3ff77d7e6113201543e22710083",
+              "_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+              "_ultralytics_profile.json": "ffd8bcff24bb15b771d67626300cc9917b9b0a3f8c0fc456bdcd24337211cfa3",
+              "ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb"
+            }
+          }
+        },
+        "mask_build": {
+          "version": "0.1.0a1",
+          "backend": "C++/OpenCV",
+          "opencv": "4.13.0",
+          "numpy": "2.4.4",
+          "native_workers": 1,
+          "build": {
+            "bindings_sha256": "da270a9525d9c64d1e2d802cb8ec44cbe5743ed76ff6087936a9b00466c1f4a4",
+            "cmake_sha256": "13177f15e47776ae22c251a2eee6079a68788b19b56397c48d2c7e48adbf574e",
+            "template_sha256": "76643f1d3cdb44abd7d7647853c1f7ae03e22d76a07027de9c7cb58340260213",
+            "compiler": "GNU 13.3.0",
+            "build_type": "Release"
+          },
+          "private_opencv_threads": 1,
+          "fallback_count": 0,
+          "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e"
+        },
+        "fixture": {
+          "files": 9952,
+          "bytes": 830426850,
+          "sha256": "8b079ad2d8472ff17b6cca9b0250e831472f12ef500f2b065125f6f39406c208"
+        },
+        "corpus_root": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "original_cache_sha256": "8f2536e077c9682e6f76ad51332fe3ce34d19b1a47a1738f54ad9510ce105b0e",
+        "fresh_check_sha256": "067fa395b3a72b14efca4561def93e6d5bb01e46cb5daeb7f7f074b96f8c0265",
+        "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+        "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+        "torch": "2.10.0+cu128",
+        "numpy": "2.4.4",
+        "opencv": "4.13.0",
+        "gpu": "NVIDIA GeForce RTX 3070",
+        "cuda": "12.8",
+        "cpu_count": 12,
+        "ram_bytes": 33547984896,
+        "load_before": [
+          1.6796875,
+          1.56396484375,
+          1.17138671875
+        ],
+        "timing": "epoch start/end callbacks with CUDA synchronization; excludes setup, validation, checkpoint saving; first epoch includes GPU warmup; upstream may prefetch during loader construction",
+        "memory": "CUDA allocator peaks per epoch; sampled summed process-family RSS double-counts shared pages",
+        "callbacks": "benchmark callbacks only; external logger and analytics callbacks disabled",
+        "lifecycle_requested": true,
+        "resume_input": null,
+        "lifecycle_scope": "Observe the parent dataset formatter/factory and worker reset at the first batch after upstream closure; no close/reset override or worker instrumentation. Compare resumed backends from the same retained reference checkpoint; do not assume upstream resume reproduces uninterrupted RNG/EMA state. Epoch timing includes closure/reset and the small observation callback; checkpoints are outside it.",
+        "nvidia_smi_before": "Sun Sep 13 14:56:45 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.173.02             Driver Version: 580.173.02     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 3070        Off |   00000000:01:00.0 Off |                  N/A |\n| 31%   46C    P8             21W /  240W |     180MiB /   8192MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            2810      G   /usr/lib/xorg/Xorg                      133MiB |\n|    0   N/A  N/A            3044      G   /usr/bin/gnome-shell                      7MiB |\n+-----------------------------------------------------------------------------------------+\n",
+        "worker_shutdown": {
+          "train": {
+            "worker_count": 2,
+            "worker_pids": [
+              1663230,
+              1663231
+            ],
+            "worker_exitcodes": [
+              0,
+              0
+            ],
+            "workers_alive": [
+              false,
+              false
+            ]
+          },
+          "val": {
+            "worker_count": 4,
+            "worker_pids": [
+              1662708,
+              1662709,
+              1662710,
+              1662711
+            ],
+            "worker_exitcodes": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "workers_alive": [
+              false,
+              false,
+              false,
+              false
+            ]
+          }
+        },
+        "whole_job_seconds": 455.8933350839652,
+        "resolved_config": {
+          "task": "segment",
+          "mode": "train",
+          "model": "yolo11n-seg.yaml",
+          "data": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-mask.run/fixture.yaml",
+          "epochs": 4,
+          "time": null,
+          "patience": 100,
+          "batch": 4,
+          "imgsz": 640,
+          "save": true,
+          "save_period": -1,
+          "cache": false,
+          "device": "0",
+          "workers": 2,
+          "project": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-mask.run",
+          "name": "training",
+          "exist_ok": false,
+          "pretrained": false,
+          "cls_remap": true,
+          "optimizer": "SGD",
+          "verbose": false,
+          "seed": 912,
+          "deterministic": true,
+          "single_cls": false,
+          "rect": false,
+          "cos_lr": false,
+          "close_mosaic": 2,
+          "resume": false,
+          "amp": false,
+          "fraction": 1.0,
+          "profile": false,
+          "freeze": null,
+          "multi_scale": 0.0,
+          "compile": false,
+          "channels_last": null,
+          "overlap_mask": true,
+          "mask_ratio": 4,
+          "dropout": 0.0,
+          "val": false,
+          "split": "val",
+          "save_json": false,
+          "conf": null,
+          "iou": 0.7,
+          "max_det": 300,
+          "quantize": null,
+          "dnn": false,
+          "plots": false,
+          "nms": null,
+          "source": null,
+          "vid_stride": 1,
+          "stream_buffer": false,
+          "visualize": false,
+          "augment": false,
+          "agnostic_nms": false,
+          "classes": null,
+          "retina_masks": false,
+          "embed": null,
+          "show": false,
+          "save_frames": false,
+          "save_txt": false,
+          "save_conf": false,
+          "save_crop": false,
+          "show_labels": true,
+          "show_conf": true,
+          "show_boxes": true,
+          "line_width": null,
+          "format": "torchscript",
+          "keras": false,
+          "optimize": false,
+          "dynamic": false,
+          "simplify": true,
+          "opset": null,
+          "workspace": null,
+          "lr0": 0.001,
+          "lrf": 0.01,
+          "momentum": 0.937,
+          "weight_decay": 0.0005,
+          "warmup_epochs": 3.0,
+          "warmup_momentum": 0.8,
+          "warmup_bias_lr": 0.1,
+          "distill_model": null,
+          "dis": 6.0,
+          "box": 7.5,
+          "cls": 0.5,
+          "cls_pw": 0.0,
+          "dfl": 1.5,
+          "pose": 12.0,
+          "kobj": 1.0,
+          "rle": 1.0,
+          "angle": 1.0,
+          "dlog": 1.0,
+          "dgrad": 0.5,
+          "dlam": 1.0,
+          "nbs": 64,
+          "hsv_h": 0.015,
+          "hsv_s": 0.7,
+          "hsv_v": 0.4,
+          "degrees": 0.0,
+          "translate": 0.1,
+          "scale": 0.5,
+          "shear": 0.0,
+          "perspective": 0.0,
+          "flipud": 0.0,
+          "fliplr": 0.5,
+          "bgr": 0.0,
+          "mosaic": 1.0,
+          "mixup": 0.0,
+          "cutmix": 0.0,
+          "copy_paste": 0.0,
+          "copy_paste_mode": "flip",
+          "auto_augment": "randaugment",
+          "erasing": 0.4,
+          "cfg": null,
+          "tracker": "tracktrack.yaml",
+          "save_dir": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-mask.run/training"
+        },
+        "datasets": [
+          {
+            "mode": "train",
+            "seconds": 0.1604784857481718,
+            "images": 5000,
+            "replaced_formats": 1,
+            "native_cache_hit": null
+          },
+          {
+            "mode": "val",
+            "seconds": 0.2267358247190714,
+            "images": 5000,
+            "replaced_formats": 1,
+            "native_cache_hit": null
+          }
+        ],
+        "initial_state_sha256": "1a78149f324851d3adbebf21103f8f2c5006da4a2589fa779ca7fa3b43b57180",
+        "final_state_sha256": "ba8e30a68693ed9772618d436c3331a3ebf738050304713cc710a6ddeab7999a",
+        "train_workers": 2,
+        "val_workers": 4,
+        "nvidia_smi_after": "Sun Sep 13 15:04:21 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.173.02             Driver Version: 580.173.02     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 3070        Off |   00000000:01:00.0 Off |                  N/A |\n| 31%   48C    P2             49W /  240W |     697MiB /   8192MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            2810      G   /usr/lib/xorg/Xorg                      133MiB |\n|    0   N/A  N/A            3044      G   /usr/bin/gnome-shell                      7MiB |\n|    0   N/A  N/A         1662684      C   ...ces-linux-v2-clean/bin/python        512MiB |\n+-----------------------------------------------------------------------------------------+\n",
+        "lifecycle": [
+          {
+            "stage": "prepared",
+            "epoch": null,
+            "start_epoch": 0,
+            "formatter": "FastFormat",
+            "factory": "FastFormat",
+            "collator": "ultrafast_maskops._shared_collate.shared_collate_fn",
+            "rebuilt_from_initial": false,
+            "worker_pids": [
+              1662699,
+              1662700
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 0,
+            "start_epoch": 0,
+            "formatter": "FastFormat",
+            "factory": "FastFormat",
+            "collator": "ultrafast_maskops._shared_collate.shared_collate_fn",
+            "rebuilt_from_initial": false,
+            "worker_pids": [
+              1662699,
+              1662700
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 1,
+            "start_epoch": 0,
+            "formatter": "FastFormat",
+            "factory": "FastFormat",
+            "collator": "ultrafast_maskops._shared_collate.shared_collate_fn",
+            "rebuilt_from_initial": false,
+            "worker_pids": [
+              1662699,
+              1662700
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 2,
+            "start_epoch": 0,
+            "formatter": "FastFormat",
+            "factory": "FastFormat",
+            "collator": "ultrafast_maskops._shared_collate.shared_collate_fn",
+            "rebuilt_from_initial": true,
+            "worker_pids": [
+              1663230,
+              1663231
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true,
+            "replaced_worker_pids": [
+              1662699,
+              1662700
+            ],
+            "replaced_worker_exitcodes": [
+              0,
+              0
+            ],
+            "replaced_workers_alive": [
+              false,
+              false
+            ]
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 3,
+            "start_epoch": 0,
+            "formatter": "FastFormat",
+            "factory": "FastFormat",
+            "collator": "ultrafast_maskops._shared_collate.shared_collate_fn",
+            "rebuilt_from_initial": true,
+            "worker_pids": [
+              1663230,
+              1663231
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true
+          }
+        ],
+        "checkpoints": [
+          {
+            "epoch": 1,
+            "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-mask.run/resume-epoch-1.pt",
+            "sha256": "0a67964328c6e910c0953351e5eff2ee46990c47a474f2802accc3be2347a667",
+            "bytes": 11935889
+          },
+          {
+            "epoch": 2,
+            "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-mask.run/resume-epoch-2.pt",
+            "sha256": "e379e043a5aabc4b3679cd206f62c83082e090eebd80d1f1b376f500ed3c9ea4",
+            "bytes": 11935953
+          }
+        ],
+        "sampled_peak_family_rss_bytes": 10068156416,
+        "epochs": [
+          {
+            "epoch": 0,
+            "seconds": 91.97259768191725,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 54.364018479637345,
+            "cuda_peak_allocated_bytes": 1612080128,
+            "cuda_peak_reserved_bytes": 2264924160,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "6853393a60f66e25cccaf9cfe78160539dd6f8e8d3395fb6eac775c2a91fe7ef"
+          },
+          {
+            "epoch": 1,
+            "seconds": 87.5984125980176,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 57.07865989472454,
+            "cuda_peak_allocated_bytes": 1587925504,
+            "cuda_peak_reserved_bytes": 2264924160,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "3e22241227bf24a307a7fdeb1af584d7e56ee7bf4a7a47f95ea3fdd5730d870f"
+          },
+          {
+            "epoch": 2,
+            "seconds": 85.04886828176677,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 58.78972996366051,
+            "cuda_peak_allocated_bytes": 1521054208,
+            "cuda_peak_reserved_bytes": 2269118464,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "01e0bb14b5d8a5d438148ae5c5398b5f7b7bdbbb3b275ec163b9def81da8babb"
+          },
+          {
+            "epoch": 3,
+            "seconds": 84.62372163683176,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 59.08508752968615,
+            "cuda_peak_allocated_bytes": 1533928960,
+            "cuda_peak_reserved_bytes": 2269118464,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "b210ff3918ed7047daba2b0898e554483b00cb1ea8b1a72ddd1f5fe45840c889"
+          }
+        ]
+      }
+    },
+    {
+      "spec": {
+        "id": "w2-yes-fresh-both",
+        "workers": 2,
+        "overlap": "yes",
+        "stage": "fresh",
+        "backend": "both",
+        "start_epoch": 0,
+        "reference_id": "w2-yes-fresh-reference"
+      },
+      "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-both.json",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-source/bench/train_coco_gpu.py",
+        "--corpus",
+        "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "--fresh-check",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-both.json",
+        "--backend",
+        "both",
+        "--workers",
+        "2",
+        "--epochs",
+        "4",
+        "--batch",
+        "4",
+        "--imgsz",
+        "640",
+        "--overlap",
+        "yes",
+        "--close-mosaic",
+        "2",
+        "--persistent-mask",
+        "--checkpoint-epochs",
+        "1",
+        "2"
+      ],
+      "started_at_ns": 1789279462330861798,
+      "pid": 1663492,
+      "returncode": 0,
+      "finished_at_ns": 1789279918420297897,
+      "log_sha256": "49a3a1fb7e126a2cf82e0482c0e4d6ae51566d48de9ea24f7d01c18d1f9e4ac9",
+      "sha256": "e4234f05f664b06cfee3bf6f4c7e56313a7795137f6ff58bbee3d394688c8ec8",
+      "validated": true,
+      "report": {
+        "complete": true,
+        "scope": "full real-data GPU lifecycle trial; not accuracy or repeated speedup evidence",
+        "args": {
+          "corpus": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+          "fresh_check": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json",
+          "out": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-both.json",
+          "backend": "both",
+          "workers": 2,
+          "epochs": 4,
+          "batch": 4,
+          "imgsz": 640,
+          "overlap": "yes",
+          "close_mosaic": 2,
+          "persistent_mask": true,
+          "checkpoint_epochs": [
+            1,
+            2
+          ],
+          "resume_from": null,
+          "resume_receipt": null
+        },
+        "script_sha256": "1edf99c37882e960e7c9dae2016b7dee6fbb180fbf7d8fdd4bf4beb38b60d8a7",
+        "harness_sources": {
+          "train_coco_gpu.py": "1edf99c37882e960e7c9dae2016b7dee6fbb180fbf7d8fdd4bf4beb38b60d8a7",
+          "coco_loader.py": "5c9e0578b058566b968371ff22e8e54dc2e407b6ff4a2e5a4561b13aa2f9c7e5"
+        },
+        "upstream_files": {
+          "engine/trainer.py": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+          "engine/validator.py": "3c34fed7b2974dd7054e0a800a3edc6c6f11b277ca4f5d80dadeaaf65903412e",
+          "models/yolo/detect/train.py": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f",
+          "models/yolo/segment/train.py": "7e36dd8f80702daf041b0187731f61125031413a87acdc378786f3ea9d5fbf3f",
+          "models/yolo/segment/val.py": "994a12568911a315110242257c8a789f6e06b906705b7b24ead4f38f90c81aa4",
+          "nn/tasks.py": "5f8ce710e0cb3d1f510d9cf327f8ab044321a07b274fcafffca25d7b2d4d7581",
+          "utils/loss.py": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d",
+          "utils/torch_utils.py": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5",
+          "data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+          "cfg/models/11/yolo11-seg.yaml": "c724d65611684accc5d4b84d108ce7216f1018a535cf410022f929e0ec18b65b",
+          "cfg/__init__.py": "4f4deef636360243c08c32f2134bee31f497df7394c3b22c60c58f5452bcee85"
+        },
+        "packages": {
+          "ultrafast_maskops": {
+            "path": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/lib/python3.12/site-packages/ultrafast_maskops",
+            "files": {
+              "__init__.py": "0b381bd51042cea607d9742593e8ece643d8e4dedd4fff80522a7bc9b4ac99fa",
+              "_native.cpython-312-x86_64-linux-gnu.so": "bfb0c15355557b7efb1ae6ef485b3afe5287a2b8d7707ca50b17dbbcd5cf3fa9",
+              "_shared_collate.py": "d5f21af4b980400a09d22aa4c8dcaa4aed91104dcba48e3fa7b66d1c38e70399",
+              "ultralytics.py": "9f956b492c33c92fa70abb726bc64e54548d3fdf9bf33b7a37f9177461363140"
+            }
+          },
+          "ultrafast_yolo_dataset": {
+            "path": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/lib/python3.12/site-packages/ultrafast_yolo_dataset",
+            "files": {
+              "__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+              "_cache.py": "2411fc000ebeeabc5b73d14f4380d0130486d2bcf8e030b2244575ae7254a140",
+              "_native.cpython-312-x86_64-linux-gnu.so": "90274a121c4633008a4c1b191d5c68fac6b1f36e595b8ddbdf03a2a229c6c40c",
+              "_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684",
+              "_scan.py": "92ed533fa8ae1f332bc92e26cd157f98494ab3ff77d7e6113201543e22710083",
+              "_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+              "_ultralytics_profile.json": "ffd8bcff24bb15b771d67626300cc9917b9b0a3f8c0fc456bdcd24337211cfa3",
+              "ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb"
+            }
+          }
+        },
+        "mask_build": {
+          "version": "0.1.0a1",
+          "backend": "C++/OpenCV",
+          "opencv": "4.13.0",
+          "numpy": "2.4.4",
+          "native_workers": 1,
+          "build": {
+            "bindings_sha256": "da270a9525d9c64d1e2d802cb8ec44cbe5743ed76ff6087936a9b00466c1f4a4",
+            "cmake_sha256": "13177f15e47776ae22c251a2eee6079a68788b19b56397c48d2c7e48adbf574e",
+            "template_sha256": "76643f1d3cdb44abd7d7647853c1f7ae03e22d76a07027de9c7cb58340260213",
+            "compiler": "GNU 13.3.0",
+            "build_type": "Release"
+          },
+          "private_opencv_threads": 1,
+          "fallback_count": 0,
+          "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e"
+        },
+        "fixture": {
+          "files": 9952,
+          "bytes": 830426850,
+          "sha256": "8b079ad2d8472ff17b6cca9b0250e831472f12ef500f2b065125f6f39406c208"
+        },
+        "corpus_root": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "original_cache_sha256": "8f2536e077c9682e6f76ad51332fe3ce34d19b1a47a1738f54ad9510ce105b0e",
+        "fresh_check_sha256": "067fa395b3a72b14efca4561def93e6d5bb01e46cb5daeb7f7f074b96f8c0265",
+        "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+        "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+        "torch": "2.10.0+cu128",
+        "numpy": "2.4.4",
+        "opencv": "4.13.0",
+        "gpu": "NVIDIA GeForce RTX 3070",
+        "cuda": "12.8",
+        "cpu_count": 12,
+        "ram_bytes": 33547984896,
+        "load_before": [
+          1.4794921875,
+          1.58837890625,
+          1.36279296875
+        ],
+        "timing": "epoch start/end callbacks with CUDA synchronization; excludes setup, validation, checkpoint saving; first epoch includes GPU warmup; upstream may prefetch during loader construction",
+        "memory": "CUDA allocator peaks per epoch; sampled summed process-family RSS double-counts shared pages",
+        "callbacks": "benchmark callbacks only; external logger and analytics callbacks disabled",
+        "lifecycle_requested": true,
+        "resume_input": null,
+        "lifecycle_scope": "Observe the parent dataset formatter/factory and worker reset at the first batch after upstream closure; no close/reset override or worker instrumentation. Compare resumed backends from the same retained reference checkpoint; do not assume upstream resume reproduces uninterrupted RNG/EMA state. Epoch timing includes closure/reset and the small observation callback; checkpoints are outside it.",
+        "nvidia_smi_before": "Sun Sep 13 15:04:25 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.173.02             Driver Version: 580.173.02     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 3070        Off |   00000000:01:00.0 Off |                  N/A |\n| 31%   46C    P5             22W /  240W |     180MiB /   8192MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            2810      G   /usr/lib/xorg/Xorg                      133MiB |\n|    0   N/A  N/A            3044      G   /usr/bin/gnome-shell                      7MiB |\n+-----------------------------------------------------------------------------------------+\n",
+        "worker_shutdown": {
+          "train": {
+            "worker_count": 2,
+            "worker_pids": [
+              1664115,
+              1664116
+            ],
+            "worker_exitcodes": [
+              0,
+              0
+            ],
+            "workers_alive": [
+              false,
+              false
+            ]
+          },
+          "val": {
+            "worker_count": 4,
+            "worker_pids": [
+              1663752,
+              1663753,
+              1663754,
+              1663755
+            ],
+            "worker_exitcodes": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "workers_alive": [
+              false,
+              false,
+              false,
+              false
+            ]
+          }
+        },
+        "whole_job_seconds": 451.58883969997987,
+        "resolved_config": {
+          "task": "segment",
+          "mode": "train",
+          "model": "yolo11n-seg.yaml",
+          "data": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-both.run/fixture.yaml",
+          "epochs": 4,
+          "time": null,
+          "patience": 100,
+          "batch": 4,
+          "imgsz": 640,
+          "save": true,
+          "save_period": -1,
+          "cache": false,
+          "device": "0",
+          "workers": 2,
+          "project": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-both.run",
+          "name": "training",
+          "exist_ok": false,
+          "pretrained": false,
+          "cls_remap": true,
+          "optimizer": "SGD",
+          "verbose": false,
+          "seed": 912,
+          "deterministic": true,
+          "single_cls": false,
+          "rect": false,
+          "cos_lr": false,
+          "close_mosaic": 2,
+          "resume": false,
+          "amp": false,
+          "fraction": 1.0,
+          "profile": false,
+          "freeze": null,
+          "multi_scale": 0.0,
+          "compile": false,
+          "channels_last": null,
+          "overlap_mask": true,
+          "mask_ratio": 4,
+          "dropout": 0.0,
+          "val": false,
+          "split": "val",
+          "save_json": false,
+          "conf": null,
+          "iou": 0.7,
+          "max_det": 300,
+          "quantize": null,
+          "dnn": false,
+          "plots": false,
+          "nms": null,
+          "source": null,
+          "vid_stride": 1,
+          "stream_buffer": false,
+          "visualize": false,
+          "augment": false,
+          "agnostic_nms": false,
+          "classes": null,
+          "retina_masks": false,
+          "embed": null,
+          "show": false,
+          "save_frames": false,
+          "save_txt": false,
+          "save_conf": false,
+          "save_crop": false,
+          "show_labels": true,
+          "show_conf": true,
+          "show_boxes": true,
+          "line_width": null,
+          "format": "torchscript",
+          "keras": false,
+          "optimize": false,
+          "dynamic": false,
+          "simplify": true,
+          "opset": null,
+          "workspace": null,
+          "lr0": 0.001,
+          "lrf": 0.01,
+          "momentum": 0.937,
+          "weight_decay": 0.0005,
+          "warmup_epochs": 3.0,
+          "warmup_momentum": 0.8,
+          "warmup_bias_lr": 0.1,
+          "distill_model": null,
+          "dis": 6.0,
+          "box": 7.5,
+          "cls": 0.5,
+          "cls_pw": 0.0,
+          "dfl": 1.5,
+          "pose": 12.0,
+          "kobj": 1.0,
+          "rle": 1.0,
+          "angle": 1.0,
+          "dlog": 1.0,
+          "dgrad": 0.5,
+          "dlam": 1.0,
+          "nbs": 64,
+          "hsv_h": 0.015,
+          "hsv_s": 0.7,
+          "hsv_v": 0.4,
+          "degrees": 0.0,
+          "translate": 0.1,
+          "scale": 0.5,
+          "shear": 0.0,
+          "perspective": 0.0,
+          "flipud": 0.0,
+          "fliplr": 0.5,
+          "bgr": 0.0,
+          "mosaic": 1.0,
+          "mixup": 0.0,
+          "cutmix": 0.0,
+          "copy_paste": 0.0,
+          "copy_paste_mode": "flip",
+          "auto_augment": "randaugment",
+          "erasing": 0.4,
+          "cfg": null,
+          "tracker": "tracktrack.yaml",
+          "save_dir": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-both.run/training"
+        },
+        "datasets": [
+          {
+            "mode": "train",
+            "seconds": 2.373629468958825,
+            "images": 5000,
+            "replaced_formats": 1,
+            "native_cache_hit": false
+          },
+          {
+            "mode": "val",
+            "seconds": 2.611043957993388,
+            "images": 5000,
+            "replaced_formats": 1,
+            "native_cache_hit": false
+          }
+        ],
+        "initial_state_sha256": "1a78149f324851d3adbebf21103f8f2c5006da4a2589fa779ca7fa3b43b57180",
+        "final_state_sha256": "ba8e30a68693ed9772618d436c3331a3ebf738050304713cc710a6ddeab7999a",
+        "train_workers": 2,
+        "val_workers": 4,
+        "nvidia_smi_after": "Sun Sep 13 15:11:57 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.173.02             Driver Version: 580.173.02     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 3070        Off |   00000000:01:00.0 Off |                  N/A |\n| 31%   48C    P2             49W /  240W |     697MiB /   8192MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            2810      G   /usr/lib/xorg/Xorg                      133MiB |\n|    0   N/A  N/A            3044      G   /usr/bin/gnome-shell                      7MiB |\n|    0   N/A  N/A         1663492      C   ...ces-linux-v2-clean/bin/python        512MiB |\n+-----------------------------------------------------------------------------------------+\n",
+        "lifecycle": [
+          {
+            "stage": "prepared",
+            "epoch": null,
+            "start_epoch": 0,
+            "formatter": "FastFormat",
+            "factory": "FastFormat",
+            "collator": "ultrafast_maskops._shared_collate.shared_collate_fn",
+            "rebuilt_from_initial": false,
+            "worker_pids": [
+              1663651,
+              1663652
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 0,
+            "start_epoch": 0,
+            "formatter": "FastFormat",
+            "factory": "FastFormat",
+            "collator": "ultrafast_maskops._shared_collate.shared_collate_fn",
+            "rebuilt_from_initial": false,
+            "worker_pids": [
+              1663651,
+              1663652
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 1,
+            "start_epoch": 0,
+            "formatter": "FastFormat",
+            "factory": "FastFormat",
+            "collator": "ultrafast_maskops._shared_collate.shared_collate_fn",
+            "rebuilt_from_initial": false,
+            "worker_pids": [
+              1663651,
+              1663652
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 2,
+            "start_epoch": 0,
+            "formatter": "FastFormat",
+            "factory": "FastFormat",
+            "collator": "ultrafast_maskops._shared_collate.shared_collate_fn",
+            "rebuilt_from_initial": true,
+            "worker_pids": [
+              1664115,
+              1664116
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true,
+            "replaced_worker_pids": [
+              1663651,
+              1663652
+            ],
+            "replaced_worker_exitcodes": [
+              0,
+              0
+            ],
+            "replaced_workers_alive": [
+              false,
+              false
+            ]
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 3,
+            "start_epoch": 0,
+            "formatter": "FastFormat",
+            "factory": "FastFormat",
+            "collator": "ultrafast_maskops._shared_collate.shared_collate_fn",
+            "rebuilt_from_initial": true,
+            "worker_pids": [
+              1664115,
+              1664116
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true
+          }
+        ],
+        "checkpoints": [
+          {
+            "epoch": 1,
+            "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-both.run/resume-epoch-1.pt",
+            "sha256": "2271846df6da1b2de268744372ce15dbb2f7d341ed0f7757ebd511d22e1743ab",
+            "bytes": 11935889
+          },
+          {
+            "epoch": 2,
+            "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-both.run/resume-epoch-2.pt",
+            "sha256": "8cdd4d3e3f782c38da122fc19bc56d8c96c1f6fc0b5fa9a109d9ad65cd813cb0",
+            "bytes": 11935953
+          }
+        ],
+        "sampled_peak_family_rss_bytes": 10241363968,
+        "epochs": [
+          {
+            "epoch": 0,
+            "seconds": 89.64949102094397,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 55.772765054872394,
+            "cuda_peak_allocated_bytes": 1612080128,
+            "cuda_peak_reserved_bytes": 2264924160,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "6853393a60f66e25cccaf9cfe78160539dd6f8e8d3395fb6eac775c2a91fe7ef"
+          },
+          {
+            "epoch": 1,
+            "seconds": 85.15069189015776,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 58.71942892078756,
+            "cuda_peak_allocated_bytes": 1587925504,
+            "cuda_peak_reserved_bytes": 2264924160,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "3e22241227bf24a307a7fdeb1af584d7e56ee7bf4a7a47f95ea3fdd5730d870f"
+          },
+          {
+            "epoch": 2,
+            "seconds": 83.56471964204684,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 59.83386315921025,
+            "cuda_peak_allocated_bytes": 1521054208,
+            "cuda_peak_reserved_bytes": 2269118464,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "01e0bb14b5d8a5d438148ae5c5398b5f7b7bdbbb3b275ec163b9def81da8babb"
+          },
+          {
+            "epoch": 3,
+            "seconds": 83.45272062905133,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 59.914164119646614,
+            "cuda_peak_allocated_bytes": 1533928960,
+            "cuda_peak_reserved_bytes": 2269118464,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "b210ff3918ed7047daba2b0898e554483b00cb1ea8b1a72ddd1f5fe45840c889"
+          }
+        ]
+      }
+    },
+    {
+      "spec": {
+        "id": "w2-yes-resume-at-boundary-reference",
+        "workers": 2,
+        "overlap": "yes",
+        "stage": "resume-at-boundary",
+        "backend": "reference",
+        "start_epoch": 2,
+        "reference_id": "w2-yes-fresh-reference"
+      },
+      "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-resume-at-boundary-reference.json",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-source/bench/train_coco_gpu.py",
+        "--corpus",
+        "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "--fresh-check",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-resume-at-boundary-reference.json",
+        "--backend",
+        "reference",
+        "--workers",
+        "2",
+        "--epochs",
+        "4",
+        "--batch",
+        "4",
+        "--imgsz",
+        "640",
+        "--overlap",
+        "yes",
+        "--close-mosaic",
+        "2",
+        "--persistent-mask",
+        "--resume-from",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-1.pt",
+        "--resume-receipt",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.json"
+      ],
+      "started_at_ns": 1789279918521196560,
+      "pid": 1664682,
+      "returncode": 0,
+      "finished_at_ns": 1789280205409545728,
+      "log_sha256": "a1539c6654769e631ac1171b7be76f7a9909723f09686d3adcd729b7952b44ed",
+      "sha256": "2ec79b8319e4ce1d40751d2c15c91baa335588d8145d539b16fc903ea1864b6b",
+      "validated": true,
+      "report": {
+        "complete": true,
+        "scope": "full real-data GPU lifecycle trial; not accuracy or repeated speedup evidence",
+        "args": {
+          "corpus": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+          "fresh_check": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json",
+          "out": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-resume-at-boundary-reference.json",
+          "backend": "reference",
+          "workers": 2,
+          "epochs": 4,
+          "batch": 4,
+          "imgsz": 640,
+          "overlap": "yes",
+          "close_mosaic": 2,
+          "persistent_mask": true,
+          "checkpoint_epochs": [],
+          "resume_from": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-1.pt",
+          "resume_receipt": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.json"
+        },
+        "script_sha256": "1edf99c37882e960e7c9dae2016b7dee6fbb180fbf7d8fdd4bf4beb38b60d8a7",
+        "harness_sources": {
+          "train_coco_gpu.py": "1edf99c37882e960e7c9dae2016b7dee6fbb180fbf7d8fdd4bf4beb38b60d8a7",
+          "coco_loader.py": "5c9e0578b058566b968371ff22e8e54dc2e407b6ff4a2e5a4561b13aa2f9c7e5"
+        },
+        "upstream_files": {
+          "engine/trainer.py": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+          "engine/validator.py": "3c34fed7b2974dd7054e0a800a3edc6c6f11b277ca4f5d80dadeaaf65903412e",
+          "models/yolo/detect/train.py": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f",
+          "models/yolo/segment/train.py": "7e36dd8f80702daf041b0187731f61125031413a87acdc378786f3ea9d5fbf3f",
+          "models/yolo/segment/val.py": "994a12568911a315110242257c8a789f6e06b906705b7b24ead4f38f90c81aa4",
+          "nn/tasks.py": "5f8ce710e0cb3d1f510d9cf327f8ab044321a07b274fcafffca25d7b2d4d7581",
+          "utils/loss.py": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d",
+          "utils/torch_utils.py": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5",
+          "data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+          "cfg/models/11/yolo11-seg.yaml": "c724d65611684accc5d4b84d108ce7216f1018a535cf410022f929e0ec18b65b",
+          "cfg/__init__.py": "4f4deef636360243c08c32f2134bee31f497df7394c3b22c60c58f5452bcee85"
+        },
+        "packages": {
+          "ultrafast_maskops": {
+            "path": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/lib/python3.12/site-packages/ultrafast_maskops",
+            "files": {
+              "__init__.py": "0b381bd51042cea607d9742593e8ece643d8e4dedd4fff80522a7bc9b4ac99fa",
+              "_native.cpython-312-x86_64-linux-gnu.so": "bfb0c15355557b7efb1ae6ef485b3afe5287a2b8d7707ca50b17dbbcd5cf3fa9",
+              "_shared_collate.py": "d5f21af4b980400a09d22aa4c8dcaa4aed91104dcba48e3fa7b66d1c38e70399",
+              "ultralytics.py": "9f956b492c33c92fa70abb726bc64e54548d3fdf9bf33b7a37f9177461363140"
+            }
+          },
+          "ultrafast_yolo_dataset": {
+            "path": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/lib/python3.12/site-packages/ultrafast_yolo_dataset",
+            "files": {
+              "__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+              "_cache.py": "2411fc000ebeeabc5b73d14f4380d0130486d2bcf8e030b2244575ae7254a140",
+              "_native.cpython-312-x86_64-linux-gnu.so": "90274a121c4633008a4c1b191d5c68fac6b1f36e595b8ddbdf03a2a229c6c40c",
+              "_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684",
+              "_scan.py": "92ed533fa8ae1f332bc92e26cd157f98494ab3ff77d7e6113201543e22710083",
+              "_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+              "_ultralytics_profile.json": "ffd8bcff24bb15b771d67626300cc9917b9b0a3f8c0fc456bdcd24337211cfa3",
+              "ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb"
+            }
+          }
+        },
+        "mask_build": {
+          "version": "0.1.0a1",
+          "backend": "C++/OpenCV",
+          "opencv": "4.13.0",
+          "numpy": "2.4.4",
+          "native_workers": 1,
+          "build": {
+            "bindings_sha256": "da270a9525d9c64d1e2d802cb8ec44cbe5743ed76ff6087936a9b00466c1f4a4",
+            "cmake_sha256": "13177f15e47776ae22c251a2eee6079a68788b19b56397c48d2c7e48adbf574e",
+            "template_sha256": "76643f1d3cdb44abd7d7647853c1f7ae03e22d76a07027de9c7cb58340260213",
+            "compiler": "GNU 13.3.0",
+            "build_type": "Release"
+          },
+          "private_opencv_threads": 1,
+          "fallback_count": 0,
+          "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e"
+        },
+        "fixture": {
+          "files": 9952,
+          "bytes": 830426850,
+          "sha256": "8b079ad2d8472ff17b6cca9b0250e831472f12ef500f2b065125f6f39406c208"
+        },
+        "corpus_root": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "original_cache_sha256": "8f2536e077c9682e6f76ad51332fe3ce34d19b1a47a1738f54ad9510ce105b0e",
+        "fresh_check_sha256": "067fa395b3a72b14efca4561def93e6d5bb01e46cb5daeb7f7f074b96f8c0265",
+        "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+        "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+        "torch": "2.10.0+cu128",
+        "numpy": "2.4.4",
+        "opencv": "4.13.0",
+        "gpu": "NVIDIA GeForce RTX 3070",
+        "cuda": "12.8",
+        "cpu_count": 12,
+        "ram_bytes": 33547984896,
+        "load_before": [
+          1.5283203125,
+          1.56494140625,
+          1.45751953125
+        ],
+        "timing": "epoch start/end callbacks with CUDA synchronization; excludes setup, validation, checkpoint saving; first epoch includes GPU warmup; upstream may prefetch during loader construction",
+        "memory": "CUDA allocator peaks per epoch; sampled summed process-family RSS double-counts shared pages",
+        "callbacks": "benchmark callbacks only; external logger and analytics callbacks disabled",
+        "lifecycle_requested": true,
+        "resume_input": {
+          "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-1.pt",
+          "sha256": "325fba1951aa3c80016d6e233fa711091d1c5e7700503eaedd8fd9614aede51c",
+          "receipt_sha256": "71c4e6d6723302ddaaea384263e1ed656b8d072ea36d145baecf9dad3ab35d9b",
+          "expected_start_epoch": 2,
+          "restored_state_expectation": {
+            "checkpoint_epoch": 1,
+            "optimizer_states": 290,
+            "ema_updates": 618
+          }
+        },
+        "lifecycle_scope": "Observe the parent dataset formatter/factory and worker reset at the first batch after upstream closure; no close/reset override or worker instrumentation. Compare resumed backends from the same retained reference checkpoint; do not assume upstream resume reproduces uninterrupted RNG/EMA state. Epoch timing includes closure/reset and the small observation callback; checkpoints are outside it.",
+        "nvidia_smi_before": "Sun Sep 13 15:12:02 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.173.02             Driver Version: 580.173.02     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 3070        Off |   00000000:01:00.0 Off |                  N/A |\n| 31%   46C    P5             22W /  240W |     180MiB /   8192MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            2810      G   /usr/lib/xorg/Xorg                      133MiB |\n|    0   N/A  N/A            3044      G   /usr/bin/gnome-shell                      7MiB |\n+-----------------------------------------------------------------------------------------+\n",
+        "worker_shutdown": {
+          "train": {
+            "worker_count": 2,
+            "worker_pids": [
+              1664724,
+              1664725
+            ],
+            "worker_exitcodes": [
+              0,
+              0
+            ],
+            "workers_alive": [
+              false,
+              false
+            ]
+          },
+          "val": {
+            "worker_count": 4,
+            "worker_pids": [
+              1664704,
+              1664705,
+              1664706,
+              1664707
+            ],
+            "worker_exitcodes": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "workers_alive": [
+              false,
+              false,
+              false,
+              false
+            ]
+          }
+        },
+        "whole_job_seconds": 282.36719677690417,
+        "resolved_config": {
+          "task": "segment",
+          "mode": "train",
+          "model": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-1.pt",
+          "data": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/fixture.yaml",
+          "epochs": 4,
+          "time": null,
+          "patience": 100,
+          "batch": 4,
+          "imgsz": 640,
+          "save": true,
+          "save_period": -1,
+          "cache": false,
+          "device": "0",
+          "workers": 2,
+          "project": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run",
+          "name": "training",
+          "exist_ok": false,
+          "pretrained": false,
+          "cls_remap": true,
+          "optimizer": "SGD",
+          "verbose": false,
+          "seed": 912,
+          "deterministic": true,
+          "single_cls": false,
+          "rect": false,
+          "cos_lr": false,
+          "close_mosaic": 2,
+          "resume": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-1.pt",
+          "amp": false,
+          "fraction": 1.0,
+          "profile": false,
+          "freeze": null,
+          "multi_scale": 0.0,
+          "compile": false,
+          "channels_last": null,
+          "overlap_mask": true,
+          "mask_ratio": 4,
+          "dropout": 0.0,
+          "val": false,
+          "split": "val",
+          "save_json": false,
+          "conf": null,
+          "iou": 0.7,
+          "max_det": 300,
+          "quantize": null,
+          "dnn": false,
+          "plots": false,
+          "nms": null,
+          "source": null,
+          "vid_stride": 1,
+          "stream_buffer": false,
+          "visualize": false,
+          "augment": false,
+          "agnostic_nms": false,
+          "classes": null,
+          "retina_masks": false,
+          "embed": null,
+          "show": false,
+          "save_frames": false,
+          "save_txt": false,
+          "save_conf": false,
+          "save_crop": false,
+          "show_labels": true,
+          "show_conf": true,
+          "show_boxes": true,
+          "line_width": null,
+          "format": "torchscript",
+          "keras": false,
+          "optimize": false,
+          "dynamic": false,
+          "simplify": true,
+          "opset": null,
+          "workspace": null,
+          "lr0": 0.001,
+          "lrf": 0.01,
+          "momentum": 0.937,
+          "weight_decay": 0.0005,
+          "warmup_epochs": 3.0,
+          "warmup_momentum": 0.8,
+          "warmup_bias_lr": 0.1,
+          "distill_model": null,
+          "dis": 6.0,
+          "box": 7.5,
+          "cls": 0.5,
+          "cls_pw": 0.0,
+          "dfl": 1.5,
+          "pose": 12.0,
+          "kobj": 1.0,
+          "rle": 1.0,
+          "angle": 1.0,
+          "dlog": 1.0,
+          "dgrad": 0.5,
+          "dlam": 1.0,
+          "nbs": 64,
+          "hsv_h": 0.015,
+          "hsv_s": 0.7,
+          "hsv_v": 0.4,
+          "degrees": 0.0,
+          "translate": 0.1,
+          "scale": 0.5,
+          "shear": 0.0,
+          "perspective": 0.0,
+          "flipud": 0.0,
+          "fliplr": 0.5,
+          "bgr": 0.0,
+          "mosaic": 1.0,
+          "mixup": 0.0,
+          "cutmix": 0.0,
+          "copy_paste": 0.0,
+          "copy_paste_mode": "flip",
+          "auto_augment": "randaugment",
+          "erasing": 0.4,
+          "cfg": null,
+          "tracker": "tracktrack.yaml",
+          "save_dir": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-resume-at-boundary-reference.run/training"
+        },
+        "datasets": [
+          {
+            "mode": "train",
+            "seconds": 0.11611567717045546,
+            "images": 5000,
+            "replaced_formats": 0,
+            "native_cache_hit": null
+          },
+          {
+            "mode": "val",
+            "seconds": 0.16723450785502791,
+            "images": 5000,
+            "replaced_formats": 0,
+            "native_cache_hit": null
+          }
+        ],
+        "initial_state_sha256": "038a3418a2ec3f51310a505a1e02f20e6dbde811142f0b913d6a725dea271c36",
+        "final_state_sha256": "5f676829d1408a89db67cd6cf690112d9c27bb314c2fedfd57e390609a658639",
+        "train_workers": 2,
+        "val_workers": 4,
+        "nvidia_smi_after": "Sun Sep 13 15:16:44 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.173.02             Driver Version: 580.173.02     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 3070        Off |   00000000:01:00.0 Off |                  N/A |\n| 31%   48C    P2             49W /  240W |     667MiB /   8192MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            2810      G   /usr/lib/xorg/Xorg                      133MiB |\n|    0   N/A  N/A            3044      G   /usr/bin/gnome-shell                      7MiB |\n|    0   N/A  N/A         1664682      C   ...ces-linux-v2-clean/bin/python        482MiB |\n+-----------------------------------------------------------------------------------------+\n",
+        "lifecycle": [
+          {
+            "stage": "prepared",
+            "epoch": null,
+            "start_epoch": 2,
+            "formatter": "Format",
+            "factory": "Format",
+            "collator": "ultralytics.data.dataset.YOLODataset.collate_fn",
+            "rebuilt_from_initial": false,
+            "worker_pids": [
+              1664695,
+              1664696
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 2,
+            "start_epoch": 2,
+            "formatter": "Format",
+            "factory": "Format",
+            "collator": "ultralytics.data.dataset.YOLODataset.collate_fn",
+            "rebuilt_from_initial": true,
+            "worker_pids": [
+              1664724,
+              1664725
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true,
+            "replaced_worker_pids": [
+              1664695,
+              1664696
+            ],
+            "replaced_worker_exitcodes": [
+              0,
+              0
+            ],
+            "replaced_workers_alive": [
+              false,
+              false
+            ]
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 3,
+            "start_epoch": 2,
+            "formatter": "Format",
+            "factory": "Format",
+            "collator": "ultralytics.data.dataset.YOLODataset.collate_fn",
+            "rebuilt_from_initial": true,
+            "worker_pids": [
+              1664724,
+              1664725
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true
+          }
+        ],
+        "checkpoints": [],
+        "sampled_peak_family_rss_bytes": 7977562112,
+        "epochs": [
+          {
+            "epoch": 2,
+            "seconds": 86.86027857288718,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 57.56371130912668,
+            "cuda_peak_allocated_bytes": 1489065472,
+            "cuda_peak_reserved_bytes": 1927282688,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "628daee686081af532fcd06f99c544575ca9dbdd251e4a541226a122c3893c9f"
+          },
+          {
+            "epoch": 3,
+            "seconds": 83.50817414233461,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 59.874378183359674,
+            "cuda_peak_allocated_bytes": 1530835456,
+            "cuda_peak_reserved_bytes": 2153775104,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "75f5cf62a2adb649884afc58e68b03878f22de1225b5028bd0fd8782092f66ed"
+          }
+        ]
+      }
+    },
+    {
+      "spec": {
+        "id": "w2-yes-resume-at-boundary-mask",
+        "workers": 2,
+        "overlap": "yes",
+        "stage": "resume-at-boundary",
+        "backend": "mask",
+        "start_epoch": 2,
+        "reference_id": "w2-yes-fresh-reference"
+      },
+      "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-resume-at-boundary-mask.json",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-source/bench/train_coco_gpu.py",
+        "--corpus",
+        "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "--fresh-check",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-resume-at-boundary-mask.json",
+        "--backend",
+        "mask",
+        "--workers",
+        "2",
+        "--epochs",
+        "4",
+        "--batch",
+        "4",
+        "--imgsz",
+        "640",
+        "--overlap",
+        "yes",
+        "--close-mosaic",
+        "2",
+        "--persistent-mask",
+        "--resume-from",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-1.pt",
+        "--resume-receipt",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.json"
+      ],
+      "started_at_ns": 1789280205478200680,
+      "pid": 1665069,
+      "returncode": 0,
+      "finished_at_ns": 1789280489919107485,
+      "log_sha256": "e3e7256c246317aad437fe002c10af33dc081ac4a41d12c0b568b5226e0c46ae",
+      "sha256": "09a08b6159fa945a1f3dbf0daf97c1e84b999c9fc80842d870590579300afebc",
+      "validated": true,
+      "report": {
+        "complete": true,
+        "scope": "full real-data GPU lifecycle trial; not accuracy or repeated speedup evidence",
+        "args": {
+          "corpus": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+          "fresh_check": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json",
+          "out": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-resume-at-boundary-mask.json",
+          "backend": "mask",
+          "workers": 2,
+          "epochs": 4,
+          "batch": 4,
+          "imgsz": 640,
+          "overlap": "yes",
+          "close_mosaic": 2,
+          "persistent_mask": true,
+          "checkpoint_epochs": [],
+          "resume_from": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-1.pt",
+          "resume_receipt": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.json"
+        },
+        "script_sha256": "1edf99c37882e960e7c9dae2016b7dee6fbb180fbf7d8fdd4bf4beb38b60d8a7",
+        "harness_sources": {
+          "train_coco_gpu.py": "1edf99c37882e960e7c9dae2016b7dee6fbb180fbf7d8fdd4bf4beb38b60d8a7",
+          "coco_loader.py": "5c9e0578b058566b968371ff22e8e54dc2e407b6ff4a2e5a4561b13aa2f9c7e5"
+        },
+        "upstream_files": {
+          "engine/trainer.py": "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7",
+          "engine/validator.py": "3c34fed7b2974dd7054e0a800a3edc6c6f11b277ca4f5d80dadeaaf65903412e",
+          "models/yolo/detect/train.py": "76d6b181259edc09b03f7cea1f9d59bd4eda2f7964146bbb2e76d4f7201dcf5f",
+          "models/yolo/segment/train.py": "7e36dd8f80702daf041b0187731f61125031413a87acdc378786f3ea9d5fbf3f",
+          "models/yolo/segment/val.py": "994a12568911a315110242257c8a789f6e06b906705b7b24ead4f38f90c81aa4",
+          "nn/tasks.py": "5f8ce710e0cb3d1f510d9cf327f8ab044321a07b274fcafffca25d7b2d4d7581",
+          "utils/loss.py": "357053aa9a24ad2c4d541c3ada3a27232a10d679f89c7b4957b9a84a7da4ec1d",
+          "utils/torch_utils.py": "33bbd774f10bb8151b612a80aced680a2411e6b7d951596e65d2b9d0698263d5",
+          "data/build.py": "cb497ae819998452da08c05cd1f7640b77515ac06dcbafd20ec9aea47523dc9a",
+          "cfg/models/11/yolo11-seg.yaml": "c724d65611684accc5d4b84d108ce7216f1018a535cf410022f929e0ec18b65b",
+          "cfg/__init__.py": "4f4deef636360243c08c32f2134bee31f497df7394c3b22c60c58f5452bcee85"
+        },
+        "packages": {
+          "ultrafast_maskops": {
+            "path": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/lib/python3.12/site-packages/ultrafast_maskops",
+            "files": {
+              "__init__.py": "0b381bd51042cea607d9742593e8ece643d8e4dedd4fff80522a7bc9b4ac99fa",
+              "_native.cpython-312-x86_64-linux-gnu.so": "bfb0c15355557b7efb1ae6ef485b3afe5287a2b8d7707ca50b17dbbcd5cf3fa9",
+              "_shared_collate.py": "d5f21af4b980400a09d22aa4c8dcaa4aed91104dcba48e3fa7b66d1c38e70399",
+              "ultralytics.py": "9f956b492c33c92fa70abb726bc64e54548d3fdf9bf33b7a37f9177461363140"
+            }
+          },
+          "ultrafast_yolo_dataset": {
+            "path": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/lib/python3.12/site-packages/ultrafast_yolo_dataset",
+            "files": {
+              "__init__.py": "cdc1ca813bb2391a5c06104b0f259baf07f853875f1414109a7691885dd5d2a5",
+              "_cache.py": "2411fc000ebeeabc5b73d14f4380d0130486d2bcf8e030b2244575ae7254a140",
+              "_native.cpython-312-x86_64-linux-gnu.so": "90274a121c4633008a4c1b191d5c68fac6b1f36e595b8ddbdf03a2a229c6c40c",
+              "_reference.py": "ef6637132caef847cbe331b75a7ec70e8a1220ad3aacf98e7585e7d451db9684",
+              "_scan.py": "92ed533fa8ae1f332bc92e26cd157f98494ab3ff77d7e6113201543e22710083",
+              "_snapshots.py": "09a30ed52a695307e41793b03f0fed27da9babc13a44bce48f0e0a0c6c4e3213",
+              "_ultralytics_profile.json": "ffd8bcff24bb15b771d67626300cc9917b9b0a3f8c0fc456bdcd24337211cfa3",
+              "ultralytics.py": "fddc3baa90934c04660b202a6991262511ebce3faa6e3fb7d760e9c31da56aeb"
+            }
+          }
+        },
+        "mask_build": {
+          "version": "0.1.0a1",
+          "backend": "C++/OpenCV",
+          "opencv": "4.13.0",
+          "numpy": "2.4.4",
+          "native_workers": 1,
+          "build": {
+            "bindings_sha256": "da270a9525d9c64d1e2d802cb8ec44cbe5743ed76ff6087936a9b00466c1f4a4",
+            "cmake_sha256": "13177f15e47776ae22c251a2eee6079a68788b19b56397c48d2c7e48adbf574e",
+            "template_sha256": "76643f1d3cdb44abd7d7647853c1f7ae03e22d76a07027de9c7cb58340260213",
+            "compiler": "GNU 13.3.0",
+            "build_type": "Release"
+          },
+          "private_opencv_threads": 1,
+          "fallback_count": 0,
+          "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e"
+        },
+        "fixture": {
+          "files": 9952,
+          "bytes": 830426850,
+          "sha256": "8b079ad2d8472ff17b6cca9b0250e831472f12ef500f2b065125f6f39406c208"
+        },
+        "corpus_root": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "original_cache_sha256": "8f2536e077c9682e6f76ad51332fe3ce34d19b1a47a1738f54ad9510ce105b0e",
+        "fresh_check_sha256": "067fa395b3a72b14efca4561def93e6d5bb01e46cb5daeb7f7f074b96f8c0265",
+        "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+        "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+        "torch": "2.10.0+cu128",
+        "numpy": "2.4.4",
+        "opencv": "4.13.0",
+        "gpu": "NVIDIA GeForce RTX 3070",
+        "cuda": "12.8",
+        "cpu_count": 12,
+        "ram_bytes": 33547984896,
+        "load_before": [
+          1.525390625,
+          1.5517578125,
+          1.47509765625
+        ],
+        "timing": "epoch start/end callbacks with CUDA synchronization; excludes setup, validation, checkpoint saving; first epoch includes GPU warmup; upstream may prefetch during loader construction",
+        "memory": "CUDA allocator peaks per epoch; sampled summed process-family RSS double-counts shared pages",
+        "callbacks": "benchmark callbacks only; external logger and analytics callbacks disabled",
+        "lifecycle_requested": true,
+        "resume_input": {
+          "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-1.pt",
+          "sha256": "325fba1951aa3c80016d6e233fa711091d1c5e7700503eaedd8fd9614aede51c",
+          "receipt_sha256": "71c4e6d6723302ddaaea384263e1ed656b8d072ea36d145baecf9dad3ab35d9b",
+          "expected_start_epoch": 2,
+          "restored_state_expectation": {
+            "checkpoint_epoch": 1,
+            "optimizer_states": 290,
+            "ema_updates": 618
+          }
+        },
+        "lifecycle_scope": "Observe the parent dataset formatter/factory and worker reset at the first batch after upstream closure; no close/reset override or worker instrumentation. Compare resumed backends from the same retained reference checkpoint; do not assume upstream resume reproduces uninterrupted RNG/EMA state. Epoch timing includes closure/reset and the small observation callback; checkpoints are outside it.",
+        "nvidia_smi_before": "Sun Sep 13 15:16:48 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.173.02             Driver Version: 580.173.02     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 3070        Off |   00000000:01:00.0 Off |                  N/A |\n| 31%   46C    P5             22W /  240W |     180MiB /   8192MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            2810      G   /usr/lib/xorg/Xorg                      133MiB |\n|    0   N/A  N/A            3044      G   /usr/bin/gnome-shell                      7MiB |\n+-----------------------------------------------------------------------------------------+\n",
+        "worker_shutdown": {
+          "train": {
+            "worker_count": 2,
+            "worker_pids": [
+              1665113,
+              1665114
+            ],
+            "worker_exitcodes": [
+              0,
+              0
+            ],
+            "workers_alive": [
+              false,
+              false
+            ]
+          },
+          "val": {
+            "worker_count": 4,
+            "worker_pids": [
+              1665093,
+              1665094,
+              1665095,
+              1665096
+            ],
+            "worker_exitcodes": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "workers_alive": [
+              false,
+              false,
+              false,
+              false
+            ]
+          }
+        },
+        "whole_job_seconds": 279.9494033190422,
+        "resolved_config": {
+          "task": "segment",
+          "mode": "train",
+          "model": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-1.pt",
+          "data": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/fixture.yaml",
+          "epochs": 4,
+          "time": null,
+          "patience": 100,
+          "batch": 4,
+          "imgsz": 640,
+          "save": true,
+          "save_period": -1,
+          "cache": false,
+          "device": "0",
+          "workers": 2,
+          "project": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run",
+          "name": "training",
+          "exist_ok": false,
+          "pretrained": false,
+          "cls_remap": true,
+          "optimizer": "SGD",
+          "verbose": false,
+          "seed": 912,
+          "deterministic": true,
+          "single_cls": false,
+          "rect": false,
+          "cos_lr": false,
+          "close_mosaic": 2,
+          "resume": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-1.pt",
+          "amp": false,
+          "fraction": 1.0,
+          "profile": false,
+          "freeze": null,
+          "multi_scale": 0.0,
+          "compile": false,
+          "channels_last": null,
+          "overlap_mask": true,
+          "mask_ratio": 4,
+          "dropout": 0.0,
+          "val": false,
+          "split": "val",
+          "save_json": false,
+          "conf": null,
+          "iou": 0.7,
+          "max_det": 300,
+          "quantize": null,
+          "dnn": false,
+          "plots": false,
+          "nms": null,
+          "source": null,
+          "vid_stride": 1,
+          "stream_buffer": false,
+          "visualize": false,
+          "augment": false,
+          "agnostic_nms": false,
+          "classes": null,
+          "retina_masks": false,
+          "embed": null,
+          "show": false,
+          "save_frames": false,
+          "save_txt": false,
+          "save_conf": false,
+          "save_crop": false,
+          "show_labels": true,
+          "show_conf": true,
+          "show_boxes": true,
+          "line_width": null,
+          "format": "torchscript",
+          "keras": false,
+          "optimize": false,
+          "dynamic": false,
+          "simplify": true,
+          "opset": null,
+          "workspace": null,
+          "lr0": 0.001,
+          "lrf": 0.01,
+          "momentum": 0.937,
+          "weight_decay": 0.0005,
+          "warmup_epochs": 3.0,
+          "warmup_momentum": 0.8,
+          "warmup_bias_lr": 0.1,
+          "distill_model": null,
+          "dis": 6.0,
+          "box": 7.5,
+          "cls": 0.5,
+          "cls_pw": 0.0,
+          "dfl": 1.5,
+          "pose": 12.0,
+          "kobj": 1.0,
+          "rle": 1.0,
+          "angle": 1.0,
+          "dlog": 1.0,
+          "dgrad": 0.5,
+          "dlam": 1.0,
+          "nbs": 64,
+          "hsv_h": 0.015,
+          "hsv_s": 0.7,
+          "hsv_v": 0.4,
+          "degrees": 0.0,
+          "translate": 0.1,
+          "scale": 0.5,
+          "shear": 0.0,
+          "perspective": 0.0,
+          "flipud": 0.0,
+          "fliplr": 0.5,
+          "bgr": 0.0,
+          "mosaic": 1.0,
+          "mixup": 0.0,
+          "cutmix": 0.0,
+          "copy_paste": 0.0,
+          "copy_paste_mode": "flip",
+          "auto_augment": "randaugment",
+          "erasing": 0.4,
+          "cfg": null,
+          "tracker": "tracktrack.yaml",
+          "save_dir": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-resume-at-boundary-mask.run/training"
+        },
+        "datasets": [
+          {
+            "mode": "train",
+            "seconds": 0.16678546695038676,
+            "images": 5000,
+            "replaced_formats": 1,
+            "native_cache_hit": null
+          },
+          {
+            "mode": "val",
+            "seconds": 0.23458922700956464,
+            "images": 5000,
+            "replaced_formats": 1,
+            "native_cache_hit": null
+          }
+        ],
+        "initial_state_sha256": "038a3418a2ec3f51310a505a1e02f20e6dbde811142f0b913d6a725dea271c36",
+        "final_state_sha256": "5f676829d1408a89db67cd6cf690112d9c27bb314c2fedfd57e390609a658639",
+        "train_workers": 2,
+        "val_workers": 4,
+        "nvidia_smi_after": "Sun Sep 13 15:21:29 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.173.02             Driver Version: 580.173.02     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 3070        Off |   00000000:01:00.0 Off |                  N/A |\n| 31%   48C    P2             49W /  240W |     667MiB /   8192MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            2810      G   /usr/lib/xorg/Xorg                      133MiB |\n|    0   N/A  N/A            3044      G   /usr/bin/gnome-shell                      7MiB |\n|    0   N/A  N/A         1665069      C   ...ces-linux-v2-clean/bin/python        482MiB |\n+-----------------------------------------------------------------------------------------+\n",
+        "lifecycle": [
+          {
+            "stage": "prepared",
+            "epoch": null,
+            "start_epoch": 2,
+            "formatter": "FastFormat",
+            "factory": "FastFormat",
+            "collator": "ultrafast_maskops._shared_collate.shared_collate_fn",
+            "rebuilt_from_initial": false,
+            "worker_pids": [
+              1665082,
+              1665083
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 2,
+            "start_epoch": 2,
+            "formatter": "FastFormat",
+            "factory": "FastFormat",
+            "collator": "ultrafast_maskops._shared_collate.shared_collate_fn",
+            "rebuilt_from_initial": true,
+            "worker_pids": [
+              1665113,
+              1665114
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true,
+            "replaced_worker_pids": [
+              1665082,
+              1665083
+            ],
+            "replaced_worker_exitcodes": [
+              0,
+              0
+            ],
+            "replaced_workers_alive": [
+              false,
+              false
+            ]
+          },
+          {
+            "stage": "first-batch",
+            "epoch": 3,
+            "start_epoch": 2,
+            "formatter": "FastFormat",
+            "factory": "FastFormat",
+            "collator": "ultrafast_maskops._shared_collate.shared_collate_fn",
+            "rebuilt_from_initial": true,
+            "worker_pids": [
+              1665113,
+              1665114
+            ],
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4,
+            "pinned_image": true
+          }
+        ],
+        "checkpoints": [],
+        "sampled_peak_family_rss_bytes": 7940743168,
+        "epochs": [
+          {
+            "epoch": 2,
+            "seconds": 85.6246758857742,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 58.394381622771284,
+            "cuda_peak_allocated_bytes": 1489065472,
+            "cuda_peak_reserved_bytes": 1927282688,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "628daee686081af532fcd06f99c544575ca9dbdd251e4a541226a122c3893c9f"
+          },
+          {
+            "epoch": 3,
+            "seconds": 82.28025338891894,
+            "images": 5000,
+            "batches": 1250,
+            "images_per_second": 60.767921755979586,
+            "cuda_peak_allocated_bytes": 1530835456,
+            "cuda_peak_reserved_bytes": 2153775104,
+            "loss_names": [
+              "box_loss",
+              "seg_loss",
+              "cls_loss",
+              "dfl_loss",
+              "sem_loss"
+            ],
+            "loss_sha256": "75f5cf62a2adb649884afc58e68b03878f22de1225b5028bd0fd8782092f66ed"
+          }
+        ]
+      }
+    },
+    {
+      "spec": {
+        "id": "w2-yes-resume-at-boundary-both",
+        "workers": 2,
+        "overlap": "yes",
+        "stage": "resume-at-boundary",
+        "backend": "both",
+        "start_epoch": 2,
+        "reference_id": "w2-yes-fresh-reference"
+      },
+      "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-resume-at-boundary-both.json",
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-source/bench/train_coco_gpu.py",
+        "--corpus",
+        "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+        "--fresh-check",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json",
+        "--out",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-resume-at-boundary-both.json",
+        "--backend",
+        "both",
+        "--workers",
+        "2",
+        "--epochs",
+        "4",
+        "--batch",
+        "4",
+        "--imgsz",
+        "640",
+        "--overlap",
+        "yes",
+        "--close-mosaic",
+        "2",
+        "--persistent-mask",
+        "--resume-from",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-1.pt",
+        "--resume-receipt",
+        "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.json"
+      ],
+      "started_at_ns": 1789280489988647624,
+      "pid": 1665450
+    }
+  ],
+  "cohorts": {
+    "w2-yes-fresh": {
+      "signature": {
+        "initial_model": "1a78149f324851d3adbebf21103f8f2c5006da4a2589fa779ca7fa3b43b57180",
+        "final_model": "ba8e30a68693ed9772618d436c3331a3ebf738050304713cc710a6ddeab7999a",
+        "epochs": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "loss_traces": [
+          "6853393a60f66e25cccaf9cfe78160539dd6f8e8d3395fb6eac775c2a91fe7ef",
+          "3e22241227bf24a307a7fdeb1af584d7e56ee7bf4a7a47f95ea3fdd5730d870f",
+          "01e0bb14b5d8a5d438148ae5c5398b5f7b7bdbbb3b275ec163b9def81da8babb",
+          "b210ff3918ed7047daba2b0898e554483b00cb1ea8b1a72ddd1f5fe45840c889"
+        ],
+        "resume_input": null,
+        "loader_settings": [
+          {
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4
+          },
+          {
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4
+          },
+          {
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4
+          },
+          {
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4
+          },
+          {
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4
+          }
+        ]
+      },
+      "backends": [
+        "reference",
+        "mask",
+        "both"
+      ]
+    },
+    "w2-yes-resume-at-boundary": {
+      "signature": {
+        "initial_model": "038a3418a2ec3f51310a505a1e02f20e6dbde811142f0b913d6a725dea271c36",
+        "final_model": "5f676829d1408a89db67cd6cf690112d9c27bb314c2fedfd57e390609a658639",
+        "epochs": [
+          2,
+          3
+        ],
+        "loss_traces": [
+          "628daee686081af532fcd06f99c544575ca9dbdd251e4a541226a122c3893c9f",
+          "75f5cf62a2adb649884afc58e68b03878f22de1225b5028bd0fd8782092f66ed"
+        ],
+        "resume_input": {
+          "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-1.pt",
+          "sha256": "325fba1951aa3c80016d6e233fa711091d1c5e7700503eaedd8fd9614aede51c",
+          "receipt_sha256": "71c4e6d6723302ddaaea384263e1ed656b8d072ea36d145baecf9dad3ab35d9b",
+          "expected_start_epoch": 2,
+          "restored_state_expectation": {
+            "checkpoint_epoch": 1,
+            "optimizer_states": 290,
+            "ema_updates": 618
+          }
+        },
+        "loader_settings": [
+          {
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4
+          },
+          {
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4
+          },
+          {
+            "worker_start_method": "fork",
+            "pin_memory": true,
+            "prefetch_factor": 4
+          }
+        ]
+      },
+      "backends": [
+        "reference",
+        "mask"
+      ]
+    }
+  }
+}

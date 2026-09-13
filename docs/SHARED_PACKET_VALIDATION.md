@@ -70,5 +70,11 @@ found retained handles and parent exit hangs under Linux `file_system` transport
 A stock PyTorch control reproduced the exit hang without either project or
 Ultralytics, while its `file_descriptor` control exited normally. A supervised
 original-collator reset also aborted a worker. All failures are preserved;
-`file_system` and current macOS packet transport remain unqualified. These
+Linux `file_system` and macOS named-storage lifetime remain unqualified. These
 small instrumented observations do not quantify a candidate-specific leak.
+
+The current source subsequently passed a fresh [M2 wheel qualification](M2_PACKET_VALIDATION.md):
+366 installed tests, zero failures/skips and natural process exit on macOS
+26.6.2 with its default `file_system` transport. This closes the bounded installed
+functional check on that host. Named-storage lifetime, repeated process stress,
+other platform/Python versions and full real-data training remain separate gates.

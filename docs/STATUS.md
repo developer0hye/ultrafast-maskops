@@ -14,18 +14,23 @@ changes; the 10% loader gate remains unmet. See
 The GPU coordinator passed 63 synthetic tests and local workflow lint. A fresh
 combined Linux runtime then passed 166 dataset and 257 mask tests with both wheel
 payloads verified. The full 54-trial/126-epoch close-mosaic/resume GPU grid has
-launched; its first reference/mask-only condition completed with identical loss
-vectors and initial/final model hashes. The combined trial is active. The
+launched; the coordinator reports identical loss vectors and initial/final model
+hashes across the first fresh reference/mask/combined cohort. Five trials exited
+zero; combined resume-at-boundary is active in the
+[retained checkpoint](validation/mask-lifecycle-gpu-linux-v1-m2-qualification-checkpoint.json). The
 [independent checker](GPU_LIFECYCLE_AUDIT.md) passed 46 synthetic tests and audited
-both completed trials, but the complete grid and its final audit remain pending.
-Current macOS packet transport and broader release/platform qualification also
-remain open. See
+the first reference/mask trials, but the complete grid and final audit remain pending.
+The current M2 wheel passed **366 installed tests, zero failures/skips and natural
+process exit**, using its default `file_system` transport. All 573 selected
+compiled dependency files match notice provenance. Named-storage lifetime,
+repeated stress and broader release/platform qualification remain open. See
+[M2_PACKET_VALIDATION.md](M2_PACKET_VALIDATION.md) and
 [LIFECYCLE_GPU.md](LIFECYCLE_GPU.md).
 
 Linux `file_system` diagnostics now expose retained storage and parent exit hangs
 in both collators. A stock PyTorch full-epoch control reproduced the hang without
 project imports; changing only to `file_descriptor` exited normally. One original
-collator reset also aborted a worker. The current `file_system` transport remains
+collator reset also aborted a worker. Linux `file_system` transport remains
 unqualified; this is adverse evidence, not a new performance or release pass.
 See [SHARED_TRANSPORT_LIFETIME.md](SHARED_TRANSPORT_LIFETIME.md).
 

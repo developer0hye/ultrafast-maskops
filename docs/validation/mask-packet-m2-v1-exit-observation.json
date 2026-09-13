@@ -1,0 +1,24 @@
+{
+  "observed_at_ns": 1789280557046878000,
+  "recorded_pids": [
+    56736,
+    56751,
+    56762,
+    56768,
+    56771,
+    56772,
+    56773,
+    64961,
+    64962,
+    64964,
+    64975,
+    64976,
+    64977,
+    64979,
+    65017,
+    65090,
+    65935
+  ],
+  "matches": [],
+  "scope": "Post-qualification process table observation; recorded command PIDs and immediate children plus identifiable private-runtime manager commands. Not a named-storage leak measurement."
+}

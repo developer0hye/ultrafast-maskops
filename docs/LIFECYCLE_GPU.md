@@ -1,11 +1,15 @@
 # GPU lifecycle qualification: full grid launched, results pending
 
 The full 54-trial, 126-epoch grid has now launched on the RTX 3070 server. The
-first reference and mask-only trials have completed, with all four epochs' loss
-values and initial/final model hashes matching. The combined trial is active. The current dataset wheel and
+first fresh reference, mask-only and combined trials have completed, with the
+coordinator reporting all four epochs' loss vectors and model hashes matching.
+The reference/mask resume-at-boundary trials also exited zero; combined resume
+is active in the [retained checkpoint](validation/mask-lifecycle-gpu-linux-v1-m2-qualification-checkpoint.json).
+The current dataset wheel and
 frozen mask packet wheel passed 166 dataset and 257 mask tests in the same new
 Linux runtime, plus standalone packaging/cache checks, before this launch.
-No completed cohort or new throughput result is claimed yet. Earlier GPU
+The first fresh cohort is complete; the whole grid and final independent audit
+remain pending. No new throughput result is established. Earlier GPU
 measurements used another adapter and `close_mosaic=0`; they still cannot qualify
 this lifecycle protocol. The original factory/shared-storage failures and later
 `file_system` exit failures remain preserved separately.

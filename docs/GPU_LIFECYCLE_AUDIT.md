@@ -63,8 +63,10 @@ actual incomplete grid was explicitly rejected by the full-audit entry point.
 The subsequent `w2-yes-fresh-mask` trial also passed per-trial checks. Direct
 canonical comparison found **every reported loss value and both model digests
 identical** to the reference over all four epochs. This proves the recorded
-first worker/mask condition; combined-backend and resumed cohorts are still
-pending. The two executions are not repeated performance evidence.
+first worker/mask condition. Separate audits of combined-backend and resumed
+trials remain pending. The coordinator subsequently completed the first fresh
+three-backend cohort; its full-grid independent audit is still pending. The two
+separately audited executions are not repeated performance evidence.
 
 Evidence is preserved in:
 

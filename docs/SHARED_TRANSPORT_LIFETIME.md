@@ -1,12 +1,15 @@
 # Named shared-memory lifetime: Linux failure observed
 
-The current packet wheel is **not qualified for `file_system` transport**.
+The current Linux packet wheel is **not qualified for `file_system` transport**.
 On Linux / CPython 3.12.14 / PyTorch 2.10.0+cu128, both the original Ultralytics
 collator and packet collator left named storage alive after repeated resets.
 The parent processes then failed to exit naturally. A stock PyTorch DataLoader
 control reproduced the exit hang without importing either project or Ultralytics;
 the otherwise identical `file_descriptor` control exited normally.
 These observations do not establish macOS behavior or a candidate-specific leak.
+The subsequent [M2 installed suite](M2_PACKET_VALIDATION.md) passed 366 tests and
+exited naturally using macOS's default `file_system` transport. It is bounded
+functional evidence, not a named-storage lifetime measurement.
 
 ## Actual observations
 
@@ -104,7 +107,7 @@ Every member was read back and hashed; see the
 
 ## Remaining scope
 
-Do not promote `file_system` or current macOS packet transport as qualified.
+Do not promote Linux `file_system` transport or macOS named-storage lifetime as qualified.
 Setup-only and full-epoch repeated-reset comparisons remain unexecuted; the
 full-epoch stock control above is not that matrix. Fix or explicitly resolve the
 runtime exit dependency and storage lifetime before extending that transport.

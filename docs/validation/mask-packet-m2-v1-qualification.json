@@ -1,0 +1,342 @@
+{
+  "complete": true,
+  "passed": true,
+  "controller_pid": 56736,
+  "started_at_ns": 1789279983683380000,
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "environment_overrides": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "YOLO_OFFLINE": "true",
+    "CMAKE_BUILD_PARALLEL_LEVEL": "2",
+    "MACOSX_DEPLOYMENT_TARGET": "11.0"
+  },
+  "commands": [
+    {
+      "label": "build-venv",
+      "command": [
+        "/Users/yhkwon/.local/bin/uv",
+        "venv",
+        "--seed",
+        "--python",
+        "/Volumes/T7/ultrafast-vision-build/mask-resize-roi-clean-v2/bin/python",
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-build-env"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-build-venv.log",
+      "started_at_ns": 1789279983729100000,
+      "pid": 56751,
+      "returncode": 0,
+      "finished_at_ns": 1789279983971908000,
+      "log_sha256": "706adbf63e2d3f9266584251c3a36227e49f9d0893951a3d8e58af9f0dd89839"
+    },
+    {
+      "label": "build-deps",
+      "command": [
+        "/Users/yhkwon/.local/bin/uv",
+        "pip",
+        "install",
+        "--python",
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-build-env/bin/python",
+        "build==1.3.0",
+        "scikit-build-core==0.11.6",
+        "pybind11==3.0.1",
+        "ninja==1.13.2",
+        "numpy==2.4.4"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-build-deps.log",
+      "started_at_ns": 1789279983972357000,
+      "pid": 56762,
+      "returncode": 0,
+      "finished_at_ns": 1789279984215647000,
+      "log_sha256": "347957fc1cdcbf0c032ce051efc523bad3e6b35a39b5a9daf70feb9ff229498e"
+    },
+    {
+      "label": "compiler",
+      "command": [
+        "clang++",
+        "--version"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-compiler.log",
+      "started_at_ns": 1789279984216044000,
+      "pid": 56768,
+      "returncode": 0,
+      "finished_at_ns": 1789279984404984000,
+      "log_sha256": "f6a41663474c412322e565ec1a1aa27bcb42151b98d527dc401b7d744b9a4237"
+    },
+    {
+      "label": "cmake",
+      "command": [
+        "cmake",
+        "--version"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-cmake.log",
+      "started_at_ns": 1789279984405511000,
+      "pid": 56771,
+      "returncode": 0,
+      "finished_at_ns": 1789279984446857000,
+      "log_sha256": "a24e1ae7f8f715ef1f0121cd749052d73c6a4315dba5bb885c584553d826eb79"
+    },
+    {
+      "label": "build-freeze",
+      "command": [
+        "/Users/yhkwon/.local/bin/uv",
+        "pip",
+        "freeze",
+        "--python",
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-build-env/bin/python"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-build-freeze.log",
+      "started_at_ns": 1789279984447444000,
+      "pid": 56772,
+      "returncode": 0,
+      "finished_at_ns": 1789279984458720000,
+      "log_sha256": "b737eb0a79e36c8f5a143b62271648610c72979d1962b567094ccec2d1194095"
+    },
+    {
+      "label": "build",
+      "command": [
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-build-env/bin/python",
+        "-m",
+        "build",
+        "--wheel",
+        "--sdist",
+        "--no-isolation",
+        "--outdir",
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-dist",
+        "-Cbuild-dir=/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-build"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-build.log",
+      "started_at_ns": 1789279984459132000,
+      "pid": 56773,
+      "returncode": 0,
+      "finished_at_ns": 1789280137064946000,
+      "log_sha256": "a341d226c4e325b3bcda4bff4c76ccb78d1175107a359ee0cba5465c164411fc"
+    },
+    {
+      "label": "clean-venv",
+      "command": [
+        "/Users/yhkwon/.local/bin/uv",
+        "venv",
+        "--seed",
+        "--python",
+        "/Volumes/T7/ultrafast-vision-build/mask-resize-roi-clean-v2/bin/python",
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-clean"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-clean-venv.log",
+      "started_at_ns": 1789280137071359000,
+      "pid": 64961,
+      "returncode": 0,
+      "finished_at_ns": 1789280137258052000,
+      "log_sha256": "727d8466c2b334c8747c0f8fae3e39c17d510da3896a68117910eedf80ccd523"
+    },
+    {
+      "label": "standalone-install",
+      "command": [
+        "/Users/yhkwon/.local/bin/uv",
+        "pip",
+        "install",
+        "--python",
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-clean/bin/python",
+        "--no-deps",
+        "numpy==2.4.4",
+        "pip==26.2.1",
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-dist/ultrafast_maskops-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-standalone-install.log",
+      "started_at_ns": 1789280137258702000,
+      "pid": 64962,
+      "returncode": 0,
+      "finished_at_ns": 1789280137391928000,
+      "log_sha256": "0678248b94438c852534d10c195020764cf664c50baa598c112ee1023d8f7856"
+    },
+    {
+      "label": "standalone-audit",
+      "command": [
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-clean/bin/python",
+        "bench/ci_wheel_check.py"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-standalone-audit.log",
+      "started_at_ns": 1789280137392646000,
+      "pid": 64964,
+      "returncode": 0,
+      "finished_at_ns": 1789280139043927000,
+      "log_sha256": "a39e055b364d7f7cdf41fa172cfd0c352d7c53f36a89b89678afe231704e8f52"
+    },
+    {
+      "label": "framework-deps",
+      "command": [
+        "/Users/yhkwon/.local/bin/uv",
+        "pip",
+        "install",
+        "--python",
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-clean/bin/python",
+        "--no-deps",
+        "-r",
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-requirements.txt"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-framework-deps.log",
+      "started_at_ns": 1789280139052454000,
+      "pid": 64975,
+      "returncode": 0,
+      "finished_at_ns": 1789280139941932000,
+      "log_sha256": "b26f29d6f160523ad609690e177b103ac95f31568c4db8529d1d9b676064da89"
+    },
+    {
+      "label": "pip-check",
+      "command": [
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-clean/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-pip-check.log",
+      "started_at_ns": 1789280139942419000,
+      "pid": 64976,
+      "returncode": 0,
+      "finished_at_ns": 1789280140126566000,
+      "log_sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    {
+      "label": "freeze",
+      "command": [
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-clean/bin/python",
+        "-m",
+        "pip",
+        "freeze"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-freeze.log",
+      "started_at_ns": 1789280140127139000,
+      "pid": 64977,
+      "returncode": 0,
+      "finished_at_ns": 1789280140259900000,
+      "log_sha256": "bf2276488ea6b61fae12021ce10bdec8c2a6010b4aaee4430e2e1176e319b2f6"
+    },
+    {
+      "label": "runtime",
+      "command": [
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-clean/bin/python",
+        "-c",
+        "import torch,platform; import ultrafast_maskops; print(platform.platform()); print(torch.__version__); print(torch.multiprocessing.get_all_sharing_strategies()); print(torch.multiprocessing.get_sharing_strategy()); print(ultrafast_maskops.__file__)"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-runtime.log",
+      "started_at_ns": 1789280140290945000,
+      "pid": 64979,
+      "returncode": 0,
+      "finished_at_ns": 1789280156363427000,
+      "log_sha256": "ca706cc61a83c21af2928a036edda7614ad8cd6bdb5e77e54d87ec33fdaf67e1"
+    },
+    {
+      "label": "collect",
+      "command": [
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-clean/bin/python",
+        "-m",
+        "pytest",
+        "--collect-only",
+        "-q",
+        "tests"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-collect.log",
+      "started_at_ns": 1789280156364527000,
+      "pid": 65017,
+      "returncode": 0,
+      "finished_at_ns": 1789280182096840000,
+      "log_sha256": "82f232c7681bc0fdd4f21d555998ca59f563a2a2c9a431e7baec4730ca3694e3"
+    },
+    {
+      "label": "tests",
+      "command": [
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-clean/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests",
+        "--junitxml=/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-tests.xml"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-tests.log",
+      "started_at_ns": 1789280182097881000,
+      "pid": 65090,
+      "returncode": 0,
+      "finished_at_ns": 1789280456896073000,
+      "log_sha256": "ea92617527454c5c344b74eaf3943d66511023021d819a95ab31333a4ec7ae7f"
+    },
+    {
+      "label": "installed-audit",
+      "command": [
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-clean/bin/python",
+        "bench/audit_wheel.py",
+        "--wheel",
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-dist/ultrafast_maskops-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl",
+        "--installed-root",
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-clean/lib/python3.12/site-packages",
+        "--out",
+        "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-installed-audit.json"
+      ],
+      "cwd": "/Users/yhkwon/Documents/ultrafast-maskops-m2-packet-v1-source",
+      "log": "/Volumes/T7/ultrafast-vision-build/mask-packet-m2-v1-installed-audit.log",
+      "started_at_ns": 1789280456900866000,
+      "pid": 65935,
+      "returncode": 0,
+      "finished_at_ns": 1789280456979064000,
+      "log_sha256": "e6b26de1979efebc26310633a3ddf8d8b0eadd71c097ec54cce1c6d4bba0c473"
+    }
+  ],
+  "scope": "Installed macOS arm64 wheel and pinned framework tests; no macOS 11 execution, speedup, named-storage lifetime or full real-data training claim.",
+  "source_commit": "0edc3bb3ba5fa211d54bb8d69da2490aa7695ed5",
+  "source_archive_sha256": "cb1853b13e8dc9482216aecd391381c9c06d156d4b122983db959102689e162e",
+  "qualifier_sha256": "26f14e34fcf08c3083292113a56a20023143eef7b866c0f11caf1fbe800227d1",
+  "artifacts": {
+    "ultrafast_maskops-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl": {
+      "bytes": 419862,
+      "sha256": "414caeb9148a2629ebcc15f1f3b3eccc0dacb8b673a066cdb1d9c8560ea5d86f"
+    },
+    "ultrafast_maskops-0.1.0a1.tar.gz": {
+      "bytes": 139837,
+      "sha256": "5241442282158f872700891e9ac0b8f70b8f6c0833cdc446b65b89da44c0292d"
+    }
+  },
+  "standalone_passed": true,
+  "standalone_audit_sha256": "fad247258ec727b49f5595ac792572658615f9d58c6d9aec02e3eaf78f7cc96a",
+  "baseline_freeze_sha256": "2556bd8758e267c8003f93e589e291c43d65e5b10411da0dfec805d06141dbda",
+  "requirements_sha256": "e036e27a6ced69b9fc9bc52451d1fc25c40afac4393aa8ad2ffcaf67641805a9",
+  "excluded_old_wheel": [
+    "ultrafast-maskops @ file:///Volumes/T7/ultrafast-vision-build/mask-resize-roi-dist-v2/ultrafast_maskops-0.1.0a1-cp312-cp312-macosx_26_0_arm64.whl"
+  ],
+  "local_dependency_artifacts": {
+    "ultrafast-yolo-dataset": {
+      "path": "/Volumes/T7/ultrafast-vision-build/dataset-notices-dist-v1/ultrafast_yolo_dataset-0.1.0a1-cp312-cp312-macosx_11_0_arm64.whl",
+      "sha256": "2ae058b33e702306d1ce89ea5cd43e7bc5fcdb87825b889f9556bfe5c864f595"
+    },
+    "ultralytics": {
+      "path": "/Volumes/T7/ultrafast-vision-build/ultralytics.tar.gz",
+      "sha256": "0fbb9f0efcb0074c0e10049a3a5e8fb710c4009ef4c4a6c7f986003f72ed3989"
+    }
+  },
+  "normalized_dependency_pins_match": true,
+  "dependency_pin_count": 47,
+  "source_and_installed_runtime_bytes_match": true,
+  "collected_tests": 366,
+  "tests": {
+    "total": 366,
+    "bad": [],
+    "xml_sha256": "c036e9b2d9d138b14088b37359fc8baf423d78b40233a2db2453b560f88fb980",
+    "returncode": 0
+  },
+  "finished_at_ns": 1789280456988377000
+}
