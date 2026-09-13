@@ -2,6 +2,10 @@
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 
+This `perf/unit-scale-mask` worktree adds an unbuilt, untested unit-scale
+mask-only copy candidate; see [UNIT_SCALE_MASK.md](UNIT_SCALE_MASK.md). The ROI
+evidence below applies to its frozen `fec5cab` parent, not this new kernel.
+
 This experimental `perf/resize-roi` branch adds sampling-aligned resize crops.
 The initial crop candidate failed parity at Arm dispatch boundaries; its corrected
 wheel passed 191 M2 tests, including 40 crop cases. Failure artifacts are retained.

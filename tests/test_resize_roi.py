@@ -122,3 +122,33 @@ def test_half_scale_arm_hal_area_threshold():
         packed = native.PackedPolygons.from_segments([polygon])
         for color in (1, 127, 255):
             equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, [polygon], color, ratio))
+
+
+@pytest.mark.parametrize("shape", [(31, 33), (128, 256)])
+@pytest.mark.parametrize("color", [0, 1, 127, 255])
+def test_unit_scale_mask_only_after_mixed_scratch_users(shape, color):
+    h, w = shape
+    full = np.array([[-4, -4], [w + 4, -4], [w + 4, h + 4], [-4, h + 4]], np.int32)
+    small = np.array([[3, 5], [13, 5], [3, 15]], np.int32)
+    outside = np.array([[w + 10, h + 10], [w + 20, h + 10], [w + 10, h + 20]], np.int32)
+    polygons = [full, small, outside, small]
+    packed = native.PackedPolygons.from_segments(polygons)
+    engine = native.Rasterizer()
+    # Area-producing and mask-only calls share scratch, including a completely
+    # filled frame followed by offscreen and small contours at another scale.
+    engine.overlap(shape, packed, 4, mode="bounded")
+    masks = engine.masks(shape, packed, color, 1)
+    expected = reference.polygons2masks(shape, polygons, color, 1)
+    equal(masks, expected)
+    outer = np.array([[2, 2], [25, 2], [25, 25], [2, 25]], np.int32)
+    inner = np.array([[8, 8], [19, 8], [19, 19], [8, 19]], np.int32)
+    contours = [outer, inner]
+    combined = native.PackedPolygons.from_segments(contours)
+    equal(engine._core.single(combined._native, h, w, 1, color), reference.polygon2mask(shape, contours, color, 1))
+    for mode in ("retained", "bounded"):
+        actual = engine.overlap(shape, packed, 1, mode=mode)
+        wanted = reference.polygons2masks_overlap(shape, polygons, 1)
+        for a, b in zip(actual, wanted):
+            equal(a, b)
+    engine.masks((h + 1, w + 2), packed, 255, 1)
+    equal(masks, expected)  # Earlier public output must remain owned and stable.

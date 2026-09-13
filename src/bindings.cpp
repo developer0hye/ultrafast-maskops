@@ -110,9 +110,16 @@ struct Rasterizer {
         }
         dirty=cv::Rect();
     }
-    cv::Rect resize_support(cv::Mat &dst) {
+    cv::Rect resize_support(cv::Mat &dst, bool area_support=true) {
         const cv::Rect full(0,0,dst.cols,dst.rows);
         const int h=scratch.rows, w=scratch.cols;
+        // Mask-only callers do not consume a reduced area-scan rectangle.
+        // At unit scale OpenCV already takes its whole-image copy path; avoid
+        // clearing the destination and then copying a crop over part of it.
+        if(!area_support && dst.rows==h && dst.cols==w) {
+            cv::resize(scratch,dst,dst.size(),0,0,cv::INTER_LINEAR);
+            return full;
+        }
         // Preserve the full-image sampling lattice. Power-of-two integer
         // scales have exact reciprocal coefficients; the dimension bound keeps
         // half-integer source coordinates representable in resize.cpp's float.
@@ -153,7 +160,7 @@ struct Rasterizer {
         cv::resize(scratch(source),target,target.size(),0,0,cv::INTER_LINEAR);
         return reduced;
     }
-    cv::Rect render(const Polygons &p, size_t i, int h, int w, cv::Mat &dst, int color) {
+    cv::Rect render(const Polygons &p, size_t i, int h, int w, cv::Mat &dst, int color, bool area_support=true) {
         prepare(h,w);
         int count = int(p.offsets[i+1]-p.offsets[i]);
         if (count) {
@@ -161,7 +168,7 @@ struct Rasterizer {
             dirty=p.extents[i].clipped(h,w);
             cv::fillPoly(scratch, &ptr, &count, 1, cv::Scalar(color));
         }
-        return resize_support(dst);
+        return resize_support(dst,area_support);
     }
     py::tuple raster(const Polygons &p, int h, int w, int r, int color, bool keep) {
         const auto a=dimensions(h,w,r), n=p.size();
@@ -194,7 +201,7 @@ struct Rasterizer {
             std::lock_guard<std::mutex> guard(mutex);
             for (size_t i=0;i<n;++i) {
                 cv::Mat dst(h/r,w/r,CV_8UC1,out+i*a);
-                render(p,i,h,w,dst,color);
+                render(p,i,h,w,dst,color,false);
             }
         }
         return result;
@@ -217,7 +224,7 @@ struct Rasterizer {
                 dirty=p.combined.clipped(h,w);
                 cv::fillPoly(scratch,ptrs.data(),counts.data(),int(ptrs.size()),cv::Scalar(color));
             }
-            cv::Mat dst(h/r,w/r,CV_8UC1,out); resize_support(dst);
+            cv::Mat dst(h/r,w/r,CV_8UC1,out); resize_support(dst,false);
         }
         return result;
     }
