@@ -44,10 +44,21 @@ SHA256-pinned OpenCV source; users of future wheels will not need a compiler.
 
 ```sh
 uv venv --python 3.12
-uv pip install -r requirements-test.txt
-uv pip install -e .
-pytest -q tests/test_parity.py
+uv pip install --python .venv/bin/python -r requirements-test.txt
+uv pip install --python .venv/bin/python -e .
+.venv/bin/python -m pytest -q tests/test_parity.py
 ```
+
+These are macOS/Linux source-development commands. Python commands explicitly
+use the environment just created; activation is not assumed. For the framework
+adapter and full integration suite, install the pinned requirements separately:
+
+```sh
+uv pip install --python .venv/bin/python -r requirements-integration.txt
+.venv/bin/python -m pytest -q tests
+```
+
+The core package does not install Ultralytics or Torch.
 
 Integration additionally uses the exact Ultralytics commit
 `795a556942a12fe0124cf767888194a1d0b83e2e`, Torch 2.10.0 and torchvision 0.25.0.
@@ -68,8 +79,12 @@ accelerate_dataset(yolo_segmentation_dataset)
 ```
 
 Call this explicitly in a dataset factory/custom trainer after construction.
-Rebuilding dataset transforms requires opting in again. Custom Format subclasses
-are not replaced. Rolling back means constructing the original dataset normally.
+Rebuilding dataset transforms requires opting in again. In particular, the pinned
+trainer's `close_mosaic` step rebuilds them: reapply acceleration after that rebuild
+and before DataLoader workers are reset. The helper accelerates the current
+transform list; it does not install a persistent training-lifecycle hook. Custom
+Format subclasses are not replaced. Rolling back means constructing the original
+dataset normally.
 
 ## Evidence and remaining work
 
@@ -87,7 +102,16 @@ and 30 samples, alternating backend order. Input/output hashes, raw timings,
 paired bootstrap intervals, whole-process peak RSS and host load are retained.
 It includes wrapper packing costs; it does not measure training throughput.
 
-Still required: the complete real COCO corpus, full CPU/GPU training epochs and
-DataLoader profiling, native allocation tracing, sanitizers/fuzzing, verified
-Linux/macOS/Windows wheels, CI, and a release report against every PRD gate.
+Complete real 5,000-image CPU loader and RTX 3070 training experiments are
+available, including a 45-job GPU series with exact loss/model agreement.
+GPU epoch median ratios were 1.002–1.021×, with several confidence intervals
+including no improvement and no consistent family-RSS reduction. These are
+results for the frozen measured builds, not later kernel candidates or every
+current source change. See [the GPU results](docs/GPU_RESULTS.md) and
+[the implementation status](docs/STATUS.md).
+
+The GPU series keeps mosaic enabled through both measured epochs; it does not
+verify a `close_mosaic` transition. Still required: exact release-candidate
+performance and lifecycle validation, broader sanitizers/fuzz/platform coverage,
+verified Linux/macOS/Windows wheels, CI, and a release report against every PRD gate.
 See [docs/STATUS.md](docs/STATUS.md). No training speedup or release readiness is claimed.
