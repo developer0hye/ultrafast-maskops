@@ -68,3 +68,20 @@ a second untimed pass. Full input-content verification before/after each
 process pre-reads file bytes, so this is not a cold-storage experiment. Current
 shared-host load remains part of the evidence. Independent allocation and
 synthetic-call results do not substitute for completion of this loader series.
+
+## Queued post-timing verification
+
+The [follow-up controller](validation/finish-unit-scale-linux-loader-v1.py) is
+running separately and waiting for the existing timing shell PID 1482166
+(start ticks 231510731). It checks that exact process identity, freezes its
+verifier/source hashes, and waits without touching the corpus or generated
+cache. After that process exits, it requires both 30-worker summaries and every
+worker's terminal phase before launching either cache rebuild. An incomplete
+measurement stops the follow-up; it never restarts the benchmark automatically.
+
+The controller then runs fresh-cache reference verification and the complete
+auditor for overlap and non-overlap sequentially, retaining commands, logs,
+results and errors. Its waiting path has started successfully; the post-timing
+steps have not run yet. Do not launch another server build/test/benchmark until
+both the timing job and this follow-up have terminated. Final verifier
+adversarial checks and sealed archive readback remain required afterward.
