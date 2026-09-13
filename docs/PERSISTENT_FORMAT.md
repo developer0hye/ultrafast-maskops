@@ -85,3 +85,10 @@ the pinned framework adapter requirement.
 
 No build, test or benchmark is automatically queued by this candidate. Start its
 qualification only after the selected host's current reservation ends.
+
+The [GPU lifecycle protocol](LIFECYCLE_GPU.md) now has unexecuted trial-harness
+support for real mosaic closure, retained intermediate checkpoints and resume
+at/after the closing boundary. It requires first-batch formatter/worker checks
+after the unmodified upstream reset and redirects resumed output to a new trial
+directory. Source parsing is not execution or parity evidence; cohort comparison,
+the full grid and its final artifact audit remain required.

@@ -28,6 +28,11 @@ def arguments():
     parser.add_argument("--batch", type=int, default=4)
     parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--overlap", choices=("yes", "no"), default="yes")
+    parser.add_argument("--close-mosaic", type=int, default=0)
+    parser.add_argument("--persistent-mask", action="store_true")
+    parser.add_argument("--checkpoint-epochs", type=int, nargs="+", default=[])
+    parser.add_argument("--resume-from", type=Path)
+    parser.add_argument("--resume-receipt", type=Path)
     return parser.parse_args()
 
 
@@ -38,6 +43,29 @@ def file_sha(path):
 def main():
     args = arguments()
     assert args.epochs >= 1 and args.batch >= 1 and args.imgsz >= 32
+    assert 0 <= args.close_mosaic < args.epochs
+    assert not args.close_mosaic or args.backend == "reference" or args.persistent_mask
+    assert len(set(args.checkpoint_epochs)) == len(args.checkpoint_epochs)
+    assert all(0 <= epoch < args.epochs - 1 for epoch in args.checkpoint_epochs)
+    assert bool(args.resume_from) == bool(args.resume_receipt)
+    lifecycle = bool(args.close_mosaic or args.persistent_mask or args.resume_from or args.checkpoint_epochs)
+    resume_receipt, resume_sha, expected_start = None, None, 0
+    resume_state = None
+    if args.resume_from:
+        assert args.close_mosaic and not args.checkpoint_epochs
+        args.resume_from = args.resume_from.resolve()
+        args.resume_receipt = args.resume_receipt.resolve()
+        resume_receipt = json.loads(args.resume_receipt.read_text())
+        assert resume_receipt["complete"] and resume_receipt["args"]["backend"] == "reference"
+        assert resume_receipt["script_sha256"] == file_sha(__file__)
+        for key in ("workers", "epochs", "batch", "imgsz", "overlap", "close_mosaic", "persistent_mask"):
+            assert resume_receipt["args"][key] == getattr(args, key), f"resume protocol differs: {key}"
+        matches = [c for c in resume_receipt["checkpoints"] if Path(c["path"]).resolve() == args.resume_from]
+        assert len(matches) == 1, "resume only a retained checkpoint from the supplied completed reference trial"
+        resume_sha = file_sha(args.resume_from)
+        assert resume_sha == matches[0]["sha256"]
+        expected_start = matches[0]["epoch"] + 1
+        assert 0 < expected_start < args.epochs
     args.out = args.out.resolve()
     run_dir = args.out.with_suffix(".run")
     assert not args.out.exists() and not run_dir.exists(), "retain prior trials; use a new output"
@@ -54,9 +82,10 @@ def main():
     import ultrafast_yolo_dataset as datasetops
     import ultralytics
     from coco_loader import COCO_FINGERPRINT, fingerprint, validate_profile
-    from ultrafast_maskops.ultralytics import accelerate_dataset
+    from ultrafast_maskops.ultralytics import FastFormat, accelerate_dataset
     from ultrafast_yolo_dataset.ultralytics import build_yolo_dataset, check_profile
     from ultralytics.models.yolo.segment.train import SegmentationTrainer
+    from ultralytics.data.augment import Format
     from ultralytics.utils.callbacks import get_default_callbacks
     from ultralytics.utils.torch_utils import unwrap_model
 
@@ -100,8 +129,12 @@ def main():
         "utils/torch_utils.py",
         "data/build.py",
         "cfg/models/11/yolo11-seg.yaml",
+        "cfg/__init__.py",
     )
     source_hashes = {name: file_sha(upstream / name) for name in source_names}
+    if lifecycle:
+        assert source_hashes["engine/trainer.py"] == "2eda410e0bfb8b65cb46eb975c465c5b62b0f3a3dad5a54967d6e9e1fcabecc7"
+        assert source_hashes["cfg/__init__.py"] == "4f4deef636360243c08c32f2134bee31f497df7394c3b22c60c58f5452bcee85"
     packages = {}
     for package in (maskops, datasetops):
         package_root = Path(package.__file__).parent
@@ -111,6 +144,22 @@ def main():
                 p.name: file_sha(p) for p in sorted(package_root.iterdir()) if p.suffix in (".py", ".json", ".so")
             },
         }
+    if resume_receipt:
+        assert resume_receipt["packages"] == packages and resume_receipt["upstream_files"] == source_hashes
+        assert resume_receipt["fixture"] == COCO_FINGERPRINT
+        assert resume_receipt["fresh_check_sha256"] == file_sha(args.fresh_check)
+        assert resume_receipt["original_cache_sha256"] == cache_sha
+        # Only deserialize the exact locally generated checkpoint bound above
+        # to a completed reference receipt, matching script/runtime and inputs.
+        checkpoint = torch.load(args.resume_from, map_location="cpu", weights_only=False)
+        assert checkpoint["epoch"] + 1 == expected_start
+        assert checkpoint["optimizer"] and checkpoint["optimizer"]["state"]
+        assert checkpoint["ema"] is not None and checkpoint["updates"] > 0
+        resume_state = {
+            "checkpoint_epoch": checkpoint["epoch"],
+            "optimizer_states": len(checkpoint["optimizer"]["state"]), "ema_updates": checkpoint["updates"],
+        }
+        del checkpoint
 
     def state_sha(model):
         digest = hashlib.sha256()
@@ -155,8 +204,14 @@ def main():
                 )
             else:
                 dataset = super().build_dataset(img_path, mode, batch)
-            replaced = accelerate_dataset(dataset) if args.backend != "reference" else 0
+            replaced = 0
+            if args.backend != "reference":
+                replaced = (
+                    accelerate_dataset(dataset, persistent=True) if args.persistent_mask else accelerate_dataset(dataset)
+                )
             assert len(dataset) == 5000 and replaced == int(args.backend != "reference")
+            if mode == "train":
+                self.initial_transforms_id = id(dataset.transforms)
             self.dataset_records.append(
                 {
                     "mode": mode,
@@ -178,16 +233,67 @@ def main():
             self.initial_state_sha = state_sha(unwrap_model(self.model))
             assert self.train_loader.num_workers == args.workers
             assert self.batch_size == args.batch and not self.amp
+            assert self.epochs == args.epochs and self.start_epoch == expected_start
+            assert self.save_dir.resolve() == (run_dir / "training").resolve()
+            if resume_state:
+                assert len(self.optimizer.state) == resume_state["optimizer_states"]
+                assert self.ema.updates == resume_state["ema_updates"]
+            if lifecycle:
+                closed_on_resume = bool(args.resume_from) and expected_start > args.epochs - args.close_mosaic
+                self.observe_format("prepared", closed_on_resume)
+
+        def observe_format(self, stage, expected_closed):
+            dataset = self.train_loader.dataset
+            formats = [t for t in dataset.transforms.transforms if isinstance(t, Format) and t.return_mask]
+            wanted = FastFormat if args.backend != "reference" else Format
+            assert len(formats) == 1 and type(formats[0]) is wanted, "mask acceleration was lost during a rebuild"
+            wanted_factory = wanted if args.persistent_mask else Format
+            assert dataset.format_class is wanted_factory
+            rebuilt = id(dataset.transforms) != self.initial_transforms_id
+            assert rebuilt == expected_closed, "expected real upstream transform rebuild was not observed"
+            self.lifecycle_records.append({
+                "stage": stage, "epoch": getattr(self, "epoch", None), "start_epoch": self.start_epoch,
+                "formatter": type(formats[0]).__name__, "factory": dataset.format_class.__name__,
+                "rebuilt_from_initial": rebuilt,
+                "worker_pids": [p.pid for p in getattr(self.train_loader.iterator, "_workers", ())],
+            })
+
+        def measure_on_model_save(self):
+            if self.epoch not in args.checkpoint_epochs:
+                return
+            # Preserve the original serialized checkpoint before final stripping
+            # or a later epoch overwrites last.pt. Do not rewrite its arguments.
+            destination = run_dir / f"resume-epoch-{self.epoch}.pt"
+            data = self.last.read_bytes()
+            with destination.open("xb") as stream:
+                stream.write(data)
+            digest = hashlib.sha256(data).hexdigest()
+            assert file_sha(destination) == digest
+            self.checkpoint_records.append({
+                "epoch": self.epoch, "path": str(destination), "sha256": digest, "bytes": len(data),
+            })
 
         def measure_on_train_epoch_start(self):
             assert self.batch_size == args.batch and not getattr(self, "_oom_retries", 0)
             self.seen_images = 0
             self.batch_losses = []
+            if lifecycle:
+                # Upstream closes mosaic AFTER this callback. Check at the first
+                # batch below, after its unmodified close/reset calls have run.
+                self.previous_workers = list(getattr(self.train_loader.iterator, "_workers", ()))
             torch.cuda.synchronize()
             torch.cuda.reset_peak_memory_stats()
             self.epoch_started = time.perf_counter()
 
         def preprocess_batch(self, batch):
+            if lifecycle and self.seen_images == 0:
+                boundary = args.epochs - args.close_mosaic
+                self.observe_format("first-batch", bool(args.close_mosaic) and self.epoch >= boundary)
+                if args.close_mosaic and self.epoch == boundary and args.workers:
+                    current = list(self.train_loader.iterator._workers)
+                    assert len(current) == args.workers
+                    assert all(not p.is_alive() for p in self.previous_workers)
+                    assert not ({p.pid for p in self.previous_workers} & {p.pid for p in current})
             self.seen_images += len(batch["img"])
             return super().preprocess_batch(batch)
 
@@ -237,17 +343,19 @@ def main():
         "fraction": 1.0,
         "mask_ratio": 4,
         "overlap_mask": args.overlap == "yes",
-        "close_mosaic": 0,
+        "close_mosaic": args.close_mosaic,
         "multi_scale": 0.0,
         "compile": False,
         "plots": False,
         "val": False,
-        "save": False,
+        "save": bool(args.checkpoint_epochs),
         "project": str(run_dir),
         "name": "training",
         "exist_ok": False,
         "verbose": False,
     }
+    if args.resume_from:
+        overrides.update(resume=str(args.resume_from), save_dir=str(run_dir / "training"))
     report = {
         "complete": False,
         "scope": "full real-data GPU training trial; not accuracy or repeated speedup evidence",
@@ -272,7 +380,21 @@ def main():
         "timing": "epoch start/end callbacks with CUDA synchronization; excludes setup, validation, checkpoint saving; first epoch includes GPU warmup; upstream may prefetch during loader construction",
         "memory": "CUDA allocator peaks per epoch; sampled summed process-family RSS double-counts shared pages",
         "callbacks": "benchmark callbacks only; external logger and analytics callbacks disabled",
+        "lifecycle_requested": lifecycle,
+        "resume_input": None if not args.resume_from else {
+            "path": str(args.resume_from), "sha256": resume_sha,
+            "receipt_sha256": file_sha(args.resume_receipt), "expected_start_epoch": expected_start,
+            "restored_state_expectation": resume_state,
+        },
     }
+    if lifecycle:
+        report["scope"] = "full real-data GPU lifecycle trial; not accuracy or repeated speedup evidence"
+        report["lifecycle_scope"] = (
+            "Observe the parent dataset formatter/factory and worker reset at the first batch after upstream closure; "
+            "no close/reset override or worker instrumentation. Compare resumed backends from the same retained "
+            "reference checkpoint; do not assume upstream resume reproduces uninterrupted RNG/EMA state. "
+            "Epoch timing includes closure/reset and the small observation callback; checkpoints are outside it."
+        )
     args.out.write_text(json.dumps(report, indent=2) + "\n")
     samples, stop = [], threading.Event()
 
@@ -293,12 +415,21 @@ def main():
     monitor = threading.Thread(target=sample_resources, daemon=True)
     monitor.start()
     started = time.perf_counter()
+    trainer = None
     try:
         trainer = LocalSegmentationRun(overrides=overrides)
         trainer.dataset_records, trainer.epoch_records = [], []
+        trainer.lifecycle_records, trainer.checkpoint_records = [], []
         trainer.train()
         whole_job_s = time.perf_counter() - started
-        assert len(trainer.epoch_records) == args.epochs
+        assert [r["epoch"] for r in trainer.epoch_records] == list(range(expected_start, args.epochs))
+        assert sorted(r["epoch"] for r in trainer.checkpoint_records) == sorted(args.checkpoint_epochs)
+        if lifecycle:
+            assert len(trainer.lifecycle_records) == args.epochs - expected_start + 1
+        for checkpoint in trainer.checkpoint_records:
+            assert file_sha(checkpoint["path"]) == checkpoint["sha256"]
+        if args.resume_from:
+            assert file_sha(args.resume_from) == resume_sha, "input checkpoint changed"
         final_sha = state_sha(unwrap_model(trainer.model))
         assert final_sha != trainer.initial_state_sha, "model must actually update"
         assert file_sha(cache) == cache_sha, "original cache changed"
@@ -321,6 +452,11 @@ def main():
     finally:
         stop.set()
         monitor.join()
+        if trainer is not None:
+            report.update(
+                datasets=getattr(trainer, "dataset_records", []), epochs=getattr(trainer, "epoch_records", []),
+                lifecycle=getattr(trainer, "lifecycle_records", []), checkpoints=getattr(trainer, "checkpoint_records", []),
+            )
         report["resource_samples"] = samples
         report["sampled_peak_family_rss_bytes"] = max((s["family_rss_bytes"] for s in samples), default=0)
         args.out.write_text(json.dumps(report, indent=2, default=str) + "\n")
