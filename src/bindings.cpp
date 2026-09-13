@@ -4,6 +4,7 @@
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
 #include "maskops_build_profile.h"
+#include "geometry.hpp"
 #include <algorithm>
 #include <cstdint>
 #include <cstring>
@@ -290,6 +291,7 @@ PYBIND11_MODULE(_native,m) {
     m.def("build_profile",[](){
         py::dict info;
         info["bindings_sha256"]=MASKOPS_BINDINGS_SHA256;
+        info["geometry_sha256"]=MASKOPS_GEOMETRY_SHA256;
         info["cmake_sha256"]=MASKOPS_CMAKE_SHA256;
         info["template_sha256"]=MASKOPS_PROFILE_SHA256;
         info["compiler"]=MASKOPS_COMPILER;
@@ -298,6 +300,7 @@ PYBIND11_MODULE(_native,m) {
     });
     m.def("opencv_threads",[](){return cv::getNumThreads();});
     m.def("opencv_build_info",[](){return cv::getBuildInformation();});
+    maskops_geometry::register_geometry(m);
     py::class_<Polygons>(m,"Polygons").def(py::init<Array<int32_t>,Array<int64_t>>()).def("__len__",&Polygons::size);
     py::class_<Rasterizer>(m,"Rasterizer").def(py::init<size_t>()).def("raster",&Rasterizer::raster)
         .def("masks",&Rasterizer::masks).def("single",&Rasterizer::single).def("compose",&Rasterizer::compose);

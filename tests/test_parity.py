@@ -182,6 +182,7 @@ def test_compiled_profile_matches_kernel_and_build_sources():
     profile = native.backend_info()["build"]
     for key, name in [
         ("bindings_sha256", "src/bindings.cpp"),
+        ("geometry_sha256", "src/geometry.hpp"),
         ("cmake_sha256", "CMakeLists.txt"),
         ("template_sha256", "src/build_profile.h.in"),
     ]:

@@ -25,8 +25,9 @@ FetchContent_MakeAvailable(opencv)
 # Bind the extension to the project sources used to build it. Reconfigure after
 # a kernel edit even when developers invoke only `cmake --build`.
 set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/bindings.cpp")
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/bindings.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/geometry.hpp")
 file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/src/bindings.cpp" MASKOPS_BINDINGS_SHA256)
+file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/src/geometry.hpp" MASKOPS_GEOMETRY_SHA256)
 file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt" MASKOPS_CMAKE_SHA256)
 file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/src/build_profile.h.in" MASKOPS_PROFILE_SHA256)
 configure_file(src/build_profile.h.in maskops_build_profile.h @ONLY)
@@ -34,6 +35,11 @@ pybind11_add_module(_native src/bindings.cpp)
 target_include_directories(_native PRIVATE
   ${opencv_SOURCE_DIR}/modules/core/include ${opencv_SOURCE_DIR}/modules/imgproc/include ${opencv_BINARY_DIR} ${CMAKE_BINARY_DIR})
 target_link_libraries(_native PRIVATE opencv_core opencv_imgproc)
+# The exact geometry replicas require every multiply and add to round
+# separately, as separate NumPy ufuncs do. MSVC does not contract by default.
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  target_compile_options(_native PRIVATE -ffp-contract=off -fno-fast-math)
+endif()
 if(MASKOPS_SANITIZE)
   target_compile_options(_native PRIVATE -fsanitize=address,undefined -fno-omit-frame-pointer -g)
   target_link_options(_native PRIVATE -fsanitize=address,undefined)
