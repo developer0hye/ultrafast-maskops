@@ -1,0 +1,53 @@
+{
+  "complete": true,
+  "synthetic_tests_passed": 46,
+  "synthetic_failures": 0,
+  "synthetic_skips": 0,
+  "tests_xml_sha256": "438cafb3f169721499e354db6931cb011d9dc945395531b1ea4e2b43655e671c",
+  "auditor_sha256": "e52082761e35ff9cf0a7ec8d469a1f3cfdbcc690afb83004a03fe8c1c643cc2e",
+  "test_source_sha256": "28603226102e5bcaf8f57a48b964471e15347efcacccc996636da6f5821ecd85",
+  "workflow_sha256": "dd4cf9e336e38dcea68ea50f1946a642d87cd6fb2c07cded5330952e35f1b6bd",
+  "static_checks": [
+    {
+      "command": [
+        "/Users/yhkwon/.local/bin/uvx",
+        "ruff==0.15.6",
+        "check",
+        "bench/audit_lifecycle_gpu.py",
+        "tests/test_lifecycle_gpu_audit.py"
+      ],
+      "returncode": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/yhkwon/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "--check",
+        "bench/audit_lifecycle_gpu.py",
+        "tests/test_lifecycle_gpu_audit.py"
+      ],
+      "returncode": 0,
+      "stdout": "2 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/mask-lifecycle-auditor-actionlint-v1/actionlint",
+        ".github/workflows/wheels.yml"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "real_reference_trial_audit_passed": true,
+  "real_raw_sha256": "71c4e6d6723302ddaaea384263e1ed656b8d072ea36d145baecf9dad3ab35d9b",
+  "real_parent_signature_matched": true,
+  "actual_cache_file_sha256": "8f2536e077c9682e6f76ad51332fe3ce34d19b1a47a1738f54ad9510ce105b0e",
+  "incomplete_real_grid_rejected": true,
+  "full_grid_audit_passed": false,
+  "scope": "Synthetic checker qualification plus one completed real reference-trial audit; not a completed GPU grid or backend performance comparison."
+}

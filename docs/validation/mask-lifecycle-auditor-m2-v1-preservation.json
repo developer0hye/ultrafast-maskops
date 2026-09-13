@@ -1,0 +1,106 @@
+{
+  "archive": "bench/results/mask-lifecycle-auditor-m2-v1-evidence.tar.gz",
+  "archive_bytes": 30512564,
+  "archive_sha256": "3bd68335d231cf64f9021a1b9d9a873fbde8f9cb550bfb79d9df38754106ab50",
+  "members": 24,
+  "all_members_readback_verified": true,
+  "scope": "Checker sources, tests and actual first reference audit inputs, including both retained checkpoints. Ongoing GPU campaign and ancillary trainer files remain on the server; this is not its final archive.",
+  "files": {
+    ".github/workflows/wheels.yml": {
+      "bytes": 3698,
+      "sha256": "dd4cf9e336e38dcea68ea50f1946a642d87cd6fb2c07cded5330952e35f1b6bd"
+    },
+    "actionlint_1.7.12_checksums.txt": {
+      "bytes": 1130,
+      "sha256": "433028cf0ba3c42163ea1a668dedce30fcdbe84fe912b1a5e288c006eab8a4f5"
+    },
+    "actionlint_1.7.12_darwin_arm64.tar.gz": {
+      "bytes": 2164202,
+      "sha256": "aba9ced2dee8d27fecca3dc7feb1a7f9a52caefa1eb46f3271ea66b6e0e6953f"
+    },
+    "actual-reference/fresh-reference.json": {
+      "bytes": 20298,
+      "sha256": "067fa395b3a72b14efca4561def93e6d5bb01e46cb5daeb7f7f074b96f8c0265"
+    },
+    "actual-reference/grid-checkpoint.json": {
+      "bytes": 39156,
+      "sha256": "a6e9fb68c41ce4db59d93842b307f16f678b277998256abd97060e39bd95f57d"
+    },
+    "actual-reference/reference.cache": {
+      "bytes": 10006954,
+      "sha256": "8f2536e077c9682e6f76ad51332fe3ce34d19b1a47a1738f54ad9510ce105b0e"
+    },
+    "actual-reference/runs/w2-yes-fresh-reference.json": {
+      "bytes": 1154128,
+      "sha256": "71c4e6d6723302ddaaea384263e1ed656b8d072ea36d145baecf9dad3ab35d9b"
+    },
+    "actual-reference/runs/w2-yes-fresh-reference.log": {
+      "bytes": 1562,
+      "sha256": "5f46429289ab7d1e23047374c45d8c0c2df1bf2bece01e062b1d15e7d8310e31"
+    },
+    "actual-reference/runs/w2-yes-fresh-reference.run/resume-epoch-1.pt": {
+      "bytes": 11935889,
+      "sha256": "325fba1951aa3c80016d6e233fa711091d1c5e7700503eaedd8fd9614aede51c"
+    },
+    "actual-reference/runs/w2-yes-fresh-reference.run/resume-epoch-2.pt": {
+      "bytes": 11936017,
+      "sha256": "a84c7742b42c5557d94cb4955156337f21ff8891ac28639eacc5ef8340ec3f41"
+    },
+    "bench/audit_lifecycle_gpu.py": {
+      "bytes": 20814,
+      "sha256": "e52082761e35ff9cf0a7ec8d469a1f3cfdbcc690afb83004a03fe8c1c643cc2e"
+    },
+    "bench/lifecycle_coco_gpu.py": {
+      "bytes": 20829,
+      "sha256": "f711ad52efc9db2f96875474d57c23626edcda966c02e0a105d043721fec01d3"
+    },
+    "bench/results/mask-lifecycle-gpu-linux-v1-source.tar": {
+      "bytes": 143360,
+      "sha256": "09c94a6ff6f2e1d5dd83c422092c41f59ff239fa0cdfe80d4196ca9531a0aba1"
+    },
+    "docs/validation/mask-lifecycle-auditor-m2-v1-qualification.json": {
+      "bytes": 1801,
+      "sha256": "dd2b05cdac052ecb64c399fdab17c03546fceca2dc511533cac966e55b9b7d77"
+    },
+    "docs/validation/mask-lifecycle-real-reference-audit-v1.json": {
+      "bytes": 3536,
+      "sha256": "e00768c129d3a56259b407722c2828227351f82ff140dadaca319a791965eeb8"
+    },
+    "docs/validation/mask-lifecycle-real-reference-bindings-v1.json": {
+      "bytes": 807,
+      "sha256": "95ad6a253589684abf3328a220fe0dca6f37755b540431a3390f7917a5ab1e7d"
+    },
+    "mask-lifecycle-auditor-m2-final-tests.log": {
+      "bytes": 99,
+      "sha256": "dd90f0088b1109d210f4c200bd9d779e7e898d4ceae4428c453e9a5dc19a172e"
+    },
+    "mask-lifecycle-auditor-m2-final-tests.xml": {
+      "bytes": 6887,
+      "sha256": "438cafb3f169721499e354db6931cb011d9dc945395531b1ea4e2b43655e671c"
+    },
+    "mask-lifecycle-auditor-m2-v1-source.py": {
+      "bytes": 20714,
+      "sha256": "8ccfdd2779e4ec0ed54cba84d72921c9827bd33d78cbeecd00de1191bd446e11"
+    },
+    "mask-lifecycle-auditor-m2-v1-tests.log": {
+      "bytes": 99,
+      "sha256": "1ebd13ccbe26c6668c7301c012cbcbe3b623bbd26ab00a23baf1c0b340ce59d3"
+    },
+    "mask-lifecycle-auditor-m2-v1-tests.xml": {
+      "bytes": 6743,
+      "sha256": "9a2ba51f1fbc9bf99e8e7efe37098d7e04b18bd11c8ba133ae226155c607e403"
+    },
+    "source.json": {
+      "bytes": 320,
+      "sha256": "ddc8c5f898f092091d1b54da4fabf59f133f10e5beb5505f4f9e9de4a263dc93"
+    },
+    "tests/test_lifecycle_coordinator.py": {
+      "bytes": 17511,
+      "sha256": "671431f01c905feea8d5010dfe842d60cde728c08ab5c16baf16356e6f61a03f"
+    },
+    "tests/test_lifecycle_gpu_audit.py": {
+      "bytes": 15579,
+      "sha256": "28603226102e5bcaf8f57a48b964471e15347efcacccc996636da6f5821ecd85"
+    }
+  }
+}

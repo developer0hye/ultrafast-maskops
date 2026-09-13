@@ -1,0 +1,30 @@
+{
+  "archive": "bench/results/mask-lifecycle-real-mask-v1-evidence.tar.gz",
+  "archive_bytes": 21615766,
+  "archive_sha256": "ea34e2c089e5ab4b83bbe2bc2be0218c10f3ad85c9967681858c6b3761c833f2",
+  "members": 5,
+  "all_members_readback_verified": true,
+  "scope": "Completed first mask-only trial audit inputs and contemporaneous incomplete grid checkpoint. Does not contain the in-progress combined trial or certify the full grid.",
+  "files": {
+    "grid-checkpoint.json": {
+      "bytes": 62186,
+      "sha256": "f8e6d862a2e3e5541759cc530f8858ba3611004e850e1a4888f73af7fb81115f"
+    },
+    "runs/w2-yes-fresh-mask.json": {
+      "bytes": 1158348,
+      "sha256": "c2a84de3afe71c68968aa350f1d4b56beb3cd2c274f7f804c331669b69b67836"
+    },
+    "runs/w2-yes-fresh-mask.log": {
+      "bytes": 1561,
+      "sha256": "77d2ce1fe47d8dc9dbd3d4e3d0bb5f94a55efdca767f7af7b7ea75819b4e66dd"
+    },
+    "runs/w2-yes-fresh-mask.run/resume-epoch-1.pt": {
+      "bytes": 11935889,
+      "sha256": "0a67964328c6e910c0953351e5eff2ee46990c47a474f2802accc3be2347a667"
+    },
+    "runs/w2-yes-fresh-mask.run/resume-epoch-2.pt": {
+      "bytes": 11935953,
+      "sha256": "e379e043a5aabc4b3679cd206f62c83082e090eebd80d1f1b376f500ed3c9ea4"
+    }
+  }
+}

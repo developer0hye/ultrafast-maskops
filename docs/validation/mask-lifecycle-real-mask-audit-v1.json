@@ -1,0 +1,135 @@
+{
+  "trial_audit_passed": true,
+  "full_grid_audit_passed": false,
+  "scope": "Completed w2/overlap/fresh mask trial: separate raw/checkpoint/lifecycle checks and direct canonical comparison of every loss value with the completed reference. Other backends/conditions/resume stages still pending.",
+  "auditor_sha256": "e52082761e35ff9cf0a7ec8d469a1f3cfdbcc690afb83004a03fe8c1c643cc2e",
+  "grid_checkpoint_sha256": "f8e6d862a2e3e5541759cc530f8858ba3611004e850e1a4888f73af7fb81115f",
+  "raw_sha256": "c2a84de3afe71c68968aa350f1d4b56beb3cd2c274f7f804c331669b69b67836",
+  "log_sha256": "77d2ce1fe47d8dc9dbd3d4e3d0bb5f94a55efdca767f7af7b7ea75819b4e66dd",
+  "reference_raw_sha256": "71c4e6d6723302ddaaea384263e1ed656b8d072ea36d145baecf9dad3ab35d9b",
+  "all_loss_values_equal": true,
+  "initial_and_final_model_digests_equal": true,
+  "signature": {
+    "initial_model": "1a78149f324851d3adbebf21103f8f2c5006da4a2589fa779ca7fa3b43b57180",
+    "final_model": "ba8e30a68693ed9772618d436c3331a3ebf738050304713cc710a6ddeab7999a",
+    "epochs": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "loss_traces": [
+      "6853393a60f66e25cccaf9cfe78160539dd6f8e8d3395fb6eac775c2a91fe7ef",
+      "3e22241227bf24a307a7fdeb1af584d7e56ee7bf4a7a47f95ea3fdd5730d870f",
+      "01e0bb14b5d8a5d438148ae5c5398b5f7b7bdbbb3b275ec163b9def81da8babb",
+      "b210ff3918ed7047daba2b0898e554483b00cb1ea8b1a72ddd1f5fe45840c889"
+    ],
+    "resume_input": null,
+    "loader_settings": [
+      {
+        "worker_start_method": "fork",
+        "pin_memory": true,
+        "prefetch_factor": 4
+      },
+      {
+        "worker_start_method": "fork",
+        "pin_memory": true,
+        "prefetch_factor": 4
+      },
+      {
+        "worker_start_method": "fork",
+        "pin_memory": true,
+        "prefetch_factor": 4
+      },
+      {
+        "worker_start_method": "fork",
+        "pin_memory": true,
+        "prefetch_factor": 4
+      },
+      {
+        "worker_start_method": "fork",
+        "pin_memory": true,
+        "prefetch_factor": 4
+      }
+    ]
+  },
+  "epochs": [
+    {
+      "epoch": 0,
+      "images": 5000,
+      "batches": 1250,
+      "seconds": 91.97259768191725
+    },
+    {
+      "epoch": 1,
+      "images": 5000,
+      "batches": 1250,
+      "seconds": 87.5984125980176
+    },
+    {
+      "epoch": 2,
+      "images": 5000,
+      "batches": 1250,
+      "seconds": 85.04886828176677
+    },
+    {
+      "epoch": 3,
+      "images": 5000,
+      "batches": 1250,
+      "seconds": 84.62372163683176
+    }
+  ],
+  "whole_job_seconds": 455.8933350839652,
+  "checkpoints": [
+    {
+      "epoch": 1,
+      "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-mask.run/resume-epoch-1.pt",
+      "sha256": "0a67964328c6e910c0953351e5eff2ee46990c47a474f2802accc3be2347a667",
+      "bytes": 11935889
+    },
+    {
+      "epoch": 2,
+      "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-mask.run/resume-epoch-2.pt",
+      "sha256": "e379e043a5aabc4b3679cd206f62c83082e090eebd80d1f1b376f500ed3c9ea4",
+      "bytes": 11935953
+    }
+  ],
+  "worker_shutdown": {
+    "train": {
+      "worker_count": 2,
+      "worker_pids": [
+        1663230,
+        1663231
+      ],
+      "worker_exitcodes": [
+        0,
+        0
+      ],
+      "workers_alive": [
+        false,
+        false
+      ]
+    },
+    "val": {
+      "worker_count": 4,
+      "worker_pids": [
+        1662708,
+        1662709,
+        1662710,
+        1662711
+      ],
+      "worker_exitcodes": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "workers_alive": [
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  }
+}

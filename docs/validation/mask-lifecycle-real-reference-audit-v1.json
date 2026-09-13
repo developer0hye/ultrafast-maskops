@@ -1,0 +1,132 @@
+{
+  "trial_audit_passed": true,
+  "full_grid_audit_passed": false,
+  "scope": "One completed real reference trial: raw/log hashes, all four complete loss traces, source/cache receipt identities, parent compaction, worker lifecycle and retained checkpoint bytes. Does not certify the in-progress grid or any backend comparison.",
+  "auditor_sha256": "8ccfdd2779e4ec0ed54cba84d72921c9827bd33d78cbeecd00de1191bd446e11",
+  "grid_checkpoint_sha256": "a6e9fb68c41ce4db59d93842b307f16f678b277998256abd97060e39bd95f57d",
+  "raw_sha256": "71c4e6d6723302ddaaea384263e1ed656b8d072ea36d145baecf9dad3ab35d9b",
+  "log_sha256": "5f46429289ab7d1e23047374c45d8c0c2df1bf2bece01e062b1d15e7d8310e31",
+  "signature": {
+    "initial_model": "1a78149f324851d3adbebf21103f8f2c5006da4a2589fa779ca7fa3b43b57180",
+    "final_model": "ba8e30a68693ed9772618d436c3331a3ebf738050304713cc710a6ddeab7999a",
+    "epochs": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "loss_traces": [
+      "6853393a60f66e25cccaf9cfe78160539dd6f8e8d3395fb6eac775c2a91fe7ef",
+      "3e22241227bf24a307a7fdeb1af584d7e56ee7bf4a7a47f95ea3fdd5730d870f",
+      "01e0bb14b5d8a5d438148ae5c5398b5f7b7bdbbb3b275ec163b9def81da8babb",
+      "b210ff3918ed7047daba2b0898e554483b00cb1ea8b1a72ddd1f5fe45840c889"
+    ],
+    "resume_input": null,
+    "loader_settings": [
+      {
+        "worker_start_method": "fork",
+        "pin_memory": true,
+        "prefetch_factor": 4
+      },
+      {
+        "worker_start_method": "fork",
+        "pin_memory": true,
+        "prefetch_factor": 4
+      },
+      {
+        "worker_start_method": "fork",
+        "pin_memory": true,
+        "prefetch_factor": 4
+      },
+      {
+        "worker_start_method": "fork",
+        "pin_memory": true,
+        "prefetch_factor": 4
+      },
+      {
+        "worker_start_method": "fork",
+        "pin_memory": true,
+        "prefetch_factor": 4
+      }
+    ]
+  },
+  "epochs": [
+    {
+      "epoch": 0,
+      "images": 5000,
+      "batches": 1250,
+      "seconds": 91.71648544585332
+    },
+    {
+      "epoch": 1,
+      "images": 5000,
+      "batches": 1250,
+      "seconds": 87.00674155680463
+    },
+    {
+      "epoch": 2,
+      "images": 5000,
+      "batches": 1250,
+      "seconds": 84.15674360468984
+    },
+    {
+      "epoch": 3,
+      "images": 5000,
+      "batches": 1250,
+      "seconds": 83.88779446994886
+    }
+  ],
+  "whole_job_seconds": 453.4306498877704,
+  "worker_shutdown": {
+    "train": {
+      "worker_count": 2,
+      "worker_pids": [
+        1662329,
+        1662330
+      ],
+      "worker_exitcodes": [
+        0,
+        0
+      ],
+      "workers_alive": [
+        false,
+        false
+      ]
+    },
+    "val": {
+      "worker_count": 4,
+      "worker_pids": [
+        1661364,
+        1661365,
+        1661366,
+        1661367
+      ],
+      "worker_exitcodes": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "workers_alive": [
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "checkpoints": [
+    {
+      "epoch": 1,
+      "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-1.pt",
+      "sha256": "325fba1951aa3c80016d6e233fa711091d1c5e7700503eaedd8fd9614aede51c",
+      "bytes": 11935889
+    },
+    {
+      "epoch": 2,
+      "path": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.run/resume-epoch-2.pt",
+      "sha256": "a84c7742b42c5557d94cb4955156337f21ff8891ac28639eacc5ef8340ec3f41",
+      "bytes": 11936017
+    }
+  ]
+}

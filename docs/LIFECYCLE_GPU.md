@@ -1,7 +1,8 @@
 # GPU lifecycle qualification: full grid launched, results pending
 
 The full 54-trial, 126-epoch grid has now launched on the RTX 3070 server. The
-first `w2-yes-fresh-reference` trial is active. The current dataset wheel and
+first reference and mask-only trials have completed, with all four epochs' loss
+values and initial/final model hashes matching. The combined trial is active. The current dataset wheel and
 frozen mask packet wheel passed 166 dataset and 257 mask tests in the same new
 Linux runtime, plus standalone packaging/cache checks, before this launch.
 No completed cohort or new throughput result is claimed yet. Earlier GPU
@@ -240,4 +241,16 @@ status; re-check the remote grid before claiming completion.
 Authoritative ongoing state on the server is
 `/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.json`.
 Its per-trial logs/reports/checkpoints are under the sibling `.runs` directory.
-All 54 outcomes and the independent final audit remain pending at this checkpoint.
+All 54 outcomes and the independent final audit were pending at that initial checkpoint.
+
+## Independent checker qualified; first reference/mask condition passed
+
+The [independent artifact auditor](GPU_LIFECYCLE_AUDIT.md) now passes 46 synthetic
+checks, including coherent-checksum corruptions and incomplete-grid rejection.
+It separately checked both completed `w2-yes-fresh` reference/mask trials, their
+retained checkpoint bytes, lifecycle/shutdown records and every loss vector.
+Initial/final model hashes and all loss values match across these two backends.
+The combined backend is currently running; no completed three-backend cohort or
+full-grid audit is claimed. Frozen evidence bundles preserve both completed
+trials' audit inputs. The full grid still requires a successful final audit after
+all 54 processes terminate.

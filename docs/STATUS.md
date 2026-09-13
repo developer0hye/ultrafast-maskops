@@ -14,9 +14,12 @@ changes; the 10% loader gate remains unmet. See
 The GPU coordinator passed 63 synthetic tests and local workflow lint. A fresh
 combined Linux runtime then passed 166 dataset and 257 mask tests with both wheel
 payloads verified. The full 54-trial/126-epoch close-mosaic/resume GPU grid has
-launched; its initial reference trial is active, with no completed-grid claim.
-Independent final artifact verification, current macOS packet transport and
-broader release/platform qualification remain pending. See
+launched; its first reference/mask-only condition completed with identical loss
+vectors and initial/final model hashes. The combined trial is active. The
+[independent checker](GPU_LIFECYCLE_AUDIT.md) passed 46 synthetic tests and audited
+both completed trials, but the complete grid and its final audit remain pending.
+Current macOS packet transport and broader release/platform qualification also
+remain open. See
 [LIFECYCLE_GPU.md](LIFECYCLE_GPU.md).
 
 Linux `file_system` diagnostics now expose retained storage and parent exit hangs

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "scope": "Additional actual-file bindings for the one completed reference trial, and explicit rejection of the incomplete real grid. Not a full-grid pass.",
+  "trial_receipt_sha256": "e00768c129d3a56259b407722c2828227351f82ff140dadaca319a791965eeb8",
+  "source_sha256": {
+    "train_coco_gpu.py": "1edf99c37882e960e7c9dae2016b7dee6fbb180fbf7d8fdd4bf4beb38b60d8a7",
+    "coco_loader.py": "5c9e0578b058566b968371ff22e8e54dc2e407b6ff4a2e5a4561b13aa2f9c7e5"
+  },
+  "coordinator_sha256": "f711ad52efc9db2f96875474d57c23626edcda966c02e0a105d043721fec01d3",
+  "reference_cache_sha256": "8f2536e077c9682e6f76ad51332fe3ce34d19b1a47a1738f54ad9510ce105b0e",
+  "fresh_reference_sha256": "067fa395b3a72b14efca4561def93e6d5bb01e46cb5daeb7f7f074b96f8c0265",
+  "incomplete_real_grid_rejected": true
+}
