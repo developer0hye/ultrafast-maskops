@@ -12,14 +12,16 @@ nor distinguish a timeout termination from a worker exception.
 
 [Original run](https://github.com/developer0hye/ultrafast-maskops/actions/runs/34744592119)
 and [preserved failure receipt](validation/mask-hosted-windows313-v1-failure.json)
-retain this adverse result. The full matrix was still running when this document
-was created. The small evidence archive retains the complete failed job log,
+retain this adverse result. The full matrix subsequently ended with **11 successful jobs and this one
+failed job**. All 12 terminal job logs and API records have been preserved in
+the [terminal matrix receipt](validation/mask-hosted-matrix-v1-terminal.json). The small evidence archive retains the complete failed job log,
 job/artifact metadata, and exact original test/workflow sources. It does not
 back up the original 116.5MB wheel/sdist artifact.
 
 ## Predeclared diagnosis
 
-The diagnostic workflow uses the **same original Windows wheel**, downloaded on its hosted runner after
+[Diagnostic run 34746107477](https://github.com/developer0hye/ultrafast-maskops/actions/runs/34746107477)
+uses the **same original Windows wheel**, downloaded on its hosted runner after
 checking the original artifact ID, run, source SHA and ZIP digest. Installed file
 bytes are checked against its wheel RECORD. The current project source is used
 only for the diagnostic harness and assertion messages; the extension is not
@@ -44,3 +46,8 @@ The first diagnostic dispatch, run `34746032038` at `a1a2cee`, skipped every
 job because its guard required both `windows_reset` and `!windows_reset`. No
 test ran. This dispatch is retained as a workflow error, and the contradictory
 condition is removed before the next dispatch.
+
+The corrected dispatch at `2a22316` selects exactly one intended job for each
+of the 12 supported push/pull_request/manual mode combinations checked directly
+from the workflow expressions. It is actively running the diagnostic and full
+integration checks; its outcome is not yet qualified by this document.
