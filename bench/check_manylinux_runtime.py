@@ -23,7 +23,9 @@ def main():
         metadata = next(n for n in repaired.namelist() if n.endswith(".dist-info/WHEEL"))
         tags = [line[5:] for line in repaired.read(metadata).decode().splitlines() if line.startswith("Tag: ")]
         assert any(t.endswith("-manylinux_2_28_x86_64") for t in tags), tags
-        added = sorted(set(repaired.namelist()) - set(before.namelist()))
+        repaired_files = {n.filename for n in repaired.infolist() if not n.is_dir()}
+        original_files = {n.filename for n in before.infolist() if not n.is_dir()}
+        added = sorted(repaired_files - original_files)
         assert all(".dist-info/" in n for n in added), "new bundled libraries require notice review: " + repr(added)
         native_members = [n for n in repaired.namelist() if n.endswith(".so")]
         assert len(native_members) == 1

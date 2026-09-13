@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "repository": "developer0hye/ultrafast-maskops",
+  "run_id": 34746990382,
+  "source_commit": "a92b5a26d201e8acea301c1459096733576e6028",
+  "run_conclusion": "failure",
+  "archive": "bench/results/manylinux-v1-bootstrap-failure-evidence.tar.gz",
+  "archive_bytes": 12475,
+  "archive_sha256": "91c38c910fa745aec5b3be14a7ecc6e9883372007ceb2185c8431d0be4da1b1d",
+  "members": {
+    "mask-manylinux-v1-run.json": {
+      "bytes": 13578,
+      "sha256": "7eaffd7d86fb038f3f42897dd1965a81f328b0adc9731ff04fa824862e410b95"
+    },
+    "mask-manylinux-v1-jobs.json": {
+      "bytes": 5148,
+      "sha256": "52263edc109e468ec0cf3b84821e8b7877c4da7a7e6eafa4a1ffa6dbf3c4bd1e"
+    },
+    "mask-manylinux-v1-artifacts.json": {
+      "bytes": 754,
+      "sha256": "220d8270d617922175adb0bd3f0ad5e7cb073e26f37fcedeffeb669696968864"
+    },
+    "mask-manylinux-v1.log": {
+      "bytes": 30500,
+      "sha256": "6785ac890adf8324f053ecf9eac1acbd6a266814f268c5e5147f9b44b41aaec8"
+    },
+    "mask-manylinux-v1.zip": {
+      "bytes": 188,
+      "sha256": "5b4a17d768dde5ffb1420dd2c067c55f7a2dad6922c8a8e4a7cd3ad5511b8a29"
+    },
+    "source/bench/build_manylinux.sh": {
+      "bytes": 2459,
+      "sha256": "465ef615a12e5bc74621bc953588650161e3e0ddfb7e14e7bc3bed57f512d6b3"
+    },
+    "source/.github/workflows/wheels.yml": {
+      "bytes": 9481,
+      "sha256": "bff0f5f26f75de4e0bbfe11d9da519a19933b9fc546db27827ea5edb4f337764"
+    }
+  },
+  "scope": "Complete bootstrap failure log, API records, original empty artifact ZIP and failed source script/workflow retained and read back. Build stopped at git rev-parse before compiling or testing; there is no wheel or test qualification from this run."
+}
