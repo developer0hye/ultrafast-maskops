@@ -35,11 +35,28 @@ def options(images, overlap=True, mosaic=0.0):
     hyp.augmentations = []
     for key in ("mosaic", "copy_paste", "mixup", "cutmix"):
         setattr(hyp, key, mosaic)
-    for key in ("hsv_h", "hsv_s", "hsv_v", "degrees", "translate", "scale", "shear", "perspective", "flipud", "fliplr", "bgr"):
+    for key in (
+        "hsv_h",
+        "hsv_s",
+        "hsv_v",
+        "degrees",
+        "translate",
+        "scale",
+        "shear",
+        "perspective",
+        "flipud",
+        "fliplr",
+        "bgr",
+    ):
         setattr(hyp, key, 0.0)
     return {
-        "img_path": str(images), "imgsz": 64, "batch_size": 2, "augment": True,
-        "hyp": hyp, "task": "segment", "data": {"names": {0: "a", 1: "b"}, "nc": 2},
+        "img_path": str(images),
+        "imgsz": 64,
+        "batch_size": 2,
+        "augment": True,
+        "hyp": hyp,
+        "task": "segment",
+        "data": {"names": {0: "a", 1: "b"}, "nc": 2},
     }
 
 
@@ -101,8 +118,9 @@ def test_close_mosaic_retains_format_through_real_worker_reset(corpus, workers, 
             dataset = YOLODataset(**copy.deepcopy(kwargs))
             if native:
                 assert accelerate_dataset(dataset, persistent=True) == 1
-            loader = InfiniteDataLoader(dataset, batch_size=2, num_workers=workers,
-                                        collate_fn=YOLODataset.collate_fn, **loader_options)
+            loader = InfiniteDataLoader(
+                dataset, batch_size=2, num_workers=workers, collate_fn=YOLODataset.collate_fn, **loader_options
+            )
             owner = SimpleNamespace(args=kwargs["hyp"], train_loader=loader)
             owners.append(owner)
             next(iter(loader))  # Exercise the old iterator before its restart.
@@ -154,6 +172,7 @@ def test_custom_builder_rejected_without_mutation(corpus):
 def test_custom_factory_rejected_without_mutation(corpus):
     dataset = YOLODataset(**options(corpus))
     previous = formatter(dataset)
+
     def factory(*args, **kwargs):
         return Format(*args, **kwargs)
 

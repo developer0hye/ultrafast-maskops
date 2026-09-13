@@ -33,3 +33,8 @@ end-user installation has every required runtime DLL. Platform dependency and
 notice audits, portable wheel repair, clean-machine testing, release-candidate
 benchmarks and actual publication remain release gates. Repository creation and
 hosted execution are pending the user's public/private repository choice.
+
+The persistent candidate workflow also passed actionlint 1.7.12 on Linux after
+the ROI/persistent test selections were added. Its exact hash is retained in
+[the candidate lint receipt](validation/mask-persistent-linux-v1-lint.json).
+This is workflow syntax evidence only; the hosted matrix remains unexecuted.

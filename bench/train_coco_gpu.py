@@ -161,7 +161,8 @@ def main():
         assert checkpoint["ema"] is not None and checkpoint["updates"] > 0
         resume_state = {
             "checkpoint_epoch": checkpoint["epoch"],
-            "optimizer_states": len(checkpoint["optimizer"]["state"]), "ema_updates": checkpoint["updates"],
+            "optimizer_states": len(checkpoint["optimizer"]["state"]),
+            "ema_updates": checkpoint["updates"],
         }
         del checkpoint
 
@@ -211,7 +212,9 @@ def main():
             replaced = 0
             if args.backend != "reference":
                 replaced = (
-                    accelerate_dataset(dataset, persistent=True) if args.persistent_mask else accelerate_dataset(dataset)
+                    accelerate_dataset(dataset, persistent=True)
+                    if args.persistent_mask
+                    else accelerate_dataset(dataset)
                 )
             assert len(dataset) == 5000 and replaced == int(args.backend != "reference")
             if mode == "train":
@@ -255,12 +258,17 @@ def main():
             assert dataset.format_class is wanted_factory
             rebuilt = id(dataset.transforms) != self.initial_transforms_id
             assert rebuilt == expected_closed, "expected real upstream transform rebuild was not observed"
-            self.lifecycle_records.append({
-                "stage": stage, "epoch": getattr(self, "epoch", None), "start_epoch": self.start_epoch,
-                "formatter": type(formats[0]).__name__, "factory": dataset.format_class.__name__,
-                "rebuilt_from_initial": rebuilt,
-                "worker_pids": [p.pid for p in getattr(self.train_loader.iterator, "_workers", ())],
-            })
+            self.lifecycle_records.append(
+                {
+                    "stage": stage,
+                    "epoch": getattr(self, "epoch", None),
+                    "start_epoch": self.start_epoch,
+                    "formatter": type(formats[0]).__name__,
+                    "factory": dataset.format_class.__name__,
+                    "rebuilt_from_initial": rebuilt,
+                    "worker_pids": [p.pid for p in getattr(self.train_loader.iterator, "_workers", ())],
+                }
+            )
 
         def measure_on_model_save(self):
             if self.epoch not in args.checkpoint_epochs:
@@ -273,9 +281,14 @@ def main():
                 stream.write(data)
             digest = hashlib.sha256(data).hexdigest()
             assert file_sha(destination) == digest
-            self.checkpoint_records.append({
-                "epoch": self.epoch, "path": str(destination), "sha256": digest, "bytes": len(data),
-            })
+            self.checkpoint_records.append(
+                {
+                    "epoch": self.epoch,
+                    "path": str(destination),
+                    "sha256": digest,
+                    "bytes": len(data),
+                }
+            )
 
         def measure_on_train_epoch_start(self):
             assert self.batch_size == args.batch and not getattr(self, "_oom_retries", 0)
@@ -386,9 +399,13 @@ def main():
         "memory": "CUDA allocator peaks per epoch; sampled summed process-family RSS double-counts shared pages",
         "callbacks": "benchmark callbacks only; external logger and analytics callbacks disabled",
         "lifecycle_requested": lifecycle,
-        "resume_input": None if not args.resume_from else {
-            "path": str(args.resume_from), "sha256": resume_sha,
-            "receipt_sha256": resume_receipt_sha, "expected_start_epoch": expected_start,
+        "resume_input": None
+        if not args.resume_from
+        else {
+            "path": str(args.resume_from),
+            "sha256": resume_sha,
+            "receipt_sha256": resume_receipt_sha,
+            "expected_start_epoch": expected_start,
             "restored_state_expectation": resume_state,
         },
     }
@@ -460,8 +477,10 @@ def main():
         monitor.join()
         if trainer is not None:
             report.update(
-                datasets=getattr(trainer, "dataset_records", []), epochs=getattr(trainer, "epoch_records", []),
-                lifecycle=getattr(trainer, "lifecycle_records", []), checkpoints=getattr(trainer, "checkpoint_records", []),
+                datasets=getattr(trainer, "dataset_records", []),
+                epochs=getattr(trainer, "epoch_records", []),
+                lifecycle=getattr(trainer, "lifecycle_records", []),
+                checkpoints=getattr(trainer, "checkpoint_records", []),
             )
         report["resource_samples"] = samples
         report["sampled_peak_family_rss_bytes"] = max((s["family_rss_bytes"] for s in samples), default=0)

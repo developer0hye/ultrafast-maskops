@@ -1,9 +1,10 @@
 # Persistent Format candidate
 
 This branch adds an **unvalidated** optional adapter feature on top of the
-unit-scale mask candidate at `25853ef`. The new source parses, but a fresh wheel,
-installed tests and training/lifecycle checks have not run. Both hosts remain
-reserved by the existing full dataset-startup measurements. The earlier 209-test
+unit-scale mask candidate at `25853ef`. Runtime, test and trial-harness lint plus
+workflow syntax checks passed on Linux; a fresh wheel, installed tests and
+training/lifecycle checks remain pending. Linux startup measurements have ended;
+M2 remains reserved. The earlier 209-test
 Linux result and loader/GPU evidence predate this Python adapter change.
 
 ## Behavior
@@ -79,7 +80,8 @@ alongside the existing integration/training tests on Python 3.11–3.13 for each
 Linux, Windows and macOS job. It also selects `test_resize_roi.py` in every core
 parity job, covering the ROI/scale and mixed-scratch boundaries that the earlier
 explicit test list omitted. These workflow edits do not establish execution:
-hosted CI, local workflow lint and this candidate's installed tests remain pending.
+hosted CI and this candidate's installed tests remain pending; local workflow
+lint has now passed.
 Python 3.10 still has core-only coverage because its NumPy profile does not meet
 the pinned framework adapter requirement.
 
@@ -92,3 +94,10 @@ at/after the closing boundary. It requires first-batch formatter/worker checks
 after the unmodified upstream reset and redirects resumed output to a new trial
 directory. Source parsing is not execution or parity evidence; cohort comparison,
 the full grid and its final artifact audit remain required.
+
+The [Linux lint receipt](validation/mask-persistent-linux-v1-lint.json) binds the
+checked source and workflow hashes: Ruff 0.15.6 and actionlint 1.7.12 passed for
+the recorded scope. Two new files were formatted with unchanged parsed Python
+ASTs. Whole-repository Ruff still reports nine existing assigned-lambda style
+findings in the allocation, wheel-comparison and feasibility benchmarks; those
+files were not changed. These checks do not qualify runtime behavior.

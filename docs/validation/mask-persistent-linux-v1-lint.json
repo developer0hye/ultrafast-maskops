@@ -1,0 +1,49 @@
+{
+  "complete": true,
+  "checks": [
+    {
+      "command": [
+        "/home/yonghye/.local/bin/uvx",
+        "ruff==0.15.6",
+        "check",
+        "python",
+        "tests",
+        "bench/train_coco_gpu.py"
+      ],
+      "returncode": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/yonghye/.local/bin/uvx",
+        "ruff==0.15.6",
+        "format",
+        "--check",
+        "python/ultrafast_maskops/ultralytics.py",
+        "tests/test_persistent_format.py",
+        "bench/train_coco_gpu.py"
+      ],
+      "returncode": 0,
+      "stdout": "3 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/yonghye/ultrafast-vision-build/mask-persistent-linux-v1-tools/actionlint",
+        ".github/workflows/wheels.yml"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "files_sha256": {
+    "python/ultrafast_maskops/ultralytics.py": "0b89cf770a959a6c75830c326eb29e98112fa90cf9b5971a59449d0113ad4701",
+    "tests/test_persistent_format.py": "b33359a8fe17ce37557acf56db8cc813a1a4d3cc66b2818f1feb4f144cd72ac8",
+    "bench/train_coco_gpu.py": "c4ae02239d0f375b9df8e88c093abb1c99ae080cac08874f2f3f963390424b9c",
+    ".github/workflows/wheels.yml": "7083d216f0fbf5369d85d7c73cba07cf073ccb6a4143ffc1aec4be1a337575ad"
+  },
+  "whole_repository_lint": "failed with nine pre-existing E731 assigned-lambda findings in bench/allocations.py, bench/compare_wheels.py and bench/feasibility.py; original log retained",
+  "runtime_tests": "not yet executed"
+}
