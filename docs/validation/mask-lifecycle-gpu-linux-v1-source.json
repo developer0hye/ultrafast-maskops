@@ -1,0 +1,20 @@
+{
+  "source_commit": "135d0e428dfb55207f7cc1ece0acd033eb952a09",
+  "archive_sha256": "09c94a6ff6f2e1d5dd83c422092c41f59ff239fa0cdfe80d4196ca9531a0aba1",
+  "files": {
+    "CMakeLists.txt": "13177f15e47776ae22c251a2eee6079a68788b19b56397c48d2c7e48adbf574e",
+    "bench/coco_loader.py": "5c9e0578b058566b968371ff22e8e54dc2e407b6ff4a2e5a4561b13aa2f9c7e5",
+    "bench/lifecycle_coco_gpu.py": "f711ad52efc9db2f96875474d57c23626edcda966c02e0a105d043721fec01d3",
+    "bench/train_coco_gpu.py": "1edf99c37882e960e7c9dae2016b7dee6fbb180fbf7d8fdd4bf4beb38b60d8a7",
+    "bench/verify_coco_loader.py": "cbc01f8460c4fe1c2c8754b89d4fca02da4b736e59d94292518a5894bdb3fe91",
+    "pyproject.toml": "bc18d48a06df856d78d0b5495078f69d186e57849528430c243adb0550cc9270",
+    "python/ultrafast_maskops/__init__.py": "0b381bd51042cea607d9742593e8ece643d8e4dedd4fff80522a7bc9b4ac99fa",
+    "python/ultrafast_maskops/_shared_collate.py": "d5f21af4b980400a09d22aa4c8dcaa4aed91104dcba48e3fa7b66d1c38e70399",
+    "python/ultrafast_maskops/ultralytics.py": "9f956b492c33c92fa70abb726bc64e54548d3fdf9bf33b7a37f9177461363140",
+    "src/bindings.cpp": "da270a9525d9c64d1e2d802cb8ec44cbe5743ed76ff6087936a9b00466c1f4a4",
+    "src/build_profile.h.in": "76643f1d3cdb44abd7d7647853c1f7ae03e22d76a07027de9c7cb58340260213",
+    "tests/test_lifecycle_coordinator.py": "671431f01c905feea8d5010dfe842d60cde728c08ab5c16baf16356e6f61a03f"
+  },
+  "loader_reference_report_sha256": "0136d6df786520642d9ebfab1b6998fc5453932c54c89106247139cc6d0d8223",
+  "scope": "Frozen current training/coordinator sources plus exact source_hashes inputs matching full loader experiment; runtime supplied by separately qualified wheels."
+}

@@ -11,10 +11,12 @@ both fresh-reference checks passed independent audits. Eight-worker ratios are
 changes; the 10% loader gate remains unmet. See
 [SHARED_LOADER_FULL_RESULTS.md](SHARED_LOADER_FULL_RESULTS.md).
 
-The GPU coordinator passed 63 synthetic tests and local workflow lint. Actual
-close-mosaic/resume training, combined current-wheel integration, current macOS
-packet transport and broader release/platform qualification remain pending.
-Synthetic coordinator tests are not training evidence; see
+The GPU coordinator passed 63 synthetic tests and local workflow lint. A fresh
+combined Linux runtime then passed 166 dataset and 257 mask tests with both wheel
+payloads verified. The full 54-trial/126-epoch close-mosaic/resume GPU grid has
+launched; its initial reference trial is active, with no completed-grid claim.
+Independent final artifact verification, current macOS packet transport and
+broader release/platform qualification remain pending. See
 [LIFECYCLE_GPU.md](LIFECYCLE_GPU.md).
 
 Linux `file_system` diagnostics now expose retained storage and parent exit hangs

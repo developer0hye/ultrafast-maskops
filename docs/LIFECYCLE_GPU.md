@@ -1,13 +1,13 @@
-# GPU lifecycle qualification: prepared, not executed
+# GPU lifecycle qualification: full grid launched, results pending
 
-The extended `bench/train_coco_gpu.py` source parses and passes lint, but its new
-flags and lifecycle assertions have not executed. The persistent candidate built
-on Linux, but [installed qualification failed](PERSISTENT_LINUX_VALIDATION.md)
-at a reference spawned-worker reset. The later packet revision passed
-[257 installed tests and 18 fresh-process reset cases](SHARED_PACKET_VALIDATION.md).
-Those checks do not execute or qualify this training protocol. Earlier GPU
-results used another installed adapter, `close_mosaic=0` and two epochs; they
-cannot qualify this change. No new job is automatically queued.
+The full 54-trial, 126-epoch grid has now launched on the RTX 3070 server. The
+first `w2-yes-fresh-reference` trial is active. The current dataset wheel and
+frozen mask packet wheel passed 166 dataset and 257 mask tests in the same new
+Linux runtime, plus standalone packaging/cache checks, before this launch.
+No completed cohort or new throughput result is claimed yet. Earlier GPU
+measurements used another adapter and `close_mosaic=0`; they still cannot qualify
+this lifecycle protocol. The original factory/shared-storage failures and later
+`file_system` exit failures remain preserved separately.
 
 The default trial still runs the original full 5,000-image training workload.
 Optional arguments enable the separate lifecycle protocol:
@@ -106,9 +106,10 @@ python bench/train_coco_gpu.py \
 
 Paths above are placeholders, not existing trial receipts. Run serially on the
 reserved host and retain failures. The existing `repeat_coco_gpu.py` coordinator
-does not forward these flags or audit resumed cohorts. The newly added
-`lifecycle_coco_gpu.py` coordinator is prepared but unexecuted; its tests and
-independent final artifact audit remain to be qualified before a full grid claim.
+does not forward these flags or audit resumed cohorts. The
+`lifecycle_coco_gpu.py` coordinator passed 63 synthetic tests and has now launched
+the grid. Independent final artifact verification remains required before a full
+qualification claim.
 Single-trial `complete` is insufficient to establish the whole protocol.
 
 Epoch timing includes upstream closure/reset and the small first-batch
@@ -119,10 +120,10 @@ memory or accuracy claim is made by preparing this harness.
 The current shared-batch revision also observes the actual loader collator and
 requires zero exit codes at worker replacement. Native persistent trials install
 the shared collator, while the reference trial retains its original collator.
-These new assertions and the new runtime have not yet executed in the full GPU
-grid; see [the candidate contract](SHARED_BATCHES.md).
+The complete set of these assertions and runtime conditions has not yet passed
+the GPU grid; see [the candidate contract](SHARED_BATCHES.md).
 
-The latest unexecuted harness also records the loader's actual multiprocessing
+The current harness also records the loader's actual multiprocessing
 start method, pin-memory setting and prefetch factor. It does not force GPU
 training to use the spawned context of the CPU loader experiment. At the first
 batch of each epoch, it checks that the image is pinned when pinning is enabled.
@@ -142,9 +143,9 @@ observations are retained before assertions, so a shutdown failure remains in
 the partial report. No shutdown override is used. The trial now binds both its
 own script and `coco_loader.py`, verifies those bytes after training, and requires
 the same two-script identity when resuming from a reference receipt. These
-source changes are not new training or reliability results.
+source changes alone are not training or reliability results.
 
-## Coordinator synthetic qualification passed; GPU grid unexecuted
+## Coordinator synthetic qualification passed; GPU grid in progress
 
 `bench/lifecycle_coco_gpu.py` declares the full plan before launching any trial:
 54 fresh processes and 126 total epochs across workers 0/2/8 and both mask modes.
@@ -186,10 +187,10 @@ python bench/lifecycle_coco_gpu.py \
   --out /measurement/lifecycle-grid.json
 ```
 
-The paths are placeholders. The existing measurement reservations have ended,
-but no GPU grid has been launched. Qualified combined runtime wheels, current
-fresh-reference binding and independent final-grid artifact verification remain
-required.
+The example paths are placeholders. The actual launched command and frozen
+identities are recorded below. Combined runtime qualification and current
+fresh-reference binding passed; independent final-grid artifact verification
+remains required.
 
 The [queued qualifier](validation/qualify-lifecycle-after-loader-v2.py) waited for
 the exact Linux full-loader controller PID/start time and a successful terminal
@@ -207,3 +208,36 @@ equivalence checks. This remains synthetic qualification, not actual GPU trainin
 The previous idle watcher was
 [cancelled before any check ran](validation/mask-lifecycle-coordinator-linux-v1-cancelled.json)
 to add a signal mock to the fake-child tests; its staged source remains preserved.
+
+## Actual Linux launch, 2026-09-13
+
+[The launcher](validation/launch-lifecycle-gpu-linux-v1.py) verified the completed
+combined-runtime qualification, frozen source hashes, wheel payload hashes, the
+full corpus fingerprint and Linux `file_descriptor` sharing. No other GPU compute
+process was present at launch. It reuses the last successful 30-run original
+reference verification because the current cache bytes and source identities
+still match, preserving a separate copy of that cache and the exact receipt.
+It does not regenerate or relabel the old verification as a new benchmark.
+
+The executed coordinator command selects worker order `2 0 8` and overlaps
+`yes no`, covering the same full six-condition grid. Every condition still has
+three backends and three lifecycle stages, for 54 trials and 126 epochs. Failures
+stop the series and retain their first artifacts; there is no retry or automatic
+batch reduction. This is lifecycle/cohort qualification, not a repeated speed
+comparison or held-out accuracy experiment.
+
+The dataset runtime is `dataset-notices-linux-v2-clean`; the frozen harness source
+is `mask-lifecycle-gpu-linux-v1-source`, from mask commit
+`135d0e428dfb55207f7cc1ece0acd033eb952a09`. Its
+[source manifest](validation/mask-lifecycle-gpu-linux-v1-source.json) binds the
+[12-file archive](../bench/results/mask-lifecycle-gpu-linux-v1-source.tar), SHA-256
+`09c94a6ff6f2e1d5dd83c422092c41f59ff239fa0cdfe80d4196ca9531a0aba1`.
+The [launch checkpoint](validation/mask-lifecycle-gpu-linux-v1-launch-identity.json)
+records live launcher/coordinator/trial PIDs, exact commands, preflight results
+and the qualified wheel receipt. This is an initial live observation, not final
+status; re-check the remote grid before claiming completion.
+
+Authoritative ongoing state on the server is
+`/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.json`.
+Its per-trial logs/reports/checkpoints are under the sibling `.runs` directory.
+All 54 outcomes and the independent final audit remain pending at this checkpoint.

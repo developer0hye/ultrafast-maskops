@@ -1,0 +1,127 @@
+{
+  "observed_at_ns": 1789278711353319061,
+  "scope": "Live launch checkpoint only; not a completed training grid or performance result.",
+  "launch_checkpoint_sha256": "6fb12c589a11e16ac5e962416578f1e52493bd542a1c97178a525a817d8354ad",
+  "grid_checkpoint_sha256": "28c59d194bbe44392bb49c73946c213ebd4b2847b6f75de8fb4b486ad0d67328",
+  "launch": {
+    "complete": false,
+    "passed": false,
+    "launcher_pid": 1661326,
+    "started_at_ns": 1789278539529849302,
+    "commands": [
+      {
+        "label": "runtime-preflight",
+        "command": [
+          "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+          "-c",
+          "import hashlib, importlib.metadata as md, json, sys\nfrom pathlib import Path\nsys.path.insert(0, \"bench\")\nfrom coco_loader import COCO_FINGERPRINT, fingerprint, validate_profile\nimport ultrafast_maskops as mask\nimport ultrafast_yolo_dataset as dataset\nfrom ultrafast_yolo_dataset.ultralytics import check_profile\nimport torch\nvalidate_profile(); check_profile()\nassert fingerprint(Path(\"/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment\")) == COCO_FINGERPRINT\nassert torch.cuda.is_available() and torch.cuda.device_count() == 1\nassert torch.multiprocessing.get_sharing_strategy() == \"file_descriptor\"\nfor module in (mask, dataset):\n    assert Path(module.__file__).is_relative_to(sys.prefix)\nprint(json.dumps({\"python\":sys.version,\"torch\":torch.__version__,\"gpu\":torch.cuda.get_device_name(0),\"sharing_strategy\":torch.multiprocessing.get_sharing_strategy(),\"packages\":{m.__name__:str(Path(m.__file__).resolve()) for m in (mask,dataset)},\"extension_sha256\":{m.__name__:hashlib.sha256(Path(m._native.__file__).read_bytes()).hexdigest() for m in (mask,dataset)},\"fixture\":COCO_FINGERPRINT},indent=2))\n"
+        ],
+        "cwd": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-source",
+        "started_at_ns": 1789278539589828136,
+        "log": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-runtime-preflight.log",
+        "pid": 1661327,
+        "returncode": 0,
+        "finished_at_ns": 1789278543370491492,
+        "log_sha256": "ae35e8fb6624bc0f1468d40b93501ca7605aa3709be2cd6da3d49e910a5a01fc"
+      },
+      {
+        "label": "gpu-before",
+        "command": [
+          "nvidia-smi",
+          "--query-compute-apps=pid,process_name,used_gpu_memory",
+          "--format=csv,noheader"
+        ],
+        "cwd": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-source",
+        "started_at_ns": 1789278543371149102,
+        "log": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-gpu-before.log",
+        "pid": 1661336,
+        "returncode": 0,
+        "finished_at_ns": 1789278543393343424,
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "coordinator",
+        "command": [
+          "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python",
+          "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-source/bench/lifecycle_coco_gpu.py",
+          "--corpus",
+          "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment",
+          "--fresh-check",
+          "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json",
+          "--out",
+          "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.json",
+          "--workers",
+          "2",
+          "0",
+          "8",
+          "--overlaps",
+          "yes",
+          "no"
+        ],
+        "cwd": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-source",
+        "started_at_ns": 1789278543393941237,
+        "log": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-coordinator.log",
+        "pid": 1661338
+      }
+    ],
+    "qualification_sha256": "3cd9cf0bfc2f486c682be2df80f5140f1a9b3fb861b183fff20e71b5ebe2a3b9",
+    "source_manifest_sha256": "70733571c408a0b4e03e017e6826eaab2ca71b67d2b22efb7f39009cdd4a6fbd",
+    "source_commit": "135d0e428dfb55207f7cc1ece0acd033eb952a09",
+    "controller_sha256": "51f39de691b3b27e8345f629edaf5162693b3c21293070fa9995876607faaccb",
+    "fresh_reference_source": "/home/yonghye/ultrafast-vision-build/mask-shared-loader-linux-full-v1-fresh-no.json",
+    "fresh_reference_sha256": "067fa395b3a72b14efca4561def93e6d5bb01e46cb5daeb7f7f074b96f8c0265",
+    "original_cache_sha256": "8f2536e077c9682e6f76ad51332fe3ce34d19b1a47a1738f54ad9510ce105b0e",
+    "original_cache_copy": "/home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-original-reference.cache",
+    "declared_trials": 54,
+    "declared_epochs": 126,
+    "worker_order": [
+      2,
+      0,
+      8
+    ],
+    "overlaps": [
+      "yes",
+      "no"
+    ],
+    "scope": "Full lifecycle/parity grid, not repeated throughput or independent final artifact audit.",
+    "runtime_preflight": {
+      "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+      "torch": "2.10.0+cu128",
+      "gpu": "NVIDIA GeForce RTX 3070",
+      "sharing_strategy": "file_descriptor",
+      "packages": {
+        "ultrafast_maskops": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/lib/python3.12/site-packages/ultrafast_maskops/__init__.py",
+        "ultrafast_yolo_dataset": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/lib/python3.12/site-packages/ultrafast_yolo_dataset/__init__.py"
+      },
+      "extension_sha256": {
+        "ultrafast_maskops": "bfb0c15355557b7efb1ae6ef485b3afe5287a2b8d7707ca50b17dbbcd5cf3fa9",
+        "ultrafast_yolo_dataset": "90274a121c4633008a4c1b191d5c68fac6b1f36e595b8ddbdf03a2a229c6c40c"
+      },
+      "fixture": {
+        "files": 9952,
+        "bytes": 830426850,
+        "sha256": "8b079ad2d8472ff17b6cca9b0250e831472f12ef500f2b065125f6f39406c208"
+      }
+    },
+    "preflight_passed": true
+  },
+  "grid_complete": false,
+  "records_started": 1,
+  "processes": [
+    {
+      "pid": 1661326,
+      "stat": "1661326 (python) S 1661325 1661325 1661325 0 -1 4194304 7293 93295 0 2 7 1 328 50 20 0 1 0 233500954 57229312 6977 18446744073709551615 4329472 32300816 140721018998784 0 0 0 0 16781312 2 1 0 0 17 5 0 0 0 0 0 23068672 32300816 271347712 140721019006232 140721019006363 140721019006363 140721019006907 0\n",
+      "cmdline": "/home/yonghye/ultrafast-vision-build/venv312-cuda/bin/python /home/yonghye/ultrafast-vision-build/launch-lifecycle-gpu-linux-v1.py "
+    },
+    {
+      "pid": 1661338,
+      "stat": "1661338 (python) S 1661326 1661338 1661338 0 -1 4194304 2211 0 0 0 2 0 0 0 20 0 1 0 233501343 46936064 4582 18446744073709551615 4329472 32300816 140733025754000 0 0 0 0 16781312 2 1 0 0 17 7 0 0 0 0 0 23068672 32300816 491204608 140733025758058 140733025758524 140733025758524 140733025759145 0\n",
+      "cmdline": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python /home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-source/bench/lifecycle_coco_gpu.py --corpus /home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment --fresh-check /home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json --out /home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.json --workers 2 0 8 --overlaps yes no "
+    },
+    {
+      "pid": 1661339,
+      "stat": "1661339 (python) R 1661338 1661339 1661339 0 -1 4194304 740872 4170 1858 10 17028 759 0 3 20 0 31 0 233501347 18199085056 603624 18446744073709551615 4329472 32300816 140735459019792 0 0 0 0 16781312 65538 0 0 0 17 5 0 0 0 0 0 23068672 32300816 787132416 140735459023594 140735459024188 140735459024188 140735459024809 0\n",
+      "cmdline": "/home/yonghye/ultrafast-vision-build/dataset-notices-linux-v2-clean/bin/python /home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-source/bench/train_coco_gpu.py --corpus /home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment --fresh-check /home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-fresh-reference.json --out /home/yonghye/ultrafast-vision-build/mask-lifecycle-gpu-linux-v1-grid.runs/w2-yes-fresh-reference.json --backend reference --workers 2 --epochs 4 --batch 4 --imgsz 640 --overlap yes --close-mosaic 2 --persistent-mask --checkpoint-epochs 1 2 "
+    }
+  ]
+}
