@@ -13,6 +13,6 @@
 - `geometry-loader-sampled-linux-v1.json`: augmented COCO val2017 segmentation `__getitem__` (`bench/geometry_loader.py`) on the same host and commit, 1,000 samples and five alternating rounds per backend, with identical output digests.
 - `coco-epoch-hit-linux-v1.json`, `coco-epoch-miss-linux-v1.json`: one augmented training epoch (`bench/coco_epoch.py`) over a 118,287-image COCO-scale segmentation corpus on the same host. Maskops is at `54fc9f6` and ultrafast-yolo-dataset at `ad1d738`. The label cache is hit (three rounds) or missed (two rounds), and the first 64 batches have identical verification digests.
 - `coco-epoch-hit-maskops-linux-v1.json`: the same hit-mode epoch with only the maskops calls on the unmodified YOLODataset (`--backends reference maskops`), three alternating rounds, identical verification digests.
+- `mask-stage-minimal-linux-v1.json`: the mask stage on the i5-10400 with the restructured, OpenCV-free kernel (one vector pass per contour, crossing buckets, row bit sets; SSSE3 pass), five alternating rounds.
 
 Full methodology, unfavorable cases and incomplete release gates: [report](../../docs/BENCHMARKS.md).
-- `mask-stage-minimal-linux-v1.json`: the mask stage on the i5-10400 with the restructured, OpenCV-free kernel (one vector pass per contour, crossing buckets, row bit sets; SSSE3 pass), five alternating rounds.
