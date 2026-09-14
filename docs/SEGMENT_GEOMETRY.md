@@ -97,6 +97,44 @@ The `_format_segments` time includes the instance reordering that both
 implementations perform. Removing the segment stages entirely would bound this
 loader at 14.15 / 7.64 = 1.85×.
 
+### One augmented epoch at COCO scale (i5-10400, Linux)
+
+`bench/coco_epoch.py` measures what a training run waits for: dataset
+construction plus one full epoch of the train-mode loader. Both sides build the
+dataset and loader as Ultralytics' trainer does:
+
+- `init_seeds(0)`;
+- the `build_yolo_dataset` arguments with the default configuration, which
+  includes mosaic and every default augmentation at 640 px;
+- `build_dataloader` on CPU with 8 workers and batch 16.
+
+The accelerated side is `FastYOLODataset(annotation_cache="fast")`
+(ultrafast-yolo-dataset `ad1d738`) with `accelerate_dataset` and
+`accelerate_geometry` in persistent mode (commit `54fc9f6`).
+
+The corpus is the size of COCO train2017: 118,287 images (19.3 GB) and 117,152
+label files. It is the 5,000 COCO val2017 images and labels copied under new
+names, so its instances follow COCO's distribution. Each measurement is a fresh
+process. Before timing, the first 64 batches of each backend were digested in
+separate processes and were identical.
+
+| Label cache | Stage | Reference | Accelerated | Speedup |
+|---|---|---:|---:|---:|
+| Hit (later runs) | Constructor | 3.8 s | 0.6 s | 6.5× |
+| | Epoch (7,393 batches) | 376.0 s | 268.2 s | 1.40× |
+| | **Total** | **379.7 s** | **268.8 s** | **1.41×** |
+| Miss (first run) | Constructor | 53.5 s | 9.8 s | 5.5× |
+| | Epoch | 372.0 s | 267.7 s | 1.39× |
+| | **Total** | **425.5 s** | **277.5 s** | **1.53×** |
+
+- **Rounds:** hit is the median of three alternating rounds, miss of two. Rounds
+  differ by less than 1%.
+- **Throughput:** rises from 315 to 441 images per second.
+- **Memory:** the peak memory of the process and its workers (PSS) falls from
+  4.42 GB to 2.35 GB (1.9×).
+- **Workers:** in one process, a sample loads 1.63× faster (above). With eight
+  workers sharing six cores, the epoch gains 1.40×.
+
 ### Anatomy of `apply_segments`
 
 On 1,500 captured COCO calls (median 24 instances and 24,000 points per call;
