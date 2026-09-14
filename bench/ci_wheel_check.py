@@ -25,12 +25,11 @@ def main():
         import numpy as np
 
         assert importlib.util.find_spec("cv2") is None and importlib.util.find_spec("ultralytics") is None
-        # Without cv2 nothing can be verified against it: the geometry kernels
-        # work, and mask calls report the missing reference clearly.
-        from ultrafast_maskops import geometry
-
+        # Without cv2 nothing can be verified against it: the native kernels
+        # load and run, and mask calls report the missing reference clearly.
         segments = [np.array([[0, 0], [8, 0], [8, 8], [0, 8]], np.float32)]
-        assert geometry.resample_stack(segments, 100).shape == (1, 100, 2)
+        resampled = package._native.resample_stack(segments[0], np.array([0, 4], np.int64), 100, True)
+        assert resampled.shape == (1, 100, 2) and package.backend_info()["simd"] in ("neon", "sse2", "scalar")
         assert package._sampled_table(16, 16, 4) is None and package.backend_info()["rejected_sizes"] == [(16, 16)]
         try:
             package.Rasterizer().overlap((16, 16), package.PackedPolygons.from_segments(segments), 4)
