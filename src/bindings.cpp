@@ -293,7 +293,8 @@ PYBIND11_MODULE(_native, m) {
         info["cmake_sha256"] = MASKOPS_CMAKE_SHA256;
         info["template_sha256"] = MASKOPS_PROFILE_SHA256;
         info["compiler"] = MASKOPS_COMPILER;
-        info["build_type"] = MASKOPS_BUILD_TYPE;
+        const std::string build_type = MASKOPS_BUILD_TYPE;  // empty under multi-config generators
+        info["build_type"] = build_type.empty() ? std::string(MASKOPS_CONFIG) : build_type;
         return info;
     });
     m.def("simd_mode", []() { return std::string(maskops_sampled::simd_mode()); });

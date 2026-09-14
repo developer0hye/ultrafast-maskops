@@ -19,6 +19,9 @@ file(SHA256 "${CMAKE_CURRENT_SOURCE_DIR}/src/build_profile.h.in" MASKOPS_PROFILE
 configure_file(src/build_profile.h.in maskops_build_profile.h @ONLY)
 pybind11_add_module(_native src/bindings.cpp)
 target_include_directories(_native PRIVATE ${CMAKE_BINARY_DIR})
+# Multi-config generators (Visual Studio) leave CMAKE_BUILD_TYPE empty; the
+# configuration actually built is known only as a generator expression.
+target_compile_definitions(_native PRIVATE MASKOPS_CONFIG="$<CONFIG>")
 # The exact geometry replicas require every multiply and add to round
 # separately, as separate NumPy ufuncs do. MSVC does not contract by default.
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
