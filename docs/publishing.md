@@ -2,9 +2,10 @@
 
 Wheels are built by `.github/workflows/release.yml` with cibuildwheel for
 CPython 3.10–3.13 on Linux x86-64 and aarch64 (manylinux_2_28), macOS arm64
-and x86-64, and Windows x86-64, plus a source distribution. Every wheel runs
-`tests/test_parity.py` and `tests/test_sampled.py` against the freshly built
-package before it is kept.
+and x86-64 (cross-compiled on the Apple silicon runner), and Windows x86-64,
+plus a source distribution. Every wheel except the cross-compiled macOS x86-64
+one runs `tests/test_parity.py` and `tests/test_sampled.py` against the freshly
+built package before it is kept.
 
 ## Publishing a version
 
