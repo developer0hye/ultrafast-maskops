@@ -41,6 +41,6 @@ python bench/check_manylinux_runtime.py
 python -m pip install pytest==9.1.1 opencv-python==4.13.0.92 numpy==2.4.4
 python -m pytest -q tests/test_parity.py tests/test_gpu_series_audit.py tests/test_lifecycle_coordinator.py tests/test_lifecycle_gpu_audit.py --junitxml=dist/core-tests.xml
 python -m pip install torch==2.10.0 torchvision==0.25.0 --index-url https://download.pytorch.org/whl/cpu
-python -m pip install numpy==2.4.4 pillow==12.1.1 opencv-python==4.13.0.92 pi-heif==1.4.0 https://github.com/ultralytics/ultralytics/archive/795a556942a12fe0124cf767888194a1d0b83e2e.tar.gz
+for attempt in 1 2 3 4; do python -m pip install numpy==2.4.4 pillow==12.1.1 opencv-python==4.13.0.92 pi-heif==1.4.0 https://github.com/ultralytics/ultralytics/archive/795a556942a12fe0124cf767888194a1d0b83e2e.tar.gz && break; sleep 30; done
 python -m pytest -q tests/test_integration.py tests/test_training.py tests/test_persistent_format.py tests/test_shared_collate.py --junitxml=dist/integration-tests.xml
 python -m pip freeze > dist/final-environment.txt
