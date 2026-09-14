@@ -9,6 +9,10 @@ InfiniteDataLoader workers) on CPU.
 - accelerated: ultrafast_yolo_dataset.FastYOLODataset (annotation_cache="fast")
   with ultrafast_maskops accelerate_dataset and accelerate_geometry
   (persistent=True, shared collator).
+- maskops: the unmodified YOLODataset with the same ultrafast_maskops calls.
+- fast-dataset: FastYOLODataset alone.
+
+The first of --backends is the baseline for the reported ratios.
 
 Every measurement is a fresh process timing the constructor (label cache hit
 or miss), the first batch (worker start-up included) and the whole epoch.
@@ -40,13 +44,15 @@ from ultralytics.data.dataset import YOLODataset
 from ultralytics.utils import colorstr
 from ultralytics.utils.torch_utils import init_seeds
 
-BACKENDS = ("reference", "accelerated")
+BACKENDS = ("reference", "accelerated", "maskops", "fast-dataset")
+FAST_DATASET = ("accelerated", "fast-dataset")
+MASKOPS = ("accelerated", "maskops")
 TIMED = ("constructor_s", "first_batch_s", "epoch_s", "total_s", "samples_per_s", "peak_memory_bytes")
 
 
 def cache_paths(images):
     labels = Path(str(Path(images).absolute()).replace(f"{os.sep}images{os.sep}", f"{os.sep}labels{os.sep}"))
-    return {"reference": labels.with_suffix(".cache"), "accelerated": labels.with_suffix(".uydfast")}
+    return {b: labels.with_suffix(".uydfast" if b in FAST_DATASET else ".cache") for b in BACKENDS}
 
 
 def make_dataset(backend, args):
@@ -70,15 +76,18 @@ def make_dataset(backend, args):
         data={"names": {i: str(i) for i in range(80)}, "channels": 3},
         fraction=args.fraction,
     )
-    if backend == "reference":
-        return YOLODataset(**kwargs)
-    from ultrafast_maskops import geometry
-    from ultrafast_maskops.ultralytics import accelerate_dataset
-    from ultrafast_yolo_dataset.ultralytics import FastYOLODataset
+    if backend in FAST_DATASET:
+        from ultrafast_yolo_dataset.ultralytics import FastYOLODataset
 
-    dataset = FastYOLODataset(**kwargs, annotation_cache="fast")
-    accelerate_dataset(dataset, persistent=True)
-    geometry.accelerate_geometry(dataset, persistent=True)
+        dataset = FastYOLODataset(**kwargs, annotation_cache="fast")
+    else:
+        dataset = YOLODataset(**kwargs)
+    if backend in MASKOPS:
+        from ultrafast_maskops import geometry
+        from ultrafast_maskops.ultralytics import accelerate_dataset
+
+        accelerate_dataset(dataset, persistent=True)
+        geometry.accelerate_geometry(dataset, persistent=True)
     return dataset
 
 
@@ -224,20 +233,19 @@ def versions():
     return found
 
 
-def summarize(runs):
+def summarize(runs, backends):
     summary = {}
-    for backend in BACKENDS:
+    for backend in backends:
         mine = [r for r in runs if r["backend"] == backend]
         summary[backend] = {
             key: {"median": statistics.median(r[key] for r in mine), "rounds": [r[key] for r in mine]} for key in TIMED
         }
-    ratios = {}
-    for key in ("constructor_s", "first_batch_s", "epoch_s", "total_s"):
-        ratios[key] = summary["reference"][key]["median"] / summary["accelerated"][key]["median"]
-    ratios["peak_memory_bytes"] = (
-        summary["reference"]["peak_memory_bytes"]["median"] / summary["accelerated"]["peak_memory_bytes"]["median"]
-    )
-    summary["reference_over_accelerated"] = ratios
+    base = backends[0]
+    for backend in backends[1:]:
+        summary[f"{base}_over_{backend}"] = {
+            key: summary[base][key]["median"] / summary[backend][key]["median"]
+            for key in ("constructor_s", "first_batch_s", "epoch_s", "total_s", "peak_memory_bytes")
+        }
     return summary
 
 
@@ -252,6 +260,7 @@ def main():
     parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--fraction", type=float, default=1.0, help="smoke tests only")
     parser.add_argument("--verify-batches", type=int, default=64)
+    parser.add_argument("--backends", nargs="+", choices=BACKENDS, default=["reference", "accelerated"])
     parser.add_argument("--backend", choices=BACKENDS)
     parser.add_argument("--prime", action="store_true")
     parser.add_argument("--result", type=Path)
@@ -279,12 +288,13 @@ def main():
         "verification": {},
         "results": [],
     }
+    backends = list(dict.fromkeys(args.backends))
     if args.mode == "hit":
-        for backend in BACKENDS:
+        for backend in backends:
             run(args, run_dir, backend, "prime", "--prime")
             print("primed", backend, flush=True)
     if args.verify_batches:
-        for backend in BACKENDS:
+        for backend in backends:
             value = run(args, run_dir, backend, "verify", "--verify-batches", str(args.verify_batches))
             report["verification"][backend] = value["output_sha256"]
             print("verified", backend, value["output_sha256"][:16], flush=True)
@@ -292,15 +302,15 @@ def main():
             args.out.write_text(json.dumps(report, indent=2) + "\n")
             raise SystemExit("verification digests differ; no timing was run")
     for round_ in range(args.rounds):
-        for backend in BACKENDS if round_ % 2 == 0 else BACKENDS[::-1]:
+        for backend in backends if round_ % 2 == 0 else backends[::-1]:
             value = run(args, run_dir, backend, str(round_))
             value["round"] = round_
             report["results"].append(value)
             print(round_, backend, f"total {value['total_s']:.1f}s epoch {value['epoch_s']:.1f}s", flush=True)
             args.out.write_text(json.dumps(report, indent=2) + "\n")
-    report["summary"] = summarize(report["results"])
+    report["summary"] = summarize(report["results"], backends)
     args.out.write_text(json.dumps(report, indent=2) + "\n")
-    print(json.dumps(report["summary"]["reference_over_accelerated"], indent=2))
+    print(json.dumps({k: v for k, v in report["summary"].items() if "_over_" in k}, indent=2))
 
 
 if __name__ == "__main__":

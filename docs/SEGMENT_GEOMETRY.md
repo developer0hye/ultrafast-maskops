@@ -135,6 +135,26 @@ separate processes and were identical.
 - **Workers:** in one process, a sample loads 1.63× faster (above). With eight
   workers sharing six cores, the epoch gains 1.40×.
 
+A second campaign applies only the maskops calls to the unmodified
+`YOLODataset` (`--backends reference maskops`, three alternating rounds, same
+verification digest). It separates what each library contributes:
+
+| Label cache hit | Reference | maskops only | Both |
+|---|---:|---:|---:|
+| Constructor | 3.8 s | 3.8 s | 0.6 s |
+| Epoch | 374.9 s | 268.4 s | 268.2 s |
+| Total | 378.7 s | 272.2 s (1.39×) | 268.8 s (1.41×) |
+| Peak memory (PSS) | 4.41 GB | 4.23 GB | 2.35 GB |
+
+The reference and "both" columns come from separate campaigns, whose
+reference medians agree within 0.3%.
+
+- **maskops:** provides the whole epoch gain.
+- **FastYOLODataset:** shortens construction (53.5 s → 9.8 s without a label
+  cache) and keeps labels in a packed cache instead of per-image Python
+  objects. This is the only difference between the last two columns, which
+  roughly halves the memory of the process and its workers.
+
 ### Anatomy of `apply_segments`
 
 On 1,500 captured COCO calls (median 24 instances and 24,000 points per call;
