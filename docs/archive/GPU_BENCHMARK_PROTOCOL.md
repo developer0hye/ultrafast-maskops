@@ -1,8 +1,9 @@
 # Repeated GPU training protocol
 
-The original Linux-wheel 45-job series completed and passed its full independent
-audit. See [GPU_RESULTS.md](GPU_RESULTS.md) for all epoch intervals, RSS/CUDA
-memory distributions and preserved evidence. The checkpoints below are historical.
+The frozen original-wheel RTX 3070 series completed all 45 jobs / 90 epochs and
+passed the final raw/statistics audit. See [GPU_RESULTS.md](GPU_RESULTS.md) for
+the complete results and preserved artifacts. Those results predate the later
+masks-only and resize-ROI kernels; they do not measure this candidate.
 
 Preparation runs are separate from the comparison series. The completed combined
 pilot proves that the installed wheels can complete real YOLO11n-seg training;
@@ -101,50 +102,14 @@ series result or a speedup claim. The
 [checkpoint archive](../bench/results/cuda-series-checkpoint-8-trials.tar.gz)
 and `validation/cuda-series-checkpoint-8-{audit,manifest}.json` retain this evidence.
 
-A later immutable 17-trial checkpoint also passed, covering 34 full epochs.
-Five complete groups now have exact loss-vector and final-model equality:
-repetition 0 at workers 0/2/8, and repetition 1 at workers 0/2. The incomplete
-repetition-1/workers-8 group is not counted as a complete comparison. Source,
-runtime, command, raw/parent and memory-accounting checks passed for all 17
-trials. No aggregate timing is emitted. The original server archive and its
-downloaded copy have the same SHA-256; see the
-[17-trial archive](../bench/results/cuda-series-checkpoint-17-trials.tar.gz) and
-`validation/cuda-series-checkpoint-17-{audit,manifest}.json`. The older checkpoint
-and rejected early auditor result remain preserved.
-
-The subsequent immutable 27-trial checkpoint passed the same independent audit,
-covering all three backends at workers 0/2/8 for the first three repetitions:
-54 full epochs and nine complete backend groups. Every group has identical
-loss vectors for every batch and identical final model hashes across reference,
-mask-only and combined replacements. Runtime/command/source identity, complete
-epochs, raw/compact records and memory accounting also passed. The preserved
-[27-trial archive](../bench/results/cuda-series-checkpoint-27-trials.tar.gz) and
-`validation/cuda-series-checkpoint-27-{audit,manifest}.json` retain exact bytes.
-This is training-equivalence evidence for the frozen original Linux wheels;
-it does not validate the later masks-only or resize-ROI candidates. Eighteen
-trials remain in the planned comparison. No interim timing summary is emitted,
-and matching losses/models do not establish model accuracy or replace direct
-target parity tests.
-
-The immutable 36-trial checkpoint also passed: 72 full epochs and twelve
-complete backend groups, covering workers 0/2/8 for the first four repetitions.
-All batch loss vectors and final model hashes match within every group across
-reference, mask-only and combined replacements. The server archive and local
-copy match byte for byte, and all 39 snapshotted source/report hashes were
-verified before the independent audit. See the
-[36-trial archive](../bench/results/cuda-series-checkpoint-36-trials.tar.gz) and
-`validation/cuda-series-checkpoint-36-{audit,manifest}.json`. Nine planned trials
-remain at this checkpoint; no timing aggregate is emitted. The same frozen-wheel
-scope and limitations described above apply.
-
 Twelve synthetic corruption/false-completion cases in
 `tests/test_gpu_series_audit.py` passed on M2, including the complete-series
 bootstrap branch with known constant ratios and the CPU-capped worker case.
 They also reject altered loss/model records after recomputing archive hashes,
 truncated traces, false completion, reordered trials, altered RSS and forged
 statistics. The combined 21-test JUnit report (including nine dataset-fixture
-checks) and source hashes are in `validation/benchmark-audits-m2.*`. The complete
-real-series audit subsequently passed; see GPU_RESULTS.md for its separate evidence.
+checks) and source hashes are in `validation/benchmark-audits-m2.*`. The separate
+complete real-series audit subsequently passed; see GPU_RESULTS.md for its evidence.
 
 The RSS trace spans trainer initialization, training and validation work. It is
 not a per-epoch training-RSS peak and does not observe between-sample spikes.

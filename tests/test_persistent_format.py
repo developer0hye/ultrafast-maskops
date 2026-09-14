@@ -2,6 +2,7 @@
 
 import copy
 import pickle
+import time
 from multiprocessing.reduction import ForkingPickler
 from types import SimpleNamespace
 
@@ -9,8 +10,8 @@ import numpy as np
 import pytest
 import torch
 from PIL import Image
-from ultrafast_maskops.ultralytics import FastFormat, accelerate_dataset
 from ultrafast_maskops._shared_collate import shared_collate_fn
+from ultrafast_maskops.ultralytics import FastFormat, accelerate_dataset
 from ultralytics.cfg import DEFAULT_CFG
 from ultralytics.data.augment import Format
 from ultralytics.data.build import InfiniteDataLoader
@@ -135,6 +136,26 @@ def test_default_remains_one_shot_and_can_be_upgraded(corpus):
     assert candidate.format_class is FastFormat
 
 
+def record_worker_shutdown(workers):
+    """Observe the original join/terminate calls without changing their deadlines."""
+    events = []
+    for worker in workers:
+        for name in ("join", "terminate"):
+            method = getattr(worker, name)
+
+            def observed(*args, _method=method, _name=name, _worker=worker, **kwargs):
+                event = {"method": _name, "pid": _worker.pid, "args": args, "kwargs": kwargs}
+                events.append(event)
+                started = time.perf_counter()
+                try:
+                    return _method(*args, **kwargs)
+                finally:
+                    event.update(seconds=time.perf_counter() - started, exitcode=_worker.exitcode)
+
+            setattr(worker, name, observed)
+    return events
+
+
 @pytest.mark.parametrize("workers", [0, 2])
 @pytest.mark.parametrize("overlap", [True, False])
 @pytest.mark.parametrize("before_reset", ["first-batch", "full-epoch", "setup"])
@@ -162,6 +183,7 @@ def test_close_mosaic_retains_format_through_real_worker_reset(corpus, workers, 
                 assert len(list(loader)) == 2
             previous_transforms = dataset.transforms
             previous_workers = list(getattr(loader.iterator, "_workers", ()))
+            shutdown_events = record_worker_shutdown(previous_workers)
             # This is the actual unmodified trainer method, also used on resume.
             SegmentationTrainer._close_dataloader_mosaic(owner)
             assert dataset.transforms is not previous_transforms
@@ -172,7 +194,12 @@ def test_close_mosaic_retains_format_through_real_worker_reset(corpus, workers, 
                 restarted = list(loader.iterator._workers)
                 assert len(restarted) == workers
                 assert all(not worker.is_alive() for worker in previous_workers)
-                assert all(worker.exitcode == 0 for worker in previous_workers)
+                assert all(worker.exitcode == 0 for worker in previous_workers), {
+                    "native": native,
+                    "before_reset": before_reset,
+                    "workers": [(worker.pid, worker.exitcode) for worker in previous_workers],
+                    "shutdown_events": shutdown_events,
+                }
                 assert not ({worker.pid for worker in previous_workers} & {worker.pid for worker in restarted})
         left, right = (list(owner.train_loader) for owner in owners)
         assert len(left) == len(right) == 2

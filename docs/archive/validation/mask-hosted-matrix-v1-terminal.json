@@ -1,0 +1,179 @@
+{
+  "passed": true,
+  "run_id": 34744592119,
+  "source_commit": "06a26d106ba8dd896061f987a6561521de68e6e1",
+  "run_conclusion": "failure",
+  "jobs": [
+    {
+      "name": "wheel (ubuntu-24.04, 3.13)",
+      "job_id": 103690046093,
+      "conclusion": "success",
+      "pytest_summaries": [
+        "289 passed in 12.31s",
+        "67 passed in 82.59s (0:01:22)"
+      ]
+    },
+    {
+      "name": "wheel (windows-2022, 3.11)",
+      "job_id": 103690046138,
+      "conclusion": "success",
+      "pytest_summaries": [
+        "289 passed in 17.06s",
+        "67 passed in 108.78s (0:01:48)"
+      ]
+    },
+    {
+      "name": "wheel (ubuntu-24.04, 3.11)",
+      "job_id": 103690046152,
+      "conclusion": "success",
+      "pytest_summaries": [
+        "289 passed in 9.83s",
+        "67 passed in 55.60s"
+      ]
+    },
+    {
+      "name": "wheel (macos-15, 3.10)",
+      "job_id": 103690046154,
+      "conclusion": "success",
+      "pytest_summaries": [
+        "289 passed in 12.08s"
+      ]
+    },
+    {
+      "name": "wheel (ubuntu-24.04, 3.10)",
+      "job_id": 103690046156,
+      "conclusion": "success",
+      "pytest_summaries": [
+        "289 passed in 14.31s"
+      ]
+    },
+    {
+      "name": "wheel (macos-15, 3.11)",
+      "job_id": 103690046177,
+      "conclusion": "success",
+      "pytest_summaries": [
+        "289 passed in 11.42s",
+        "67 passed in 284.76s (0:04:44)"
+      ]
+    },
+    {
+      "name": "wheel (ubuntu-24.04, 3.12)",
+      "job_id": 103690046180,
+      "conclusion": "success",
+      "pytest_summaries": [
+        "289 passed in 14.16s",
+        "67 passed in 91.34s (0:01:31)"
+      ]
+    },
+    {
+      "name": "wheel (windows-2022, 3.13)",
+      "job_id": 103690046181,
+      "conclusion": "failure",
+      "pytest_summaries": [
+        "289 passed in 14.52s",
+        "1 failed, 66 passed in 104.33s (0:01:44)"
+      ]
+    },
+    {
+      "name": "wheel (macos-15, 3.12)",
+      "job_id": 103690046187,
+      "conclusion": "success",
+      "pytest_summaries": [
+        "289 passed in 8.24s",
+        "67 passed in 282.63s (0:04:42)"
+      ]
+    },
+    {
+      "name": "wheel (macos-15, 3.13)",
+      "job_id": 103690046191,
+      "conclusion": "success",
+      "pytest_summaries": [
+        "289 passed in 9.12s",
+        "67 passed in 269.59s (0:04:29)"
+      ]
+    },
+    {
+      "name": "wheel (windows-2022, 3.12)",
+      "job_id": 103690046203,
+      "conclusion": "success",
+      "pytest_summaries": [
+        "289 passed in 16.78s",
+        "67 passed in 111.90s (0:01:51)"
+      ]
+    },
+    {
+      "name": "wheel (windows-2022, 3.10)",
+      "job_id": 103690046219,
+      "conclusion": "success",
+      "pytest_summaries": [
+        "289 passed in 17.28s"
+      ]
+    }
+  ],
+  "archive": "bench/results/mask-hosted-matrix-v1-terminal-evidence.tar.gz",
+  "archive_bytes": 297305,
+  "archive_sha256": "138beca961172e2f36b29c0e4b3ff711a2a6ebc51f8c70e4b346ccc3ebe72a3b",
+  "members": {
+    "mask-hosted-matrix-v1-run.json": {
+      "bytes": 13593,
+      "sha256": "c95b72ca084835f7eddd33624a6cd5275577663052bae9ded99502c64fffecd0"
+    },
+    "mask-hosted-matrix-v1-jobs.json": {
+      "bytes": 45403,
+      "sha256": "64d4b51fcbde16e4975e8825b11138b5fa4f2c49e8c916ac434734c62d6394b1"
+    },
+    "mask-hosted-matrix-v1-artifacts.json": {
+      "bytes": 8884,
+      "sha256": "dc566e0a6a57668e725ca20509da73fc9f640904147f10c946598abcc4747c77"
+    },
+    "mask-hosted-matrix-v1-job-103690046093.log": {
+      "bytes": 138382,
+      "sha256": "4539a8cbf0656acb55316fc40ef47a688dc73763f60ada06aa4494e96104e78d"
+    },
+    "mask-hosted-matrix-v1-job-103690046138.log": {
+      "bytes": 106873,
+      "sha256": "fac14d0c534b96fcbde95b6ca6a2f2aeda8e4a122aaa2c97ccbd0dfb82896550"
+    },
+    "mask-hosted-matrix-v1-job-103690046152.log": {
+      "bytes": 143039,
+      "sha256": "26649055a40625f3f5b0b710bb870124197bc301dc4bb897e44d16df2503fdb0"
+    },
+    "mask-hosted-matrix-v1-job-103690046154.log": {
+      "bytes": 145590,
+      "sha256": "f1a423ec1b9ab187cbebe92658bf51a739874ce688b83252af0563c2c69ab889"
+    },
+    "mask-hosted-matrix-v1-job-103690046156.log": {
+      "bytes": 116895,
+      "sha256": "344cb41ec8ac52f5bda7f9add3f8ac470fdaeed50fda2627375a05e00eb77bce"
+    },
+    "mask-hosted-matrix-v1-job-103690046177.log": {
+      "bytes": 167077,
+      "sha256": "b9e02efb09ffb35a73b0bef44ffaf6af2ff01ac052d1bda5a1fa3ecdf3dd0ac0"
+    },
+    "mask-hosted-matrix-v1-job-103690046180.log": {
+      "bytes": 139749,
+      "sha256": "e8caea3af2232bb539bc460e0083371a7ad4e4f73f901c36eb77a87ec2aa8398"
+    },
+    "mask-hosted-matrix-v1-job-103690046181.log": {
+      "bytes": 108907,
+      "sha256": "edc47d54caa87826f8fc86954aa76b8aa609597119966b7c321f979e5765fc80"
+    },
+    "mask-hosted-matrix-v1-job-103690046187.log": {
+      "bytes": 163435,
+      "sha256": "efc13af0477ea9cd4ab0e1d23274aaac8c8831ced0366de36ffc6bcc5ceaf85a"
+    },
+    "mask-hosted-matrix-v1-job-103690046191.log": {
+      "bytes": 162427,
+      "sha256": "ea918f5c0dcb6a5e88b30d69dc2337e2523ba4aab688075fb9835dede59721e9"
+    },
+    "mask-hosted-matrix-v1-job-103690046203.log": {
+      "bytes": 104759,
+      "sha256": "b174346f21174ce786c5ce1cea9e98eea4273c29b700dcf9dd1bf8f3e2d6bb4b"
+    },
+    "mask-hosted-matrix-v1-job-103690046219.log": {
+      "bytes": 83672,
+      "sha256": "308f093b0c0ccee7bf6ddb26833bc605b0c2c4802a7089bebfaf5e72ed8cf443"
+    }
+  },
+  "scope": "All 12 terminal job logs and API records preserved and read back. Eleven jobs passed; Windows 3.13 failed. Preservation pass is not compatibility success. Original wheel/JUnit/sdist payload preservation remains open."
+}

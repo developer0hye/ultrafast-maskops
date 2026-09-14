@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "scope": "Preservation and readback of a failed CI job; not a functional pass. Full run was still active at capture. Original wheel artifact remains on GitHub; this archive contains logs, API and test/workflow source only.",
+  "run_id": 34744592119,
+  "job_id": 103690046181,
+  "source_commit": "06a26d106ba8dd896061f987a6561521de68e6e1",
+  "failed_test": "test_close_mosaic_retains_format_through_real_worker_reset[setup-True-2]",
+  "failed_check": "all previous workers exitcode == 0 after unchanged loader.reset",
+  "core_passed": 289,
+  "integration_passed": 66,
+  "integration_failed": 1,
+  "archive": "bench/results/mask-hosted-windows313-v1-failure.tar.gz",
+  "archive_bytes": 28740,
+  "archive_sha256": "074f61757f628f153ea64129cbfd39308217a8ac8c644148e779fe009cf6f6b8",
+  "members": {
+    "mask-hosted-windows313-v1.log": {
+      "sha256": "edc47d54caa87826f8fc86954aa76b8aa609597119966b7c321f979e5765fc80",
+      "bytes": 108907
+    },
+    "mask-hosted-windows313-v1-job.json": {
+      "sha256": "ed8f3aa08cef6f1799b4d6548cd50caaec0aa72180643d4a7723157fa7ca92ed",
+      "bytes": 3783
+    },
+    "mask-hosted-windows313-v1-artifact.json": {
+      "sha256": "36e091e04e35aceffae185711da266a9edbc831cb3013071d5af6c4298eb6dde",
+      "bytes": 738
+    },
+    "original-source/tests/test_persistent_format.py": {
+      "sha256": "cdd846bc8414fd5d66f7005aa2af9d9d508bd91ed760917fdcd5ba5159671be8",
+      "bytes": 10781
+    },
+    "original-source/.github/workflows/wheels.yml": {
+      "sha256": "dd4cf9e336e38dcea68ea50f1946a642d87cd6fb2c07cded5330952e35f1b6bd",
+      "bytes": 3698
+    }
+  }
+}
