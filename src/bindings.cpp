@@ -486,6 +486,7 @@ PYBIND11_MODULE(_native,m) {
         return info;
     });
     m.def("opencv_threads",[](){return cv::getNumThreads();});
+    m.def("simd_mode",[](){return std::string(maskops_sampled::simd_mode());});
     m.def("opencv_build_info",[](){return cv::getBuildInformation();});
     maskops_geometry::register_geometry(m);
     py::class_<Polygons>(m,"Polygons").def(py::init<Array<int32_t>,Array<int64_t>>()).def("__len__",&Polygons::size);

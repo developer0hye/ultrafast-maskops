@@ -51,6 +51,28 @@
 
 namespace maskops_sampled {
 
+// Every vector path below has a scalar twin that computes the same bytes.
+// ULTRAFAST_MASKOPS_SCALAR=1 in the environment at import selects the scalar
+// twins everywhere, so the tests can cover them on hosts that have SIMD.
+inline bool simd_enabled() {
+    static const bool enabled = [] {
+        const char *value = std::getenv("ULTRAFAST_MASKOPS_SCALAR");
+        return value == nullptr || *value == '\0' || std::strcmp(value, "0") == 0;
+    }();
+    return enabled;
+}
+
+inline const char *simd_mode() {
+    if (!simd_enabled()) return "scalar";
+#if defined(MASKOPS_SAMPLED_NEON)
+    return "neon";
+#elif defined(MASKOPS_SAMPLED_X86)
+    return "sse2";
+#else
+    return "scalar";
+#endif
+}
+
 constexpr int kShift = 16;  // XY_SHIFT
 constexpr int64_t kOne = int64_t(1) << kShift;
 // Envelope in which every fixed-point product below stays far inside int64 and
@@ -203,20 +225,25 @@ inline void or_run(uint8_t *p, int j0, int j1, uint8_t bits) {
     if (len <= 0) return;
     uint8_t *q = p + j0;
 #ifdef MASKOPS_SAMPLED_NEON
-    const uint8x16_t v = vdupq_n_u8(bits);
-    for (; len >= 16; len -= 16, q += 16) vst1q_u8(q, vorrq_u8(vld1q_u8(q), v));
-    if (len) vst1q_u8(q, vorrq_u8(vld1q_u8(q), vandq_u8(v, vld1q_u8(kPrefix.m[len]))));
-#elif defined(MASKOPS_SAMPLED_X86)
-    const __m128i v = _mm_set1_epi8(char(bits));
-    auto *w = reinterpret_cast<__m128i *>(q);
-    for (; len >= 16; len -= 16, ++w) _mm_storeu_si128(w, _mm_or_si128(_mm_loadu_si128(w), v));
-    if (len) {
-        const __m128i prefix = _mm_loadu_si128(reinterpret_cast<const __m128i *>(kPrefix.m[len]));
-        _mm_storeu_si128(w, _mm_or_si128(_mm_loadu_si128(w), _mm_and_si128(v, prefix)));
+    if (simd_enabled()) {
+        const uint8x16_t v = vdupq_n_u8(bits);
+        for (; len >= 16; len -= 16, q += 16) vst1q_u8(q, vorrq_u8(vld1q_u8(q), v));
+        if (len) vst1q_u8(q, vorrq_u8(vld1q_u8(q), vandq_u8(v, vld1q_u8(kPrefix.m[len]))));
+        return;
     }
-#else
-    for (; len > 0; --len, ++q) *q |= bits;
+#elif defined(MASKOPS_SAMPLED_X86)
+    if (simd_enabled()) {
+        const __m128i v = _mm_set1_epi8(char(bits));
+        auto *w = reinterpret_cast<__m128i *>(q);
+        for (; len >= 16; len -= 16, ++w) _mm_storeu_si128(w, _mm_or_si128(_mm_loadu_si128(w), v));
+        if (len) {
+            const __m128i prefix = _mm_loadu_si128(reinterpret_cast<const __m128i *>(kPrefix.m[len]));
+            _mm_storeu_si128(w, _mm_or_si128(_mm_loadu_si128(w), _mm_and_si128(v, prefix)));
+        }
+        return;
+    }
 #endif
+    for (; len > 0; --len, ++q) *q |= bits;
 }
 
 // Pattern bit of pixel (x, y) indexed by (y & 3) * 4 + (x & 3). Rows 4k+1/4k+2
@@ -229,7 +256,7 @@ inline void bounds(const int32_t *v, int n, int &x0, int &y0, int &x1, int &y1) 
     x0 = y0 = INT_MAX, x1 = y1 = INT_MIN;
     int i = 0;
 #ifdef MASKOPS_SAMPLED_NEON
-    if (n >= 2) {
+    if (n >= 2 && simd_enabled()) {
         int32x4_t lo = vdupq_n_s32(INT_MAX), hi = vdupq_n_s32(INT_MIN);
         for (; i + 2 <= n; i += 2) {
             const int32x4_t p = vld1q_s32(v + 2 * i);
@@ -291,11 +318,12 @@ class Sampler {
     uint64_t emit(const Box &b, uint8_t *dst, ptrdiff_t stride) {
         if (b.empty()) return 0;
 #ifdef MASKOPS_SAMPLED_X86
-        if (has_ssse3()) return emit_ssse3(b, dst, stride);
+        if (simd_enabled() && has_ssse3()) return emit_ssse3(b, dst, stride);
 #endif
         uint64_t area = 0;
         const int bw = int(b.width());
 #ifdef MASKOPS_SAMPLED_NEON
+        const bool vector = simd_enabled();
         const uint8x16_t table = vld1q_u8(lut_), zero = vdupq_n_u8(0);
 #endif
         for (int y = b.y0; y <= b.y1; ++y) {
@@ -303,7 +331,7 @@ class Sampler {
             uint8_t *d = dst + ptrdiff_t(y - b.y0) * stride;
             int x = 0;
 #ifdef MASKOPS_SAMPLED_NEON
-            while (x + 16 <= bw) {
+            while (vector && x + 16 <= bw) {
                 // Each u16 lane gains at most 2 * 255 per step: 128 steps fit.
                 uint16x8_t acc = vdupq_n_u16(0);
                 for (int s = 0; s < 128 && x + 16 <= bw; ++s, x += 16) {
@@ -648,15 +676,18 @@ inline bool load_contours(const F *xy, size_t n, size_t m, int32_t *points, int6
     size_t k = 0;
 #ifdef MASKOPS_SAMPLED_NEON
     if constexpr (std::is_same_v<F, float>) {
-        uint32x4_t ok = vdupq_n_u32(~0u);
-        for (size_t i = 0; i < n; ++i) {
-            k += load_contour_f32(xy + 2 * i * m, m, points + 2 * k, ok);
-            offsets[i + 1] = int64_t(k);
+        if (simd_enabled()) {
+            uint32x4_t ok = vdupq_n_u32(~0u);
+            for (size_t i = 0; i < n; ++i) {
+                k += load_contour_f32(xy + 2 * i * m, m, points + 2 * k, ok);
+                offsets[i + 1] = int64_t(k);
+            }
+            return vminvq_u32(ok) != 0;
         }
-        return vminvq_u32(ok) != 0;
     }
 #elif defined(MASKOPS_SAMPLED_X86)
     if constexpr (std::is_same_v<F, float>) {
+      if (simd_enabled()) {
         // Two vertices per step: one cvttps2dq, then a compaction whose only
         // loop-carried dependency is the running count.
         const __m128 limit = _mm_set1_ps(float(kCoordLimit));
@@ -691,6 +722,7 @@ inline bool load_contours(const F *xy, size_t n, size_t m, int32_t *points, int6
             offsets[i + 1] = int64_t(k);
         }
         return ok && _mm_movemask_ps(inside) == 0xF;
+      }
     }
 #endif
     bool ok = true;
@@ -726,7 +758,7 @@ inline void paint(T *__restrict out, int ww, const Box &b, const uint8_t *__rest
 #ifdef MASKOPS_SAMPLED_NEON
         if constexpr (std::is_same_v<T, uint8_t>) {
             const uint8x16_t fill = vdupq_n_u8(value);
-            for (; x + 16 <= bw; x += 16) {
+            for (; simd_enabled() && x + 16 <= bw; x += 16) {
                 const uint8x16_t m = vld1q_u8(s + x);
                 vst1q_u8(o + x, vbslq_u8(vtstq_u8(m, m), fill, vld1q_u8(o + x)));
             }
@@ -734,7 +766,7 @@ inline void paint(T *__restrict out, int ww, const Box &b, const uint8_t *__rest
 #elif defined(MASKOPS_SAMPLED_X86)
         if constexpr (std::is_same_v<T, uint8_t>) {
             const __m128i fill = _mm_set1_epi8(char(value)), zero = _mm_setzero_si128();
-            for (; x + 16 <= bw; x += 16) {
+            for (; simd_enabled() && x + 16 <= bw; x += 16) {
                 auto *target = reinterpret_cast<__m128i *>(o + x);
                 const __m128i keep = _mm_cmpeq_epi8(_mm_loadu_si128(reinterpret_cast<const __m128i *>(s + x)), zero);
                 _mm_storeu_si128(target, _mm_or_si128(_mm_and_si128(keep, _mm_loadu_si128(target)),

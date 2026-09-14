@@ -2,7 +2,9 @@
 
 import os
 import platform
+import subprocess
 import sys
+from pathlib import Path
 
 import cv2
 import numpy as np
@@ -224,21 +226,58 @@ def test_sampled_state_contract():
         core.sampled_masks(square, 30, 32, table)
 
 
-@pytest.mark.skipif(not os.environ.get("MASKOPS_FORMAT_INPUTS"), reason="set MASKOPS_FORMAT_INPUTS to captured inputs")
-def test_captured_format_inputs():
-    data = np.load(os.environ["MASKOPS_FORMAT_INPUTS"])
+FIXTURE = Path(__file__).parent / "fixtures" / "coco-format-inputs.npz"
+
+
+def captured_calls(path):
+    data = np.load(path)
     points, offsets, counts, verts, hw, ratio = (data[k] for k in ("points", "offsets", "instances", "vertices", "hw", "ratio"))
-    engine = native.Rasterizer()
-    checked = 0
     for i in range(len(counts)):
         n, v = int(counts[i]), int(verts[i])
-        if not n:
-            continue
-        segments = points[offsets[i] : offsets[i + 1]].reshape(n, v, 2)
-        shape, r = (int(hw[i][0]), int(hw[i][1])), int(ratio[i])
+        if n:
+            yield points[offsets[i] : offsets[i + 1]].reshape(n, v, 2), (int(hw[i][0]), int(hw[i][1])), int(ratio[i])
+
+
+@pytest.mark.parametrize(
+    "path, minimum",
+    [
+        pytest.param(FIXTURE, 40, id="fixture"),
+        pytest.param(
+            os.environ.get("MASKOPS_FORMAT_INPUTS"),
+            1000,
+            id="full-capture",
+            marks=pytest.mark.skipif(
+                not os.environ.get("MASKOPS_FORMAT_INPUTS"), reason="set MASKOPS_FORMAT_INPUTS to the full capture"
+            ),
+        ),
+    ],
+)
+def test_captured_format_inputs(path, minimum):
+    # Real augmented COCO polygons as Format receives them (float32 (N, 1000, 2)).
+    engine = native.Rasterizer()
+    checked = 0
+    for segments, shape, r in captured_calls(path):
         expected = reference.polygons2masks_overlap(shape, segments, r)
         got = engine.overlap_segments(shape, segments, r)
         equal(got[0], expected[0])
         equal(got[1], expected[1])
+        equal(engine.masks_segments(shape, segments, 1, r), reference.polygons2masks(shape, segments, 1, r))
         checked += 1
-    assert checked > 1000
+    assert checked >= minimum
+
+
+def test_simd_switch_selects_the_scalar_twins():
+    # The scalar twins compute the same bytes; the CI runs the parity tests
+    # under ULTRAFAST_MASKOPS_SCALAR=1 as well. Here: the switch is honoured.
+    code = "import ultrafast_maskops as m; print(m.backend_info()['simd'])"
+    modes = {}
+    for value in ("", "1"):
+        env = {k: v for k, v in os.environ.items() if k != "ULTRAFAST_MASKOPS_SCALAR"}
+        if value:
+            env["ULTRAFAST_MASKOPS_SCALAR"] = value
+        modes[value] = subprocess.run([sys.executable, "-c", code], env=env, check=True, capture_output=True, text=True)
+        modes[value] = modes[value].stdout.strip()
+    assert modes["1"] == "scalar"
+    assert modes[""] in ("neon", "sse2", "scalar")
+    if platform.machine().lower() in ("arm64", "aarch64", "x86_64", "amd64"):
+        assert modes[""] != "scalar"

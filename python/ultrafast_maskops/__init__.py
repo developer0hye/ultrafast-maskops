@@ -242,6 +242,7 @@ def backend_info():
         "native_workers": 1,
         "build": _native.build_profile(),
         "private_opencv_threads": _native.opencv_threads(),
+        "simd": _native.simd_mode(),  # "scalar" when ULTRAFAST_MASKOPS_SCALAR=1 at import
         "fallback_count": 0,
         "reference_sha": "795a556942a12fe0124cf767888194a1d0b83e2e",
     }
