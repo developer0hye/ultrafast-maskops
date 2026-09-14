@@ -1,497 +1,314 @@
 // SPDX-License-Identifier: AGPL-3.0-only
+// Python bindings. The extension depends on nothing but pybind11: the mask
+// kernel (sampled.hpp) replicates cv::fillPoly and the 4x linear downscale in
+// integer arithmetic, and the segment geometry (geometry.hpp) replicates the
+// NumPy and OpenCV calls of the pinned Ultralytics functions.
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
-#include <opencv2/core.hpp>
-#include <opencv2/imgproc.hpp>
 #include "maskops_build_profile.h"
 #include "geometry.hpp"
 #include "sampled.hpp"
 #include <algorithm>
 #include <array>
-#include <string>
+#include <climits>
+#include <cstddef>
 #include <cstdint>
 #include <cstring>
-#include <type_traits>
-#include <cstddef>
-#include <limits>
 #include <mutex>
+#include <string>
 #include <vector>
 namespace py = pybind11;
 template <typename T> using Array = py::array_t<T, py::array::c_style>;
 
-// Inclusive original-coordinate extents. Delay widening/clipping until a raster
-// size is known, so immutable packed geometry can be reused at different sizes.
-struct Extents {
-    int32_t x0=INT_MAX,y0=INT_MAX,x1=INT_MIN,y1=INT_MIN;
-    bool empty() const { return x1<x0; }
-    void add(int32_t x,int32_t y) {
-        x0=std::min(x0,x); x1=std::max(x1,x);
-        y0=std::min(y0,y); y1=std::max(y1,y);
-    }
-    void merge(const Extents &other) {
-        if(!other.empty()) { add(other.x0,other.y0); add(other.x1,other.y1); }
-    }
-    cv::Rect clipped(int h,int w) const {
-        if(empty()) return {};
-        const auto left=std::clamp(int64_t(x0),int64_t(0),int64_t(w));
-        const auto right=std::clamp(int64_t(x1)+1,int64_t(0),int64_t(w));
-        const auto top=std::clamp(int64_t(y0),int64_t(0),int64_t(h));
-        const auto bottom=std::clamp(int64_t(y1)+1,int64_t(0),int64_t(h));
-        return right>left && bottom>top ? cv::Rect(int(left),int(top),int(right-left),int(bottom-top)) : cv::Rect();
-    }
-};
-
+// An owned, immutable snapshot of int32 contours: one per instance.
 struct Polygons {
-    std::vector<cv::Point> points;
-    std::vector<int64_t> offsets;
-    std::vector<Extents> extents;
-    Extents combined;
+    std::vector<int32_t> points;  // x, y pairs
+    std::vector<int64_t> offsets;  // vertex index of each contour's start; N + 1 entries
     Polygons(Array<int32_t> xy, Array<int64_t> off) {
         if (xy.ndim() != 2 || xy.shape(1) != 2 || off.ndim() != 1 || off.size() < 1)
             throw py::value_error("expected points[P,2] and offsets[N+1]");
         // A C-contiguous NumPy array need not be naturally aligned. Copy bytes
         // into aligned owned vectors before any typed reads, including offsets.
         std::vector<int64_t> source_offsets(size_t(off.size()));
-        std::memcpy(source_offsets.data(),static_cast<const py::array&>(off).data(),size_t(off.nbytes()));
+        std::memcpy(source_offsets.data(), static_cast<const py::array &>(off).data(), size_t(off.nbytes()));
         if (source_offsets.front() != 0 || source_offsets.back() != xy.shape(0))
             throw py::value_error("offsets must span points");
-        for (size_t i=1; i<source_offsets.size(); ++i)
-            if (source_offsets[i] < source_offsets[i-1] || source_offsets[i]-source_offsets[i-1] > INT_MAX)
+        for (size_t i = 1; i < source_offsets.size(); ++i)
+            if (source_offsets[i] < source_offsets[i - 1] || source_offsets[i] - source_offsets[i - 1] > INT_MAX)
                 throw py::value_error("invalid contour length or offset order");
-        static_assert(std::is_trivially_copyable_v<cv::Point> && std::is_standard_layout_v<cv::Point>);
-        static_assert(sizeof(cv::Point)==2*sizeof(int32_t) && offsetof(cv::Point,x)==0 && offsetof(cv::Point,y)==sizeof(int32_t));
-        points.reserve(size_t(xy.shape(0)));
+        points.reserve(2 * size_t(xy.shape(0)));
         offsets.resize(source_offsets.size());
-        offsets[0]=0;
-        extents.resize(size());
-        const auto *bytes=static_cast<const unsigned char*>(static_cast<const py::array&>(xy).data());
-        for(size_t i=0;i<size();++i) {
-            auto &box=extents[i];
-            const size_t begin=points.size();
-            for(auto j=source_offsets[i];j<source_offsets[i+1];++j) {
-                cv::Point point;
-                std::memcpy(&point,bytes+size_t(j)*sizeof(point),sizeof(point));
-                // Only remove consecutive identical integer vertices. They add
-                // zero-length LINE_8 edges whose pixel is already covered by
-                // an incident edge. An all-identical contour keeps one point.
-                // Nonzero edges (including collinear edges) stay unchanged.
-                if(points.size()==begin || point!=points.back()) {
-                    points.push_back(point);
-                    box.add(point.x,point.y);
-                }
+        offsets[0] = 0;
+        const auto *bytes = static_cast<const unsigned char *>(static_cast<const py::array &>(xy).data());
+        for (size_t i = 0; i < size(); ++i) {
+            const size_t begin = points.size();
+            for (auto j = source_offsets[i]; j < source_offsets[i + 1]; ++j) {
+                int32_t point[2];
+                std::memcpy(point, bytes + size_t(j) * sizeof(point), sizeof(point));
+                // Only remove consecutive identical vertices. They add
+                // zero-length LINE_8 edges whose pixel an incident edge
+                // already draws. An all-identical contour keeps one point.
+                if (points.size() == begin || point[0] != points[points.size() - 2] || point[1] != points.back())
+                    points.insert(points.end(), point, point + 2);
             }
-            // Keep a terminal copy of the first vertex. Removing it would
-            // rotate the nonzero edge insertion order in CollectPolyEdges.
-            offsets[i+1]=int64_t(points.size());
-            combined.merge(box);
+            offsets[i + 1] = int64_t(points.size() / 2);
         }
     }
-    size_t size() const { return offsets.size()-1; }
+    size_t size() const { return offsets.size() - 1; }
 };
 
+// Per-worker mask engine: one contour source at a time, serialized by its
+// mutex. The Python layer calibrates the pattern table against the installed
+// cv2.resize and decides when this engine applies (4x ratio, sides divisible
+// by 4); anything else runs the reference Python code.
 struct Rasterizer {
-    cv::Mat scratch;
-    cv::Rect dirty;
     std::mutex mutex;
-    size_t budget;
-    explicit Rasterizer(size_t limit): budget(limit) {}
-    size_t dimensions(int h, int w, int r) const {
-        if (h <= 0 || w <= 0 || r <= 0 || h/r == 0 || w/r == 0)
-            throw py::value_error("positive dimensions and nonzero downsampled size required");
-        const size_t full = size_t(h)*size_t(w), reduced = size_t(h/r)*size_t(w/r);
-        if (full > size_t(PY_SSIZE_T_MAX) || reduced > size_t(PY_SSIZE_T_MAX))
-            throw py::value_error("dimensions overflow");
-        if (full > budget || reduced > budget-full)
-            throw py::value_error("scratch_limit_bytes cannot hold one full and one resized mask");
-        return reduced;
-    }
-    void prepare(int h,int w) {
-        if(scratch.rows!=h || scratch.cols!=w) {
-            scratch.create(h,w,CV_8UC1);
-            scratch.setTo(0);
-        } else if(!dirty.empty()) {
-            scratch(dirty).setTo(0);
-        }
-        dirty=cv::Rect();
-    }
-    cv::Rect resize_support(cv::Mat &dst, bool area_support=true) {
-        const cv::Rect full(0,0,dst.cols,dst.rows);
-        const int h=scratch.rows, w=scratch.cols;
-        // Mask-only callers do not consume a reduced area-scan rectangle.
-        // At unit scale OpenCV already takes its whole-image copy path; avoid
-        // clearing the destination and then copying a crop over part of it.
-        if(!area_support && dst.rows==h && dst.cols==w) {
-            cv::resize(scratch,dst,dst.size(),0,0,cv::INTER_LINEAR);
-            return full;
-        }
-        // Preserve the full-image sampling lattice. Power-of-two integer
-        // scales have exact reciprocal coefficients; the dimension bound keeps
-        // half-integer source coordinates representable in resize.cpp's float.
-        const int scale=w/dst.cols;
-        const bool exact=scale>0 && (scale&(scale-1))==0 &&
-            w%dst.cols==0 && h%dst.rows==0 && h/dst.rows==scale &&
-            h<=(1<<23) && w<=(1<<23);
-        if(!exact) {
-            cv::resize(scratch,dst,dst.size(),0,0,cv::INTER_LINEAR);
-            return full;
-        }
-        if(dirty.empty()) {
-            dst.setTo(0);
-            return {};
-        }
-        int left=dirty.x/scale, top=dirty.y/scale;
-        const int right=(dirty.x+dirty.width+scale-1)/scale;
-        const int bottom=(dirty.y+dirty.height+scale-1)/scale;
-        int width=right-left, height=bottom-top;
-        // Carotene's single-channel linear HAL requires both output dimensions
-        // >=8. Preserve that eligibility: switching a small crop to the generic
-        // path changes integer rounding at scales >=4, even with exact sampling
-        // coordinates. Extend into known-zero scratch, retaining aligned origins.
-        if(dst.cols>=8 && dst.rows>=8) {
-            width=std::max(width,8); height=std::max(height,8);
-            left=std::min(left,dst.cols-width); top=std::min(top,dst.rows-height);
-        }
-        const cv::Rect reduced(left,top,width,height);
-        // Zeroing a full output plus rewriting a large ROI can lose to a single
-        // full resize. This initial cost guard is fixed before measurement.
-        if(size_t(reduced.width)*reduced.height*2>=size_t(dst.cols)*dst.rows) {
-            cv::resize(scratch,dst,dst.size(),0,0,cv::INTER_LINEAR);
-            return full;
-        }
-        const cv::Rect source(left*scale,top*scale,reduced.width*scale,reduced.height*scale);
-        dst.setTo(0);
-        cv::Mat target=dst(reduced);
-        cv::resize(scratch(source),target,target.size(),0,0,cv::INTER_LINEAR);
-        return reduced;
-    }
-    cv::Rect render(const Polygons &p, size_t i, int h, int w, cv::Mat &dst, int color, bool area_support=true) {
-        prepare(h,w);
-        int count = int(p.offsets[i+1]-p.offsets[i]);
-        if (count) {
-            const cv::Point *ptr = p.points.data()+p.offsets[i];
-            dirty=p.extents[i].clipped(h,w);
-            cv::fillPoly(scratch, &ptr, &count, 1, cv::Scalar(color));
-        }
-        return resize_support(dst,area_support);
-    }
-    py::tuple raster(const Polygons &p, int h, int w, int r, int color, bool keep) {
-        const auto a=dimensions(h,w,r), n=p.size();
-        if (color<0 || color>255) throw py::value_error("color must be in [0,255]");
-        if (n && a > size_t(PY_SSIZE_T_MAX)/n) throw py::value_error("output size overflow");
-        Array<uint8_t> masks({py::ssize_t(keep?n:0),py::ssize_t(h/r),py::ssize_t(w/r)});
-        Array<uint64_t> areas{py::ssize_t(n)};
-        auto *out=masks.mutable_data(); auto *sums=areas.mutable_data();
-        {
-            py::gil_scoped_release release;
-            std::lock_guard<std::mutex> guard(mutex);
-            cv::Mat small;
-            if (!keep) small.create(h/r,w/r,CV_8UC1);
-            for (size_t i=0;i<n;++i) {
-                cv::Mat dst=keep?cv::Mat(h/r,w/r,CV_8UC1,out+i*a):small;
-                const auto support=render(p,i,h,w,dst,color);
-                sums[i]=support.empty()?uint64_t(0):uint64_t(cv::sum(dst(support))[0]);
-            }
-        }
-        return py::make_tuple(masks,areas);
-    }
-    Array<uint8_t> masks(const Polygons &p, int h, int w, int r, int color) {
-        const auto a=dimensions(h,w,r), n=p.size();
-        if (color<0 || color>255) throw py::value_error("color must be in [0,255]");
-        if (n && a > size_t(PY_SSIZE_T_MAX)/n) throw py::value_error("output size overflow");
-        Array<uint8_t> result({py::ssize_t(n),py::ssize_t(h/r),py::ssize_t(w/r)});
-        auto *out=result.mutable_data();
-        {
-            py::gil_scoped_release release;
-            std::lock_guard<std::mutex> guard(mutex);
-            for (size_t i=0;i<n;++i) {
-                cv::Mat dst(h/r,w/r,CV_8UC1,out+i*a);
-                render(p,i,h,w,dst,color,false);
-            }
-        }
-        return result;
-    }
-    Array<uint8_t> single(const Polygons &p,int h,int w,int r,int color) {
-        dimensions(h,w,r);
-        if (color<0 || color>255) throw py::value_error("color must be in [0,255]");
-        Array<uint8_t> result({h/r,w/r});
-        auto *out=result.mutable_data();
-        {
-            py::gil_scoped_release release;
-            std::lock_guard<std::mutex> guard(mutex);
-            prepare(h,w);
-            std::vector<const cv::Point*> ptrs; std::vector<int> counts;
-            for(size_t i=0;i<p.size();++i) {
-                int count=int(p.offsets[i+1]-p.offsets[i]);
-                if(count) {ptrs.push_back(p.points.data()+p.offsets[i]); counts.push_back(count);}
-            }
-            if(!ptrs.empty()) {
-                dirty=p.combined.clipped(h,w);
-                cv::fillPoly(scratch,ptrs.data(),counts.data(),int(ptrs.size()),cv::Scalar(color));
-            }
-            cv::Mat dst(h/r,w/r,CV_8UC1,out); resize_support(dst,false);
-        }
-        return result;
-    }
-    template<typename T> py::array compose_t(const Polygons &p,Array<int64_t> order,int h,int w,int r,
-                                            Array<uint8_t> masks,bool retained) {
-        const auto a=dimensions(h,w,r), n=p.size();
-        if(order.ndim()!=1 || size_t(order.size())!=n || n>INT_MAX)
-            throw py::value_error("invalid order length");
-        std::vector<int64_t> indices(n);
-        if(n) std::memcpy(indices.data(),static_cast<const py::array&>(order).data(),size_t(order.nbytes()));
-        std::vector<bool> seen(n,false);
-        for(auto i:indices) {
-            if(i<0 || size_t(i)>=n || seen[i]) throw py::value_error("order must be a permutation");
-            seen[i]=true;
-        }
-        if(retained && (masks.ndim()!=3 || size_t(masks.shape(0))!=n || masks.shape(1)!=h/r || masks.shape(2)!=w/r))
-            throw py::value_error("invalid retained mask shape");
-        Array<T> result({h/r,w/r});
-        auto *out=result.mutable_data(); const auto *input=masks.data();
-        {
-            py::gil_scoped_release release;
-            std::lock_guard<std::mutex> guard(mutex);
-            std::fill(out,out+a,T(0));
-            cv::Mat small;
-            if(!retained) small.create(h/r,w/r,CV_8UC1);
-            for(size_t rank=0;rank<n;++rank) {
-                const uint8_t *pixels;
-                if(retained) pixels=input+indices[rank]*a;
-                else {render(p,indices[rank],h,w,small,1); pixels=small.data;}
-                const size_t source=size_t(indices[rank]);
-                const auto box=p.extents[source].clipped(h,w);
-                // Conservative support of LINEAR resize. Two destination pixels
-                // of padding include interpolation neighbors and odd-size rounding.
-                // Pixels outside this region are known zero, so leave output intact.
-                if(!box.empty()) {
-                    const int sw=w/r, sh=h/r;
-                    const int left=std::max(0,int(int64_t(box.x)*sw/w)-2);
-                    const int top=std::max(0,int(int64_t(box.y)*sh/h)-2);
-                    const int right=int(std::min(int64_t(sw),(int64_t(box.x+box.width)*sw+w-1)/w+2));
-                    const int bottom=int(std::min(int64_t(sh),(int64_t(box.y+box.height)*sh+h-1)/h+2));
-                    for(int y=top;y<bottom;++y) {
-                        const size_t row=size_t(y)*sw;
-                        for(int x=left;x<right;++x) {
-                            const size_t j=row+size_t(x);
-                            out[j]=pixels[j]?T(rank+1):out[j];
-                        }
-                    }
-                }
-            }
-        }
-        return result;
-    }
-    py::array compose(const Polygons &p,Array<int64_t> order,int h,int w,int r,Array<uint8_t> masks,bool retained) {
-        return p.size()>255?compose_t<int32_t>(p,order,h,w,r,masks,retained):compose_t<uint8_t>(p,order,h,w,r,masks,retained);
-    }
-
-    // Exact 4x path (sampled.hpp). The caller supplies cv2.resize's calibrated
-    // pattern table and serializes sampled_raster with its sampled_compose.
     maskops_sampled::Sampler sampler;
     maskops_sampled::Vec<int32_t> sampled_points;
     std::vector<int64_t> sampled_offsets;
     maskops_sampled::Vec<uint8_t> sampled_arena, sampled_scratch;
     std::vector<size_t> sampled_starts;
     std::vector<maskops_sampled::Box> sampled_boxes;
-    bool sampled_ready=false, sampled_kept=false;
+    bool sampled_ready = false, sampled_kept = false;
 
-    static std::array<uint8_t,16> sampled_table(int h,int w,const py::bytes &lut,bool binary) {
-        if(!maskops_sampled::Sampler::eligible(h,w))
+    static size_t reduced_size(int h, int w) {
+        if (!maskops_sampled::Sampler::eligible(h, w))
             throw py::value_error("sampled rasterization requires sides divisible by 4 and at most 32768");
-        const std::string bytes=lut;
-        if(bytes.size()!=16) throw py::value_error("pattern table must hold 16 bytes");
-        std::array<uint8_t,16> table;
-        std::memcpy(table.data(),bytes.data(),16);
-        if(binary && std::any_of(table.begin(),table.end(),[](uint8_t v){return v>1;}))
+        const size_t reduced = size_t(h / 4) * size_t(w / 4);
+        if (reduced > size_t(PY_SSIZE_T_MAX)) throw py::value_error("dimensions overflow");
+        return reduced;
+    }
+    static std::array<uint8_t, 16> sampled_table(int h, int w, const py::bytes &lut, bool binary) {
+        reduced_size(h, w);
+        const std::string bytes = lut;
+        if (bytes.size() != 16) throw py::value_error("pattern table must hold 16 bytes");
+        std::array<uint8_t, 16> table;
+        std::memcpy(table.data(), bytes.data(), 16);
+        if (binary && std::any_of(table.begin(), table.end(), [](uint8_t v) { return v > 1; }))
             throw py::value_error("overlap pattern table must be binary");
         return table;
     }
     // Source of contours: a Polygons snapshot, or a C-contiguous aligned
     // float32/float64 (N,M,2) array converted like np.asarray(..., np.int32).
     struct SampledSource {
-        const Polygons *packed=nullptr;
+        const Polygons *packed = nullptr;
         py::array array;
-        int kind=0; // 1 float32, 2 float64
-        size_t count=0;
+        int kind = 0;  // 1 float32, 2 float64
+        size_t count = 0;
     };
-    static bool sampled_source(const py::object &source,SampledSource &s) {
-        if(py::isinstance<Polygons>(source)) {
-            s.packed=&source.cast<const Polygons&>();
-            s.count=s.packed->size();
+    static bool sampled_source(const py::object &source, SampledSource &s) {
+        if (py::isinstance<Polygons>(source)) {
+            s.packed = &source.cast<const Polygons &>();
+            s.count = s.packed->size();
             return true;
         }
-        if(!py::isinstance<py::array>(source)) return false;
-        s.array=py::reinterpret_borrow<py::array>(source);
-        const auto &a=s.array;
-        if(a.ndim()!=3 || a.shape(2)!=2 || a.shape(1)>INT_MAX || (a.shape(0)>0 && a.shape(1)==0)) return false;
-        const auto address=reinterpret_cast<uintptr_t>(a.data());
-        if(py::isinstance<Array<float>>(a) && address%alignof(float)==0) s.kind=1;
-        else if(py::isinstance<Array<double>>(a) && address%alignof(double)==0) s.kind=2;
-        else return false;
-        s.count=size_t(a.shape(0));
+        if (!py::isinstance<py::array>(source)) return false;
+        s.array = py::reinterpret_borrow<py::array>(source);
+        const auto &a = s.array;
+        if (a.ndim() != 3 || a.shape(2) != 2 || a.shape(1) > INT_MAX || (a.shape(0) > 0 && a.shape(1) == 0))
+            return false;
+        const auto address = reinterpret_cast<uintptr_t>(a.data());
+        if (py::isinstance<Array<float>>(a) && address % alignof(float) == 0)
+            s.kind = 1;
+        else if (py::isinstance<Array<double>>(a) && address % alignof(double) == 0)
+            s.kind = 2;
+        else
+            return false;
+        s.count = size_t(a.shape(0));
         return true;
     }
-    // Loads contours into the sampled state (engine lock held, GIL released).
-    // False when a coordinate is non-finite or outside the exact envelope.
+    // Loads contours into the padded layout described at kPadVertices (engine
+    // lock held, GIL released). False when a coordinate is non-finite or
+    // outside the exact envelope.
     bool sampled_load(const SampledSource &s) {
-        if(s.packed) {
-            const auto &points=s.packed->points;
-            sampled_points.resize(2*points.size()+maskops_sampled::kPointSlack);
-            bool ok=true;
-            for(size_t i=0;i<points.size();++i) {
-                ok&=std::abs(int64_t(points[i].x))<(int64_t(1)<<24) && std::abs(int64_t(points[i].y))<(int64_t(1)<<24);
-                sampled_points[2*i]=points[i].x; sampled_points[2*i+1]=points[i].y;
+        using maskops_sampled::kPadVertices;
+        if (s.packed) {
+            const auto &points = s.packed->points;
+            const auto &offsets = s.packed->offsets;
+            const size_t n = offsets.size() - 1;
+            sampled_points.resize(2 * (1 + points.size() / 2 + n * size_t(kPadVertices)) + maskops_sampled::kPointSlack);
+            sampled_offsets.resize(n + 1);
+            bool ok = true;
+            int64_t start = 1;
+            sampled_offsets[0] = start;
+            for (size_t i = 0; i < n; ++i) {
+                const int64_t count = offsets[i + 1] - offsets[i];
+                int32_t *out = sampled_points.data() + 2 * start;
+                for (int64_t j = 0; j < 2 * count; ++j) {
+                    const int32_t value = points[size_t(2 * offsets[i] + j)];
+                    ok &= std::abs(int64_t(value)) < (int64_t(1) << 24);
+                    out[j] = value;
+                }
+                if (count) maskops_sampled::pad_contour(out, count);
+                start += count + kPadVertices;
+                sampled_offsets[i + 1] = start;
             }
-            sampled_offsets=s.packed->offsets;
             return ok;
         }
-        const auto n=size_t(s.array.shape(0)), m=size_t(s.array.shape(1));
-        sampled_points.resize(2*n*m+maskops_sampled::kPointSlack);
-        sampled_offsets.resize(n+1);
-        return s.kind==1
-            ?maskops_sampled::load_contours(static_cast<const float*>(s.array.data()),n,m,sampled_points.data(),sampled_offsets.data())
-            :maskops_sampled::load_contours(static_cast<const double*>(s.array.data()),n,m,sampled_points.data(),sampled_offsets.data());
+        const auto n = size_t(s.array.shape(0)), m = size_t(s.array.shape(1));
+        sampled_points.resize(2 * (1 + n * (m + size_t(kPadVertices))) + maskops_sampled::kPointSlack);
+        sampled_offsets.resize(n + 1);
+        return s.kind == 1 ? maskops_sampled::load_contours(static_cast<const float *>(s.array.data()), n, m,
+                                                            sampled_points.data(), sampled_offsets.data())
+                           : maskops_sampled::load_contours(static_cast<const double *>(s.array.data()), n, m,
+                                                            sampled_points.data(), sampled_offsets.data());
     }
     maskops_sampled::Box sampled_render(size_t i) {
-        return sampler.render(sampled_points.data()+2*sampled_offsets[i],int(sampled_offsets[i+1]-sampled_offsets[i]));
+        const int64_t count = sampled_offsets[i + 1] - sampled_offsets[i] - maskops_sampled::kPadVertices;
+        return sampler.render(sampled_points.data() + 2 * sampled_offsets[i], int(count));
     }
-    // Areas of each contour's downscaled mask. Retains the masks (keep) or
-    // only the contours, which sampled_compose then renders again.
-    py::object sampled_raster(const py::object &source,int h,int w,const py::bytes &lut,bool keep) {
-        const auto table=sampled_table(h,w,lut,true);
-        dimensions(h,w,4);
+    // Areas of each contour's downscaled mask; None when the source is not
+    // one this engine handles. Retains the masks (keep) or only the contours,
+    // which sampled_compose then renders again.
+    py::object sampled_raster(const py::object &source, int h, int w, const py::bytes &lut, bool keep) {
+        const auto table = sampled_table(h, w, lut, true);
         SampledSource s;
-        if(!sampled_source(source,s)) return py::none();
+        if (!sampled_source(source, s)) return py::none();
         Array<uint64_t> areas{py::ssize_t(s.count)};
-        auto *sums=areas.mutable_data();
+        auto *sums = areas.mutable_data();
         bool ok;
         {
             py::gil_scoped_release release;
             std::lock_guard<std::mutex> guard(mutex);
-            sampler.configure(h,w,table.data());
-            ok=sampled_ready=sampled_load(s);
-            sampled_kept=keep;
-            if(ok) {
-                const size_t n=s.count;
+            sampler.configure(h, w, table.data());
+            uint64_t since = 0;
+#ifdef MASKOPS_ABLATE
+            since = maskops_sampled::now_ns();
+#endif
+            ok = sampled_ready = sampled_load(s);
+            MASKOPS_TICK(0, since);
+            sampled_kept = keep;
+            if (ok) {
+                const size_t n = s.count;
                 sampled_boxes.resize(n);
-                sampled_starts.assign(n+1,0);
+                sampled_starts.assign(n + 1, 0);
                 sampled_arena.clear();
-                for(size_t i=0;i<n;++i) {
-                    const auto box=sampled_render(i);
-                    auto &store=keep?sampled_arena:sampled_scratch;
-                    const size_t start=keep?store.size():0;
-                    store.resize(start+box.size());
-                    sums[i]=sampler.emit(box,store.data()+start,ptrdiff_t(box.width()));
-                    sampled_boxes[i]=box;
-                    sampled_starts[i+1]=store.size();
+                for (size_t i = 0; i < n; ++i) {
+                    const auto box = sampled_render(i);
+                    auto &store = keep ? sampled_arena : sampled_scratch;
+                    const size_t start = keep ? store.size() : 0;
+                    store.resize(start + box.size());
+                    MASKOPS_SKIP(32) {
+                        sums[i] = 0, sampled_boxes[i] = box, sampled_starts[i + 1] = store.size();
+                        continue;
+                    }
+#ifdef MASKOPS_ABLATE
+                    since = maskops_sampled::now_ns();
+#endif
+                    sums[i] = sampler.emit(box, store.data() + start, ptrdiff_t(box.width()));
+                    MASKOPS_TICK(7, since);
+                    sampled_boxes[i] = box;
+                    sampled_starts[i + 1] = store.size();
                 }
             }
         }
-        if(!ok) return py::none();
+        if (!ok) return py::none();
         return std::move(areas);
     }
-    template<typename T> py::array sampled_compose_t(const std::vector<int64_t> &indices) {
+    template <typename T> py::array sampled_compose_t(const std::vector<int64_t> &indices) {
         // The engine lock is never held while the GIL is reacquired, so taking
         // it briefly with the GIL held cannot deadlock.
-        int hh,ww;
+        int hh, ww;
         {
             std::lock_guard<std::mutex> guard(mutex);
-            if(!sampled_ready || sampled_boxes.size()!=indices.size())
+            if (!sampled_ready || sampled_boxes.size() != indices.size())
                 throw py::value_error("sampled_compose requires a preceding sampled_raster of the same contours");
-            hh=sampler.hh; ww=sampler.ww;
+            hh = sampler.hh, ww = sampler.ww;
         }
-        Array<T> result({hh,ww});
-        auto *out=result.mutable_data();
+        Array<T> result({hh, ww});
+        auto *out = result.mutable_data();
         bool changed;
         {
             py::gil_scoped_release release;
             std::lock_guard<std::mutex> guard(mutex);
-            changed=!sampled_ready || sampled_boxes.size()!=indices.size() || sampler.hh!=hh || sampler.ww!=ww;
-            if(!changed) std::fill(out,out+size_t(hh)*size_t(ww),T(0));
-            for(size_t rank=0;!changed && rank<indices.size();++rank) {
-                const auto i=size_t(indices[rank]);
+            changed = !sampled_ready || sampled_boxes.size() != indices.size() || sampler.hh != hh || sampler.ww != ww;
+            if (!changed) std::fill(out, out + size_t(hh) * size_t(ww), T(0));
+            for (size_t rank = 0; !changed && rank < indices.size(); ++rank) {
+                const auto i = size_t(indices[rank]);
                 maskops_sampled::Box box;
                 const uint8_t *mask;
-                if(sampled_kept) {
-                    box=sampled_boxes[i];
-                    mask=sampled_arena.data()+sampled_starts[i];
+                if (sampled_kept) {
+                    box = sampled_boxes[i];
+                    mask = sampled_arena.data() + sampled_starts[i];
                 } else {
-                    box=sampled_render(i);
+                    box = sampled_render(i);
                     sampled_scratch.resize(box.size());
-                    sampler.emit(box,sampled_scratch.data(),ptrdiff_t(box.width()));
-                    mask=sampled_scratch.data();
+                    sampler.emit(box, sampled_scratch.data(), ptrdiff_t(box.width()));
+                    mask = sampled_scratch.data();
                 }
-                if(!box.empty()) maskops_sampled::paint(out,ww,box,mask,T(rank+1));
+                if (!box.empty()) maskops_sampled::paint(out, ww, box, mask, T(rank + 1));
             }
         }
-        if(changed) throw py::value_error("sampled state changed during sampled_compose");
+        if (changed) throw py::value_error("sampled state changed during sampled_compose");
         return result;
     }
     py::array sampled_compose(Array<int64_t> order) {
-        if(order.ndim()!=1) throw py::value_error("invalid order length");
-        const auto n=size_t(order.size());
+        if (order.ndim() != 1) throw py::value_error("invalid order length");
+        const auto n = size_t(order.size());
         std::vector<int64_t> indices(n);
-        if(n) std::memcpy(indices.data(),static_cast<const py::array&>(order).data(),size_t(order.nbytes()));
-        std::vector<bool> seen(n,false);
-        for(auto i:indices) {
-            if(i<0 || size_t(i)>=n || seen[i]) throw py::value_error("order must be a permutation");
-            seen[i]=true;
+        if (n) std::memcpy(indices.data(), static_cast<const py::array &>(order).data(), size_t(order.nbytes()));
+        std::vector<bool> seen(n, false);
+        for (auto i : indices) {
+            if (i < 0 || size_t(i) >= n || seen[i]) throw py::value_error("order must be a permutation");
+            seen[i] = true;
         }
-        return n>255?sampled_compose_t<int32_t>(indices):sampled_compose_t<uint8_t>(indices);
+        return n > 255 ? sampled_compose_t<int32_t>(indices) : sampled_compose_t<uint8_t>(indices);
     }
     // One mask per contour, each the downscaled table value of its patterns.
-    py::object sampled_masks(const py::object &source,int h,int w,const py::bytes &lut) {
-        const auto table=sampled_table(h,w,lut,false);
-        const auto a=dimensions(h,w,4);
+    py::object sampled_masks(const py::object &source, int h, int w, const py::bytes &lut) {
+        const auto table = sampled_table(h, w, lut, false);
+        const auto a = reduced_size(h, w);
         SampledSource s;
-        if(!sampled_source(source,s)) return py::none();
-        if(s.count && a>size_t(PY_SSIZE_T_MAX)/s.count) throw py::value_error("output size overflow");
-        Array<uint8_t> result({py::ssize_t(s.count),py::ssize_t(h/4),py::ssize_t(w/4)});
-        auto *out=result.mutable_data();
+        if (!sampled_source(source, s)) return py::none();
+        if (s.count && a > size_t(PY_SSIZE_T_MAX) / s.count) throw py::value_error("output size overflow");
+        Array<uint8_t> result({py::ssize_t(s.count), py::ssize_t(h / 4), py::ssize_t(w / 4)});
+        auto *out = result.mutable_data();
         bool ok;
         {
             py::gil_scoped_release release;
             std::lock_guard<std::mutex> guard(mutex);
-            sampler.configure(h,w,table.data());
-            sampled_ready=false;
-            ok=sampled_load(s);
-            if(ok) {
-                std::memset(out,0,s.count*a);
-                for(size_t i=0;i<s.count;++i) {
-                    const auto box=sampled_render(i);
-                    if(!box.empty())
-                        sampler.emit(box,out+i*a+size_t(box.y0)*size_t(sampler.ww)+size_t(box.x0),sampler.ww);
+            sampler.configure(h, w, table.data());
+            sampled_ready = false;
+            ok = sampled_load(s);
+            if (ok) {
+                std::memset(out, 0, s.count * a);
+                for (size_t i = 0; i < s.count; ++i) {
+                    const auto box = sampled_render(i);
+                    if (!box.empty())
+                        sampler.emit(box, out + i * a + size_t(box.y0) * size_t(sampler.ww) + size_t(box.x0), sampler.ww);
                 }
             }
         }
-        if(!ok) return py::none();
+        if (!ok) return py::none();
         return std::move(result);
     }
 };
 
-PYBIND11_MODULE(_native,m) {
-    // This statically linked, symbol-private OpenCV copy has an explicit one
-    // thread policy. It must not alter the separately imported Python cv2 state.
-    cv::setNumThreads(0); // disable internal parallel regions (one calling worker)
-    m.attr("opencv_version")=CV_VERSION;
-    m.def("build_profile",[](){
+PYBIND11_MODULE(_native, m) {
+    m.def("build_profile", []() {
         py::dict info;
-        info["bindings_sha256"]=MASKOPS_BINDINGS_SHA256;
-        info["geometry_sha256"]=MASKOPS_GEOMETRY_SHA256;
-        info["sampled_sha256"]=MASKOPS_SAMPLED_SHA256;
-        info["cmake_sha256"]=MASKOPS_CMAKE_SHA256;
-        info["template_sha256"]=MASKOPS_PROFILE_SHA256;
-        info["compiler"]=MASKOPS_COMPILER;
-        info["build_type"]=MASKOPS_BUILD_TYPE;
+        info["bindings_sha256"] = MASKOPS_BINDINGS_SHA256;
+        info["geometry_sha256"] = MASKOPS_GEOMETRY_SHA256;
+        info["sampled_sha256"] = MASKOPS_SAMPLED_SHA256;
+        info["cmake_sha256"] = MASKOPS_CMAKE_SHA256;
+        info["template_sha256"] = MASKOPS_PROFILE_SHA256;
+        info["compiler"] = MASKOPS_COMPILER;
+        info["build_type"] = MASKOPS_BUILD_TYPE;
         return info;
     });
-    m.def("opencv_threads",[](){return cv::getNumThreads();});
-    m.def("simd_mode",[](){return std::string(maskops_sampled::simd_mode());});
-    m.def("opencv_build_info",[](){return cv::getBuildInformation();});
+    m.def("simd_mode", []() { return std::string(maskops_sampled::simd_mode()); });
+#ifdef MASKOPS_ABLATE
+    m.def("phase_ns", []() {
+        py::list out;
+        for (auto t : maskops_sampled::phase_ns()) out.append(double(t) * 41.6667);
+        return out;
+    });
+#endif
     maskops_geometry::register_geometry(m);
-    py::class_<Polygons>(m,"Polygons").def(py::init<Array<int32_t>,Array<int64_t>>()).def("__len__",&Polygons::size);
-    py::class_<Rasterizer>(m,"Rasterizer").def(py::init<size_t>()).def("raster",&Rasterizer::raster)
-        .def("masks",&Rasterizer::masks).def("single",&Rasterizer::single).def("compose",&Rasterizer::compose)
-        .def("sampled_raster",&Rasterizer::sampled_raster).def("sampled_compose",&Rasterizer::sampled_compose)
-        .def("sampled_masks",&Rasterizer::sampled_masks);
+    py::class_<Polygons>(m, "Polygons").def(py::init<Array<int32_t>, Array<int64_t>>()).def("__len__", &Polygons::size);
+    py::class_<Rasterizer>(m, "Rasterizer")
+        .def(py::init<>())
+        .def("sampled_raster", &Rasterizer::sampled_raster)
+        .def("sampled_compose", &Rasterizer::sampled_compose)
+        .def("sampled_masks", &Rasterizer::sampled_masks);
 }

@@ -95,7 +95,7 @@ jobs:
           python -m pip install --no-deps dist/*.whl
           python bench/ci_wheel_check.py
           python -m pip install pytest==9.1.1 opencv-python==4.13.0.92 numpy==2.4.4
-          python -m pytest -q -rs tests/test_parity.py tests/test_sampled.py tests/test_resize_roi.py tests/test_gpu_series_audit.py tests/test_lifecycle_coordinator.py tests/test_lifecycle_gpu_audit.py --junitxml=dist/core-tests.xml
+          python -m pytest -q -rs tests/test_parity.py tests/test_sampled.py tests/test_gpu_series_audit.py tests/test_lifecycle_coordinator.py tests/test_lifecycle_gpu_audit.py --junitxml=dist/core-tests.xml
           python -m pip freeze > dist/final-environment.txt
       - name: Collect source rebuild artifacts
         if: always()
@@ -194,7 +194,7 @@ jobs:
       - name: Core parity
         run: |
           python -m pip install pytest==9.1.1 opencv-python==4.13.0.92 "numpy==$NUMPY_VERSION"
-          python -m pytest -q -rs tests/test_parity.py tests/test_sampled.py tests/test_resize_roi.py tests/test_gpu_series_audit.py tests/test_lifecycle_coordinator.py tests/test_lifecycle_gpu_audit.py --junitxml=dist/core-tests.xml
+          python -m pytest -q -rs tests/test_parity.py tests/test_sampled.py tests/test_gpu_series_audit.py tests/test_lifecycle_coordinator.py tests/test_lifecycle_gpu_audit.py --junitxml=dist/core-tests.xml
       - name: Core parity with the scalar kernels
         env:
           ULTRAFAST_MASKOPS_SCALAR: '1'

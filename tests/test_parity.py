@@ -1,3 +1,5 @@
+"""Byte parity of the public API with the pinned reference, on and off the native path."""
+
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
@@ -14,15 +16,17 @@ def equal(a, b):
     assert a.tobytes() == b.tobytes()
 
 
+# (31, 33) at every ratio and (32, 36) at ratios other than 4 run the reference
+# with the installed cv2; (32, 36) at ratio 4 runs the native kernel.
 @pytest.mark.parametrize("n", [0, 1, 5, 20, 100, 127, 128, 129, 255, 256, 500])
-@pytest.mark.parametrize("ratio", [1, 2, 4, 8])
+@pytest.mark.parametrize("shape,ratio", [((31, 33), 1), ((31, 33), 4), ((32, 36), 2), ((32, 36), 4), ((32, 36), 8)])
 @pytest.mark.parametrize("mode", ["retained", "bounded"])
-def test_overlap_boundaries(n, ratio, mode):
+def test_overlap_boundaries(n, shape, ratio, mode):
     # Identical areas, zeros, clipping, and full overlaps in the same case.
     polygon = np.array([[-0.9, 0.9], [31.9, 0], [31, 29], [0, 29]], dtype=np.float64)
     segments = [polygon.copy() if i % 3 else polygon + 100 for i in range(n)]
-    expected = reference.polygons2masks_overlap((31, 33), segments, ratio)
-    got = native.Rasterizer().overlap((31, 33), native.PackedPolygons.from_segments(segments), ratio, mode=mode)
+    expected = reference.polygons2masks_overlap(shape, segments, ratio)
+    got = native.Rasterizer().overlap(shape, native.PackedPolygons.from_segments(segments), ratio, mode=mode)
     for a, b in zip(expected, got):
         equal(a, b)
 
@@ -30,32 +34,35 @@ def test_overlap_boundaries(n, ratio, mode):
 @pytest.mark.parametrize("color", [0, 1, 127, 255])
 def test_multiple_contours_one_fill(color):
     contours = np.array([[[0, 0], [25, 0], [25, 25], [0, 25]], [[5, 5], [20, 5], [20, 20], [5, 20]]], dtype=np.float64)
-    for ratio in (1, 2, 4):
-        equal(
-            reference.polygon2mask((31, 33), contours, color, ratio),
-            native.polygon2mask((31, 33), contours, color, ratio),
-        )
+    for shape in ((31, 33), (32, 36)):
+        for ratio in (1, 2, 4):
+            equal(reference.polygon2mask(shape, contours, color, ratio), native.polygon2mask(shape, contours, color, ratio))
+            equal(
+                reference.polygon2mask(shape, contours[:1], color, ratio),
+                native.polygon2mask(shape, contours[:1], color, ratio),
+            )
 
 
 def test_empty_contracts():
     equal(reference.polygons2masks((16, 16), [], 1), native.polygons2masks((16, 16), [], 1))
     packed = native.PackedPolygons.from_segments([])
-    result = native.Rasterizer().masks((16, 16), packed)
-    assert result.shape == (0, 16, 16) and result.dtype == np.uint8
+    for ratio in (1, 4):
+        result = native.Rasterizer().masks((16, 16), packed, 1, ratio)
+        assert result.shape == (0, 16 // ratio, 16 // ratio) and result.dtype == np.uint8
     empty_contour = native.PackedPolygons(np.empty((0, 2), np.int32), np.array([0, 0], np.int64))
     for mode in ("retained", "bounded"):
-        mask, order = native.Rasterizer().overlap((16, 16), empty_contour, mode=mode)
+        mask, order = native.Rasterizer().overlap((16, 16), empty_contour, 4, mode=mode)
         assert not mask.any() and order.tolist() == [0]
 
 
 def test_snapshot_lifetime_and_concurrency():
     points = np.array([[0, 0], [30, 0], [20, 20]], dtype=np.int32)
     packed = native.PackedPolygons(points, np.array([0, 3], dtype=np.int64))
-    expected = reference.polygons2masks_overlap((33, 31), [points.copy()], 2)
+    expected = reference.polygons2masks_overlap((32, 32), [points.copy()], 4)
     points[:] = 999
     engine = native.Rasterizer()
     with ThreadPoolExecutor(4) as pool:
-        results = list(pool.map(lambda _: engine.overlap((33, 31), packed, 2), range(32)))
+        results = list(pool.map(lambda _: engine.overlap((32, 32), packed, 4), range(32)))
     for result in results:
         for a, b in zip(expected, result):
             equal(a, b)
@@ -73,33 +80,35 @@ def test_invalid_inputs():
         with pytest.raises(ValueError):
             native.PackedPolygons(np.zeros((2, 2), np.int32), np.array(offsets, np.int64))
     p = native.PackedPolygons.from_segments([np.zeros((3, 2))])
-    with pytest.raises(ValueError):
-        native.Rasterizer(scratch_limit_bytes=16).overlap((32, 32), p)
+    with pytest.raises(ValueError, match="scratch_limit_bytes"):
+        native.Rasterizer(scratch_limit_bytes=16).overlap((32, 32), p, 4, mode="retained")
+    with pytest.raises(ValueError, match="mode"):
+        native.Rasterizer().overlap((32, 32), p, 4, mode="fast")
     for r in (0, -1, 100):
         with pytest.raises(ValueError):
             native.Rasterizer().masks((32, 32), p, downsample_ratio=r)
+    with pytest.raises(ValueError, match="color"):
+        native.polygon2mask((32, 32), [np.zeros(6)], 256, 4)
 
 
-def test_private_opencv_threads_and_import_order():
+def test_import_leaves_cv2_alone_and_works_without_it():
     for code in (
-        (
-            "import cv2; cv2.setNumThreads(3); before=cv2.getNumThreads(); import ultrafast_maskops as m; "
-            "assert cv2.getNumThreads()==before; assert m.backend_info()['private_opencv_threads']==1"
-        ),
-        (
-            "import ultrafast_maskops as m; import cv2; cv2.setNumThreads(4); "
-            "assert m.backend_info()['private_opencv_threads']==1"
-        ),
+        "import cv2; cv2.setNumThreads(3); before=cv2.getNumThreads(); import ultrafast_maskops; "
+        "assert cv2.getNumThreads()==before",
+        # Without cv2 the package imports and rejects sizes it cannot verify.
+        "import sys; sys.modules['cv2']=None; import ultrafast_maskops as m; "
+        "assert m._sampled_table(32, 32, 4) is None",
     ):
         subprocess.run([sys.executable, "-c", code], check=True)
 
 
 def test_ndarray_packing_and_empty_contours():
     segments = np.arange(60, dtype=np.float64).reshape(5, 6, 2)[:, ::-1]
-    for a, b in zip(
-        reference.polygons2masks_overlap((31, 33), segments, 4), native.polygons2masks_overlap((31, 33), segments, 4)
-    ):
-        equal(a, b)
+    for shape in ((31, 33), (32, 36)):
+        for a, b in zip(
+            reference.polygons2masks_overlap(shape, segments, 4), native.polygons2masks_overlap(shape, segments, 4)
+        ):
+            equal(a, b)
     with pytest.raises(ValueError, match="empty contours"):
         native.polygons2masks_overlap((16, 16), [np.empty((0, 2))])
 
@@ -109,7 +118,9 @@ def test_10000_seeded_differential_cases():
     engine = native.Rasterizer()
     for case in range(10000):
         shape = tuple(map(int, rng.integers(8, 65, 2)))
-        ratio = (1, 2, 4, 8)[case % 4]
+        if case % 3:  # mostly native-eligible sizes
+            shape = (shape[0] // 4 * 4, shape[1] // 4 * 4)
+        ratio = (1, 2, 4, 4)[case % 4]
         n = int(rng.integers(1, 9))
         segments = [rng.uniform(-30, 90, (int(rng.integers(1, 18)), 2)) for _ in range(n)]
         if case % 5 == 0:
@@ -117,7 +128,7 @@ def test_10000_seeded_differential_cases():
         for segment in segments:
             segment.flags.writeable = False
         before = [s.tobytes() for s in segments]
-        color = (0, 1, 127, 255)[case % 4]
+        color = (0, 1, 1, 255)[case % 4]
         packed = native.PackedPolygons.from_segments(segments)
         equal(reference.polygons2masks(shape, segments, color, ratio), engine.masks(shape, packed, color, ratio))
         got = engine.overlap(shape, packed, ratio, mode="bounded" if case % 2 else "retained")
@@ -136,25 +147,26 @@ def test_misaligned_packed_input_is_copied_safely():
     assert points.flags.c_contiguous and offsets.flags.c_contiguous
     assert not points.flags.aligned and not offsets.flags.aligned
     packed = native.PackedPolygons(points, offsets)
-    # Extents and points must both belong to the immutable snapshot.
+    # The snapshot owns its contours.
     points[:] = -100
     offsets[:] = 0
-    actual = native.Rasterizer().overlap((31, 33), packed, 3)
-    expected = reference.polygons2masks_overlap((31, 33), [original[:4], original[4:]], 3)
-    assert actual[0].dtype == expected[0].dtype
-    assert np.array_equal(actual[0], expected[0]) and np.array_equal(actual[1], expected[1])
+    for shape, ratio in (((32, 32), 4), ((31, 33), 3)):
+        actual = native.Rasterizer().overlap(shape, packed, ratio)
+        expected = reference.polygons2masks_overlap(shape, [original[:4], original[4:]], ratio)
+        assert actual[0].dtype == expected[0].dtype
+        assert np.array_equal(actual[0], expected[0]) and np.array_equal(actual[1], expected[1])
     # The private composition entry point also accepts contiguous unaligned
     # NumPy input, so it must copy order bytes before reading int64 indices.
-    core = native._native.Rasterizer(64 * 1024**2)
-    masks, areas = core.raster(packed._native, 31, 33, 3, 1, True)
+    core = native._native.Rasterizer()
+    areas = core.sampled_raster(packed._native, 32, 32, native._sampled_table(32, 32, 4), True)
     order = np.ndarray((2,), np.int64, buffer=bytearray(17), offset=1)
     order[:] = np.argsort(-areas)
     assert not order.flags.aligned
-    equal(core.compose(packed._native, order, 31, 33, 3, masks, True), expected[0])
+    equal(core.sampled_compose(order), reference.polygons2masks_overlap((32, 32), [original[:4], original[4:]], 4)[0])
 
 
 @pytest.mark.parametrize("mode", ["retained", "bounded"])
-def test_cached_geometry_extents_follow_each_raster_size(mode):
+def test_one_snapshot_at_several_sizes(mode):
     segments = [
         np.array([[-9, -12], [60, -2], [70, 42], [-8, 40]], np.int32),
         np.array([[1, 1], [32, 1], [32, 24], [1, 24]], np.int32),
@@ -162,16 +174,12 @@ def test_cached_geometry_extents_follow_each_raster_size(mode):
     ]
     packed = native.PackedPolygons.from_segments(segments)
     engine = native.Rasterizer()
-    for h, w, ratio in [(31, 33, 1), (65, 47, 3), (9, 13, 2), (31, 33, 4), (65, 47, 1)]:
+    for h, w, ratio in [(32, 32, 4), (64, 48, 4), (31, 33, 1), (65, 47, 3), (32, 32, 4), (96, 128, 4)]:
         expected = reference.polygons2masks_overlap((h, w), segments, ratio)
         actual = engine.overlap((h, w), packed, ratio, mode=mode)
         assert actual[0].dtype == expected[0].dtype
         assert np.array_equal(actual[0], expected[0]) and np.array_equal(actual[1], expected[1])
-        # The multi-contour union must use combined extents, even after overlap
-        # left the retained scratch dirty with a differently sized last contour.
-        wanted = reference.polygon2mask((h, w), [segments[0], segments[1]], 1, ratio)
-        pair = native.PackedPolygons.from_segments([segments[0], segments[1]])
-        assert np.array_equal(engine._core.single(pair._native, h, w, ratio, 1), wanted)
+        equal(engine.masks((h, w), packed, 1, ratio), reference.polygons2masks((h, w), segments, 1, ratio))
 
 
 def test_compiled_profile_matches_kernel_and_build_sources():
@@ -191,6 +199,13 @@ def test_compiled_profile_matches_kernel_and_build_sources():
     assert profile["compiler"] and profile["build_type"]
 
 
+def test_backend_info_reports_verified_sizes():
+    assert native._sampled_table(64, 96, 4) is not None
+    info = native.backend_info()
+    assert (64, 96) in info["native_sizes"] and info["simd"] in ("neon", "sse2", "scalar")
+    assert "OpenCV" not in info["backend"] or "no bundled" in info["backend"]
+
+
 @pytest.mark.parametrize("ratio", [1, 3, 4, 7])
 @pytest.mark.parametrize("color", [0, 1, 127, 255])
 def test_repeated_vertices_keep_edges_holes_and_degenerate_pixels(ratio, color):
@@ -207,26 +222,28 @@ def test_repeated_vertices_keep_edges_holes_and_degenerate_pixels(ratio, color):
     before = repeated.tobytes()
     packed = native.PackedPolygons.from_segments(repeated)
     engine = native.Rasterizer()
-    shape = (33, 39)
-    equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, repeated, color, ratio))
-    equal(
-        engine._core.single(packed._native, *shape, ratio, color), reference.polygon2mask(shape, repeated, color, ratio)
-    )
-    wanted = reference.polygons2masks_overlap(shape, repeated, ratio)
-    for mode in ["retained", "bounded"]:
-        actual = engine.overlap(shape, packed, ratio, mode=mode)
-        equal(actual[0], wanted[0])
-        equal(actual[1], wanted[1])
+    for shape in ((33, 39), (32, 40)):
+        equal(engine.masks(shape, packed, color, ratio), reference.polygons2masks(shape, repeated, color, ratio))
+        equal(native.polygon2mask(shape, repeated, color, ratio), reference.polygon2mask(shape, repeated, color, ratio))
+        wanted = reference.polygons2masks_overlap(shape, repeated, ratio)
+        for mode in ["retained", "bounded"]:
+            actual = engine.overlap(shape, packed, ratio, mode=mode)
+            equal(actual[0], wanted[0])
+            equal(actual[1], wanted[1])
     assert repeated.tobytes() == before
 
 
 @pytest.mark.parametrize("count", [255, 256])
-def test_repeated_points_keep_instance_count_dtype_and_tie_order(count):
+@pytest.mark.parametrize("shape,ratio", [((17, 19), 1), ((32, 36), 4)])
+def test_repeated_points_keep_instance_count_dtype_and_tie_order(count, shape, ratio):
     segments = np.full((count, 43, 2), 9, dtype=np.int32)
     packed = native.PackedPolygons.from_segments(segments)
     assert len(packed) == count
-    wanted = reference.polygons2masks_overlap((17, 19), segments, 1)
-    actual = native.Rasterizer().overlap((17, 19), packed, 1)
+    wanted = reference.polygons2masks_overlap(shape, segments, ratio)
+    actual = native.Rasterizer().overlap(shape, packed, ratio)
     equal(actual[0], wanted[0])
     equal(actual[1], wanted[1])
-    assert int(actual[0].max()) == count
+    # At 4x one set sample lights the pixel on OpenCV's Arm path but not on its
+    # generic path, so the last instance's id shows only where cv2 shows it.
+    assert int(actual[0].max()) == (count if wanted[0].any() else 0)
+    assert ratio == 4 or int(actual[0].max()) == count

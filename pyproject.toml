@@ -5,7 +5,7 @@ build-backend = "scikit_build_core.build"
 [project]
 name = "ultrafast-maskops"
 version = "0.1.0a1"
-description = "Batched OpenCV polygon rasterization with explicit Ultralytics parity"
+description = "Exact, dependency-free native replacements for the Ultralytics segmentation mask and geometry code"
 requires-python = ">=3.10"
 dependencies = ["numpy>=2.0,<3"]
 license = "AGPL-3.0-only"

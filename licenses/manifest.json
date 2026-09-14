@@ -1,22 +1,9 @@
 {
-  "scope": "conservative notices collected from observed M2/Linux OpenCV/KleidiCV/pybind11 compiler source/header graphs; not a complete Windows/toolchain redistribution audit",
+  "scope": "third-party components compiled into the extension",
   "components": {
-    "OpenCV": "4.13.0",
-    "KleidiCV": "0.7.0",
     "pybind11": "3.0.1"
   },
-  "files_sha256": {
-    "OpenCV-Legacy-BSD.txt": "a5a7cf90fe5ac9763baad852cf69cf9d9b89bff934a679fdc5c8fcecaeba9a25",
-    "pybind11-LICENSE.txt": "83965b843b98f670d3a85bd041ed4b372c8ec50d7b4a5995a83ac697ba675dcb",
-    "KleidiCV-Apache-2.0.txt": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
-    "COMPILED-SOURCE-NOTICES.txt": "eb1934668049032c2a7b27bf5bfea95c228cb1ef5c65bba63cc7c025d483acd2",
-    "DLPack-LICENSE.txt": "3e8f6bc39276a586d60c8c5aaece2ff989262181cf2b3d2a128db58f97a9300c",
-    "OpenCV-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
-    "SoftFloat-COPYING.txt": "0c5b08365136da52639d777f1ebfc03988b0169d80655c90c59f1b3fa3e526a2",
-    "zlib-LICENSE.txt": "845efc77857d485d91fb3e0b884aaa929368c717ae8186b66fe1ed2495753243"
-  },
-  "source_file_count": 584,
-  "notice_block_count": 144,
-  "collector_sha256": "635fa1dbf7be4a3e4995d4810544f8090fbc308e540bda61e5960b30498247c8",
-  "provenance_sha256": "82db40dfc8c964f5282f4f4468c6faa892c66dca1582de89549af5de9799e8f8"
+  "files": {
+    "pybind11-LICENSE.txt": "pybind11 BSD-3-Clause license"
+  }
 }

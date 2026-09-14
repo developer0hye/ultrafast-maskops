@@ -25,11 +25,19 @@ def main():
         import numpy as np
 
         assert importlib.util.find_spec("cv2") is None and importlib.util.find_spec("ultralytics") is None
-        polygon = np.array([[0, 0], [8, 0], [8, 8], [0, 8]], np.float32)
-        packed = package.PackedPolygons.from_segments([polygon])
-        mask, order = package.Rasterizer().overlap((16, 16), packed, 1)
-        assert mask.dtype == np.uint8 and mask.shape == (16, 16) and mask.sum() == 81
-        assert order.tolist() == [0]
+        # Without cv2 nothing can be verified against it: the geometry kernels
+        # work, and mask calls report the missing reference clearly.
+        from ultrafast_maskops import geometry
+
+        segments = [np.array([[0, 0], [8, 0], [8, 8], [0, 8]], np.float32)]
+        assert geometry.resample_stack(segments, 100).shape == (1, 100, 2)
+        assert package._sampled_table(16, 16, 4) is None and package.backend_info()["rejected_sizes"] == [(16, 16)]
+        try:
+            package.Rasterizer().overlap((16, 16), package.PackedPolygons.from_segments(segments), 4)
+        except ImportError as error:
+            assert "cv2" in str(error)
+        else:
+            raise AssertionError("mask fallback must require cv2")
     wheels = list((root / "dist").glob("*.whl"))
     sdists = list((root / "dist").glob("*.tar.gz"))
     assert len(wheels) == 1

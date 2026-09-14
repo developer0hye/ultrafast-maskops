@@ -4,13 +4,12 @@ import hashlib
 import inspect
 import os
 
-import cv2
 import numpy as np
 from ultralytics.data import utils
 from ultralytics.data.augment import Format
 from ultralytics.data.dataset import YOLODataset
 
-from . import PackedPolygons, Rasterizer, backend_info
+from . import Rasterizer
 from ._shared_collate import check_shared_collate_profile, shared_collate_fn
 from ._shared_collate import share_dataset_batches as share_dataset_batches
 
@@ -24,8 +23,14 @@ _BUILD_TRANSFORMS_SHA256 = "85dc9e28f59b2f7a54ced5190cede13c4a918348f5fa5a9b411d
 
 
 def check_profile():
-    if np.__version__ != "2.4.4" or cv2.__version__ != "4.13.0" or backend_info()["opencv"] != "4.13.0":
-        raise RuntimeError("unsupported profile: adapter currently requires NumPy 2.4.4 and both OpenCV builds 4.13.0")
+    """Reject Ultralytics sources whose mask code differs from the replicated one.
+
+    The installed cv2 itself is not version-checked: the native kernel is
+    verified against it per image size at first use, and any size it cannot
+    reproduce runs the reference code with that cv2 (see backend_info()).
+    """
+    if int(np.__version__.split(".")[0]) < 2:
+        raise RuntimeError("unsupported profile: the adapter requires NumPy 2")
     for name, expected in _SOURCE_HASHES.items():
         value = Format if name == "Format" else getattr(utils, name)
         actual = hashlib.sha256(inspect.getsource(value).encode()).hexdigest()

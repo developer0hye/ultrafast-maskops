@@ -308,6 +308,9 @@ def main():
             report["results"].append(value)
             print(round_, backend, f"total {value['total_s']:.1f}s epoch {value['epoch_s']:.1f}s", flush=True)
             args.out.write_text(json.dumps(report, indent=2) + "\n")
+    if not report["results"]:  # --rounds 0: verification only
+        args.out.write_text(json.dumps(report, indent=2) + "\n")
+        return
     report["summary"] = summarize(report["results"], backends)
     args.out.write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps({k: v for k, v in report["summary"].items() if "_over_" in k}, indent=2))

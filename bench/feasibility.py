@@ -79,7 +79,6 @@ def environment():
         "cv2": cv2.__version__,
         "native": native.backend_info(),
         "cv2_build": cv2.getBuildInformation(),
-        "native_build": native._native.opencv_build_info(),
     }
 
 

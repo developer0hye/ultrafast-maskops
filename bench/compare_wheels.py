@@ -71,7 +71,6 @@ def descriptor(root, wheel):
         "numpy": np.__version__,
         "opencv": cv2.__version__,
         "cv2_build": cv2.getBuildInformation(),
-        "private_opencv_build": native._native.opencv_build_info(),
         "profile": profile,
         "extension_sha256": sha(extension.read_bytes()),
         "wheel_sha256": sha(wheel.read_bytes()),
@@ -79,7 +78,7 @@ def descriptor(root, wheel):
         "oracle_sha256": sha((Path(__file__).parents[1] / "tests/reference.py").read_bytes()),
         "fixture_code_sha256": sha(Path(__file__).with_name("feasibility.py").read_bytes()),
         "harness_sha256": sha(Path(__file__).read_bytes()),
-        "private_opencv_threads": native._native.opencv_threads(),
+        "native_simd": native.backend_info()["simd"],
         "ram_bytes": psutil.virtual_memory().total,
         "logical_cpus": psutil.cpu_count(),
     }
@@ -92,7 +91,6 @@ def worker(args):
 
     cv2.setNumThreads(0)
     info = descriptor(args.root, args.wheel)
-    require(info["private_opencv_threads"] == 1, "private OpenCV must use one thread")
     if args.worker == "describe":
         return {"descriptor": info}
     if args.worker == "oracle":
@@ -271,7 +269,7 @@ def main():
             "oracle_sha256",
             "fixture_code_sha256",
             "harness_sha256",
-            "private_opencv_threads",
+            "native_simd",
             "ram_bytes",
             "logical_cpus",
         )

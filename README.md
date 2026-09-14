@@ -1,52 +1,49 @@
 # ultrafast-maskops
 
-Experimental C++/OpenCV batch polygon rasterization for Ultralytics. This is an
-alpha implementation, not yet a published or release-qualified replacement.
+Exact native replacements for the Ultralytics segmentation data pipeline's mask
+rasterization and segment geometry. Every accelerated function returns the
+same bytes as the pinned Ultralytics code; the batches a trainer receives are
+identical (see [tests/test_trainer.py](tests/test_trainer.py)).
 
-This branch adds `accelerate_dataset(..., persistent=True)` and shared-batch
-transport to retain the native formatter across dataset transform rebuilds.
-Bounded installed tests have passed on Linux and macOS; the full GPU lifecycle
-campaign and storage-lifetime qualification remain open. See
-[current status](docs/STATUS.md) and [the private development snapshot](docs/PRIVATE_DEVELOPMENT.md).
-
-Implemented: `polygon2mask`, `polygons2masks`, `polygons2masks_overlap`, owned
-`PackedPolygons`, per-worker `Rasterizer`, and an explicit `FastFormat` adapter.
-The original PRD and all release gates remain in [docs/PRD.md](docs/PRD.md).
+The extension depends on nothing but pybind11. It bundles no OpenCV: the mask
+kernel replicates `cv2.fillPoly` and the 4x linear downscale in integer
+arithmetic, evaluated only where the downscale reads, and is verified against
+the cv2 you have installed the first time each image size is used. Any input
+outside the native profile (`mask_ratio` other than 4, sides not divisible by
+4, several contours in one mask, a cv2 whose results cannot be reproduced) runs
+the unmodified reference functions with that cv2, so results never depend on
+which path ran.
 
 ```python
-from ultrafast_maskops import polygons2masks_overlap
+from ultralytics import YOLO
+from ultrafast_maskops.training import FastSegmentationTrainer
 
-masks, order = polygons2masks_overlap((640, 640), segments, downsample_ratio=4)
-classes = classes[order]
+YOLO("yolo11n-seg.pt").train(data="coco.yaml", trainer=FastSegmentationTrainer)
 ```
 
-The wrapper includes input conversion, native rasterization, resizing, unsigned
-area reduction, NumPy's reference sorting, and native composition. It preserves
-uint8/int32 IDs at the 255-instance boundary. The packed API additionally permits
-empty contours as zero masks; compatible wrappers reject empty contours explicitly.
-Nonfinite/out-of-int32 coordinates and colors outside 0..255 raise `ValueError`.
-Invalid-input exception types are not yet fully identical to the reference.
+`FastSegmentationTrainer` is the Ultralytics `SegmentationTrainer` whose
+datasets are accelerated after construction; nothing global is patched. The
+same two calls work on any `YOLODataset` you build yourself:
 
-`Rasterizer.overlap(..., mode="retained")` stores resized uint8 masks and composes
-without the original int32 stacks or indexing copies. `mode="bounded"` renders
-twice to keep raster working storage independent of instance count. `auto` uses
-the fixed scratch-budget rule in the source. Packed inputs, returned masks and
-OpenCV's internal edge structures are additional memory; the scratch budget is
-not a whole-process memory cap. Independent masks inherently need N*h*w output bytes.
+```python
+from ultrafast_maskops.ultralytics import accelerate_dataset
+from ultrafast_maskops.geometry import accelerate_geometry
 
-Private OpenCV core/imgproc 4.13.0 is statically linked and its symbols hidden.
-Internal OpenCV parallel regions are disabled using its private `setNumThreads(0)`;
-Python `cv2` thread settings are preserved. Separate Rasterizer objects can run
-concurrently, and one object serializes calls. No module import patches Ultralytics.
+accelerate_dataset(dataset, persistent=True)   # mask rasterization
+accelerate_geometry(dataset, persistent=True)  # resampling, affine boxes and clipping
+```
 
-The optimized path clears only the previous polygon's dirty rectangle and composes
-within conservatively padded resized support. It still rasterizes at the original
-resolution and uses OpenCV's original linear resize; it does not approximate geometry.
+Results on a 118,287-image COCO-scale epoch and the per-stage numbers are in
+[docs/SEGMENT_GEOMETRY.md](docs/SEGMENT_GEOMETRY.md).
+
+The standalone wrappers `polygon2mask`, `polygons2masks` and
+`polygons2masks_overlap` keep the reference signatures; `PackedPolygons` and a
+per-worker `Rasterizer` expose the native engine directly.
 
 ## Development
 
-Requires CMake, a C++17 compiler, and Python 3.10+. Building fetches the
-SHA256-pinned OpenCV source; users of future wheels will not need a compiler.
+Requires CMake, a C++17 compiler, and Python 3.10+. There is nothing to
+download: the extension is one translation unit over pybind11.
 
 ```sh
 uv venv --python 3.12
@@ -69,8 +66,9 @@ The core package does not install Ultralytics or Torch.
 Integration additionally uses the exact Ultralytics commit
 `795a556942a12fe0124cf767888194a1d0b83e2e`, Torch 2.10.0 and torchvision 0.25.0.
 The adapter checks the full Format and mask-function source hashes and requires
-NumPy 2.4.4 / Python cv2 4.13.0 / private OpenCV 4.13.0. An unknown profile raises
-an actionable error. This narrow initial matrix will expand only after validation.
+NumPy 2. cv2 is not version-pinned: the native kernel is verified against the
+installed cv2 per image size at first use, and `backend_info()` lists the sizes
+it accelerates and the sizes it left to the reference code.
 
 The current integration profile cannot be installed on Python 3.10 because
 NumPy 2.4.4 requires Python 3.11 or newer. Package metadata allows a Python 3.10

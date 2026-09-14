@@ -1,4 +1,12 @@
-# Implementation status — 2026-09-13
+# Implementation status — 2026-09-14
+
+**2026-09-14:** the extension no longer bundles OpenCV. The mask kernel replicates
+`fillPoly` and the 4× downscale itself and is verified against the installed cv2
+per image size at first use; other inputs run the reference functions with that
+cv2. The adapter requires NumPy 2 and the pinned Ultralytics source hashes, not
+exact NumPy/cv2 versions. See [SEGMENT_GEOMETRY.md](SEGMENT_GEOMETRY.md). The
+notes below predate that change where they mention private OpenCV builds.
+
 
 Active development; original PRD goals remain unchanged. Not release-ready.
 

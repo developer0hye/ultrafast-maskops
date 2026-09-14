@@ -104,7 +104,6 @@ def seed_worker(_):
     np.random.seed(seed)
     cv2.setNumThreads(0)
     torch.set_num_threads(1)
-    assert _native.opencv_threads() == 1
 
 
 def peak_rss():
@@ -441,7 +440,6 @@ def main():
         },
         "native": backend_info(),
         "cv2_build": cv2.getBuildInformation(),
-        "native_build": _native.opencv_build_info(),
         "upstream_commit": UPSTREAM_COMMIT,
         "upstream_files": UPSTREAM_FILES,
         "source_sha256": source_hashes(),

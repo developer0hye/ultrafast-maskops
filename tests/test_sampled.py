@@ -33,7 +33,7 @@ def patterns(full):
 
 def sampled_patterns(shape, contours):
     packed = native.PackedPolygons.from_segments(contours)
-    return _native.Rasterizer(64 * 1024**2).sampled_masks(packed._native, shape[0], shape[1], IDENTITY)
+    return _native.Rasterizer().sampled_masks(packed._native, shape[0], shape[1], IDENTITY)
 
 
 def ring(rng, count, centre, radius, jitter=0.0):
@@ -209,7 +209,7 @@ def test_arrays_outside_the_sampled_path_keep_reference_results_and_errors():
 
 
 def test_sampled_state_contract():
-    core = _native.Rasterizer(64 * 1024**2)
+    core = _native.Rasterizer()
     table = native._sampled_table(32, 32, 4)
     with pytest.raises(ValueError, match="preceding sampled_raster"):
         core.sampled_compose(np.zeros(0, np.int64))

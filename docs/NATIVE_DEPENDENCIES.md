@@ -1,3 +1,5 @@
+> Historical. Since the minimal rebuild the extension links no OpenCV; its only compiled third-party component is pybind11 (`licenses/`).
+
 # Native dependency inventory and notice packaging
 
 The 2026-09-13 linker inspection found the following dependencies in the current

@@ -15,3 +15,4 @@
 - `coco-epoch-hit-maskops-linux-v1.json`: the same hit-mode epoch with only the maskops calls on the unmodified YOLODataset (`--backends reference maskops`), three alternating rounds, identical verification digests.
 
 Full methodology, unfavorable cases and incomplete release gates: [report](../../docs/BENCHMARKS.md).
+- `mask-stage-minimal-linux-v1.json`: the mask stage on the i5-10400 with the restructured, OpenCV-free kernel (one vector pass per contour, crossing buckets, row bit sets; SSSE3 pass), five alternating rounds.
