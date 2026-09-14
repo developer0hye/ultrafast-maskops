@@ -6,14 +6,35 @@ build-backend = "scikit_build_core.build"
 name = "ultrafast-maskops"
 version = "0.1.0a1"
 description = "Exact, dependency-free native replacements for the Ultralytics segmentation mask and geometry code"
+readme = "README.md"
 requires-python = ">=3.10"
 dependencies = ["numpy>=2.0,<3"]
 license = "AGPL-3.0-only"
+license-files = ["LICENSE", "NOTICE", "licenses/*"]
+authors = [{ name = "Yonghye Kwon", email = "developer.0hye@gmail.com" }]
+keywords = ["ultralytics", "yolo", "segmentation", "mask", "rasterization", "simd", "pybind11"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: C++",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Processing",
+]
+
+[project.optional-dependencies]
+ultralytics = ["ultralytics", "opencv-python", "torch"]
+test = ["pytest>=8", "opencv-python", "pillow", "psutil"]
+plot = ["matplotlib>=3.5"]
+
+[project.urls]
+Homepage = "https://github.com/developer0hye/ultrafast-maskops"
+Issues = "https://github.com/developer0hye/ultrafast-maskops/issues"
 
 [tool.scikit-build]
 wheel.packages = ["python/ultrafast_maskops"]
 cmake.build-type = "Release"
-sdist.exclude = ["bench/results/*.tar.gz*", "bench/results/*.zip"]
+sdist.exclude = ["bench/results/*.tar.gz*", "bench/results/*.zip", "docs/archive/**"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -24,3 +45,15 @@ extend-exclude = ["tests/reference.py", "docs/PRD.md"]
 
 [tool.ruff.lint.per-file-ignores]
 "bench/*.py" = ["E402"]
+
+[tool.cibuildwheel]
+build = "cp310-* cp311-* cp312-* cp313-*"
+skip = "*musllinux* pp*"
+manylinux-x86_64-image = "manylinux_2_28"
+manylinux-aarch64-image = "manylinux_2_28"
+test-requires = ["pytest>=8", "opencv-python", "numpy>=2"]
+test-command = "python -m pytest -q {project}/tests/test_parity.py {project}/tests/test_sampled.py -p no:cacheprovider"
+test-skip = "*-macosx_x86_64"  # Apple silicon runners cannot execute x86-64 test processes reliably
+
+[tool.cibuildwheel.macos]
+environment = { MACOSX_DEPLOYMENT_TARGET = "11.0" }
