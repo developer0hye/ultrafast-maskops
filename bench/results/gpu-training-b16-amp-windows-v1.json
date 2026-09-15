@@ -1,0 +1,292 @@
+{
+  "scope": "YOLO11n-seg from random weights on the COCO val2017 segmentation fixture; fresh process per job",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 151 Stepping 5, GenuineIntel",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "arguments": {
+    "corpus": "C:\\tmp\\ufm\\coco\\segment",
+    "out": "C:\\tmp\\ufm\\gpu\\gpu-training-b16-amp-windows-v1.json",
+    "workers": "[2, 8]",
+    "repeats": "2",
+    "epochs": "2",
+    "batch": "16",
+    "imgsz": "640",
+    "fraction": "1.0",
+    "val": "C:\\tmp\\ufm\\gpu\\val-small\\images",
+    "amp": "True",
+    "backend": "None",
+    "repeat": "0"
+  },
+  "results": [
+    {
+      "backend": "reference",
+      "workers": 2,
+      "repeat": 0,
+      "epochs_s": [
+        72.34014400001615,
+        58.538608200033195
+      ],
+      "batches": [
+        313,
+        313
+      ],
+      "whole_job_s": 146.27359060000163,
+      "loss_sha256": "2d107860effd09f04a53ae8e69a62633b045f1d022486a4a2985cd48ddf91a73",
+      "weights_sha256": "90a6a421bc0985e9cb7e620f9b24e79c6a28b69c6c47d866213c0cc5a7b71424",
+      "transforms": [
+        "Albumentations",
+        "Compose",
+        "CutMix",
+        "Format",
+        "MixUp",
+        "RandomFlip",
+        "RandomHSV"
+      ],
+      "cuda_max_allocated_bytes": 3323108352,
+      "gpu": "NVIDIA TITAN RTX",
+      "torch": "2.10.0+cu128"
+    },
+    {
+      "backend": "fast",
+      "workers": 2,
+      "repeat": 0,
+      "epochs_s": [
+        72.50662280002143,
+        58.42233800003305
+      ],
+      "batches": [
+        313,
+        313
+      ],
+      "whole_job_s": 146.23242340004072,
+      "loss_sha256": "2d107860effd09f04a53ae8e69a62633b045f1d022486a4a2985cd48ddf91a73",
+      "weights_sha256": "90a6a421bc0985e9cb7e620f9b24e79c6a28b69c6c47d866213c0cc5a7b71424",
+      "transforms": [
+        "Albumentations",
+        "Compose",
+        "CutMix",
+        "FastFormat",
+        "MixUp",
+        "RandomFlip",
+        "RandomHSV"
+      ],
+      "cuda_max_allocated_bytes": 3323108352,
+      "gpu": "NVIDIA TITAN RTX",
+      "torch": "2.10.0+cu128"
+    },
+    {
+      "backend": "fast",
+      "workers": 2,
+      "repeat": 1,
+      "epochs_s": [
+        72.13291200000094,
+        58.52667729998939
+      ],
+      "batches": [
+        313,
+        313
+      ],
+      "whole_job_s": 145.88052700000117,
+      "loss_sha256": "2d107860effd09f04a53ae8e69a62633b045f1d022486a4a2985cd48ddf91a73",
+      "weights_sha256": "90a6a421bc0985e9cb7e620f9b24e79c6a28b69c6c47d866213c0cc5a7b71424",
+      "transforms": [
+        "Albumentations",
+        "Compose",
+        "CutMix",
+        "FastFormat",
+        "MixUp",
+        "RandomFlip",
+        "RandomHSV"
+      ],
+      "cuda_max_allocated_bytes": 3323108352,
+      "gpu": "NVIDIA TITAN RTX",
+      "torch": "2.10.0+cu128"
+    },
+    {
+      "backend": "reference",
+      "workers": 2,
+      "repeat": 1,
+      "epochs_s": [
+        72.27724409999792,
+        58.346269899979234
+      ],
+      "batches": [
+        313,
+        313
+      ],
+      "whole_job_s": 145.88895679998677,
+      "loss_sha256": "2d107860effd09f04a53ae8e69a62633b045f1d022486a4a2985cd48ddf91a73",
+      "weights_sha256": "90a6a421bc0985e9cb7e620f9b24e79c6a28b69c6c47d866213c0cc5a7b71424",
+      "transforms": [
+        "Albumentations",
+        "Compose",
+        "CutMix",
+        "Format",
+        "MixUp",
+        "RandomFlip",
+        "RandomHSV"
+      ],
+      "cuda_max_allocated_bytes": 3323108352,
+      "gpu": "NVIDIA TITAN RTX",
+      "torch": "2.10.0+cu128"
+    },
+    {
+      "backend": "reference",
+      "workers": 8,
+      "repeat": 0,
+      "epochs_s": [
+        71.70830970001407,
+        58.35448380000889
+      ],
+      "batches": [
+        313,
+        313
+      ],
+      "whole_job_s": 157.86102399998344,
+      "loss_sha256": "373ba927c0f4f876e41624b1e33a2777ca64a6c4fbe7c6e515c7bddf9b3cab3d",
+      "weights_sha256": "57258d356c06ebb87b8b472895f39ffaf2f37b2798d2aa2274509591b74b1711",
+      "transforms": [
+        "Albumentations",
+        "Compose",
+        "CutMix",
+        "Format",
+        "MixUp",
+        "RandomFlip",
+        "RandomHSV"
+      ],
+      "cuda_max_allocated_bytes": 3338353664,
+      "gpu": "NVIDIA TITAN RTX",
+      "torch": "2.10.0+cu128"
+    },
+    {
+      "backend": "fast",
+      "workers": 8,
+      "repeat": 0,
+      "epochs_s": [
+        71.86047850002069,
+        57.962545400019735
+      ],
+      "batches": [
+        313,
+        313
+      ],
+      "whole_job_s": 157.9817857000162,
+      "loss_sha256": "373ba927c0f4f876e41624b1e33a2777ca64a6c4fbe7c6e515c7bddf9b3cab3d",
+      "weights_sha256": "57258d356c06ebb87b8b472895f39ffaf2f37b2798d2aa2274509591b74b1711",
+      "transforms": [
+        "Albumentations",
+        "Compose",
+        "CutMix",
+        "FastFormat",
+        "MixUp",
+        "RandomFlip",
+        "RandomHSV"
+      ],
+      "cuda_max_allocated_bytes": 3338353664,
+      "gpu": "NVIDIA TITAN RTX",
+      "torch": "2.10.0+cu128"
+    },
+    {
+      "backend": "fast",
+      "workers": 8,
+      "repeat": 1,
+      "epochs_s": [
+        71.75377449998632,
+        58.14840980002191
+      ],
+      "batches": [
+        313,
+        313
+      ],
+      "whole_job_s": 157.94155170000158,
+      "loss_sha256": "373ba927c0f4f876e41624b1e33a2777ca64a6c4fbe7c6e515c7bddf9b3cab3d",
+      "weights_sha256": "57258d356c06ebb87b8b472895f39ffaf2f37b2798d2aa2274509591b74b1711",
+      "transforms": [
+        "Albumentations",
+        "Compose",
+        "CutMix",
+        "FastFormat",
+        "MixUp",
+        "RandomFlip",
+        "RandomHSV"
+      ],
+      "cuda_max_allocated_bytes": 3338353664,
+      "gpu": "NVIDIA TITAN RTX",
+      "torch": "2.10.0+cu128"
+    },
+    {
+      "backend": "reference",
+      "workers": 8,
+      "repeat": 1,
+      "epochs_s": [
+        71.89640749996761,
+        58.09635060001165
+      ],
+      "batches": [
+        313,
+        313
+      ],
+      "whole_job_s": 157.85621529998025,
+      "loss_sha256": "373ba927c0f4f876e41624b1e33a2777ca64a6c4fbe7c6e515c7bddf9b3cab3d",
+      "weights_sha256": "57258d356c06ebb87b8b472895f39ffaf2f37b2798d2aa2274509591b74b1711",
+      "transforms": [
+        "Albumentations",
+        "Compose",
+        "CutMix",
+        "Format",
+        "MixUp",
+        "RandomFlip",
+        "RandomHSV"
+      ],
+      "cuda_max_allocated_bytes": 3338353664,
+      "gpu": "NVIDIA TITAN RTX",
+      "torch": "2.10.0+cu128"
+    }
+  ],
+  "summary": {
+    "2": {
+      "identical_losses": true,
+      "identical_weights": true,
+      "reference": {
+        "epoch_s_median": [
+          72.30869405000703,
+          58.442439050006215
+        ],
+        "whole_job_s_median": 146.0812736999942
+      },
+      "fast": {
+        "epoch_s_median": [
+          72.31976740001119,
+          58.47450765001122
+        ],
+        "whole_job_s_median": 146.05647520002094
+      },
+      "reference_over_fast": [
+        0.9998468834953118,
+        0.9994515798200996
+      ]
+    },
+    "8": {
+      "identical_losses": true,
+      "identical_weights": true,
+      "reference": {
+        "epoch_s_median": [
+          71.80235859999084,
+          58.22541720001027
+        ],
+        "whole_job_s_median": 157.85861964998185
+      },
+      "fast": {
+        "epoch_s_median": [
+          71.8071265000035,
+          58.05547760002082
+        ],
+        "whole_job_s_median": 157.9616687000089
+      },
+      "reference_over_fast": [
+        0.9999336012977393,
+        1.002927193212676
+      ]
+    }
+  }
+}

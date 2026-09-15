@@ -97,6 +97,35 @@ The `_format_segments` time includes the instance reordering that both
 implementations perform. Removing the segment stages entirely would bound this
 loader at 14.15 / 7.64 = 1.85×.
 
+### i5-12600 (Windows 11, MSVC), with the sampled mask path
+
+Measured at commit `3c04fd6` on an otherwise idle desktop (12th Gen Intel Core
+i5-12600, 6 cores; Windows 11; MSVC 19.44 build with the SSE2/SSSE3 paths;
+Python 3.12.10, NumPy 2.4.4, OpenCV 4.13.0) with 1,000 samples per process and
+five alternating rounds. The output digest is identical for every backend and
+round. Ultralytics was installed with LF line endings: a checkout converted to
+CRLF changes the file hashes the bench harness pins, though not the function
+hashes the adapter checks.
+
+| Backend | ms / sample | Loader speedup |
+|---|---:|---:|
+| Reference | 14.25 | 1.00× |
+| Masks only | 12.84 | 1.11× |
+| Geometry + masks | **9.84** | **1.45×** |
+
+Per sample, the timed segment stages fall from 5.62 ms to 1.13 ms (5.0×):
+
+| Stage | Reference | Geometry + masks | Speedup |
+|---|---:|---:|---:|
+| Resampling | 1.09 ms | 0.43 ms | 2.5× |
+| `apply_segments` | 3.21 ms | 0.57 ms | 5.7× |
+| `Format._format_segments` | 1.32 ms | 0.13 ms | 9.9× |
+
+Removing the segment stages entirely would bound this loader at
+14.25 / 8.63 = 1.65×. The resampling gain is smaller than on the other hosts:
+the native call costs about the same (0.43 ms against 0.39 ms on the i5-10400)
+while the reference loop is faster here (1.09 ms against 1.66 ms).
+
 ### One augmented epoch at COCO scale (i5-10400, Linux)
 
 `bench/coco_epoch.py` measures what a training run waits for: dataset
@@ -154,6 +183,44 @@ reference medians agree within 0.3%.
   cache) and keeps labels in a packed cache instead of per-image Python
   objects. This is the only difference between the last two columns, which
   roughly halves the memory of the process and its workers.
+
+### End-to-end GPU training on the i5-12600 + TITAN RTX (Windows 11)
+
+`bench/gpu_training.py` trains YOLO11n-seg from random weights on the
+5,000-image val2017 fixture with the unmodified `SegmentationTrainer` and
+with `FastSegmentationTrainer` (both accelerations, persistent), one fresh
+process per job, batch 16, imgsz 640, two epochs, `close_mosaic=0`,
+`deterministic=True`, seed 912, validation off except Ultralytics' final one on
+a 16-image subset. Epoch times are measured between the trainer's epoch
+callbacks with CUDA synchronized at both ends; every job records its per-batch
+loss items and a hash of the final weights. Backend order alternates across
+repeats. Host: i5-12600 (6 cores / 12 threads), TITAN RTX 24 GB, Windows 11,
+torch 2.10.0+cu128, commit `3c04fd6`. Medians of the repeats:
+
+| Precision | Workers | Reference epoch 1 / 2 | Accelerated epoch 1 / 2 | Ratio | Repeats |
+|---|---:|---:|---:|---:|---:|
+| FP32 (`amp=False`) | 0 | 194.4 / 192.4 s | 163.3 / 164.2 s | **1.19× / 1.17×** | 3 |
+| FP32 | 2 | 110.8 / 111.8 s | 110.7 / 111.9 s | 1.00× / 1.00× | 3 |
+| FP32 | 8 | 108.6 / 111.9 s | 108.3 / 111.8 s | 1.00× / 1.00× | 3 |
+| AMP (default) | 2 | 72.3 / 58.4 s | 72.3 / 58.5 s | 1.00× / 1.00× | 2 |
+| AMP | 8 | 71.8 / 58.2 s | 71.8 / 58.1 s | 1.00× / 1.00× | 2 |
+
+In every configuration all jobs, reference and accelerated, produced identical
+per-batch loss vectors and identical final weights.
+
+The reading is the one the loader numbers predict. With `workers=0` the main
+process loads and trains in turn, so the 1.45× per-sample gain shows up as
+1.17–1.19× per epoch. With two or more workers on this host the loader is no
+longer the bottleneck: the GPU step sets the epoch time (about 110 s in FP32,
+58 s with AMP once the workers are warm), and the accelerated loader has
+nothing left to shorten. Epoch 1 with workers includes spawning the worker
+processes and the GPU warmup. The acceleration therefore pays for itself when
+the loader is the bottleneck (few workers, small models, faster GPUs, or the
+COCO-scale CPU epoch above); on a six-core desktop training YOLO11n-seg with
+the default eight workers it does not change the wall time, and this record
+is kept so that no one has to rediscover that. The earlier RTX 3070 series
+(`docs/archive/GPU_RESULTS.md`, mask-only, older kernel) came to the same
+1.00–1.02× at workers 2 and 8.
 
 ### Anatomy of `apply_segments`
 
@@ -240,6 +307,14 @@ process, and every output was compared with the unmodified function first.
   its phase timers showed about 10% less time, but that host is no longer quiet
   enough for a wall-clock figure, so its instruction count (0.72 M per call,
   13.6× fewer than the reference) is the number recorded.
+- **i5-12600 (Windows 11, MSVC 19.44):** measured at commit `3c04fd6` on an
+  idle desktop, five alternating rounds: reference 1,199.5 µs, previous
+  full-resolution native path 1,307.7 µs (0.92×), sampled path 59.8 µs
+  (**20.1×**). The full-resolution path is slower than the reference under
+  this build; the sampled path does no full-resolution work and is not
+  affected. The 2,000-call input was regenerated with
+  `bench/capture_format_inputs.py` from the same fixture and seeds and holds
+  the same 27,497 instances.
 - **Portability:** the Linux and Windows CI builds (GCC, MSVC) pass the same
   parity tests, and the calibration finds a table on all three CI platforms,
   so the sampled path is active everywhere.
@@ -319,6 +394,9 @@ the Ultralytics functions it replaces.
 ```sh
 python bench/geometry_loader.py --images /path/to/coco/segment/images/val2017 \
   --samples 1000 --rounds 3 --out geometry-loader.json
+python bench/capture_format_inputs.py --images /path/to/coco/segment/images/val2017 \
+  --calls 2000 --out coco-format-inputs.npz
+python bench/mask_stage.py coco-format-inputs.npz --rounds 5 --out mask-stage.json
 ```
 
 Use `accelerate_dataset(ds)` then `accelerate_geometry(ds, persistent=True)` in a

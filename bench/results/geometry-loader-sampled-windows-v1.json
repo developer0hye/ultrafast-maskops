@@ -1,0 +1,261 @@
+{
+  "scope": "single-process augmented YOLODataset.__getitem__ (training defaults), identical seeds",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 151 Stepping 5, GenuineIntel",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "numpy": "2.4.4",
+  "cv2": "4.13.0",
+  "torch": "2.10.0+cu128",
+  "interp_fused": false,
+  "arguments": {
+    "images": "C:/tmp/ufm/coco/segment/images/val2017",
+    "out": "C:\\tmp\\ufm\\out\\geometry-loader-sampled-windows-v1.json",
+    "samples": "1000",
+    "warmup": "40",
+    "rounds": "5",
+    "backends": "['reference', 'masks', 'geometry+masks']",
+    "worker": "None",
+    "result": "None"
+  },
+  "results": [
+    {
+      "backend": "reference",
+      "samples": 1000,
+      "total_s": 14.24605649895966,
+      "median_ms": 13.78350000595674,
+      "mean_ms": 14.24605649895966,
+      "stages_s": {
+        "resample": 1.092995397222694,
+        "apply_segments": 3.1993598006665707,
+        "masks": 1.3223808996845037
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 692576256,
+      "round": 0
+    },
+    {
+      "backend": "masks",
+      "samples": 1000,
+      "total_s": 12.482826299325097,
+      "median_ms": 12.11800001328811,
+      "mean_ms": 12.482826299325097,
+      "stages_s": {
+        "resample": 1.00464350101538,
+        "apply_segments": 3.0575694998842664,
+        "masks": 0.12492890103021637
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 694497280,
+      "round": 0
+    },
+    {
+      "backend": "geometry+masks",
+      "samples": 1000,
+      "total_s": 9.386850100476295,
+      "median_ms": 9.235799981979653,
+      "mean_ms": 9.386850100476295,
+      "stages_s": {
+        "resample": 0.4071977999410592,
+        "apply_segments": 0.5504282996989787,
+        "masks": 0.12198570056352764
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 695447552,
+      "round": 0
+    },
+    {
+      "backend": "geometry+masks",
+      "samples": 1000,
+      "total_s": 9.455159999313764,
+      "median_ms": 9.331750014098361,
+      "mean_ms": 9.455159999313764,
+      "stages_s": {
+        "resample": 0.412515499338042,
+        "apply_segments": 0.5510821005445905,
+        "masks": 0.1247801001300104
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 694525952,
+      "round": 1
+    },
+    {
+      "backend": "masks",
+      "samples": 1000,
+      "total_s": 12.565523099445272,
+      "median_ms": 12.150899972766638,
+      "mean_ms": 12.565523099445272,
+      "stages_s": {
+        "resample": 1.0217275996110402,
+        "apply_segments": 3.086505100829527,
+        "masks": 0.12411589961266145
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 693506048,
+      "round": 1
+    },
+    {
+      "backend": "reference",
+      "samples": 1000,
+      "total_s": 14.100031000154559,
+      "median_ms": 13.703450007596985,
+      "mean_ms": 14.100031000154559,
+      "stages_s": {
+        "resample": 1.0677521036122926,
+        "apply_segments": 3.206447700795252,
+        "masks": 1.3000161991803907
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 693432320,
+      "round": 1
+    },
+    {
+      "backend": "reference",
+      "samples": 1000,
+      "total_s": 15.863061501295306,
+      "median_ms": 14.99004999641329,
+      "mean_ms": 15.863061501295306,
+      "stages_s": {
+        "resample": 1.206067199644167,
+        "apply_segments": 3.648985600855667,
+        "masks": 1.4391385004855692
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 693411840,
+      "round": 2
+    },
+    {
+      "backend": "masks",
+      "samples": 1000,
+      "total_s": 13.070741299714427,
+      "median_ms": 12.647700030356646,
+      "mean_ms": 13.070741299714427,
+      "stages_s": {
+        "resample": 1.0855932012200356,
+        "apply_segments": 3.220894599275198,
+        "masks": 0.13284990011015907
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 693637120,
+      "round": 2
+    },
+    {
+      "backend": "geometry+masks",
+      "samples": 1000,
+      "total_s": 9.854341399623081,
+      "median_ms": 9.700450027594343,
+      "mean_ms": 9.854341399623081,
+      "stages_s": {
+        "resample": 0.43228900054236874,
+        "apply_segments": 0.5716450000763871,
+        "masks": 0.13481919933110476
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 693772288,
+      "round": 2
+    },
+    {
+      "backend": "geometry+masks",
+      "samples": 1000,
+      "total_s": 10.053794099017978,
+      "median_ms": 9.777599974768236,
+      "mean_ms": 10.053794099017978,
+      "stages_s": {
+        "resample": 0.43745080259395763,
+        "apply_segments": 0.5761428988189436,
+        "masks": 0.13391039916314185
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 694161408,
+      "round": 3
+    },
+    {
+      "backend": "masks",
+      "samples": 1000,
+      "total_s": 12.837590699782595,
+      "median_ms": 12.406950001604855,
+      "mean_ms": 12.837590699782595,
+      "stages_s": {
+        "resample": 1.066517299565021,
+        "apply_segments": 3.156531000393443,
+        "masks": 0.13134719926165417
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 695443456,
+      "round": 3
+    },
+    {
+      "backend": "reference",
+      "samples": 1000,
+      "total_s": 14.122592799598351,
+      "median_ms": 13.626100000692531,
+      "mean_ms": 14.122592799598351,
+      "stages_s": {
+        "resample": 1.0695776974316686,
+        "apply_segments": 3.199772000545636,
+        "masks": 1.290333200187888
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 692408320,
+      "round": 3
+    },
+    {
+      "backend": "reference",
+      "samples": 1000,
+      "total_s": 16.965080000343733,
+      "median_ms": 16.156400030013174,
+      "mean_ms": 16.965080000343733,
+      "stages_s": {
+        "resample": 1.275661401276011,
+        "apply_segments": 3.636225400492549,
+        "masks": 1.4944657998275943
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 693526528,
+      "round": 4
+    },
+    {
+      "backend": "masks",
+      "samples": 1000,
+      "total_s": 14.775507999467663,
+      "median_ms": 14.117400016402826,
+      "mean_ms": 14.775507999467663,
+      "stages_s": {
+        "resample": 1.2187123000621796,
+        "apply_segments": 3.5334511005785316,
+        "masks": 0.14986229973146692
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 694153216,
+      "round": 4
+    },
+    {
+      "backend": "geometry+masks",
+      "samples": 1000,
+      "total_s": 9.83879790030187,
+      "median_ms": 9.675349981989712,
+      "mean_ms": 9.83879790030187,
+      "stages_s": {
+        "resample": 0.42851700371829793,
+        "apply_segments": 0.5672723993775435,
+        "masks": 0.13373429921921343
+      },
+      "output_sha256": "1bb2affd3bf1dbd31c9988beec0fa8190a2d2f39cdd0e4ffe1993b8e26ae6b14",
+      "rss_bytes": 694517760,
+      "round": 4
+    }
+  ],
+  "summary": {
+    "reference": {
+      "mean_ms_median": 14.24605649895966,
+      "reference_over_backend": 1.0
+    },
+    "masks": {
+      "mean_ms_median": 12.837590699782595,
+      "reference_over_backend": 1.1097141848587615
+    },
+    "geometry+masks": {
+      "mean_ms_median": 9.83879790030187,
+      "reference_over_backend": 1.4479468572601302
+    }
+  }
+}

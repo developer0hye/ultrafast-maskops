@@ -7,8 +7,10 @@ data pipeline: mask rasterization and segment geometry. Every accelerated
 function returns the **same bytes** as the pinned Ultralytics code, and the
 batches a trainer receives are identical, so the training run does not change.
 
-**13× faster mask rasterization · 4–9× faster segment geometry · 1.4× faster
-augmented epochs**, measured on real COCO data against the unmodified pipeline.
+**13–20× faster mask rasterization · 2.5–10× faster segment geometry · 1.4×
+faster augmented epochs**, measured on real COCO data against the unmodified
+pipeline on three hosts (Apple M2, Intel i5-10400 on Linux, Intel i5-12600 on
+Windows).
 
 The extension depends on nothing but pybind11 and NumPy. It bundles no OpenCV:
 the kernel replicates `cv2.fillPoly` and the 4× linear downscale in integer
@@ -60,37 +62,40 @@ accelerate_geometry(dataset, persistent=True)  # resampling, affine boxes and cl
 transforms for `close_mosaic`. The standalone wrappers `polygon2mask`,
 `polygons2masks` and `polygons2masks_overlap` keep the reference signatures.
 
-## Mask rasterization: 13× faster, byte for byte
+## Mask rasterization: 13–20× faster, byte for byte
 
 `polygons2masks_overlap` is the reference's costliest per-instance step: it
 fills every instance into a full-resolution image, downsamples it and sums it.
 The native kernel computes the same 160×160 bytes from the two rows and two
 columns of every 4×4 block that the downscale actually reads.
 
-![Mask rasterization time per Format call on the M2 and the i5-10400](docs/assets/mask-stage.svg)
+![Mask rasterization time per Format call on the M2, the i5-10400 and the i5-12600](docs/assets/mask-stage.svg)
 
 | Host | Reference | ultrafast-maskops | Speedup |
 |---|---:|---:|---:|
-| Apple M2 | 661 µs | **50 µs** | **13.2×** |
-| Intel i5-10400 | 1,184 µs | **89 µs** | **13.4×** |
+| Apple M2 (macOS, Clang) | 661 µs | **50 µs** | **13.2×** |
+| Intel i5-10400 (Linux, GCC) | 1,184 µs | **89 µs** | **13.4×** |
+| Intel i5-12600 (Windows 11, MSVC) | 1,200 µs | **60 µs** | **20.1×** |
 
 2,000 captured COCO `Format` calls (27,497 instances). The kernel retires
-0.72 M instructions per call against the reference's 9.8 M.
+0.72 M instructions per call against the reference's 9.8 M. On Windows the
+reference's per-instance cv2 and NumPy calls cost more than on Linux while the
+kernel does not, so the same code gains more there.
 
-## Segment geometry: 4–9× faster per stage, 1.45–1.63× per sample
+## Segment geometry: 2.5–10× faster per stage, 1.45–1.63× per sample
 
 Three stages of an augmented sample are per-instance Python loops over small
 NumPy and OpenCV calls. Each is replaced by one native batch that follows the
 reference operation by operation, in the input precision.
 
-![Per-stage time of one augmented COCO sample on the M2 and the i5-10400](docs/assets/loader-stages.svg)
+![Per-stage time of one augmented COCO sample on the M2, the i5-10400 and the i5-12600](docs/assets/loader-stages.svg)
 
-| Stage | M2 reference → ours | i5-10400 reference → ours |
-|---|---:|---:|
-| `resample_segments` | 0.82 → 0.18 ms (4.6×) | 1.66 → 0.39 ms (4.3×) |
-| `RandomPerspective.apply_segments` | 2.24 → 0.61 ms (3.7×) | 3.60 → 0.56 ms (6.5×) |
-| `Format._format_segments` | 0.69 → 0.07 ms (10.3×) | 1.25 → 0.14 ms (8.9×) |
-| whole `__getitem__` | 10.09 → 6.95 ms (**1.45×**) | 14.15 → 8.71 ms (**1.63×**) |
+| Stage | M2 reference → ours | i5-10400 (Linux) reference → ours | i5-12600 (Windows) reference → ours |
+|---|---:|---:|---:|
+| `resample_segments` | 0.82 → 0.18 ms (4.6×) | 1.66 → 0.39 ms (4.3×) | 1.09 → 0.43 ms (2.5×) |
+| `RandomPerspective.apply_segments` | 2.24 → 0.61 ms (3.7×) | 3.60 → 0.56 ms (6.5×) | 3.21 → 0.57 ms (5.7×) |
+| `Format._format_segments` | 0.69 → 0.07 ms (10.3×) | 1.25 → 0.14 ms (8.9×) | 1.32 → 0.13 ms (9.9×) |
+| whole `__getitem__` | 10.09 → 6.95 ms (**1.45×**) | 14.15 → 8.71 ms (**1.63×**) | 14.25 → 9.84 ms (**1.45×**) |
 
 The rest of a sample is JPEG decoding, `warpAffine` and HSV conversion, which
 already run in OpenCV; removing the segment stages entirely would bound the
@@ -113,6 +118,13 @@ fresh process per measurement.
 Before timing, every batch of a whole epoch (7,393 batches) was digested for
 all three pipelines: the digests are identical.
 [Method, per-stage anatomy and raw reports](docs/SEGMENT_GEOMETRY.md).
+
+Whether that reaches the training wall clock depends on whether the loader is
+the bottleneck. Training YOLO11n-seg end to end on a TITAN RTX with the
+i5-12600 (batch 16, identical losses and weights), the epoch is 1.17–1.19×
+faster with `workers=0` and unchanged with 2 or 8 workers, where the GPU step
+sets the pace in both FP32 and AMP
+([measurements](docs/SEGMENT_GEOMETRY.md#end-to-end-gpu-training-on-the-i5-12600--titan-rtx-windows-11)).
 
 ## Exactness
 
