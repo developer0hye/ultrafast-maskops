@@ -290,8 +290,9 @@ struct Rasterizer {
 // is anything np.asarray(..., float64) accepts, read as consecutive x, y
 // pairs (an odd trailing coordinate is ignored, as frPoly does). rows and
 // cols map every output row and column to a source row and column, -1 where
-// a crop padded. Returns a bool array (N, len(rows), len(cols)).
-py::array rfdetr_masks(const py::sequence &instances, int h, int w, Array<int32_t> rows, Array<int32_t> cols) {
+// a crop padded. fused selects the contracted double arithmetic (see
+// rfdetr.hpp). Returns a bool array (N, len(rows), len(cols)).
+py::array rfdetr_masks(const py::sequence &instances, int h, int w, Array<int32_t> rows, Array<int32_t> cols, bool fused) {
     if (rows.ndim() != 1 || cols.ndim() != 1) throw py::value_error("rows and cols must be one-dimensional");
     if (h < 0 || w < 0 || h > INT_MAX / 8 || w > INT_MAX / 8) throw py::value_error("invalid source size");
     std::vector<int32_t> row_map(size_t(rows.size())), col_map(size_t(cols.size()));
@@ -318,7 +319,7 @@ py::array rfdetr_masks(const py::sequence &instances, int h, int w, Array<int32_
         maskops_rfdetr::Renderer renderer;
         for (size_t i = 0; i < n; ++i)
             for (const auto &polygon : polygons[i])
-                renderer.render(chain, polygon.data(), size_t(polygon.size()) / 2, out + i * plane);
+                renderer.render(chain, polygon.data(), size_t(polygon.size()) / 2, out + i * plane, fused);
     }
     return std::move(result);
 }
@@ -345,7 +346,8 @@ PYBIND11_MODULE(_native, m) {
         return out;
     });
 #endif
-    m.def("rfdetr_masks", &rfdetr_masks);
+    m.def("rfdetr_masks", &rfdetr_masks, py::arg("instances"), py::arg("h"), py::arg("w"), py::arg("rows"), py::arg("cols"),
+          py::arg("fused") = false);
     maskops_geometry::register_geometry(m);
     py::class_<Polygons>(m, "Polygons").def(py::init<Array<int32_t>, Array<int64_t>>()).def("__len__", &Polygons::size);
     py::class_<Rasterizer>(m, "Rasterizer")

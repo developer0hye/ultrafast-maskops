@@ -187,8 +187,12 @@ Reports: [bench/results/workers-sweep-linux-v1](bench/results/workers-sweep-linu
   sizes handled natively and the sizes handed back.
 - The RF-DETR kernel follows pycocotools' `rleFrPoly` (scaled integer edge
   walk, column-major toggles, even-odd decode) with the C code's double
-  arithmetic and integer conversions, and torch's `nearest` index rule; samples
-  whose segmentations are not polygon lists take RF-DETR's own path.
+  arithmetic and integer conversions, and torch's `nearest` index rule. The
+  x86-64 and arm64 builds of pycocotools round that arithmetic differently
+  (the arm64 compiler fuses multiply-adds); the kernel implements both and is
+  matched to the installed build at first use on probe polygons that separate
+  them. Samples whose segmentations are not polygon lists take RF-DETR's own
+  path.
 - Verification: parity suites in SIMD and scalar modes on Linux, macOS and
   Windows (`ULTRAFAST_MASKOPS_SCALAR=1` selects the scalar twin of every vector
   path); differential fuzzing of the kernel against `cv2.fillPoly` over about

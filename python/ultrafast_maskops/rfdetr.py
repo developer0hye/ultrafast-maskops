@@ -11,7 +11,9 @@ RF-DETR implementations and only add a note of what they did.
 
 Use ``accelerate_dataset(dataset)`` on an RF-DETR ``CocoDetection`` built with
 ``include_masks=True``. Samples whose segmentations are not plain polygon lists
-(RLE, bbox-shaped lists) take RF-DETR's own path unchanged.
+(RLE, bbox-shaped lists) take RF-DETR's own path unchanged. The kernel's double
+arithmetic is matched to the installed pycocotools build at first use (see
+``_pycocotools``).
 """
 
 import hashlib
@@ -24,7 +26,7 @@ from rfdetr.datasets import coco as rf_coco
 from rfdetr.datasets.transforms import Normalize
 from torchvision.transforms.v2 import ToDtype, ToImage
 
-from . import _native
+from . import _native, _pycocotools
 from ._chain import index_maps
 
 _SOURCE_HASHES = {
@@ -209,7 +211,7 @@ class MaterializeMasks:
         polygons = target.pop("maskops_polygons")
         h, w = (int(v) for v in target["orig_size"])
         rows, cols = index_maps(trace.ops, h, w)
-        masks = _native.rfdetr_masks([p.polygons for p in polygons], h, w, rows, cols)
+        masks = _native.rfdetr_masks([p.polygons for p in polygons], h, w, rows, cols, _pycocotools.fused())
         target["masks"] = torch.from_numpy(masks)
         return image, target
 
@@ -251,6 +253,7 @@ def accelerate_dataset(dataset):
     traced copy ending in MaterializeMasks. Returns the dataset.
     """
     check_profile()
+    _pycocotools.fused()  # the installed pycocotools must be one of the two reproducible builds
     if not isinstance(dataset.prepare, rf_coco.ConvertCoco):
         raise ValueError("expected an RF-DETR CocoDetection with its ConvertCoco prepare step")
     dataset.prepare = FastConvertCoco(dataset.prepare)

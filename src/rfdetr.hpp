@@ -22,6 +22,11 @@
 //
 // Integer conversions follow the C source as compiled for x86-64: a NaN or
 // out-of-range double converts to INT_MIN, the "integer indefinite" value.
+// The double arithmetic comes in two flavours: the C source as written (every
+// product rounded before the addition, pycocotools' x86-64 wheels) and the
+// contracted form (scale*v + .5 and ys + s*t fused into one rounding, which
+// compilers emit for arm64 wheels). The Python layer picks the flavour that
+// reproduces the installed pycocotools.
 #pragma once
 #include <algorithm>
 #include <bit>
@@ -59,12 +64,16 @@ inline int div5_floor(int v) { return v >= 0 ? v / 5 : -((-v + 4) / 5); }
 // can toggle; those steps and their predecessors are evaluated directly with
 // the C code's own double formula. Along a y-major edge u rarely changes, so
 // every step is visited but only a column change runs the test.
+template <bool Fused>
 inline void polygon_toggles(const double *xy, size_t k, int h, int w, std::vector<int> &x, std::vector<int> &y,
                             std::vector<Toggle> &out) {
     const double scale = 5;
+    // scale * v + .5 and base + s * t, each as one rounding when Fused.
+    auto scaled = [](double v) { return Fused ? std::fma(5.0, v, .5) : 5.0 * v + .5; };
+    auto along = [](int base, double s, int t) { return Fused ? std::fma(s, double(t), double(base)) : base + s * t; };
     x.resize(k + 1), y.resize(k + 1);
-    for (size_t j = 0; j < k; ++j) x[j] = c_int(scale * xy[j * 2 + 0] + .5);
-    for (size_t j = 0; j < k; ++j) y[j] = c_int(scale * xy[j * 2 + 1] + .5);
+    for (size_t j = 0; j < k; ++j) x[j] = c_int(scaled(xy[j * 2 + 0]));
+    for (size_t j = 0; j < k; ++j) y[j] = c_int(scaled(xy[j * 2 + 1]));
     if (k == 0) return;
     x[k] = x[0], y[k] = y[0];
     bool have_previous = false;
@@ -90,7 +99,7 @@ inline void polygon_toggles(const double *xy, size_t k, int h, int w, std::vecto
         if (flip) std::swap(xs, xe), std::swap(ys, ye);
         const double s = dx >= dy ? double(ye - ys) / dx : double(xe - xs) / dy;
         if (dx >= dy) {
-            auto v_at = [&](int t) { return c_int(ys + s * t + .5); };
+            auto v_at = [&](int t) { return c_int(along(ys, s, t) + .5); };
             if (!flip) {
                 // Emission order t = 0 .. dx, u = xs + t. The first point pairs
                 // with the previous edge; afterwards only u - 1 = 5n + 2 can toggle.
@@ -119,7 +128,7 @@ inline void polygon_toggles(const double *xy, size_t k, int h, int w, std::vecto
         } else if (dy < 4 * dx || std::abs(xs) > (1 << 30) || std::abs(xe) > (1 << 30)) {
             for (int d = 0; d <= dy; ++d) {
                 const int t = flip ? dy - d : d;
-                visit(c_int(xs + s * t + .5), t + ys);
+                visit(c_int(along(xs, s, t) + .5), t + ys);
             }
         } else {
             // A steep edge: u is a monotone function of the step (a correctly
@@ -128,7 +137,7 @@ inline void polygon_toggles(const double *xy, size_t k, int h, int w, std::vecto
             // change is found by galloping and bisection instead of one step
             // at a time. Every pair that can toggle is still evaluated with
             // the C formula at its own step.
-            auto u_at = [&](int d) { return c_int(xs + s * (flip ? dy - d : d) + .5); };
+            auto u_at = [&](int d) { return c_int(along(xs, s, flip ? dy - d : d) + .5); };
             int d = 0, u0 = u_at(0);
             visit(u0, (flip ? dy : 0) + ys);
             while (d < dy) {
@@ -212,9 +221,12 @@ struct Renderer {
     size_t word_lo = 0, word_hi = 0;  // words of state that can hold set bits
     int span_lo = 0, span_hi = 0;  // output columns painted on the last painted row
 
-    void render(const Chain &c, const double *xy, size_t k, uint8_t *out) {
+    void render(const Chain &c, const double *xy, size_t k, uint8_t *out, bool fused) {
         toggles.clear();
-        polygon_toggles(xy, k, c.h, c.w, x, y, toggles);
+        if (fused)
+            polygon_toggles<true>(xy, k, c.h, c.w, x, y, toggles);
+        else
+            polygon_toggles<false>(xy, k, c.h, c.w, x, y, toggles);
         if (toggles.empty()) return;
         // Initial state of each column: the parity of the toggles before it.
         // Only columns from the first toggle on can ever be set; a polygon

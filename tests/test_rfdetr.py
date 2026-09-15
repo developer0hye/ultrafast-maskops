@@ -14,8 +14,19 @@ import pytest
 
 coco_mask = pytest.importorskip("pycocotools.mask")
 
-from ultrafast_maskops import _native  # noqa: E402
+from ultrafast_maskops import _native, _pycocotools  # noqa: E402
 from ultrafast_maskops._chain import index_maps  # noqa: E402
+
+FUSED = _pycocotools.fused()  # the arithmetic flavour of the installed pycocotools
+
+
+def test_probes_separate_the_flavours_and_one_matches_pycocotools():
+    unfused, fused = _pycocotools.probe_masks(False), _pycocotools.probe_masks(True)
+    assert all(not np.array_equal(unfused[i], fused[i]) for i in range(len(unfused)))
+    reference = _pycocotools.reference_masks()
+    assert np.array_equal(fused if FUSED else unfused, reference)
+    assert not np.array_equal(unfused if FUSED else fused, reference)
+    assert _pycocotools.arithmetic() in ("unfused", "fused")
 
 
 def reference_masks(instances, h, w):
@@ -103,7 +114,7 @@ def test_kernel_matches_pycocotools_through_random_chains(seed):
     for _ in range(6):
         ops = random_ops(rng, h, w)
         rows, cols = index_maps(ops, h, w)
-        got = _native.rfdetr_masks([[np.asarray(p, dtype=np.float64) for p in polys] for polys in instances], h, w, rows, cols)
+        got = _native.rfdetr_masks([[np.asarray(p, dtype=np.float64) for p in polys] for polys in instances], h, w, rows, cols, FUSED)
         want = apply_chain(expected, ops)
         assert got.dtype == np.bool_ and got.shape == want.shape, ops
         np.testing.assert_array_equal(got, want, err_msg=f"ops={ops}")
@@ -115,7 +126,7 @@ def test_kernel_identity_chain_is_the_full_raster():
     instances = [[random_polygon(rng, h, w) for _ in range(2)] for _ in range(20)]
     instances = [polys for polys in instances if len(polys[0]) > 4]
     rows, cols = index_maps([], h, w)
-    got = _native.rfdetr_masks([[np.asarray(p) for p in polys] for polys in instances], h, w, rows, cols)
+    got = _native.rfdetr_masks([[np.asarray(p) for p in polys] for polys in instances], h, w, rows, cols, FUSED)
     np.testing.assert_array_equal(got, reference_masks(instances, h, w))
 
 

@@ -143,11 +143,14 @@ which is 0.7% of a 10 ms sample. Two levers were left unpulled:
   array maps zero pages lazily), but RF-DETR's collate copies every mask
   tensor anyway, so the pages are touched a moment later.
 
-Language notes. `-ffp-contract=off` is what makes the double arithmetic
-match pycocotools' x86-64 build; the arm64 macOS wheel of pycocotools
-contracts `ys + s*t + .5` and differs from the C source's unfused result by
-one pixel in one of 4,000 seeds on the M2, which an unfused pure-Python port
-of `rleFrPoly` confirms. Integer conversions emulate x86-64's `cvttsd2si`
+Language notes. `-ffp-contract=off` keeps the compiler from fusing the
+kernel's own arithmetic; the two flavours are then explicit (`std::fma` or a
+rounded product), because pycocotools' x86-64 wheels round every product
+while its arm64 wheels are contracted by the compiler and differ by a pixel on
+rare polygons (one in 4,000 fuzz seeds; an unfused pure-Python port of
+`rleFrPoly` confirmed which side was the C source). The installed build is
+matched at first use on twelve probe polygons found by diffing the two
+flavours of the kernel. Integer conversions emulate x86-64's `cvttsd2si`
 (NaN and overflow to `INT_MIN`) explicitly, because arm64 saturates and
 returns 0 for NaN. `std::countr_zero` drives the run scan.
 

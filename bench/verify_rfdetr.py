@@ -19,7 +19,7 @@ import torch
 
 sys.path.insert(0, __file__.rsplit("/", 2)[0])  # repository root, for tests/
 from tests.test_rfdetr import apply_chain, random_ops, random_polygon, reference_masks  # noqa: E402
-from ultrafast_maskops import _native  # noqa: E402
+from ultrafast_maskops import _native, _pycocotools  # noqa: E402
 from ultrafast_maskops._chain import index_maps  # noqa: E402
 
 
@@ -44,6 +44,8 @@ def main():
     torch.set_num_threads(1)
 
     # Kernel fuzz: larger canvases than the unit test, many chains.
+    fused = _pycocotools.fused()
+    print(f"pycocotools arithmetic: {_pycocotools.arithmetic()}", flush=True)
     fuzz_start = time.perf_counter()
     fuzz_pixels = 0
     for seed in range(args.fuzz):
@@ -55,7 +57,7 @@ def main():
         for _ in range(3):
             ops = random_ops(rng, h, w)
             rows, cols = index_maps(ops, h, w)
-            got = _native.rfdetr_masks([[np.asarray(p) for p in polys] for polys in instances], h, w, rows, cols)
+            got = _native.rfdetr_masks([[np.asarray(p) for p in polys] for polys in instances], h, w, rows, cols, fused)
             want = apply_chain(expected, ops)
             if got.shape != want.shape or not np.array_equal(got, want):
                 print(f"FUZZ MISMATCH seed {seed} ops {ops}")
@@ -95,6 +97,7 @@ def main():
         "mismatches": mismatches,
         "fuzz_seeds": args.fuzz,
         "fuzz_output_pixels": fuzz_pixels,
+        "pycocotools_arithmetic": _pycocotools.arithmetic(),
         "resolution": args.resolution,
     }
     print(json.dumps(report))

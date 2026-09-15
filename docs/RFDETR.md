@@ -152,10 +152,13 @@ module themselves.
   accelerated; `trace_transforms` raises on transform types it does not know.
 - `gpu_postprocess=True` (kornia) is compatible: masks are materialized at the
   end of the CPU pipeline, before collation.
-- Exactness is defined against pycocotools as built for x86-64 Linux, i.e.
-  the C source's unfused double arithmetic. The arm64 macOS wheel of
-  pycocotools 2.0.11 contracts `ys + s*t + .5` into a fused multiply-add and
-  differs from that by one pixel in one of 4,000 fuzz seeds on an Apple M2; an
-  unfused pure-Python port of `rleFrPoly` agrees with the kernel on that case.
-  Training on x86-64 Linux sees no difference (4,000 seeds, 5,000 val2017
-  images × 2 seeds).
+- pycocotools comes in two double-arithmetic flavours: the C source as written
+  (every product rounded before the addition, the x86-64 wheels) and the
+  contracted form the compiler emits for arm64 (`scale*v + .5` and
+  `ys + s*t` as single fused multiply-adds). They differ by a pixel on rare
+  polygons. The kernel implements both, and `ultrafast_maskops._pycocotools`
+  picks the one that reproduces the installed pycocotools at first use, on
+  twelve probe polygons that separate the flavours (each flavour matched a real
+  build on them: unfused on x86-64 Linux, fused on arm64 macOS). A build that
+  matches neither is refused. With the matched flavour, 4,000 fuzz seeds pass
+  on both hosts.
