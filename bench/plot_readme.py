@@ -213,6 +213,35 @@ def rfdetr_loader():
     fig.savefig(ASSETS / "rfdetr-loader.svg")
     plt.close(fig)
 
+def workers_sweep():
+    folder = RESULTS / "workers-sweep-linux-v1"
+    rf = json.load(open(folder / "rfdetr-workers.json"))["summary_best_steady_img_per_s"]
+    ul = json.load(open(folder / "ultralytics-workers.json"))["summary_best_steady_img_per_s"]
+    fig, axes = plt.subplots(1, 2, figsize=(11, 4.6))
+    for ax, (title, data, ours_key, ref_label) in zip(axes, (
+        ("Ultralytics YOLODataset, train mode, batch 16", ul, "maskops", "Ultralytics reference"),
+        ("RF-DETR CocoDetection, default train transforms, batch 8", rf, "accelerated", "RF-DETR reference"),
+    )):
+        workers = sorted(data, key=int)
+        x = list(range(len(workers)))
+        ref = [data[w]["reference"] for w in workers]
+        ours = [data[w][ours_key] for w in workers]
+        ax.plot(x, ref, "-o", color=REFERENCE, label=ref_label, linewidth=2)
+        ax.plot(x, ours, "-o", color=OURS, label="ultrafast-maskops", linewidth=2.5)
+        for i, (r, o) in enumerate(zip(ref, ours)):
+            ax.text(i, o + max(ours) * 0.04, f"{o / r:.2f}×", ha="center", va="bottom", color=OURS, fontsize=9.5, fontweight="bold")
+        ax.set_xticks(x, workers)
+        ax.set_xlabel("DataLoader num_workers")
+        ax.set_ylabel("images per second (steady state)")
+        ax.set_ylim(0, max(ours) * 1.22)
+        ax.set_title(title, loc="left", fontweight="bold", fontsize=10.5)
+        ax.legend(frameon=False, loc="upper left")
+    fig.text(0.01, 0.005, "Intel i5-10400 (6 cores, 12 threads), COCO val2017 (5,000 images), one pass per measurement in a fresh process, best of two rounds,\n"
+             "worker start-up excluded. Both pipelines produce identical batches with and without ultrafast-maskops.", fontsize=9, color="#5f6368")
+    fig.tight_layout(rect=(0, 0.08, 1, 1))
+    fig.savefig(ASSETS / "workers-sweep.svg")
+    plt.close(fig)
+
 
 if __name__ == "__main__":
     ASSETS.mkdir(parents=True, exist_ok=True)
@@ -220,4 +249,5 @@ if __name__ == "__main__":
     loader_stages()
     coco_epoch()
     rfdetr_loader()
+    workers_sweep()
     print("wrote", sorted(p.name for p in ASSETS.glob("*.svg")))
