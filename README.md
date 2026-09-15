@@ -2,22 +2,26 @@
 
 [![Wheel compatibility](https://github.com/developer0hye/ultrafast-maskops/actions/workflows/wheels.yml/badge.svg)](https://github.com/developer0hye/ultrafast-maskops/actions/workflows/wheels.yml)
 
-Exact native replacements for the slow parts of the Ultralytics segmentation
-data pipeline: mask rasterization and segment geometry. Every accelerated
-function returns the **same bytes** as the pinned Ultralytics code, and the
-batches a trainer receives are identical, so the training run does not change.
+Exact native replacements for the slow parts of segmentation data pipelines:
+mask rasterization and segment geometry for Ultralytics, deferred mask
+rasterization for RF-DETR. Every accelerated function returns the **same
+bytes** as the pinned framework code, and the batches a trainer receives are
+identical, so the training run does not change.
 
-**13× faster mask rasterization · 4–9× faster segment geometry · 1.4× faster
-augmented epochs**, measured on real COCO data against the unmodified pipeline.
+**Ultralytics: 13× faster mask rasterization · 4–9× faster segment geometry ·
+1.4× faster augmented epochs. RF-DETR: 2.05× faster segmentation samples,
+1.72× DataLoader throughput**, measured on real COCO data against the
+unmodified pipelines.
 
-The extension depends on nothing but pybind11 and NumPy. It bundles no OpenCV:
-the kernel replicates `cv2.fillPoly` and the 4× linear downscale in integer
-arithmetic, evaluated only where the downscale reads, and is verified against
-the cv2 you have installed the first time each image size is used.
+The extension depends on nothing but pybind11 and NumPy. It bundles no OpenCV
+and no pycocotools: the kernels replicate `cv2.fillPoly` with the 4× linear
+downscale, and pycocotools' `rleFrPoly` with torchvision's nearest resize, crop
+and flip, in integer arithmetic evaluated only where the output reads.
 
 **Status:** alpha. Validated against Ultralytics commit
-`795a556942a12fe0124cf767888194a1d0b83e2e` (8.4.149); the adapter checks the
-source hashes of the functions it replaces and refuses others.
+`795a556942a12fe0124cf767888194a1d0b83e2e` (8.4.149) and RF-DETR develop
+`2398ce3c8730c88643f89d8e0283e71d14580bc7` (1.11.0.dev0); each adapter checks
+the source hashes of the functions it replaces and refuses others.
 
 ## Installation
 
@@ -59,6 +63,14 @@ accelerate_geometry(dataset, persistent=True)  # resampling, affine boxes and cl
 `persistent=True` keeps the acceleration when Ultralytics rebuilds the
 transforms for `close_mosaic`. The standalone wrappers `polygon2mask`,
 `polygons2masks` and `polygons2masks_overlap` keep the reference signatures.
+
+For RF-DETR, one call on a `CocoDetection` built with `include_masks=True`:
+
+```python
+from ultrafast_maskops.rfdetr import accelerate_dataset
+
+accelerate_dataset(dataset)  # polygons ride through the transforms; masks are rasterized once, at the end
+```
 
 ## Mask rasterization: 13× faster, byte for byte
 
@@ -114,6 +126,27 @@ Before timing, every batch of a whole epoch (7,393 batches) was digested for
 all three pipelines: the digests are identical.
 [Method, per-stage anatomy and raw reports](docs/SEGMENT_GEOMETRY.md).
 
+## RF-DETR: 2× faster segmentation samples, 1.7× DataLoader throughput
+
+RF-DETR rasterizes every polygon at full resolution with pycocotools and then
+resamples the whole mask tensor in each resize, crop and flip. The adapter
+keeps the polygons, records what the random transforms chose, and evaluates
+pycocotools' fill once, only at the output pixels.
+
+![RF-DETR sample time and DataLoader throughput](docs/assets/rfdetr-loader.svg)
+
+| | RF-DETR reference | with ultrafast-maskops | Speedup |
+|---|---:|---:|---:|
+| `__getitem__`, single process | 20.99 ms | **10.26 ms** | **2.05×** |
+| DataLoader, 8 workers, batch 8 | 119.6 img/s | **206.0 img/s** | **1.72×** |
+
+Intel i5-10400, COCO val2017, RF-DETR's default training transforms
+(`square_resize_div_64`, multi-scale, resolution 560). The mask work of a
+sample went from about 11 ms to 0.6 ms; what remains is JPEG decoding, the PIL
+image resize and normalization. Under the same seeds, images, boxes, labels
+and masks are byte-identical for every image of the split.
+[Design, kernel and verification](docs/RFDETR.md).
+
 ## Exactness
 
 - The mask kernel follows OpenCV 4.13's `clipLine`, `LineIterator`,
@@ -129,13 +162,21 @@ all three pipelines: the digests are identical.
   envelope, and any image size whose cv2 results the calibration cannot
   reproduce run the unmodified reference code. `backend_info()` lists the
   sizes handled natively and the sizes handed back.
+- The RF-DETR kernel follows pycocotools' `rleFrPoly` (scaled integer edge
+  walk, column-major toggles, even-odd decode) with the C code's double
+  arithmetic and integer conversions, and torch's `nearest` index rule; samples
+  whose segmentations are not polygon lists take RF-DETR's own path.
 - Verification: parity suites in SIMD and scalar modes on Linux, macOS and
   Windows (`ULTRAFAST_MASKOPS_SCALAR=1` selects the scalar twin of every vector
   path); differential fuzzing of the kernel against `cv2.fillPoly` over about
   500,000 random contours and 8 G output pixels without a difference; a whole
   COCO-scale epoch with identical batch digests; and a two-epoch training run
   across `close_mosaic` in which every batch the trainer received was identical
-  ([tests/test_trainer.py](tests/test_trainer.py)).
+  ([tests/test_trainer.py](tests/test_trainer.py)). For RF-DETR: the kernel
+  against pycocotools + torchvision on random polygons and chains, a synthetic
+  COCO dataset through the unmodified and the accelerated `CocoDetection` under
+  the same seeds ([tests/test_rfdetr.py](tests/test_rfdetr.py)), and the whole
+  val2017 split under two seeds each, byte-identical.
 
 ## Compatibility and limitations
 
@@ -147,6 +188,11 @@ all three pipelines: the digests are identical.
   profile; everything else is correct but not accelerated.
 - Custom `Format` subclasses and custom `build_transforms` overrides are not
   replaced; the helpers raise instead of guessing.
+- RF-DETR: the torchvision default augmentation backend with the COCO-format
+  dataset. Albumentations pipelines, the YOLO-format dataset and unknown
+  transform types are refused rather than guessed; RLE segmentations run
+  RF-DETR's own code. RF-DETR is pinned to the validated commit through source
+  hashes, like Ultralytics.
 
 ## Development and verification
 
@@ -163,8 +209,12 @@ Ultralytics commit (see `requirements-integration.txt`):
 .venv/bin/python -m pytest -q tests
 ```
 
+The RF-DETR tests need `pycocotools`, and for the end-to-end part RF-DETR at
+the pinned commit (`pip install "rfdetr @ git+https://github.com/roboflow/rf-detr@2398ce3c8730c88643f89d8e0283e71d14580bc7"`).
+
 Benchmarks are reproduced with `bench/mask_stage.py`,
-`bench/geometry_loader.py` and `bench/coco_epoch.py`; the README charts are
+`bench/geometry_loader.py`, `bench/coco_epoch.py` and
+`bench/rfdetr_loader.py`; the README charts are
 rendered from the recorded reports by `bench/plot_readme.py`. Raw reports live
 in [bench/results](bench/results/README.md), earlier development records in
 [docs/archive](docs/archive).
@@ -172,5 +222,6 @@ in [bench/results](bench/results/README.md), earlier development records in
 ## License
 
 [AGPL-3.0-only](LICENSE): the replaced functions derive from Ultralytics, which
-is AGPL-3.0. The only compiled third-party component is pybind11
-([licenses](licenses)).
+is AGPL-3.0. The RF-DETR adapter replicates code from RF-DETR (Apache-2.0) and
+pycocotools (BSD-2-Clause). The only compiled third-party component is
+pybind11 ([licenses](licenses)).

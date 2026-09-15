@@ -7,6 +7,7 @@
 #include <pybind11/pybind11.h>
 #include "maskops_build_profile.h"
 #include "geometry.hpp"
+#include "rfdetr.hpp"
 #include "sampled.hpp"
 #include <algorithm>
 #include <array>
@@ -284,12 +285,51 @@ struct Rasterizer {
     }
 };
 
+// pycocotools masks of RF-DETR instances at the pixels a transform chain
+// keeps. instances holds, per instance, a sequence of polygons; each polygon
+// is anything np.asarray(..., float64) accepts, read as consecutive x, y
+// pairs (an odd trailing coordinate is ignored, as frPoly does). rows and
+// cols map every output row and column to a source row and column, -1 where
+// a crop padded. Returns a bool array (N, len(rows), len(cols)).
+py::array rfdetr_masks(const py::sequence &instances, int h, int w, Array<int32_t> rows, Array<int32_t> cols) {
+    if (rows.ndim() != 1 || cols.ndim() != 1) throw py::value_error("rows and cols must be one-dimensional");
+    if (h < 0 || w < 0 || h > INT_MAX / 8 || w > INT_MAX / 8) throw py::value_error("invalid source size");
+    std::vector<int32_t> row_map(size_t(rows.size())), col_map(size_t(cols.size()));
+    if (rows.size()) std::memcpy(row_map.data(), static_cast<const py::array &>(rows).data(), size_t(rows.nbytes()));
+    if (cols.size()) std::memcpy(col_map.data(), static_cast<const py::array &>(cols).data(), size_t(cols.nbytes()));
+    maskops_rfdetr::Chain chain;
+    if (!chain.configure(h, w, row_map.data(), int(row_map.size()), col_map.data(), int(col_map.size())))
+        throw py::value_error("rows and cols are not a nearest-resize, crop and flip composition");
+    using Coordinates = py::array_t<double, py::array::c_style | py::array::forcecast>;
+    std::vector<std::vector<Coordinates>> polygons;
+    polygons.reserve(size_t(py::len(instances)));
+    for (const auto &instance : instances) {
+        std::vector<Coordinates> own;
+        for (const auto &polygon : py::reinterpret_borrow<py::sequence>(instance)) own.push_back(polygon.cast<Coordinates>());
+        polygons.push_back(std::move(own));
+    }
+    const size_t n = polygons.size(), plane = size_t(chain.H) * size_t(chain.W);
+    if (n && plane > size_t(PY_SSIZE_T_MAX) / n) throw py::value_error("output size overflow");
+    py::array_t<bool> result({py::ssize_t(n), py::ssize_t(chain.H), py::ssize_t(chain.W)});
+    auto *out = reinterpret_cast<uint8_t *>(result.mutable_data());
+    {
+        py::gil_scoped_release release;
+        std::memset(out, 0, n * plane);
+        maskops_rfdetr::Renderer renderer;
+        for (size_t i = 0; i < n; ++i)
+            for (const auto &polygon : polygons[i])
+                renderer.render(chain, polygon.data(), size_t(polygon.size()) / 2, out + i * plane);
+    }
+    return std::move(result);
+}
+
 PYBIND11_MODULE(_native, m) {
     m.def("build_profile", []() {
         py::dict info;
         info["bindings_sha256"] = MASKOPS_BINDINGS_SHA256;
         info["geometry_sha256"] = MASKOPS_GEOMETRY_SHA256;
         info["sampled_sha256"] = MASKOPS_SAMPLED_SHA256;
+        info["rfdetr_sha256"] = MASKOPS_RFDETR_SHA256;
         info["cmake_sha256"] = MASKOPS_CMAKE_SHA256;
         info["template_sha256"] = MASKOPS_PROFILE_SHA256;
         info["compiler"] = MASKOPS_COMPILER;
@@ -305,6 +345,7 @@ PYBIND11_MODULE(_native, m) {
         return out;
     });
 #endif
+    m.def("rfdetr_masks", &rfdetr_masks);
     maskops_geometry::register_geometry(m);
     py::class_<Polygons>(m, "Polygons").def(py::init<Array<int32_t>, Array<int64_t>>()).def("__len__", &Polygons::size);
     py::class_<Rasterizer>(m, "Rasterizer")
