@@ -71,16 +71,21 @@ def bar_pair(ax, labels, reference, ours, unit, title, note=None):
 
 
 def mask_stage():
-    m2, linux = load("mask-stage-sampled-m2-v1.json"), load("mask-stage-minimal-linux-v1.json")
-    fig, ax = plt.subplots(figsize=(8, 4.8))
+    hosts = {
+        "Apple M2\n(macOS, Clang)": load("mask-stage-sampled-m2-v1.json"),
+        "Intel i5-10400\n(Linux, GCC)": load("mask-stage-minimal-linux-v1.json"),
+        "Intel i5-12600\n(Windows, MSVC)": load("mask-stage-sampled-windows-v1.json"),
+    }
+    fig, ax = plt.subplots(figsize=(9.5, 4.8))
     bar_pair(
         ax,
-        ["Apple M2", "Intel i5-10400"],
-        [m2["reference"]["us_per_sample_median"], linux["reference"]["us_per_sample_median"]],
-        [m2["sampled"]["us_per_sample_median"], linux["sampled"]["us_per_sample_median"]],
+        list(hosts),
+        [h["reference"]["us_per_sample_median"] for h in hosts.values()],
+        [h["sampled"]["us_per_sample_median"] for h in hosts.values()],
         "µs per Format call (13.7 instances)",
         "Mask rasterization (polygons2masks_overlap), 2,000 captured COCO calls",
-        "Byte-identical output on every call. Medians of five alternating rounds\n(M2 at commit 490eed2, i5-10400 at 5d2d8b2).",
+        "Byte-identical output on every call. Medians of five alternating rounds\n"
+        "(M2 at commit 490eed2, i5-10400 at 5d2d8b2, i5-12600 at 3c04fd6).",
     )
     ax.legend(frameon=False, loc="upper left")
     fig.tight_layout()
@@ -90,10 +95,11 @@ def mask_stage():
 
 def loader_stages():
     hosts = {"Apple M2": loader_medians("geometry-loader-sampled-m2-v1.json"),
-             "Intel i5-10400": loader_medians("geometry-loader-sampled-linux-v1.json")}
+             "Intel i5-10400": loader_medians("geometry-loader-sampled-linux-v1.json"),
+             "Intel i5-12600 (Windows)": loader_medians("geometry-loader-sampled-windows-v1.json")}
     stages = [("resample", "resample\nsegments"), ("apply_segments", "RandomPerspective\napply_segments"),
               ("masks", "Format\n_format_segments")]
-    fig, axes = plt.subplots(1, 2, figsize=(11, 4.4), sharey=False)
+    fig, axes = plt.subplots(1, 3, figsize=(15.5, 4.4), sharey=False)
     for ax, (host, data) in zip(axes, hosts.items()):
         labels = [s[1] for s in stages]
         ref = [data["reference"][s[0]] for s in stages]

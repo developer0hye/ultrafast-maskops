@@ -97,6 +97,35 @@ The `_format_segments` time includes the instance reordering that both
 implementations perform. Removing the segment stages entirely would bound this
 loader at 14.15 / 7.64 = 1.85×.
 
+### i5-12600 (Windows 11, MSVC), with the sampled mask path
+
+Measured at commit `3c04fd6` on an otherwise idle desktop (12th Gen Intel Core
+i5-12600, 6 cores; Windows 11; MSVC 19.44 build with the SSE2/SSSE3 paths;
+Python 3.12.10, NumPy 2.4.4, OpenCV 4.13.0) with 1,000 samples per process and
+five alternating rounds. The output digest is identical for every backend and
+round. Ultralytics was installed with LF line endings: a checkout converted to
+CRLF changes the file hashes the bench harness pins, though not the function
+hashes the adapter checks.
+
+| Backend | ms / sample | Loader speedup |
+|---|---:|---:|
+| Reference | 14.25 | 1.00× |
+| Masks only | 12.84 | 1.11× |
+| Geometry + masks | **9.84** | **1.45×** |
+
+Per sample, the timed segment stages fall from 5.62 ms to 1.13 ms (5.0×):
+
+| Stage | Reference | Geometry + masks | Speedup |
+|---|---:|---:|---:|
+| Resampling | 1.09 ms | 0.43 ms | 2.5× |
+| `apply_segments` | 3.21 ms | 0.57 ms | 5.7× |
+| `Format._format_segments` | 1.32 ms | 0.13 ms | 9.9× |
+
+Removing the segment stages entirely would bound this loader at
+14.25 / 8.63 = 1.65×. The resampling gain is smaller than on the other hosts:
+the native call costs about the same (0.43 ms against 0.39 ms on the i5-10400)
+while the reference loop is faster here (1.09 ms against 1.66 ms).
+
 ### One augmented epoch at COCO scale (i5-10400, Linux)
 
 `bench/coco_epoch.py` measures what a training run waits for: dataset
@@ -240,6 +269,14 @@ process, and every output was compared with the unmodified function first.
   its phase timers showed about 10% less time, but that host is no longer quiet
   enough for a wall-clock figure, so its instruction count (0.72 M per call,
   13.6× fewer than the reference) is the number recorded.
+- **i5-12600 (Windows 11, MSVC 19.44):** measured at commit `3c04fd6` on an
+  idle desktop, five alternating rounds: reference 1,199.5 µs, previous
+  full-resolution native path 1,307.7 µs (0.92×), sampled path 59.8 µs
+  (**20.1×**). The full-resolution path is slower than the reference under
+  this build; the sampled path does no full-resolution work and is not
+  affected. The 2,000-call input was regenerated with
+  `bench/capture_format_inputs.py` from the same fixture and seeds and holds
+  the same 27,497 instances.
 - **Portability:** the Linux and Windows CI builds (GCC, MSVC) pass the same
   parity tests, and the calibration finds a table on all three CI platforms,
   so the sampled path is active everywhere.
@@ -319,6 +356,9 @@ the Ultralytics functions it replaces.
 ```sh
 python bench/geometry_loader.py --images /path/to/coco/segment/images/val2017 \
   --samples 1000 --rounds 3 --out geometry-loader.json
+python bench/capture_format_inputs.py --images /path/to/coco/segment/images/val2017 \
+  --calls 2000 --out coco-format-inputs.npz
+python bench/mask_stage.py coco-format-inputs.npz --rounds 5 --out mask-stage.json
 ```
 
 Use `accelerate_dataset(ds)` then `accelerate_geometry(ds, persistent=True)` in a
