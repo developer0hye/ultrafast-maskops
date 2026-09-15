@@ -124,7 +124,9 @@ training run speeds up depends on whether its GPU was waiting on the loader.
 - `bench/verify_rfdetr.py`: the whole val2017 split (5,000 images, 65,177
   instances) under two seeds each, 0 mismatches, and 2,000 further
   random-polygon fuzz cases on canvases up to 400 px (445 M output pixels)
-  without a difference ([report](../bench/results/rfdetr-verify-linux-v1.json)).
+  without a difference ([report](../bench/results/rfdetr-verify-linux-v1.json));
+  repeated with the final kernel: 5,000 images × 1 seed and 4,000 fuzz seeds,
+  0 mismatches ([report](../bench/results/rfdetr-verify-linux-v2.json)).
 - `bench/rfdetr_loader.py` checks 400 samples for identical digests before
   timing anything.
 

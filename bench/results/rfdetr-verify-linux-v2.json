@@ -1,0 +1,10 @@
+{
+ "images": 5000,
+ "seeds": 1,
+ "instances": 32665,
+ "mismatches": 0,
+ "fuzz_seeds": 4000,
+ "fuzz_output_pixels": 874825019,
+ "pycocotools_arithmetic": "unfused",
+ "resolution": 560
+}
