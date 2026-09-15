@@ -39,6 +39,7 @@ def main():
     parser.add_argument("--fuzz", type=int, default=2000)
     parser.add_argument("--resolution", type=int, default=560)
     parser.add_argument("--out")
+    parser.add_argument("--fuzz-only", action="store_true")
     args = parser.parse_args()
     torch.set_num_threads(1)
 
@@ -61,6 +62,8 @@ def main():
                 sys.exit(1)
             fuzz_pixels += got.size
     print(f"fuzz: {args.fuzz} seeds, {fuzz_pixels / 1e6:.0f} M output pixels, no mismatch, {time.perf_counter() - fuzz_start:.0f} s", flush=True)
+    if args.fuzz_only:
+        return
 
     from rfdetr.datasets import coco as rf_coco
 

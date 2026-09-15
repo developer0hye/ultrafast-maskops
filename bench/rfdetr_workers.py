@@ -39,6 +39,10 @@ def worker(args):
     from rfdetr.utilities.tensors import collate_fn
     from torch.utils.data import DataLoader
 
+    # Mask tensors travel through shared memory; with many workers the default
+    # file-descriptor strategy exceeds the open-file limit ("received 0 items
+    # of ancdata"), so both arms use the file-system strategy.
+    torch.multiprocessing.set_sharing_strategy("file_system")
     load_before = os.getloadavg()
     started = time.perf_counter()
     dataset = build(args, args.arm == "accelerated")
