@@ -1,0 +1,37 @@
+{
+ "host": "yonghye-pc",
+ "cpu": "x86_64",
+ "python": "3.12.14",
+ "torch": "2.10.0+cpu",
+ "resolution": 560,
+ "samples": 400,
+ "instances": 2537,
+ "parity_mismatches": 0,
+ "single_process": {
+  "reference_ms": [
+   21.021190457977355,
+   21.201280099339783,
+   20.776988562429324
+  ],
+  "accelerated_ms": [
+   10.389983175555244,
+   10.543191883480176,
+   10.203930382849649
+  ],
+  "reference_stages_ms": {
+   "prepare": 5.358491265603031,
+   "transforms": 13.140556289581582
+  },
+  "accelerated_stages_ms": {
+   "prepare": 0.263268332540368,
+   "transforms": 7.4310384097043425,
+   "materialize": 0.22805311833508313
+  }
+ },
+ "dataloader_img_per_s": {
+  "reference": 119.65719598689859,
+  "accelerated": 210.86564430607064,
+  "workers": 8,
+  "batch": 8
+ }
+}

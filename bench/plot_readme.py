@@ -155,7 +155,7 @@ def coco_epoch():
 
 
 def rfdetr_loader():
-    data = load("rfdetr-loader-linux-v1.json")
+    data = load("rfdetr-loader-linux-v2.json")
     single, loader = data["single_process"], data["dataloader_img_per_s"]
     ref_stages, acc_stages = single["reference_stages_ms"], single["accelerated_stages_ms"]
     ref_total, acc_total = min(single["reference_ms"]), min(single["accelerated_ms"])

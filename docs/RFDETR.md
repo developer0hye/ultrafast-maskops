@@ -59,37 +59,55 @@ images and NumPy arrays, so `Polygons` leaves survive them.
 2. Every edge is walked as a dense integer line with the same double
    arithmetic (`(int)(ys + s*t + .5)`; the extension is compiled with
    `-ffp-contract=off`, matching pycocotools' x86-64 build, which has no FMA).
+   The walk skips what cannot toggle: along an x-major edge the column
+   advances by one per step and only columns `5n + 2` (after the C code's
+   `u - 1` adjustment) can toggle, so only every fifth step and its
+   predecessor are evaluated; along a steep edge (`dy >= 4 dx`) the column is
+   a monotone function of the step (a correctly rounded product and sum of a
+   fixed slope, then a monotone truncation), so the next column change is
+   found by galloping and bisection. Every pair that can toggle is still
+   evaluated with the C formula at its own step.
 3. Consecutive points that change column produce a toggle at column `x` and
-   row `y ∈ [0, h]`, exactly the "y-boundary points" of `rleFrPoly`.
+   row `y ∈ [0, h]`, exactly the "y-boundary points" of `rleFrPoly`. The
+   C code's tests on `((u + .5) / 5 - .5)` are integer tests here: both
+   doubles are exact rationals with fractional parts in fifths, so `xd` is
+   integral exactly when the adjusted column is `5n + 2`, and the `ceil` of
+   the row is a floor division.
 4. `decode` alternates 0/1 between the sorted column-major positions
    `x*h + y`, so pixel `(y, x)` is set when an odd number of toggles lie at or
    before that position. The kernel keeps one bit per source column, initialized
    to the parity of the toggles in earlier columns (a column with an odd number
    of toggles leaks into every later column, and a toggle at `y == h` counts
-   for later columns only, both as in pycocotools), sweeps the sampled source
-   rows once flipping bits as toggles pass, and paints each 1-run through the
-   column map with `memset`. Output rows that read the same source row are
-   copied. Only ones are written, so several polygons of one instance union in
-   the same zeroed plane, as `mask.any(dim=2)` does in RF-DETR.
+   for later columns only, both as in pycocotools), buckets the toggles by row,
+   sweeps the sampled source rows once flipping bits as toggles pass, skips rows
+   with no set bit, and paints each 1-run through the column map with `memset`.
+   Output rows that read the same source row copy the painted span. Only ones
+   are written, so several polygons of one instance union in the same zeroed
+   plane, as `mask.any(dim=2)` does in RF-DETR.
 
 The torch `nearest` index rule is `min(floor(float32(i) * (float32(in) /
 float32(out))), in - 1)`; it was checked against
 `torch.nn.functional.interpolate` on 5,993 size pairs with no mismatch.
 
+On seven COCO-like instances (690 vertices, 2.2 MB of output) the kernel takes
+about 150 µs on the M2, of which 19 µs allocate and zero the output; the
+first version took 299 µs, most of it in a double division per dense step and
+a `std::sort` of the toggles.
+
 ## Results
 
 ![RF-DETR sample time and DataLoader throughput](assets/rfdetr-loader.svg)
 
-Same host and configuration as the profile ([raw report](../bench/results/rfdetr-loader-linux-v1.json)):
+Same host and configuration as the profile ([raw report](../bench/results/rfdetr-loader-linux-v2.json); [v1](../bench/results/rfdetr-loader-linux-v1.json) is the first kernel, with materialize at 0.34 ms):
 
 | | RF-DETR reference | with ultrafast-maskops | Speedup |
 |---|---:|---:|---:|
-| `__getitem__`, single process | 20.99 ms | **10.26 ms** | **2.05×** |
-| of which prepare / transforms / materialize | 5.34 / 13.28 / — | 0.26 / 7.42 / 0.34 | |
-| DataLoader, 8 workers, batch 8 | 119.6 img/s | **206.0 img/s** | **1.72×** |
+| `__getitem__`, single process | 20.78 ms | **10.20 ms** | **2.04×** |
+| of which prepare / transforms / materialize | 5.36 / 13.14 / — | 0.26 / 7.43 / 0.23 | |
+| DataLoader, 8 workers, batch 8 | 119.7 img/s | **210.9 img/s** | **1.76×** |
 
-The remaining 10.3 ms are JPEG decoding, the PIL image resize and
-normalization; the mask work went from about 11 ms to 0.6 ms. Whether a
+The remaining 10.2 ms are JPEG decoding, the PIL image resize and
+normalization; the mask work went from about 11 ms to 0.5 ms. Whether a
 training run speeds up depends on whether its GPU was waiting on the loader.
 
 ## Verification
@@ -134,6 +152,10 @@ module themselves.
   accelerated; `trace_transforms` raises on transform types it does not know.
 - `gpu_postprocess=True` (kornia) is compatible: masks are materialized at the
   end of the CPU pipeline, before collation.
-- Exactness is defined against pycocotools as built for x86-64 Linux. Builds
-  of pycocotools that contract `ys + s*t` into a fused multiply-add could differ
-  on a rounding boundary; none appeared in the tests run on an Apple M2.
+- Exactness is defined against pycocotools as built for x86-64 Linux, i.e.
+  the C source's unfused double arithmetic. The arm64 macOS wheel of
+  pycocotools 2.0.11 contracts `ys + s*t + .5` into a fused multiply-add and
+  differs from that by one pixel in one of 4,000 fuzz seeds on an Apple M2; an
+  unfused pure-Python port of `rleFrPoly` agrees with the kernel on that case.
+  Training on x86-64 Linux sees no difference (4,000 seeds, 5,000 val2017
+  images × 2 seeds).

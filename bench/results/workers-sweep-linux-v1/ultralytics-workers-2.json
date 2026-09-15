@@ -1,0 +1,246 @@
+{
+  "scope": "one augmented training epoch, constructor to last batch, Ultralytics train-mode dataset and loader",
+  "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "logical_cpus": 12,
+  "ram_bytes": 33547984896,
+  "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+  "versions": {
+    "ultralytics": "8.4.149",
+    "ultrafast-maskops": "0.1.0a1",
+    "ultrafast-yolo-dataset": "0.1.0a1",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.4.4",
+    "opencv-python": "4.13.0.92"
+  },
+  "arguments": {
+    "images": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment/images/val2017",
+    "out": "/home/yonghye/ultrafast-vision-build/workers-sweep-v1/ultralytics-workers-2.json",
+    "mode": "hit",
+    "rounds": "2",
+    "workers": "2",
+    "batch": "16",
+    "imgsz": "640",
+    "fraction": "1.0",
+    "verify_batches": "16",
+    "backends": "['reference', 'maskops']",
+    "backend": "None",
+    "prime": "False",
+    "result": "None"
+  },
+  "corpus": {
+    "images": 5000,
+    "bytes": 814705164
+  },
+  "verification": {
+    "reference": "8b17f35d36c4c9cf93fcd690ea96499b2ae78568e8816c5992f7e28182796afc",
+    "maskops": "8b17f35d36c4c9cf93fcd690ea96499b2ae78568e8816c5992f7e28182796afc"
+  },
+  "results": [
+    {
+      "backend": "reference",
+      "mode": "hit",
+      "images": 5000,
+      "constructor_s": 0.11768972175195813,
+      "cache_hit": true,
+      "loadavg_before": [
+        1.033203125,
+        1.8798828125,
+        2.70703125
+      ],
+      "workers": 2,
+      "batches": 313,
+      "samples": 5000,
+      "first_batch_s": 0.30471264524385333,
+      "epoch_s": 39.648822772316635,
+      "total_s": 39.76651249406859,
+      "samples_per_s": 126.10714897419528,
+      "peak_memory_bytes": 785565696,
+      "peak_memory_kind": "pss",
+      "loadavg_after": [
+        1.505859375,
+        1.896484375,
+        2.67578125
+      ],
+      "round": 0
+    },
+    {
+      "backend": "maskops",
+      "mode": "hit",
+      "images": 5000,
+      "constructor_s": 0.17407867079600692,
+      "cache_hit": true,
+      "loadavg_before": [
+        1.505859375,
+        1.896484375,
+        2.67578125
+      ],
+      "workers": 2,
+      "batches": 313,
+      "samples": 5000,
+      "first_batch_s": 0.22335092397406697,
+      "epoch_s": 25.665518751833588,
+      "total_s": 25.839597422629595,
+      "samples_per_s": 194.8139076535436,
+      "peak_memory_bytes": 738581504,
+      "peak_memory_kind": "pss",
+      "loadavg_after": [
+        1.67529296875,
+        1.90625,
+        2.65625
+      ],
+      "round": 0
+    },
+    {
+      "backend": "maskops",
+      "mode": "hit",
+      "images": 5000,
+      "constructor_s": 0.17347244312986732,
+      "cache_hit": true,
+      "loadavg_before": [
+        1.62109375,
+        1.89111328125,
+        2.64697265625
+      ],
+      "workers": 2,
+      "batches": 313,
+      "samples": 5000,
+      "first_batch_s": 0.22923662001267076,
+      "epoch_s": 25.63080460485071,
+      "total_s": 25.804277047980577,
+      "samples_per_s": 195.07776197762183,
+      "peak_memory_bytes": 751293440,
+      "peak_memory_kind": "pss",
+      "loadavg_after": [
+        1.751953125,
+        1.90087890625,
+        2.62841796875
+      ],
+      "round": 1
+    },
+    {
+      "backend": "reference",
+      "mode": "hit",
+      "images": 5000,
+      "constructor_s": 0.11843160772696137,
+      "cache_hit": true,
+      "loadavg_before": [
+        1.751953125,
+        1.90087890625,
+        2.62841796875
+      ],
+      "workers": 2,
+      "batches": 313,
+      "samples": 5000,
+      "first_batch_s": 0.30491254292428493,
+      "epoch_s": 39.19154900126159,
+      "total_s": 39.30998060898855,
+      "samples_per_s": 127.57852464160189,
+      "peak_memory_bytes": 778446848,
+      "peak_memory_kind": "pss",
+      "loadavg_after": [
+        2.00341796875,
+        1.947265625,
+        2.61279296875
+      ],
+      "round": 1
+    }
+  ],
+  "summary": {
+    "reference": {
+      "constructor_s": {
+        "median": 0.11806066473945975,
+        "rounds": [
+          0.11768972175195813,
+          0.11843160772696137
+        ]
+      },
+      "first_batch_s": {
+        "median": 0.30481259408406913,
+        "rounds": [
+          0.30471264524385333,
+          0.30491254292428493
+        ]
+      },
+      "epoch_s": {
+        "median": 39.42018588678911,
+        "rounds": [
+          39.648822772316635,
+          39.19154900126159
+        ]
+      },
+      "total_s": {
+        "median": 39.53824655152857,
+        "rounds": [
+          39.76651249406859,
+          39.30998060898855
+        ]
+      },
+      "samples_per_s": {
+        "median": 126.84283680789858,
+        "rounds": [
+          126.10714897419528,
+          127.57852464160189
+        ]
+      },
+      "peak_memory_bytes": {
+        "median": 782006272.0,
+        "rounds": [
+          785565696,
+          778446848
+        ]
+      }
+    },
+    "maskops": {
+      "constructor_s": {
+        "median": 0.17377555696293712,
+        "rounds": [
+          0.17407867079600692,
+          0.17347244312986732
+        ]
+      },
+      "first_batch_s": {
+        "median": 0.22629377199336886,
+        "rounds": [
+          0.22335092397406697,
+          0.22923662001267076
+        ]
+      },
+      "epoch_s": {
+        "median": 25.64816167834215,
+        "rounds": [
+          25.665518751833588,
+          25.63080460485071
+        ]
+      },
+      "total_s": {
+        "median": 25.821937235305086,
+        "rounds": [
+          25.839597422629595,
+          25.804277047980577
+        ]
+      },
+      "samples_per_s": {
+        "median": 194.9458348155827,
+        "rounds": [
+          194.8139076535436,
+          195.07776197762183
+        ]
+      },
+      "peak_memory_bytes": {
+        "median": 744937472.0,
+        "rounds": [
+          738581504,
+          751293440
+        ]
+      }
+    },
+    "reference_over_maskops": {
+      "constructor_s": 0.6793859090587737,
+      "first_batch_s": 1.346977388723721,
+      "epoch_s": 1.5369595053697884,
+      "total_s": 1.5311882370107321,
+      "peak_memory_bytes": 1.0497609549704596
+    }
+  }
+}

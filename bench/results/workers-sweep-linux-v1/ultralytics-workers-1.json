@@ -1,0 +1,246 @@
+{
+  "scope": "one augmented training epoch, constructor to last batch, Ultralytics train-mode dataset and loader",
+  "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "logical_cpus": 12,
+  "ram_bytes": 33547984896,
+  "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+  "versions": {
+    "ultralytics": "8.4.149",
+    "ultrafast-maskops": "0.1.0a1",
+    "ultrafast-yolo-dataset": "0.1.0a1",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.4.4",
+    "opencv-python": "4.13.0.92"
+  },
+  "arguments": {
+    "images": "/home/yonghye/ultrafast-vision-build/coco-val2017-yolo/segment/images/val2017",
+    "out": "/home/yonghye/ultrafast-vision-build/workers-sweep-v1/ultralytics-workers-1.json",
+    "mode": "hit",
+    "rounds": "2",
+    "workers": "1",
+    "batch": "16",
+    "imgsz": "640",
+    "fraction": "1.0",
+    "verify_batches": "16",
+    "backends": "['reference', 'maskops']",
+    "backend": "None",
+    "prime": "False",
+    "result": "None"
+  },
+  "corpus": {
+    "images": 5000,
+    "bytes": 814705164
+  },
+  "verification": {
+    "reference": "79883db66a435d82aae18988819ae314d2b22a95df453ccda022f939db68be4b",
+    "maskops": "79883db66a435d82aae18988819ae314d2b22a95df453ccda022f939db68be4b"
+  },
+  "results": [
+    {
+      "backend": "reference",
+      "mode": "hit",
+      "images": 5000,
+      "constructor_s": 0.11914884205907583,
+      "cache_hit": true,
+      "loadavg_before": [
+        1.14404296875,
+        3.1240234375,
+        3.27880859375
+      ],
+      "workers": 1,
+      "batches": 313,
+      "samples": 5000,
+      "first_batch_s": 0.28075431287288666,
+      "epoch_s": 73.42340859258547,
+      "total_s": 73.54255743464455,
+      "samples_per_s": 68.09817326439017,
+      "peak_memory_bytes": 573517824,
+      "peak_memory_kind": "pss",
+      "loadavg_after": [
+        1.04296875,
+        2.67724609375,
+        3.1103515625
+      ],
+      "round": 0
+    },
+    {
+      "backend": "maskops",
+      "mode": "hit",
+      "images": 5000,
+      "constructor_s": 0.17292157607153058,
+      "cache_hit": true,
+      "loadavg_before": [
+        1.0390625,
+        2.64892578125,
+        3.0986328125
+      ],
+      "workers": 1,
+      "batches": 313,
+      "samples": 5000,
+      "first_batch_s": 0.20617179898545146,
+      "epoch_s": 47.82100132573396,
+      "total_s": 47.99392290180549,
+      "samples_per_s": 104.55657266443197,
+      "peak_memory_bytes": 556027904,
+      "peak_memory_kind": "pss",
+      "loadavg_after": [
+        1.0166015625,
+        2.416015625,
+        2.9970703125
+      ],
+      "round": 0
+    },
+    {
+      "backend": "maskops",
+      "mode": "hit",
+      "images": 5000,
+      "constructor_s": 0.17345382925122976,
+      "cache_hit": true,
+      "loadavg_before": [
+        1.01513671875,
+        2.39208984375,
+        2.986328125
+      ],
+      "workers": 1,
+      "batches": 313,
+      "samples": 5000,
+      "first_batch_s": 0.20940085081383586,
+      "epoch_s": 47.74550506379455,
+      "total_s": 47.91895889304578,
+      "samples_per_s": 104.72189985883097,
+      "peak_memory_bytes": 554279936,
+      "peak_memory_kind": "pss",
+      "loadavg_after": [
+        1.00537109375,
+        2.1953125,
+        2.89013671875
+      ],
+      "round": 1
+    },
+    {
+      "backend": "reference",
+      "mode": "hit",
+      "images": 5000,
+      "constructor_s": 0.11808857601135969,
+      "cache_hit": true,
+      "loadavg_before": [
+        1.0048828125,
+        2.17529296875,
+        2.8798828125
+      ],
+      "workers": 1,
+      "batches": 313,
+      "samples": 5000,
+      "first_batch_s": 0.28593470295891166,
+      "epoch_s": 74.20564509090036,
+      "total_s": 74.32373366691172,
+      "samples_per_s": 67.38031849025913,
+      "peak_memory_bytes": 562763776,
+      "peak_memory_kind": "pss",
+      "loadavg_after": [
+        1.0439453125,
+        1.92578125,
+        2.7353515625
+      ],
+      "round": 1
+    }
+  ],
+  "summary": {
+    "reference": {
+      "constructor_s": {
+        "median": 0.11861870903521776,
+        "rounds": [
+          0.11914884205907583,
+          0.11808857601135969
+        ]
+      },
+      "first_batch_s": {
+        "median": 0.28334450791589916,
+        "rounds": [
+          0.28075431287288666,
+          0.28593470295891166
+        ]
+      },
+      "epoch_s": {
+        "median": 73.81452684174292,
+        "rounds": [
+          73.42340859258547,
+          74.20564509090036
+        ]
+      },
+      "total_s": {
+        "median": 73.93314555077814,
+        "rounds": [
+          73.54255743464455,
+          74.32373366691172
+        ]
+      },
+      "samples_per_s": {
+        "median": 67.73924587732465,
+        "rounds": [
+          68.09817326439017,
+          67.38031849025913
+        ]
+      },
+      "peak_memory_bytes": {
+        "median": 568140800.0,
+        "rounds": [
+          573517824,
+          562763776
+        ]
+      }
+    },
+    "maskops": {
+      "constructor_s": {
+        "median": 0.17318770266138017,
+        "rounds": [
+          0.17292157607153058,
+          0.17345382925122976
+        ]
+      },
+      "first_batch_s": {
+        "median": 0.20778632489964366,
+        "rounds": [
+          0.20617179898545146,
+          0.20940085081383586
+        ]
+      },
+      "epoch_s": {
+        "median": 47.78325319476426,
+        "rounds": [
+          47.82100132573396,
+          47.74550506379455
+        ]
+      },
+      "total_s": {
+        "median": 47.95644089742564,
+        "rounds": [
+          47.99392290180549,
+          47.91895889304578
+        ]
+      },
+      "samples_per_s": {
+        "median": 104.63923626163147,
+        "rounds": [
+          104.55657266443197,
+          104.72189985883097
+        ]
+      },
+      "peak_memory_bytes": {
+        "median": 555153920.0,
+        "rounds": [
+          556027904,
+          554279936
+        ]
+      }
+    },
+    "reference_over_maskops": {
+      "constructor_s": 0.6849141550606701,
+      "first_batch_s": 1.363634050762236,
+      "epoch_s": 1.5447781786827144,
+      "total_s": 1.5416729049787963,
+      "peak_memory_bytes": 1.0233932960430145
+    }
+  }
+}

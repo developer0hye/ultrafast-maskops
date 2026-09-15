@@ -10,7 +10,7 @@ identical, so the training run does not change.
 
 **Ultralytics: 13× faster mask rasterization · 4–9× faster segment geometry ·
 1.4× faster augmented epochs. RF-DETR: 2.05× faster segmentation samples,
-1.72× DataLoader throughput**, measured on real COCO data against the
+1.76× DataLoader throughput**, measured on real COCO data against the
 unmodified pipelines.
 
 The extension depends on nothing but pybind11 and NumPy. It bundles no OpenCV
@@ -137,15 +137,38 @@ pycocotools' fill once, only at the output pixels.
 
 | | RF-DETR reference | with ultrafast-maskops | Speedup |
 |---|---:|---:|---:|
-| `__getitem__`, single process | 20.99 ms | **10.26 ms** | **2.05×** |
-| DataLoader, 8 workers, batch 8 | 119.6 img/s | **206.0 img/s** | **1.72×** |
+| `__getitem__`, single process | 20.78 ms | **10.20 ms** | **2.04×** |
+| DataLoader, 8 workers, batch 8 | 119.7 img/s | **210.9 img/s** | **1.76×** |
 
 Intel i5-10400, COCO val2017, RF-DETR's default training transforms
 (`square_resize_div_64`, multi-scale, resolution 560). The mask work of a
-sample went from about 11 ms to 0.6 ms; what remains is JPEG decoding, the PIL
+sample went from about 11 ms to 0.5 ms; what remains is JPEG decoding, the PIL
 image resize and normalization. Under the same seeds, images, boxes, labels
 and masks are byte-identical for every image of the split.
 [Design, kernel and verification](docs/RFDETR.md).
+
+## DataLoader workers: the gain holds at every worker count
+
+Both frameworks, COCO val2017, one pass per measurement in a fresh process,
+worker start-up excluded, best of two rounds, on the i5-10400 (6 cores, 12
+threads).
+
+![Images per second against num_workers for Ultralytics and RF-DETR](docs/assets/workers-sweep.svg)
+
+| num_workers | Ultralytics reference → ours (img/s) | RF-DETR reference → ours (img/s) |
+|---:|---:|---:|
+| 0 | 69 → **112** (1.62×) | 41 → **76** (1.84×) |
+| 2 | 128 → **196** (1.53×) | 67 → **118** (1.77×) |
+| 4 | 240 → **355** (1.48×) | 108 → **187** (1.73×) |
+| 6 | 321 → **453** (1.41×) | 119 → **205** (1.72×) |
+| 8 | 333 → **452** (1.36×) | 122 → **212** (1.74×) |
+| 12 | 360 → **464** (1.29×) | 124 → **216** (1.74×) |
+
+RF-DETR's samples are heavier, so its loader scales with the physical cores
+and the per-sample gain carries through (1.72–1.84×). Ultralytics saturates
+the six cores at 6–8 workers; beyond that the main process's collation and
+the shared memory bandwidth cap both pipelines, which narrows the gap.
+Reports: [bench/results/workers-sweep-linux-v1](bench/results/workers-sweep-linux-v1).
 
 ## Exactness
 
