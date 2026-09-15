@@ -1,0 +1,9 @@
+{
+ "images": 5000,
+ "seeds": 2,
+ "instances": 65177,
+ "mismatches": 0,
+ "fuzz_seeds": 2000,
+ "fuzz_output_pixels": 444866579,
+ "resolution": 560
+}

@@ -103,11 +103,24 @@ training run speeds up depends on whether its GPU was waiting on the loader.
   `CocoDetection` and through an accelerated one under the same seeds, for the
   square and the non-square training pipelines: images, boxes, labels, areas,
   sizes and masks are `torch.equal`.
-- `bench/verify_rfdetr.py`: the whole val2017 split (5,000 images) under two
-  seeds each, byte-identical, and 2,000 further random-polygon fuzz cases on
-  canvases up to 400 px ([report](../bench/results/rfdetr-verify-linux-v1.json)).
+- `bench/verify_rfdetr.py`: the whole val2017 split (5,000 images, 65,177
+  instances) under two seeds each, 0 mismatches, and 2,000 further
+  random-polygon fuzz cases on canvases up to 400 px (445 M output pixels)
+  without a difference ([report](../bench/results/rfdetr-verify-linux-v1.json)).
 - `bench/rfdetr_loader.py` checks 400 samples for identical digests before
   timing anything.
+
+## Where to call it in RF-DETR training
+
+`RFDETRDataModule.setup("fit")` builds the training dataset with
+`build_dataset("train", ...)` and keeps it as `_dataset_train`; the
+DataLoader is created later by `train_dataloader()`. A subclass that calls
+`accelerate_dataset(self._dataset_train)` after `super().setup(stage)` (when
+`_dataset_train.prepare.include_masks` is set) accelerates every worker,
+because the traced transforms and `FastConvertCoco` pickle like RF-DETR's own.
+`RFDETR.train()` constructs the data module internally and offers no hook for
+a subclass yet, so this currently applies to Lightning runs that build the data
+module themselves.
 
 ## Compatibility
 

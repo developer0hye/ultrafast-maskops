@@ -176,7 +176,8 @@ and masks are byte-identical for every image of the split.
   against pycocotools + torchvision on random polygons and chains, a synthetic
   COCO dataset through the unmodified and the accelerated `CocoDetection` under
   the same seeds ([tests/test_rfdetr.py](tests/test_rfdetr.py)), and the whole
-  val2017 split under two seeds each, byte-identical.
+  val2017 split (5,000 images, 65,177 instances) under two seeds each,
+  byte-identical.
 
 ## Compatibility and limitations
 
