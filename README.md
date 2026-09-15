@@ -119,6 +119,13 @@ Before timing, every batch of a whole epoch (7,393 batches) was digested for
 all three pipelines: the digests are identical.
 [Method, per-stage anatomy and raw reports](docs/SEGMENT_GEOMETRY.md).
 
+Whether that reaches the training wall clock depends on whether the loader is
+the bottleneck. Training YOLO11n-seg end to end on a TITAN RTX with the
+i5-12600 (batch 16, identical losses and weights), the epoch is 1.17–1.19×
+faster with `workers=0` and unchanged with 2 or 8 workers, where the GPU step
+sets the pace in both FP32 and AMP
+([measurements](docs/SEGMENT_GEOMETRY.md#end-to-end-gpu-training-on-the-i5-12600--titan-rtx-windows-11)).
+
 ## Exactness
 
 - The mask kernel follows OpenCV 4.13's `clipLine`, `LineIterator`,

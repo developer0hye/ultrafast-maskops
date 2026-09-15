@@ -184,6 +184,44 @@ reference medians agree within 0.3%.
   objects. This is the only difference between the last two columns, which
   roughly halves the memory of the process and its workers.
 
+### End-to-end GPU training on the i5-12600 + TITAN RTX (Windows 11)
+
+`bench/gpu_training.py` trains YOLO11n-seg from random weights on the
+5,000-image val2017 fixture with the unmodified `SegmentationTrainer` and
+with `FastSegmentationTrainer` (both accelerations, persistent), one fresh
+process per job, batch 16, imgsz 640, two epochs, `close_mosaic=0`,
+`deterministic=True`, seed 912, validation off except Ultralytics' final one on
+a 16-image subset. Epoch times are measured between the trainer's epoch
+callbacks with CUDA synchronized at both ends; every job records its per-batch
+loss items and a hash of the final weights. Backend order alternates across
+repeats. Host: i5-12600 (6 cores / 12 threads), TITAN RTX 24 GB, Windows 11,
+torch 2.10.0+cu128, commit `3c04fd6`. Medians of the repeats:
+
+| Precision | Workers | Reference epoch 1 / 2 | Accelerated epoch 1 / 2 | Ratio | Repeats |
+|---|---:|---:|---:|---:|---:|
+| FP32 (`amp=False`) | 0 | 194.4 / 192.4 s | 163.3 / 164.2 s | **1.19× / 1.17×** | 3 |
+| FP32 | 2 | 110.8 / 111.8 s | 110.7 / 111.9 s | 1.00× / 1.00× | 3 |
+| FP32 | 8 | 108.6 / 111.9 s | 108.3 / 111.8 s | 1.00× / 1.00× | 3 |
+| AMP (default) | 2 | 72.3 / 58.4 s | 72.3 / 58.5 s | 1.00× / 1.00× | 2 |
+| AMP | 8 | 71.8 / 58.2 s | 71.8 / 58.1 s | 1.00× / 1.00× | 2 |
+
+In every configuration all jobs, reference and accelerated, produced identical
+per-batch loss vectors and identical final weights.
+
+The reading is the one the loader numbers predict. With `workers=0` the main
+process loads and trains in turn, so the 1.45× per-sample gain shows up as
+1.17–1.19× per epoch. With two or more workers on this host the loader is no
+longer the bottleneck: the GPU step sets the epoch time (about 110 s in FP32,
+58 s with AMP once the workers are warm), and the accelerated loader has
+nothing left to shorten. Epoch 1 with workers includes spawning the worker
+processes and the GPU warmup. The acceleration therefore pays for itself when
+the loader is the bottleneck (few workers, small models, faster GPUs, or the
+COCO-scale CPU epoch above); on a six-core desktop training YOLO11n-seg with
+the default eight workers it does not change the wall time, and this record
+is kept so that no one has to rediscover that. The earlier RTX 3070 series
+(`docs/archive/GPU_RESULTS.md`, mask-only, older kernel) came to the same
+1.00–1.02× at workers 2 and 8.
+
 ### Anatomy of `apply_segments`
 
 On 1,500 captured COCO calls (median 24 instances and 24,000 points per call;
