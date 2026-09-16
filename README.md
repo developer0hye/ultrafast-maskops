@@ -170,6 +170,13 @@ the six cores at 6–8 workers; beyond that the main process's collation and
 the shared memory bandwidth cap both pipelines, which narrows the gap.
 Reports: [bench/results/workers-sweep-linux-v1](bench/results/workers-sweep-linux-v1).
 
+These are loader rates. Whether a training run gets shorter depends on whether
+its GPU was waiting for them. Measured on an RTX 3070: with the default worker
+counts both pipelines are GPU-bound, so training time changes by 0–2%, but
+where the loader is the limit the training itself speeds up — Ultralytics
+1.32× with no workers and **1.54× with one**, RF-DETR 1.09× with no workers.
+[What was measured, and where the loader decides training time](docs/TRAINING.md).
+
 ## Exactness
 
 - The mask kernel follows OpenCV 4.13's `clipLine`, `LineIterator`,

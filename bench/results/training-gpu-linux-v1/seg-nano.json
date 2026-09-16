@@ -1,0 +1,584 @@
+{
+ "scope": "RF-DETR segmentation training steps/s with the reference, accelerated and cached training datasets",
+ "host": "yonghye-pc",
+ "processor": "x86_64",
+ "logical_cpus": 12,
+ "gpu": "NVIDIA GeForce RTX 3070",
+ "torch": "2.10.0+cu128",
+ "arguments": {
+  "dataset_dir": "/home/yonghye/ultrafast-vision-build/rfdetr-coco-val-as-train",
+  "out": "/home/yonghye/ultrafast-vision-build/rfdetr-training-v1/seg-nano.json",
+  "model": "seg-nano",
+  "workers": "[0, 2, 8]",
+  "arms": "['reference', 'accelerated', 'cached']",
+  "rounds": "2",
+  "steps": "160",
+  "warmup": "40",
+  "batch": "4",
+  "arm": "None",
+  "num_workers": "None",
+  "result": "None"
+ },
+ "results": [
+  {
+   "arm": "reference",
+   "workers": 0,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 30.656159573234618,
+   "img_per_s": 15.657538539794137,
+   "first_losses": [
+    18.508045196533203,
+    16.071910858154297,
+    18.180728912353516,
+    17.657350540161133,
+    17.479251861572266
+   ],
+   "peak_cuda_allocated_bytes": 3640264704,
+   "loadavg_before": [
+    1.6953125,
+    1.42041015625,
+    0.98291015625
+   ],
+   "loadavg_after": [
+    1.26220703125,
+    1.3388671875,
+    0.98193359375
+   ],
+   "round": 0
+  },
+  {
+   "arm": "accelerated",
+   "workers": 0,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 28.40792415710166,
+   "img_per_s": 16.89669394164464,
+   "first_losses": [
+    18.508045196533203,
+    16.02328872680664,
+    18.288928985595703,
+    17.82339096069336,
+    17.53399658203125
+   ],
+   "peak_cuda_allocated_bytes": 3640264704,
+   "loadavg_before": [
+    1.24072265625,
+    1.3330078125,
+    0.982421875
+   ],
+   "loadavg_after": [
+    1.6474609375,
+    1.4375,
+    1.0341796875
+   ],
+   "round": 0
+  },
+  {
+   "arm": "cached",
+   "workers": 0,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 24.33194740721956,
+   "img_per_s": 19.72715097426105,
+   "first_losses": [
+    21.408252716064453,
+    20.84934425354004,
+    16.990488052368164,
+    15.933551788330078,
+    20.82695770263672
+   ],
+   "peak_cuda_allocated_bytes": 3420343808,
+   "loadavg_before": [
+    1.59521484375,
+    1.43017578125,
+    1.03369140625
+   ],
+   "loadavg_after": [
+    1.33056640625,
+    1.380859375,
+    1.0302734375
+   ],
+   "round": 0
+  },
+  {
+   "arm": "reference",
+   "workers": 2,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 24.37450610520318,
+   "img_per_s": 19.692706712836134,
+   "first_losses": [
+    22.580501556396484,
+    16.751216888427734,
+    15.028566360473633,
+    18.813276290893555,
+    18.316909790039062
+   ],
+   "peak_cuda_allocated_bytes": 3767241728,
+   "loadavg_before": [
+    1.3037109375,
+    1.37451171875,
+    1.02978515625
+   ],
+   "loadavg_after": [
+    1.35009765625,
+    1.375,
+    1.04345703125
+   ],
+   "round": 0
+  },
+  {
+   "arm": "accelerated",
+   "workers": 2,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 24.017522702924907,
+   "img_per_s": 19.985408401073126,
+   "first_losses": [
+    16.613170623779297,
+    19.226198196411133,
+    17.961013793945312,
+    16.32499885559082,
+    18.788970947265625
+   ],
+   "peak_cuda_allocated_bytes": 3467098112,
+   "loadavg_before": [
+    1.32177734375,
+    1.36865234375,
+    1.04296875
+   ],
+   "loadavg_after": [
+    1.1787109375,
+    1.326171875,
+    1.03955078125
+   ],
+   "round": 0
+  },
+  {
+   "arm": "cached",
+   "workers": 2,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 24.225624253973365,
+   "img_per_s": 19.813730906078625,
+   "first_losses": [
+    19.767057418823242,
+    19.3758544921875,
+    17.73727798461914,
+    15.667908668518066,
+    18.78858757019043
+   ],
+   "peak_cuda_allocated_bytes": 3405634560,
+   "loadavg_before": [
+    1.1640625,
+    1.3203125,
+    1.0390625
+   ],
+   "loadavg_after": [
+    1.0830078125,
+    1.27880859375,
+    1.03515625
+   ],
+   "round": 0
+  },
+  {
+   "arm": "reference",
+   "workers": 8,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 24.4840444708243,
+   "img_per_s": 19.604604156473332,
+   "first_losses": [
+    18.06433868408203,
+    17.265953063964844,
+    15.87468147277832,
+    17.859535217285156,
+    19.310888290405273
+   ],
+   "peak_cuda_allocated_bytes": 3810097152,
+   "loadavg_before": [
+    1.076171875,
+    1.27392578125,
+    1.03466796875
+   ],
+   "loadavg_after": [
+    1.35205078125,
+    1.318359375,
+    1.06005859375
+   ],
+   "round": 0
+  },
+  {
+   "arm": "accelerated",
+   "workers": 8,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 24.252610409166664,
+   "img_per_s": 19.791683942548975,
+   "first_losses": [
+    16.4632511138916,
+    17.186975479125977,
+    19.694019317626953,
+    16.56680679321289,
+    18.13771629333496
+   ],
+   "peak_cuda_allocated_bytes": 3424892928,
+   "loadavg_before": [
+    1.404296875,
+    1.330078125,
+    1.0654296875
+   ],
+   "loadavg_after": [
+    1.4775390625,
+    1.35693359375,
+    1.08544921875
+   ],
+   "round": 0
+  },
+  {
+   "arm": "cached",
+   "workers": 8,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 23.935153448022902,
+   "img_per_s": 20.05418519845124,
+   "first_losses": [
+    19.767057418823242,
+    19.352794647216797,
+    17.680234909057617,
+    15.493010520935059,
+    18.661104202270508
+   ],
+   "peak_cuda_allocated_bytes": 3401942016,
+   "loadavg_before": [
+    1.43896484375,
+    1.3505859375,
+    1.0849609375
+   ],
+   "loadavg_after": [
+    1.22412109375,
+    1.30517578125,
+    1.0810546875
+   ],
+   "round": 0
+  },
+  {
+   "arm": "cached",
+   "workers": 0,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 24.267592617776245,
+   "img_per_s": 19.779465048724916,
+   "first_losses": [
+    21.408252716064453,
+    20.824718475341797,
+    16.853309631347656,
+    15.965058326721191,
+    20.66738510131836
+   ],
+   "peak_cuda_allocated_bytes": 3420343808,
+   "loadavg_before": [
+    1.2060546875,
+    1.2998046875,
+    1.08056640625
+   ],
+   "loadavg_after": [
+    1.11279296875,
+    1.2646484375,
+    1.0771484375
+   ],
+   "round": 1
+  },
+  {
+   "arm": "accelerated",
+   "workers": 0,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 28.025621809996665,
+   "img_per_s": 17.127184661743538,
+   "first_losses": [
+    18.508045196533203,
+    16.026445388793945,
+    18.22125244140625,
+    17.635143280029297,
+    17.666587829589844
+   ],
+   "peak_cuda_allocated_bytes": 3640264704,
+   "loadavg_before": [
+    1.103515625,
+    1.26025390625,
+    1.07666015625
+   ],
+   "loadavg_after": [
+    1.41552734375,
+    1.30419921875,
+    1.09912109375
+   ],
+   "round": 1
+  },
+  {
+   "arm": "reference",
+   "workers": 0,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 30.59285671915859,
+   "img_per_s": 15.689937177373924,
+   "first_losses": [
+    18.508045196533203,
+    16.008251190185547,
+    18.23788833618164,
+    17.774066925048828,
+    17.630857467651367
+   ],
+   "peak_cuda_allocated_bytes": 3640264704,
+   "loadavg_before": [
+    1.3818359375,
+    1.298828125,
+    1.09814453125
+   ],
+   "loadavg_after": [
+    1.80322265625,
+    1.41259765625,
+    1.14404296875
+   ],
+   "round": 1
+  },
+  {
+   "arm": "cached",
+   "workers": 2,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 24.03678285283968,
+   "img_per_s": 19.96939452915569,
+   "first_losses": [
+    19.767057418823242,
+    19.322532653808594,
+    17.70687484741211,
+    15.604506492614746,
+    18.654052734375
+   ],
+   "peak_cuda_allocated_bytes": 3405634560,
+   "loadavg_before": [
+    1.73876953125,
+    1.4052734375,
+    1.14306640625
+   ],
+   "loadavg_after": [
+    1.484375,
+    1.3759765625,
+    1.14208984375
+   ],
+   "round": 1
+  },
+  {
+   "arm": "accelerated",
+   "workers": 2,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 24.16919552721083,
+   "img_per_s": 19.8599907663287,
+   "first_losses": [
+    15.796066284179688,
+    26.178632736206055,
+    15.322922706604004,
+    16.280712127685547,
+    21.551162719726562
+   ],
+   "peak_cuda_allocated_bytes": 3842048512,
+   "loadavg_before": [
+    1.4453125,
+    1.36962890625,
+    1.14111328125
+   ],
+   "loadavg_after": [
+    1.583984375,
+    1.4287109375,
+    1.17236328125
+   ],
+   "round": 1
+  },
+  {
+   "arm": "reference",
+   "workers": 2,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 24.288163231685758,
+   "img_per_s": 19.762713031086825,
+   "first_losses": [
+    15.037567138671875,
+    21.91476058959961,
+    17.349193572998047,
+    15.298637390136719,
+    18.40857696533203
+   ],
+   "peak_cuda_allocated_bytes": 3516217856,
+   "loadavg_before": [
+    1.537109375,
+    1.42138671875,
+    1.17138671875
+   ],
+   "loadavg_after": [
+    1.35107421875,
+    1.388671875,
+    1.17041015625
+   ],
+   "round": 1
+  },
+  {
+   "arm": "cached",
+   "workers": 8,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 23.718565502204,
+   "img_per_s": 20.23731156740474,
+   "first_losses": [
+    19.767057418823242,
+    19.336788177490234,
+    17.64223861694336,
+    16.435131072998047,
+    20.53485679626465
+   ],
+   "peak_cuda_allocated_bytes": 3401942016,
+   "loadavg_before": [
+    1.32275390625,
+    1.3818359375,
+    1.16943359375
+   ],
+   "loadavg_after": [
+    1.16455078125,
+    1.33251953125,
+    1.16162109375
+   ],
+   "round": 1
+  },
+  {
+   "arm": "accelerated",
+   "workers": 8,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 24.116055684164166,
+   "img_per_s": 19.90375235014872,
+   "first_losses": [
+    21.13439178466797,
+    17.399017333984375,
+    15.780023574829102,
+    15.64743423461914,
+    14.441333770751953
+   ],
+   "peak_cuda_allocated_bytes": 3607689216,
+   "loadavg_before": [
+    1.31201171875,
+    1.3603515625,
+    1.171875
+   ],
+   "loadavg_after": [
+    1.26953125,
+    1.34912109375,
+    1.17578125
+   ],
+   "round": 1
+  },
+  {
+   "arm": "reference",
+   "workers": 8,
+   "model": "seg-nano",
+   "batch": 4,
+   "steps": 160,
+   "warmup": 40,
+   "images": 480,
+   "elapsed_s": 24.506513723172247,
+   "img_per_s": 19.58662931097106,
+   "first_losses": [
+    18.36025047302246,
+    17.65007209777832,
+    16.295848846435547,
+    15.99996566772461,
+    17.821659088134766
+   ],
+   "peak_cuda_allocated_bytes": 3396295680,
+   "loadavg_before": [
+    1.24755859375,
+    1.34326171875,
+    1.1748046875
+   ],
+   "loadavg_after": [
+    1.5830078125,
+    1.4365234375,
+    1.21435546875
+   ],
+   "round": 1
+  }
+ ],
+ "summary_best_img_per_s": {
+  "0": {
+   "reference": 15.689937177373924,
+   "accelerated": 17.127184661743538,
+   "cached": 19.779465048724916,
+   "speedup": 1.0916031382485223
+  },
+  "2": {
+   "reference": 19.762713031086825,
+   "accelerated": 19.985408401073126,
+   "cached": 19.96939452915569,
+   "speedup": 1.0112684614524332
+  },
+  "8": {
+   "reference": 19.604604156473332,
+   "accelerated": 19.90375235014872,
+   "cached": 20.23731156740474,
+   "speedup": 1.0152590784944062
+  }
+ }
+}
